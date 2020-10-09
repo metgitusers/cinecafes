@@ -216,6 +216,12 @@
           <i class="fas fa-fw fa-folder"></i>
           <span>Transactionhistory</span></a>
       </li>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item <?php if($this->uri->segment(2)=='notification'){ echo"active"; }?>">
+        <a class="nav-link" href="<?php echo base_url('admin/notification/offer'); ?>">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Push Notification</span></a>
+      </li>
 
       
       
