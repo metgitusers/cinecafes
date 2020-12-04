@@ -557,7 +557,7 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Cancellation Policy</h4>
+        <h4 class="modal-title" id="myModalLabel">Be a Franchise</h4>
 		<span id="msg_succ"></span>
 		<span id="msg_err"></span>
       </div>
