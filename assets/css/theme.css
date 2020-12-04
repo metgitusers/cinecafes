@@ -1507,6 +1507,7 @@ footer #big_footer .copy_text p a:hover{
 
 #contact_page p, #contact_page ul li{
 	color: #fff;
+	font-family: 'OptimusPrinceps'!important;
 }
 
 #contact_page .contact_txt p a:hover{
@@ -1607,6 +1608,7 @@ ul.cancellation_list li:before{
 
 #contact_page h4{
 	color:#fcb040;
+	font-family: 'OptimusPrinceps'!important;
 }
 /********************************************************
 ********************************************************/
