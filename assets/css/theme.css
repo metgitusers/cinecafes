@@ -1565,7 +1565,7 @@ ul.cancellation_list li:before{
 }
 
 @keyframes blinker {  
-  50% { opacity: 0; }
+  50% { opacity: 0.2; }
 }
 
 
