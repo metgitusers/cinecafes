@@ -292,8 +292,10 @@
 		     
 					</ul>
 					<ul class="add_con_list">
+<!--
 					    <li class="drop-left"><a href="https://cinecafes.com/wp/checkout" class="pyu">Pay Now</a></li>
 					    <li><img src="assets/img/payu-logo.png" class="dsgn"></li>
+-->
 						<!--<li><a href=""><i class="fa fa-map-marker"></i> 118 Main abcd Road</a></li>-->
 						<li><a href="tel:917827633006"><i class="fa fa-phone"></i>+91 7827633006</a></li>
 					</ul>
