@@ -566,6 +566,12 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
       <div class="modal-body" id="contact_page">
             <div id="contact_form1">
              <form action="" method="post">
+               <div class="col-sm-6"> 
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input id="cinecafes_fname" type="text" class="form-control" placeholder="First Name" required>
+                  </div>
+                </div>
                 <div class="col-sm-6"> 
                   <div class="form-group">
                     <label>First Name</label>
