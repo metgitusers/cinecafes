@@ -403,7 +403,7 @@
                   <tr>
                     <td width="85"><p><i class="fa fa-map-marker"></i><span>Address:</span></p></td>
                     <td><p>CAFEPLEX ENTERTAINMENT PRIVATE LIMITED <br>
-ECOSPACE ESNT 3A0501, BLOCK -A, 5TH FLOOR, PLOT NO. IIF/11, NEW TOWN, <br> KOLKATA, Parganas North, West Bengal, India, 700156</p></td>
+ECOSPACE ESNT 3A0501, BLOCK -A, 5TH FLOOR, PLOT NO. IIF/11, NEW TOWN, <br> KOLKATA, 24 Parganas North, West Bengal, India, 700156</p></td>
                   </tr>
                 <tr>
                     <td width="85"><p><i class="fa fa-phone"></i><span>Phone:</span></p></td>
@@ -411,7 +411,7 @@ ECOSPACE ESNT 3A0501, BLOCK -A, 5TH FLOOR, PLOT NO. IIF/11, NEW TOWN, <br> KOLKA
                   </tr>
                    <tr>
                     <td width="85"><p><i class="fa fa-envelope"></i><span>Email:</span></p></td>
-                    <td><p><a href="mailto:info@cinecafes.com">info@cinecafes.com</a></p></td>
+                    <td><p><a href="mailto:puja.c@cinecafes.com">puja.c@cinecafes.com</a></p></td>
                   </tr>
                  
                 

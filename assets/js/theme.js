@@ -3,7 +3,7 @@
 //Banner Carousel
 var bs = $('#banner-carousel');
 bs.owlCarousel({
-	autoplay:false,
+	autoplay:true,
 	//autoplayTimeout:1000,
 	//autoplaySpeed:700,
     loop:true,
