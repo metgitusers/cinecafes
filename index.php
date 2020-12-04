@@ -562,6 +562,7 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
 		<span id="msg_err"></span>
       </div>
       <div class="modal-body" id="contact_page">
+            <div id="contact_form1">
              <form action="" method="post">
                 <div class="col-sm-6"> 
                   <div class="form-group">
@@ -601,7 +602,7 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
                   </div>
                 </div>
               </form> 
-              
+              </div>
           <div class="clearfix"></div>
 
       </div>
