@@ -651,6 +651,24 @@ header .header_dwn .logo_area{
 	font-style: normal;
 }
 
+@font-face {
+    font-family: 'OptimusPrincepsSemiBold';
+    src: url('../fonts/OptimusPrincepsSemiBold.woff2') format('woff2'),
+        url('../fonts/OptimusPrincepsSemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'OptimusPrinceps';
+    src: url('../fonts/OptimusPrinceps.woff2') format('woff2'),
+        url('../fonts/OptimusPrinceps.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
 /********************************************************
 ********************************************************/
 
