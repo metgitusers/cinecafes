@@ -52,7 +52,7 @@
 				<div class="row">
 					<div class="top_contact">
 					<ul class="con_list">
-						<li><a href="tel:9181000 01001 "><i class="fa fa-phone"></i> Call +91 81000 01001 </a></li>
+						<li><a href="tel:9181000 01001 "><i class="fa fa-phone"></i> Call +91 7827633006</a></li>
 						<!--<li><a href=""><i class="fa fa-map-marker"></i> 118 Main abcd Road</a></li>-->
 					</ul>
 				</div>
@@ -295,7 +295,7 @@
 					    <li class="drop-left"><a href="https://cinecafes.com/wp/checkout" class="pyu">Pay Now</a></li>
 					    <li><img src="assets/img/payu-logo.png" class="dsgn"></li>
 						<!--<li><a href=""><i class="fa fa-map-marker"></i> 118 Main abcd Road</a></li>-->
-						<li><a href="tel:+918100001001"><i class="fa fa-phone"></i>+91 81000 01001</a></li>
+						<li><a href="tel:917827633006"><i class="fa fa-phone"></i>+91 7827633006</a></li>
 					</ul>
 					
 					<ul class="ftr_social_list">
@@ -400,15 +400,12 @@
                   </tr>-->
                   <tr>
                     <td width="85"><p><i class="fa fa-map-marker"></i><span>Address:</span></p></td>
-                    <td><p>ECOSPACE, ESNT 3A0501, BLOCK 3A,<br>
-                    
-5TH FLOOR PLOT NO. IIF/11,<br>
-
-KOLKATA, WEST BENGAL – 700160</p></td>
+                    <td><p>CAFEPLEX ENTERTAINMENT PRIVATE LIMITED <br>
+ECOSPACE ESNT 3A0501, BLOCK -A, 5TH FLOOR, PLOT NO. IIF/11, NEW TOWN, <br> KOLKATA, Parganas North, West Bengal, India, 700156</p></td>
                   </tr>
                 <tr>
                     <td width="85"><p><i class="fa fa-phone"></i><span>Phone:</span></p></td>
-                    <td><p> <a href="tel:+918100001001">+91 81000 01001</a> </p></td>
+                    <td><p> <a href="tel:917827633006">+91 7827633006</a> </p></td>
                   </tr>
                    <tr>
                     <td width="85"><p><i class="fa fa-envelope"></i><span>Email:</span></p></td>
