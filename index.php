@@ -136,7 +136,7 @@
 		<div class="col-sm-10 col-sm-offset-1 wel_com_txt">
 			<div class="row">
 							<div class="col-sm-7">
-				<p class="mrg80T">Caféplex Entertainment Pvt. Ltd. brings one of a kind facility Cine Cafes, where you can enjoy your favorite Movie or TV show with your favorite food in a luxury sitting. This eclectic and innovative blend has been designed to appease the current consumer trend, which is bringing dining and movie viewing experiences together. Starting soon, the café will be your perfect opportunity for relaxing with family or friends or someone special.</p>
+				<p>Caféplex Entertainment Pvt. Ltd. brings one of a kind facility Cine Cafes, where you can enjoy your favorite Movie or TV show with your favorite food in a luxury sitting. This eclectic and innovative blend has been designed to appease the current consumer trend, which is bringing dining and movie viewing experiences together. Starting soon, the café will be your perfect opportunity for relaxing with family or friends or someone special.</p>
 				
 				<p>Movies have always held a special place of interest for the mass. In the last couple of year, TV shows have gradually started to take space on the same preference platform. Cine Cafés brings you the choice and chance of uninterrupted movie viewing or TV show binging while enjoying delicious food.
 </p>
