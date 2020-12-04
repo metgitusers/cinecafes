@@ -421,7 +421,8 @@ ECOSPACE ESNT 3A0501, BLOCK -A, 5TH FLOOR, PLOT NO. IIF/11, NEW TOWN, <br> KOLKA
            	</div>
            	
            	<div class="col-sm-12">
-           		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.814202942848!2d88.48884361443429!3d22.586051338169998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a020b58f22b8549%3A0xbcadc875b3213b2d!2sMet%20Technologies%20Private%20Limited!5e0!3m2!1sen!2sin!4v1598348303828!5m2!1sen!2sin" width="100%" height="240" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+           		<!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.814202942848!2d88.48884361443429!3d22.586051338169998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a020b58f22b8549%3A0xbcadc875b3213b2d!2sMet%20Technologies%20Private%20Limited!5e0!3m2!1sen!2sin!4v1598348303828!5m2!1sen!2sin" width="100%" height="240" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>-->
+				<img src="assets/img/cinecafe-map.png" alt="">
            	</div>
            	
            </div>
