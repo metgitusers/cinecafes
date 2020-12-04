@@ -1511,6 +1511,10 @@ footer #big_footer .copy_text p a:hover{
 	font-size: 16px;
 }
 
+#contact_page select option{
+	color:#000;
+}
+
 #contact_page .contact_txt p a:hover{
 	color: #fcb040;		
 	-webkit-transition-duration: 0.5s;
