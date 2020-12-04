@@ -1404,11 +1404,11 @@ footer #big_footer .copy_text p a:hover{
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.42857143;
-    color: #000;
+    color: #fff;
     font-family: 'OptimusPrinceps';
     background-color: rgba(255,255,255,0);
     background-image: none;
-    border: 1px solid #777777;
+    border: 1px solid #fcb040;
     border-radius: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -1480,7 +1480,7 @@ footer #big_footer .copy_text p a:hover{
 }
 
 #contact_page .contact_txt p, #contact_page .contact_txt p a{
-    color: #000;
+    color: #fff;
     font-size: 14px;
     font-weight: 400;
     font-family: 'OptimusPrinceps';
@@ -1500,7 +1500,7 @@ footer #big_footer .copy_text p a:hover{
 }
 
 #contact_page .contact_txt p span{
-	color:#b06b04;
+	color:#ff9b06;
 	margin-right:10px;
 	
 }
