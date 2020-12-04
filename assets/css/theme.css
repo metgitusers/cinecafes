@@ -1571,7 +1571,7 @@ ul.cancellation_list li:before{
 
 
 
-.modal-header .modal-body {   
+.modal-header, .modal-body {   
     background: #3e3d3d!important;
 }
 
