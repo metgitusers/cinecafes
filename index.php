@@ -61,7 +61,7 @@
 			<div class="col-lg-6 col-md-6 col-sm-6 header_right">
 				<div class="row">
 				<div class="header_right">
-				<div class="be_franshise"><a class="blink_me" href=""><img src="assets/img/befranchise.png" alt="">be a franchise</a></div>					
+				<div class="be_franshise"><a class="blink_me" href=""  data-toggle="modal" data-target="#be_franshise_panel"><img src="assets/img/befranchise.png" alt="">be a franchise</a></div>					
 				<div class="social_area">
             <ul class="social-network social-circle">
               <li><a href="https://www.facebook.com/CineCafes/" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
@@ -540,6 +540,29 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
                   <li>The refund for the cancelled ticket will be processed in minimum 7 working days.</li>
                   
               </ul>
+              
+          <div class="clearfix"></div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="be_franshise_panel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Cancellation Policy</h4>
+		<span id="msg_succ"></span>
+		<span id="msg_err"></span>
+      </div>
+      <div class="modal-body" id="contact_page">
+             
               
           <div class="clearfix"></div>
 
