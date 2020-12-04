@@ -1519,8 +1519,10 @@ ul.cancellation_list li:before{
 	float: right;
 }
 
-.be_franshise{
-	float: left;
+.be_franshise {
+    float: left;
+    padding-right: 60px;
+    margin: 17px 0 0 0;
 }
 
 .be_franshise a{
@@ -1530,6 +1532,12 @@ ul.cancellation_list li:before{
 	border:#fcb040 solid 2px;
 	color: #fcb040;
 	text-transform: uppercase;
+}
+
+.be_franshise a img{
+	margin-right:11px;
+	display: inline-block;
+	
 }
 
 
