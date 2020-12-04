@@ -565,55 +565,7 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
       </div>
       <div class="modal-body" id="contact_page">
             <div id="contact_form1">
-             <form action="" method="post">
-               <div class="col-sm-6"> 
-                  <div class="form-group">
-                   	<select class="form-control">
-                   		<option selected>Select Franchise</option>
-                   		<option>A Master Franchise.</option>
-                   		<option>Be A Standalone Franchise</option>
-                   	</select>
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="col-sm-6"> 
-                  <div class="form-group">
-                    <label>First Name</label>
-                    <input id="cinecafes_fname" type="text" class="form-control" placeholder="First Name" required>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label>Last Name</label>
-                    <input id="cinecafes_lname" type="text" class="form-control" placeholder="Last Name">
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label>Subject</label>
-                    <input id="cinecafes_subject" type="text" class="form-control" placeholder="Subject">
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label>Email</label> <span class="err_msg" id="error_email"></span>
-                    <input id="cinecafes_email" type="text" class="form-control" placeholder="Email">
-                  </div>
-                </div>
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="">Message</label> <span class="err_msg" id="error_msg"></span>
-                    <textarea id="cinecafes_msg" class="form-control" name="" id="" cols="" rows="5" placeholder="Enter Message"></textarea>
-                  </div>
-				  
-				
-				  
-                  <div class="form-group">
-                    <button id="cinecafes_submit" class="btn btn-black">Submit</button>
-                    
-                  </div>
-                </div>
-              </form> 
+             <?php echo do_shortcode('[contact-form-7 id="31" title="Be a Franchise"]');?>
               </div>
           <div class="clearfix"></div>
 
