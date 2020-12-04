@@ -60,7 +60,8 @@
 			</div> 
 			<div class="col-lg-6 col-md-6 col-sm-6 header_right">
 				<div class="row">
-									
+				<div class="header_right">
+				<div class="be_franshise"><a href=""><img src="assets/img/befranchise.png" alt="">be a franchise</a></div>					
 				<div class="social_area">
             <ul class="social-network social-circle">
               <li><a href="https://www.facebook.com/CineCafes/" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
@@ -68,6 +69,7 @@
               
               <li><a href="https://www.instagram.com/cinecafes/" class="instagram" title="instagram"><i class="fa fa-instagram"></i></a></li>
             </ul>
+          </div>
           </div>
 
 				</div>

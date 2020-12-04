@@ -409,7 +409,7 @@ header .header_top .con_list li a i{
 }
 header .social_area{
 	width: auto;
-    display: inline-block;
+   float: left;
 	position: relative;
     margin-top: 11px;
 }
@@ -1513,6 +1513,23 @@ ul.cancellation_list li:before{
     position: absolute;
     left: 2px;
     top: 9px;
+}
+
+.header_right{
+	float: right;
+}
+
+.be_franshise{
+	float: left;
+}
+
+.be_franshise a{
+	display:inline-block;
+	padding:8px 14px;
+	margin: 0;
+	border:#fcb040 solid 2px;
+	color: #fcb040;
+	text-transform: uppercase;
 }
 
 
