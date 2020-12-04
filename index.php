@@ -61,7 +61,7 @@
 			<div class="col-lg-6 col-md-6 col-sm-6 header_right">
 				<div class="row">
 				<div class="header_right">
-				<div class="be_franshise"><a class="blink" href=""><img src="assets/img/befranchise.png" alt="">be a franchise</a></div>					
+				<div class="be_franshise"><a class="blink_me" href=""><img src="assets/img/befranchise.png" alt="">be a franchise</a></div>					
 				<div class="social_area">
             <ul class="social-network social-circle">
               <li><a href="https://www.facebook.com/CineCafes/" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>

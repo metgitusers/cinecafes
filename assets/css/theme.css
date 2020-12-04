@@ -1559,19 +1559,12 @@ ul.cancellation_list li:before{
 }
 
 
-.blink {
-  animation: blink 0.7s steps(2, start) infinite;
-  -webkit-animation: blink 0.7s steps(2, start) infinite;
+.blink_me {
+  animation: blinker 1s linear infinite;
 }
-@keyframes blink {
-  to {
-    visibility: hidden;
-  }
-}
-@-webkit-keyframes blink {
-  to {
-    visibility: hidden;
-  }
+
+@keyframes blinker {  
+  50% { opacity: 0; }
 }
 
 
