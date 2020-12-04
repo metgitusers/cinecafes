@@ -1505,7 +1505,7 @@ footer #big_footer .copy_text p a:hover{
 	
 }
 
-#contact_page p{
+#contact_page p, #contact_page ul li{
 	color: #fff;
 }
 
@@ -1531,7 +1531,7 @@ ul.cancellation_list li{
 ul.cancellation_list li:before{
         width: 6px;
     height: 1px;
-    background: #000;
+    background: #fcb040;
     content: "";
     position: absolute;
     left: 2px;
