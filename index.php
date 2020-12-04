@@ -568,11 +568,14 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
              <form action="" method="post">
                <div class="col-sm-6"> 
                   <div class="form-group">
-                   	<select>
-                   		<option></option>
+                   	<select class="form-control">
+                   		<option selected>Select Franchise</option>
+                   		<option>A Master Franchise.</option>
+                   		<option>Be A Standalone Franchise</option>
                    	</select>
                   </div>
                 </div>
+                <div class="clearfix"></div>
                 <div class="col-sm-6"> 
                   <div class="form-group">
                     <label>First Name</label>
