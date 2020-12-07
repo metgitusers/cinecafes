@@ -332,7 +332,7 @@
       </div>
       <div class="modal-body" id="contact_page">
                   <div class="col-lg-6 col-md-6 mrg30B">
-            <div class="row" id="contact_form1">
+            <div class="row" id="">
               
               <form action="contact_exec.php" method="post">
                 <div class="col-sm-6"> 
