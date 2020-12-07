@@ -566,13 +566,13 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
       </div>
       <div class="modal-body" id="contact_page">
             <div id="contact_form1">
-            <form action="" method="post">
+            <form action="franchise_exec.php" method="post">
                <div class="col-sm-6"> 
                   <div class="form-group">
-                   	<select class="form-control">
+                   	<select class="form-control" name="frnch">
                    		<option selected>Select Franchise</option>
-                   		<option>A Master Franchise.</option>
-                   		<option>Be A Standalone Franchise</option>
+                   		<option value="A Master Franchise.">A Master Franchise.</option>
+                   		<option value="Be A Standalone Franchise">Be A Standalone Franchise</option>
                    	</select>
                   </div>
                 </div>
@@ -580,37 +580,37 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
                 <div class="col-sm-6"> 
                   <div class="form-group">
                     <label>First Name</label>
-                    <input id="cinecafes_fname" type="text" class="form-control" placeholder="First Name" required>
+                    <input id="" type="text" class="form-control" name="ffnm" placeholder="First Name" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Last Name</label>
-                    <input id="cinecafes_lname" type="text" class="form-control" placeholder="Last Name">
+                    <input id="" type="text" class="form-control" name="flnm" placeholder="Last Name">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Subject</label>
-                    <input id="cinecafes_subject" type="text" class="form-control" placeholder="Subject">
+                    <input id="" type="text" class="form-control" name="fsub" placeholder="Subject">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Email</label> <span class="err_msg" id="error_email"></span>
-                    <input id="cinecafes_email" type="text" class="form-control" placeholder="Email">
+                    <input id="" type="text" class="form-control" name="femail" placeholder="Email">
                   </div>
                 </div>
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="">Message</label> <span class="err_msg" id="error_msg"></span>
-                    <textarea id="cinecafes_msg" class="form-control" name="" id="" cols="" rows="5" placeholder="Enter Message"></textarea>
+                    <textarea id="" class="form-control" name="fmsg" id="" cols="" rows="5" placeholder="Enter Message"></textarea>
                   </div>
 				  
 				
 				  
                   <div class="form-group">
-                    <button id="cinecafes_submit" class="btn btn-black">Submit</button>
+                    <button id="" class="btn btn-black">Submit</button>
                     
                   </div>
                 </div>
