@@ -43,7 +43,7 @@ $headers .= 'Cc: info@cinecafes.com' . "\r\n";
 
 mail($to,$subject,$message,$headers);
 	
-$to="arijitsom99@gmail.com";
+$to="puja.c@cinecafes.com";
 $$subject1 = "New Rquest For Contact";
 
 $message1 .= '<p>'.$fnm.' '.$lnm.'</p>';

@@ -14,7 +14,7 @@ $today=date('h:i:s a');
 
 		
 $to = $femail;
-$subject = "Thank You For showing ";
+$subject = "Thank You For showing interest for franchise";
 
 $message = "Thank You For Contact With Us";
 
@@ -31,7 +31,7 @@ mail($to,$subject,$message,$headers);
 	
 
 	
-$to1="arijitsom99@gmail.com";
+$to1="puja.c@cinecafes.com";
 $subject1 = $fsub;
 
 $message1 .= '<p>Name:'.$fnm.' '.$lnm.'</p>';
