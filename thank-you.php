@@ -79,27 +79,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="header_dwn">
-		<div class="container">
-			<div class="col-sm-12">
-				<a href="index.php" class="logo_area"><img src="assets/img/logo.png" alt="" class="logo" id="logo"></a>
-			</div>
-			<!--<div class="col-sm-12">
-				<div class="row">
-					<div id="main-nav" class="stellarnav">
-		<ul>
-			
-		    <li class="active"><a href="index.php">Home</a></li>
-		    <li><a href="#about">About Us</a></li>
-		    <li><a href="#gallery">Gallery</a></li>
-		    <li class="drop-left"><a href="" type="button" data-toggle="modal" data-target="#ContactModal">Contact Us</a></li>
-		</ul>
-	</div>
-				</div>
-			</div>
-		</div>-->
-	</div>
-	</div>
+	
 </header>
 
 <section class="welcome_area" id="about">
