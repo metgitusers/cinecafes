@@ -31,12 +31,13 @@ mail($to,$subject,$message,$headers);
 	
 
 	
-$to1="puja.c@cinecafes.com";
-$subject1 = $fsub;
+$to1="arijitsom99@gmail.com";
+$subject1 = "New Request For Franchise";
 
 $message1 .= '<p>Name:'.$fnm.' '.$lnm.'</p>';
 $message1 .= '<p>Franchise Type:'.$frnch.'</p>';
 $message1 .= '<p>Email:'.$femail.'</p>';
+$message1 .= '<p>City:'.$fsub.'</p>';
 $message1 .= '<p>'.$fmsg.'</p>';
 
 // Always set content-type when sending HTML email
@@ -49,7 +50,7 @@ $headers1 .= 'Cc: info@cinecafes.com' . "\r\n";
 
 mail($to1,$subject1,$message1,$headers1);
 	
-    header('location: ../thank-you.php');
+    header('location: ../index.php');
 
 
 ?>
