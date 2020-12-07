@@ -6,6 +6,7 @@ $fnm = $_POST['fnm'];
 $lnm = $_POST['lnm'];
 $sub = $_POST['sub'];
 $email = $_POST['email'];
+$msg = $_POST['msg'];
 $today=date('h:i:s a'); 
 
 
@@ -29,10 +30,11 @@ mail($to,$subject,$message,$headers);
 
 	
 $to1="arijitsom99@gmail.com";
-$$subject1 = "New Rquest For Contact";
+$$subject1 = $sub;
 
 $message1 .= '<p>'.$fnm.' '.$lnm.'</p>';
 $message1 .= '<p>'.$email.'</p>';
+$message1 .= '<p>'.$msg.'</p>';
 
 // Always set content-type when sending HTML email
 $headers1 = "MIME-Version: 1.0" . "\r\n";

@@ -35,7 +35,7 @@ $to1="arijitsom99@gmail.com";
 $subject1 = "New Request For Franchise";
 
 $message1 .= '<p>Name:'.$fnm.'</p>';
-$message1 .= '<p>Name:'.$lnm.'</p>';
+$message1 .= '<p>Phone Number:'.$lnm.'</p>';
 $message1 .= '<p>Franchise Type:'.$frnch.'</p>';
 $message1 .= '<p>Email:'.$femail.'</p>';
 $message1 .= '<p>City:'.$fsub.'</p>';

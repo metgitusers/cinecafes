@@ -349,8 +349,8 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>City</label>
-                    <input id="" name="sub" type="text" class="form-control" placeholder="City" required>
+                    <label>Subject</label>
+                    <input id="" name="sub" type="text" class="form-control" placeholder="Subject" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
