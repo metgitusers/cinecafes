@@ -82,7 +82,7 @@
 	
 </header>
 
-<section class="welcome_area" id="about">
+<section class="welcome_area" id="about" style="background-image: url(assets/img/banner.jpg)">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 wel_com_txt">
