@@ -334,35 +334,35 @@
                   <div class="col-lg-6 col-md-6 mrg30B">
             <div class="row" id="contact_form1">
               
-              <form action="" method="post">
+              <form action="contact_exec.php" method="post">
                 <div class="col-sm-6"> 
                   <div class="form-group">
                     <label>First Name</label>
-                    <input id="cinecafes_fname" type="text" class="form-control" placeholder="First Name" required>
+                    <input id="cinecafes_fname" name="fnm" type="text" class="form-control" placeholder="First Name" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Last Name</label>
-                    <input id="cinecafes_lname" type="text" class="form-control" placeholder="Last Name">
+                    <input id="cinecafes_lname" name="lnm" type="text" class="form-control" placeholder="Last Name">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Subject</label>
-                    <input id="cinecafes_subject" type="text" class="form-control" placeholder="Subject">
+                    <input id="cinecafes_subject" name="sub" type="text" class="form-control" placeholder="Subject">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Email</label> <span class="err_msg" id="error_email"></span>
-                    <input id="cinecafes_email" type="text" class="form-control" placeholder="Email">
+                    <input id="cinecafes_email" name="email" type="text" class="form-control" placeholder="Email">
                   </div>
                 </div>
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="">Message</label> <span class="err_msg" id="error_msg"></span>
-                    <textarea id="cinecafes_msg" class="form-control" name="" id="" cols="" rows="5" placeholder="Enter Message"></textarea>
+                    <textarea id="cinecafes_msg"  class="form-control" name="msg" id="" cols="" rows="5" placeholder="Enter Message"></textarea>
                   </div>
 				  
 				  
