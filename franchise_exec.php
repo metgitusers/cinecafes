@@ -2,17 +2,19 @@
 
 
 
-$fnm = $_POST['fnm'];
-$lnm = $_POST['lnm'];
-$sub = $_POST['sub'];
-$email = $_POST['email'];
+$fnm = $_POST['ffnm'];
+$lnm = $_POST['flnm'];
+$femail = $_POST['femail'];
+$fmsg = $_POST['fmsg'];
+$fsub = $_POST['fsub'];
+$frnch = $_POST['frnch'];
 $today=date('h:i:s a'); 
 
 
 
 		
-$to = $email;
-$subject = "Thank You For Contact With Us";
+$to = $femail;
+$subject = "Thank You For showing ";
 
 $message = "Thank You For Contact With Us";
 
@@ -44,10 +46,12 @@ $headers .= 'Cc: info@cinecafes.com' . "\r\n";
 mail($to,$subject,$message,$headers);
 	
 $to="arijitsom99@gmail.com";
-$$subject1 = "New Rquest For Contact";
+$$subject1 = $fsub;
 
-$message1 .= '<p>'.$fnm.' '.$lnm.'</p>';
-$message1 .= '<p>'.$email.'</p>';
+$message1 .= '<p>Name:'.$fnm.' '.$lnm.'</p>';
+$message1 .= '<p>Franchise Type:'.$frnch.'</p>';
+$message1 .= '<p>Email:'.$femail.'</p>';
+$message1 .= '<p>'.$fmsg.'</p>';
 
 // Always set content-type when sending HTML email
 $headers1 = "MIME-Version: 1.0" . "\r\n";
