@@ -104,7 +104,7 @@
 <section class="welcome_area" id="about">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-10 offset-1">
+			<div class="col-sm-12 col-sm-offset-1 wel_com_txt">
 				<div class="row">
 					<h3>Thank You For Contcat With Us </h3>
 			    </div>
@@ -118,7 +118,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 headline">
-			<a href="#banner_area" class="arrow_dwn"><img src="assets/img/arrow_up.jpg" alt=""></a>
+			
 			<h4><a href="index.php"><img src="assets/img/footer_logo.png" alt=""></a></h4>
 
 			</div>
