@@ -337,16 +337,15 @@
               <form action="contact_exec.php" method="post">
                 <div class="col-sm-6"> 
                   <div class="form-group">
-                    <label>Name</label>
-                    <input id="" name="fnm" type="text" class="form-control" placeholder="Name" required>
+                    <label>First Name</label>
+                    <input id="" name="fnm" type="text" class="form-control" placeholder="First Name" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
-					<div class="form-group">
-                    <label>Email</label> <span class="err_msg" id="error_email"></span>
-                    <input id="" name="email" type="text" class="form-control" placeholder="Email" required>
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <input id="" name="lnm" type="text" class="form-control" placeholder="Last Name" required>
                   </div>
-                  
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
@@ -356,8 +355,8 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Phone No.</label>
-                    <input id="" name="lnm" type="text" class="form-control" placeholder="Phone number" required>
+                    <label>Email</label> <span class="err_msg" id="error_email"></span>
+                    <input id="" name="email" type="text" class="form-control" placeholder="Email" required>
                   </div>
                 </div>
                 <div class="col-sm-12">
@@ -570,36 +569,36 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
             <form action="franchise_exec.php" method="post">
                <div class="col-sm-6"> 
                   <div class="form-group">
-                   	<select class="form-control" name="frnch">
+                   	<select class="form-control" name="frnch" required>
                    		<option selected>Select Franchise</option>
-                   		<option value="A Master Franchise.">A Master Franchise.</option>
-                   		<option value="Be A Standalone Franchise">Be A Standalone Franchise</option>
+                   		<option value="A Master Franchise.">Master Franchise.</option>
+                   		<option value="Be A Standalone Franchise">Standalone Franchise</option>
                    	</select>
                   </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-sm-6"> 
                   <div class="form-group">
-                    <label>First Name</label>
-                    <input id="" type="text" class="form-control" name="ffnm" placeholder="First Name" required>
+                    <label>Name</label>
+                    <input id="" type="text" class="form-control" name="ffnm" placeholder="Name" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Last Name</label>
-                    <input id="" type="text" class="form-control" name="flnm" placeholder="Last Name">
+                    <label>Phone No.</label>
+                    <input id="" type="text" class="form-control" name="flnm" placeholder="Phone Number" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Subject</label>
-                    <input id="" type="text" class="form-control" name="fsub" placeholder="Subject">
+                    <label>City</label>
+                    <input id="" type="text" class="form-control" name="fsub" placeholder="Subject" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Email</label> <span class="err_msg" id="error_email"></span>
-                    <input id="" type="text" class="form-control" name="femail" placeholder="Email">
+                    <input id="" type="text" class="form-control" name="femail" placeholder="Email" required>
                   </div>
                 </div>
                 <div class="col-sm-12">
