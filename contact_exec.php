@@ -32,8 +32,8 @@ mail($to,$subject,$message,$headers);
 $to1="arijitsom99@gmail.com";
 $$subject1 = $sub;
 
-$message1 .= '<p>'.$fnm.' '.$lnm.'</p>';
-$message1 .= '<p>'.$email.'</p>';
+$message1 .= '<p>Name: '.$fnm.' '.$lnm.'</p>';
+$message1 .= '<p>Email: '.$email.'</p>';
 $message1 .= '<p>'.$msg.'</p>';
 
 // Always set content-type when sending HTML email
