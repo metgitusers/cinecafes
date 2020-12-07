@@ -571,8 +571,8 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
                   <div class="form-group">
                    	<select class="form-control" name="frnch" required>
                    		<option selected>Select Franchise</option>
-                   		<option value="A Master Franchise.">Master Franchise.</option>
-                   		<option value="Be A Standalone Franchise">Standalone Franchise</option>
+                   		<option value="Master Franchise.">Master Franchise.</option>
+                   		<option value="Standalone Franchise">Standalone Franchise</option>
                    	</select>
                   </div>
                 </div>
