@@ -1633,3 +1633,5 @@ ul.cancellation_list li:before{
 	color: #fff;
 	
 }
+.modal-header .close span { color: #fcb040; }
+.modal-header .close { margin-top: -2px; opacity: 1!important; border: 0; }
