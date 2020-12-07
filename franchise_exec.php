@@ -29,24 +29,10 @@ $headers .= 'Cc: info@cinecafes.com' . "\r\n";
 mail($to,$subject,$message,$headers);
 	
 	
-	$to1 = $email;
 
-
-$subject = "Thank You For Contact With Us";
-
-$message = "Thank You For Contact With Us";
-// Always set content-type when sending HTML email
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-// More headers
-$headers .= 'From: <noreply@cinecafes.com>' . "\r\n";
-$headers .= 'Cc: info@cinecafes.com' . "\r\n";
-
-mail($to,$subject,$message,$headers);
 	
-$to="arijitsom99@gmail.com";
-$$subject1 = $fsub;
+$to1="arijitsom99@gmail.com";
+$subject1 = $fsub;
 
 $message1 .= '<p>Name:'.$fnm.' '.$lnm.'</p>';
 $message1 .= '<p>Franchise Type:'.$frnch.'</p>';
@@ -65,6 +51,6 @@ mail($to1,$subject1,$message1,$headers1);
 	
     header('location: ../thank-you.php');
 
-$conn->close();
+
 ?>
 
