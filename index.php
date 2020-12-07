@@ -332,37 +332,37 @@
       </div>
       <div class="modal-body" id="contact_page">
                   <div class="col-lg-6 col-md-6 mrg30B">
-            <div class="row" id="">
+            <div class="row" id="contact_form1">
               
               <form action="contact_exec.php" method="post">
                 <div class="col-sm-6"> 
                   <div class="form-group">
                     <label>First Name</label>
-                    <input id="cinecafes_fname" name="fnm" type="text" class="form-control" placeholder="First Name" required>
+                    <input id="" name="fnm" type="text" class="form-control" placeholder="First Name" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Last Name</label>
-                    <input id="cinecafes_lname" name="lnm" type="text" class="form-control" placeholder="Last Name">
+                    <input id="" name="lnm" type="text" class="form-control" placeholder="Last Name">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Subject</label>
-                    <input id="cinecafes_subject" name="sub" type="text" class="form-control" placeholder="Subject">
+                    <input id="" name="sub" type="text" class="form-control" placeholder="Subject">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Email</label> <span class="err_msg" id="error_email"></span>
-                    <input id="cinecafes_email" name="email" type="text" class="form-control" placeholder="Email">
+                    <input id="" name="email" type="text" class="form-control" placeholder="Email">
                   </div>
                 </div>
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="">Message</label> <span class="err_msg" id="error_msg"></span>
-                    <textarea id="cinecafes_msg"  class="form-control" name="msg" id="" cols="" rows="5" placeholder="Enter Message"></textarea>
+                    <textarea id=""  class="form-control" name="msg" id="" cols="" rows="5" placeholder="Enter Message"></textarea>
                   </div>
 				  
 				  
@@ -376,7 +376,7 @@
 			
 				  
                   <div class="form-group">
-                    <button id="cinecafes_submit" class="btn btn-black">Submit</button>
+                    <button id="" class="btn btn-black">Submit</button>
                     
                   </div>
                 </div>
