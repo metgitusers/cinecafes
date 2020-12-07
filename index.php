@@ -337,26 +337,27 @@
               <form action="contact_exec.php" method="post">
                 <div class="col-sm-6"> 
                   <div class="form-group">
-                    <label>First Name</label>
-                    <input id="" name="fnm" type="text" class="form-control" placeholder="First Name" required>
+                    <label>Name</label>
+                    <input id="" name="fnm" type="text" class="form-control" placeholder="Name" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
-                  <div class="form-group">
-                    <label>Last Name</label>
-                    <input id="" name="lnm" type="text" class="form-control" placeholder="Last Name">
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label>Subject</label>
-                    <input id="" name="sub" type="text" class="form-control" placeholder="Subject">
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
+					<div class="form-group">
                     <label>Email</label> <span class="err_msg" id="error_email"></span>
-                    <input id="" name="email" type="text" class="form-control" placeholder="Email">
+                    <input id="" name="email" type="text" class="form-control" placeholder="Email" required>
+                  </div>
+                  
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>City</label>
+                    <input id="" name="sub" type="text" class="form-control" placeholder="City" required>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Phone No.</label>
+                    <input id="" name="lnm" type="text" class="form-control" placeholder="Phone number" required>
                   </div>
                 </div>
                 <div class="col-sm-12">
