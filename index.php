@@ -789,9 +789,6 @@ $(document).ready(function(){
 									$('#cinecafes_email').val('');
 									$('#cinecafes_msg').val('');
 									grecaptcha.reset();
-								} else if(result == 'captcha') {
-									$("#msg_succ").html('');
-									$("#msg_err").html('Please Check the Captcha');
 								} else {
 									$("#msg_succ").html('');
 									$("#msg_err").html('Sorry! There is some Problem.');
