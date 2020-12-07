@@ -368,10 +368,10 @@
 				  
 				
 			
-				<div class="form-group">
+				<!--<div class="form-group">
                     <div class="g-recaptcha" id="cinecafes_captcha" data-type="image" data-sitekey="6LfCstsUAAAAAKRYBjnCM6s5sbiXOJWIryW1w_FP"></div>
                     
-                  </div>
+                  </div>-->
 			
 			
 				  
