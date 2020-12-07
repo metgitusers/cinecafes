@@ -30,7 +30,7 @@ mail($to,$subject,$message,$headers);
 
 	
 $to1="arijitsom99@gmail.com";
-$$subject1 = $sub;
+$subject1 = $sub;
 
 $message1 .= '<p>Name: '.$fnm.' '.$lnm.'</p>';
 $message1 .= '<p>Email: '.$email.'</p>';
