@@ -87,7 +87,7 @@
 		<div class="row">
 			<div class="col-sm-12 wel_com_txt">
 				<div class="row">
-					<h3 style="color: green; text-align: center; font-size: 40px; padding: 70px 0;font-family: 'OptimusPrinceps';">Thank You For Contcat With Us </h3>
+					<h3 style="color: green; text-align: center; font-size: 40px; padding: 70px 0;font-family: 'OptimusPrinceps';">Thank You For Contact With Us </h3>
 			    </div>
 			</div>
 		</div>
