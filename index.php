@@ -807,12 +807,12 @@ $(document).ready(function(){
 	
 });	
 </script>
-<script src="https://www.google.com/recaptcha/api.js?render=your reCAPTCHA site key here"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LcI1f0ZAAAAAAkV8ztzcA1SWqQRTpo3Cs3iSClS"></script>
 <script>
     grecaptcha.ready(function() {
     // do request for recaptcha token
     // response is promise with passed token
-        grecaptcha.execute('your reCAPTCHA site key here', {action:'validate_captcha'})
+        grecaptcha.execute('6LcI1f0ZAAAAAAkV8ztzcA1SWqQRTpo3Cs3iSClS', {action:'validate_captcha'})
                   .then(function(token) {
             // add token value to form
             document.getElementById('g-recaptcha-response').value = token;
