@@ -744,7 +744,8 @@ header .header_dwn .logo_area{
 	color: #fcaf3f;
 	font-family: 'OptimusPrinceps';
 	font-weight: 300;
-	padding: 14px 0 14px 0
+	padding: 14px 0 14px 0;
+		text-transform: uppercase;
 }
 
 .welcome_area .wel_com_txt .btn-view{
