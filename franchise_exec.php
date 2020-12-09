@@ -54,7 +54,7 @@ $headers1 .= 'Cc: info@cinecafes.com' . "\r\n";
 
 mail($to1,$subject1,$message1,$headers1);
 	
-    header('location: ../index.php?status=success');
+    header('location: ../index.php');
 
 
 ?>
