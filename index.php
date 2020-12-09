@@ -250,16 +250,25 @@
 				
 				<div id="visiters-carousel" class="owl-carousel">
                     <div class="item">
-                    	<div class="visiter_img"><img src="assets/img/no-image.png" alt=""></div>
-                    	<p>Great place and with the bar as well, many options for what ever time of sag you want to come... toasties were nice and staff friendly.. worth a visit...</p>
+                    	<div class="visiter_img"><img src="assets/img/user.png" alt=""></div>
+                    	<p>One of a kind facility , where you can enjoy your favorite Movie or TV show with your favorite food in a luxury sitting....</p>
                     	<h4>Rahul Sarkar</h4>
                     </div>
                     <div class="item">
                     	<div class="visiter_img"><img src="assets/img/user.jpg" alt=""></div>
-                    	<p>Great place and with the bar as well, many options for what ever time of sag you want to come... toasties were nice and staff friendly.. worth a visit...</p>
-                    	<h4>Rahul Sarkar</h4>
+                    	<p>The ambience is great! The food and drinks are amazing! The service was swift! A good place to hang out and chill with friends and watch your favourite movies or TV Shows!...</p>
+                    	<h4>Manu Srivastav</h4>
                     </div>
-                    
+                    <div class="item">
+                    	<div class="visiter_img"><img src="assets/img/fuser.png" alt=""></div>
+                    	<p>Watching a movie here is delightfull here nice ambience, superb interior, great sound system and hookah. All Sorted...</p>
+                    	<h4>Priyanka Sharma</h4>
+                    </div>
+					<div class="item">
+                    	<div class="visiter_img"><img src="assets/img/user.jpg" alt=""></div>
+                    	<p>Great place to chill with friends and watch some nice movies over the weekends, ambience is too good and food is really good....</p>
+                    	<h4>Jai Khanna</h4>
+                    </div>
                     
                     
                 </div>
