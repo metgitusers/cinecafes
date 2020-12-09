@@ -566,10 +566,10 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
       </div>
       <div class="modal-body" id="contact_page">
             <div id="contact_form1">
-            <form action="franchise_exec.php" method="post">
+            <form action="" method="post">
                <div class="col-sm-6"> 
                   <div class="form-group">
-                   	<select class="form-control" name="frnch" required>
+                   	<select id="cinecafes_franchise" class="form-control" name="frnch" >
                    		<option selected>Select Franchise</option>
                    		<option value="Master Franchise.">Master Franchise.</option>
                    		<option value="Standalone Franchise">Standalone Franchise</option>
@@ -580,25 +580,25 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
                 <div class="col-sm-6"> 
                   <div class="form-group">
                     <label>Name</label>
-                    <input id="" type="text" class="form-control" name="ffnm" placeholder="Name" required>
+                    <input id="cinecafes_name" type="text" class="form-control" name="fname" placeholder="Name" >
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Phone No.</label>
-                    <input id="" type="text" pattern="[0-9]{10}" class="form-control" name="flnm" placeholder="Phone Number" required>
+                    <input id="cinecafes_phone" type="text" class="form-control" name="fphoneno" placeholder="Phone Number" >
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>City</label>
-                    <input id="" type="text" class="form-control" name="fsub" placeholder="City" required>
+                    <input id="cinecafes_city" type="text" class="form-control" name="fcity" placeholder="City" >
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Email</label> <span class="err_msg" id="error_email"></span>
-                    <input id="" type="text" class="form-control" name="femail" placeholder="Email" required>
+                    <input id="cinecafes_email" type="text" class="form-control" name="femail" placeholder="Email" >
                   </div>
                 </div>
                 <div class="col-sm-12">
@@ -735,9 +735,9 @@ $(document).ready(function(){
 		
 		var cinecafes_city = $('#cinecafes_city').val();
 		var cinecafes_franchise = $('#cinecafes_franchise').val();
-		var cinecafes_fname = $('#cinecafes_fname').val();
-		var cinecafes_lname = $('#cinecafes_lname').val();
-		var cinecafes_subject = $('#cinecafes_subject').val();
+		var cinecafes_name = $('#cinecafes_name').val();
+		var cinecafes_phone = $('#cinecafes_phone').val();
+		//var cinecafes_subject = $('#cinecafes_subject').val();
 		var cinecafes_email = $('#cinecafes_email').val();
 		var cinecafes_msg = $('#cinecafes_msg').val();
 		//var g_recaptcha_response = $('#g-recaptcha-response').val();
@@ -770,6 +770,40 @@ $(document).ready(function(){
 		
 		
 		
+		if(is_submit == 2){
+			
+			
+			
+			$.ajax({
+			  method: "POST",
+			  url: "franchise_exec.php",
+			  data: { 'action' : 'form_submit_act', 'frnch' : cinecafes_franchise, 'fcity' : cinecafes_city, 'fname' : cinecafes_name, 'fphone' : cinecafes_phone, 'femail' : cinecafes_email, 'fmsg' : cinecafes_msg},
+			  success: function(result) { 
+								//$("#succ").html(result); 
+								
+								if(result == 'success'){
+									$("#msg_err").html('');
+									$("#msg_succ").html('Thank you for contacting us. We will contact you shortly.');
+									
+									$('#cinecafes_franchise').val('');
+									$('#cinecafes_name').val('');
+									$('#cinecafes_phone').val('');
+									$('#cinecafes_city').val('');
+									$('#cinecafes_email').val('');
+									$('#cinecafes_msg').val('');
+									//grecaptcha.reset();
+								} else {
+									$("#msg_succ").html('');
+									$("#msg_err").html('Sorry! There is some Problem.');
+								}
+								
+							}
+			  //dataType: "script"
+			});
+			
+			
+			
+		}
 		
 		
 	});
