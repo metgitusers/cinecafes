@@ -566,7 +566,7 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
       </div>
       <div class="modal-body" id="contact_page">
             <div id="contact_form1">
-            <form action="" method="post">
+            <form action="franchise_exec.php" method="post">
                <div class="col-sm-6"> 
                   <div class="form-group">
                    	<select id="cinecafes_franchise" class="form-control" name="frnch" required>
