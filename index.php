@@ -338,19 +338,19 @@
                 <div class="col-sm-6"> 
                   <div class="form-group">
                     <label>First Name</label>
-                    <input id="" name="fnm" type="text" class="form-control" placeholder="First Name" required>
+                    <input id="" name="fnm" pattern="[a-zA-Z -]+" type="text" class="form-control" placeholder="First Name" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Last Name</label>
-                    <input id="" name="lnm" type="text" class="form-control" placeholder="Last Name" required>
+                    <input id="" name="lnm" pattern="[a-zA-Z -]+" type="text" class="form-control" placeholder="Last Name" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Subject</label>
-                    <input id="" name="sub" type="text" class="form-control" placeholder="Subject" required>
+                    <input id="" name="sub" pattern="[a-zA-Z -]+" type="text" class="form-control" placeholder="Subject" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
