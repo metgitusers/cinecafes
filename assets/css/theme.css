@@ -1605,6 +1605,10 @@ ul.cancellation_list li:before{
 	font-size: 25px;
 }
 
+.modal-header{
+	border-bottom:#2c2c2c solid 1px;
+}
+
 
 /********************************************************
 ********************************************************/
