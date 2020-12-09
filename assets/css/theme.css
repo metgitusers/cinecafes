@@ -1597,7 +1597,7 @@ ul.cancellation_list li:before{
 }
 
 .modal-content{
-	background-color: none;
+	background-color: transparent!important;
 }
 
 .modal-title{
