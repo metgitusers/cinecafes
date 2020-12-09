@@ -611,11 +611,12 @@ header .header_dwn .logo_area{
 	font-size: 47px;
 	color: #faa21b;
 	font-family: 'OptimusPrincepsSemiBold';
-	font-weight: 600;
+	font-weight: 400;
 	margin-top: 0;
 	margin-bottom: 0;
 	display: inline-block;
 	position: relative;
+	text-transform: uppercase;
 }
 
 /*
