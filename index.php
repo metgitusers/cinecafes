@@ -586,7 +586,7 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Phone No.</label>
-                    <input id="" type="text" class="form-control" name="flnm" placeholder="Phone Number" required>
+                    <input id="" type="text" pattern="[0-9]{10}" class="form-control" name="flnm" placeholder="Phone Number" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -733,12 +733,14 @@ $(document).ready(function(){
 		
 		$('.form-control').removeClass('required_field');
 		
+		var cinecafes_city = $('#cinecafes_city').val();
+		var cinecafes_franchise = $('#cinecafes_franchise').val();
 		var cinecafes_fname = $('#cinecafes_fname').val();
 		var cinecafes_lname = $('#cinecafes_lname').val();
 		var cinecafes_subject = $('#cinecafes_subject').val();
 		var cinecafes_email = $('#cinecafes_email').val();
 		var cinecafes_msg = $('#cinecafes_msg').val();
-		var g_recaptcha_response = $('#g-recaptcha-response').val();
+		//var g_recaptcha_response = $('#g-recaptcha-response').val();
 		
 		var is_submit = 0;
 		
@@ -768,39 +770,6 @@ $(document).ready(function(){
 		
 		
 		
-		if(is_submit == 2){
-			
-			
-			
-			$.ajax({
-			  method: "POST",
-			  url: "ajax.php",
-			  data: { 'action' : 'form_submit_act', 'fname' : cinecafes_fname, 'lname' : cinecafes_lname, 'subject' : cinecafes_subject, 'email' : cinecafes_email, 'msg' : cinecafes_msg, 'recaptcha' : g_recaptcha_response },
-			  success: function(result) { 
-								//$("#succ").html(result); 
-								
-								if(result == 'success'){
-									$("#msg_err").html('');
-									$("#msg_succ").html('Thank you for contacting us. We will contact you shortly.');
-									
-									$('#cinecafes_fname').val('');
-									$('#cinecafes_lname').val('');
-									$('#cinecafes_subject').val('');
-									$('#cinecafes_email').val('');
-									$('#cinecafes_msg').val('');
-									grecaptcha.reset();
-								} else {
-									$("#msg_succ").html('');
-									$("#msg_err").html('Sorry! There is some Problem.');
-								}
-								
-							}
-			  //dataType: "script"
-			});
-			
-			
-			
-		}
 		
 		
 	});
