@@ -620,6 +620,17 @@ header .header_dwn .logo_area{
 	text-transform: uppercase;
 }
 
+#banner-carousel .overlay h4:after{
+	background: url(../img/main_heading_after_bg.jpg) repeat-x;
+	width: 435px;
+	height: 42px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
 /*
 #banner-carousel .overlay h4:after{
 	width: 50px;
@@ -711,6 +722,19 @@ header .header_dwn .logo_area{
     margin-top: 30px;
     margin-bottom: 0;
     text-transform: uppercase;
+	position: relative;
+}
+
+.headline h2:after{
+	width: 311px;
+    height: 30px;
+    background: url(../img/sub_heading_after_bg.png) repeat-x;
+    content: "";
+    position: absolute;
+    left: 0;   
+    bottom: 0;
+	right: 0;
+    margin: auto;
 }
 
 .headline h4:after{
