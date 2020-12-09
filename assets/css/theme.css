@@ -587,7 +587,7 @@ header .header_dwn .logo_area{
 	position: absolute;
 	left: 0;
 	right: 0;
-	bottom: 23%;
+	bottom: 13%;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -618,6 +618,7 @@ header .header_dwn .logo_area{
 	display: inline-block;
 	position: relative;
 	text-transform: uppercase;
+	padding-bottom: 60px;
 }
 
 #banner-carousel .overlay h4:after{
