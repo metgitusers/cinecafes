@@ -569,7 +569,7 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
             <form action="" method="post">
                <div class="col-sm-6"> 
                   <div class="form-group">
-                   	<select id="cinecafes_franchise" class="form-control" name="frnch" >
+                   	<select id="cinecafes_franchise" class="form-control" name="frnch" required>
                    		<option selected>Select Franchise</option>
                    		<option value="Master Franchise.">Master Franchise.</option>
                    		<option value="Standalone Franchise">Standalone Franchise</option>
@@ -580,25 +580,25 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
                 <div class="col-sm-6"> 
                   <div class="form-group">
                     <label>Name</label>
-                    <input id="cinecafes_name" type="text" class="form-control" name="fname" placeholder="Name" >
+                    <input id="" type="text" class="form-control" name="ffnm" placeholder="Name" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Phone No.</label>
-                    <input id="cinecafes_phone" type="text" class="form-control" name="fphoneno" placeholder="Phone Number" >
+                    <input id="" type="text" class="form-control" name="flnm" placeholder="Phone Number" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>City</label>
-                    <input id="cinecafes_city" type="text" class="form-control" name="fcity" placeholder="City" >
+                    <input id="" type="text" class="form-control" name="fsub" placeholder="City" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Email</label> <span class="err_msg" id="error_email"></span>
-                    <input id="cinecafes_email" type="text" class="form-control" name="femail" placeholder="Email" >
+                    <input id="" type="text" class="form-control" name="femail" placeholder="Email" required>
                   </div>
                 </div>
                 <div class="col-sm-12">
@@ -610,7 +610,7 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
 				
 				  
                   <div class="form-group">
-                    <button id="cinecafes_submit" class="btn btn-black">Submit</button>
+                    <button id="" class="btn btn-black">Submit</button>
                     
                   </div>
                 </div>
@@ -735,9 +735,9 @@ $(document).ready(function(){
 		
 		var cinecafes_city = $('#cinecafes_city').val();
 		var cinecafes_franchise = $('#cinecafes_franchise').val();
-		var cinecafes_name = $('#cinecafes_name').val();
-		var cinecafes_phone = $('#cinecafes_phone').val();
-		//var cinecafes_subject = $('#cinecafes_subject').val();
+		var cinecafes_fname = $('#cinecafes_fname').val();
+		var cinecafes_lname = $('#cinecafes_lname').val();
+		var cinecafes_subject = $('#cinecafes_subject').val();
 		var cinecafes_email = $('#cinecafes_email').val();
 		var cinecafes_msg = $('#cinecafes_msg').val();
 		//var g_recaptcha_response = $('#g-recaptcha-response').val();
@@ -777,7 +777,7 @@ $(document).ready(function(){
 			$.ajax({
 			  method: "POST",
 			  url: "franchise_exec.php",
-			  data: { 'action' : 'form_submit_act', 'frnch' : cinecafes_franchise, 'fcity' : cinecafes_city, 'fname' : cinecafes_name, 'fphone' : cinecafes_phone, 'femail' : cinecafes_email, 'fmsg' : cinecafes_msg},
+			  data: { 'action' : 'form_submit_act', 'fname' : cinecafes_fname, 'lname' : cinecafes_lname, 'subject' : cinecafes_subject, 'email' : cinecafes_email, 'msg' : cinecafes_msg},
 			  success: function(result) { 
 								//$("#succ").html(result); 
 								
