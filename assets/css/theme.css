@@ -621,7 +621,7 @@ header .header_dwn .logo_area{
 }
 
 #banner-carousel .overlay h4:after{
-	background: url(../img/main_heading_after_bg.jpg) repeat-x;
+	background: url(../img/main_heading_after_bg.png) repeat-x;
 	width: 435px;
 	height: 42px;
 	position: absolute;
