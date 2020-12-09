@@ -1585,8 +1585,15 @@ ul.cancellation_list li:before{
 
 
 
+/*
 .modal-header, .modal-body {   
-    background: #3e3d3d!important;
+    background: none!important;
+}
+*/
+
+.modal-dialog {
+	background:url("../img/popup-bg.jpg") repeat center top;
+	background-size: cover;
 }
 
 .modal-title{
