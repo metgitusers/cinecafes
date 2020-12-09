@@ -586,7 +586,7 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Phone No.</label>
-                    <input id="" type="text" pattern="[0-9]" class="form-control" name="flnm" placeholder="Phone Number" required>
+                    <input id="" type="text" pattern="[0-9]{1,10}" class="form-control" name="flnm" placeholder="Phone Number" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
