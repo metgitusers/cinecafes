@@ -610,7 +610,7 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
 				
 				  
                   <div class="form-group">
-                    <button id="" class="btn btn-black">Submit</button>
+                    <button id="cinecafes_submit" class="btn btn-black">Submit</button>
                     
                   </div>
                 </div>
