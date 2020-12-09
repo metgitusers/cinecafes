@@ -250,7 +250,7 @@
 				
 				<div id="visiters-carousel" class="owl-carousel">
                     <div class="item">
-                    	<div class="visiter_img"><img src="assets/img/user.png" alt=""></div>
+                    	<div class="visiter_img"><img src="assets/img/user.jpg" alt=""></div>
                     	<p>One of a kind facility , where you can enjoy your favorite Movie or TV show with your favorite food in a luxury sitting....</p>
                     	<h4>Rahul Sarkar</h4>
                     </div>
