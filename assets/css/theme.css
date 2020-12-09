@@ -593,11 +593,12 @@ header .header_dwn .logo_area{
 }
 
 #banner-carousel .overlay h2{
-	font-size: 43px;
+	font-size: 28px;
 	color: #fff;
 	font-family: 'OptimusPrincepsSemiBold';
 	margin-top: 0;
 	margin-bottom: 10px;
+	text-transform: uppercase;
 }
 
 #banner-carousel .overlay h2 strong{
@@ -608,7 +609,7 @@ header .header_dwn .logo_area{
 	margin-bottom: 0;
 }
 #banner-carousel .overlay h4{
-	font-size: 47px;
+	font-size: 53px;
 	color: #faa21b;
 	font-family: 'OptimusPrincepsSemiBold';
 	font-weight: 400;
