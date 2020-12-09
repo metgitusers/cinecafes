@@ -29,7 +29,7 @@ mail($to,$subject,$message,$headers);
 	
 
 	
-$to1="puja.c@cinecafes.com";
+$to1="arijitsom99@gmail.com";
 $subject1 = $sub;
 
 $message1 .= '<p>Name: '.$fnm.' '.$lnm.'</p>';
