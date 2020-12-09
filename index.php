@@ -106,14 +106,14 @@
 <section id="banner_area">
 	<div id="banner-carousel" class="owl-carousel">
                     <div class="item">
-                    	<img src="assets/img/banner.jpg" width="100%" alt=""/>
+                    	<img src="assets/img/slider01.jpg" width="100%" alt=""/>
                     	<div class="overlay">
                     		<h2>The Amalgamation of</h2>
                     		<h4>Hospitality <br> & <br> Entertainment</h4>
                     	</div>
                     </div>
                     <div class="item">
-                    	<img src="assets/img/banner1.jpg" width="100%" alt=""/>
+                    	<img src="assets/img/slider02.jpg" width="100%" alt=""/>
                     	<div class="overlay">
                     		<h2>The Amalgamation of</h2>
                     		<h4>Hospitality <br> & <br> Entertainment</h4>
