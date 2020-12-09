@@ -116,7 +116,7 @@
                     	<img src="assets/img/banner1.jpg" width="100%" alt=""/>
                     	<div class="overlay">
                     		<h2>The Amalgamation of</h2>
-                    		<h4>Hospitality  & Entertainment</h4>
+                    		<h4>Hospitality <br> & <br> Entertainment</h4>
                     	</div>
                     </div>
                     
