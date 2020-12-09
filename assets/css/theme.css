@@ -704,11 +704,12 @@ header .header_dwn .logo_area{
 }
 
 .headline h2 {
-        font-size: 49px;
+    font-size: 49px;
     color: #fcaf3f;
-   font-family: 'OptimusPrinceps';
+    font-family: 'OptimusPrinceps';
     margin-top: 30px;
     margin-bottom: 0;
+    text-transform: uppercase;
 }
 
 .headline h4:after{
