@@ -580,19 +580,19 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
                 <div class="col-sm-6"> 
                   <div class="form-group">
                     <label>Name</label>
-                    <input id="" type="text"  class="form-control" name="ffnm" placeholder="Name" required>
+                    <input id="" type="text" pattern="[a-zA-Z]+" class="form-control" name="ffnm" placeholder="Name" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Phone No.</label>
-                    <input id="" type="text" pattern="[0-9]{1,10}" class="form-control" name="flnm" placeholder="Phone Number" required>
+                    <input id="" type="text" pattern="[0-9]+" class="form-control" name="flnm" placeholder="Phone Number" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>City</label>
-                    <input id="" type="text" pattern="[A-Za-z]" class="form-control" name="fsub" placeholder="City" required>
+                    <input id="" type="text" pattern="[a-zA-Z]+" class="form-control" name="fsub" placeholder="City" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
