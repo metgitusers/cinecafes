@@ -569,8 +569,8 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
             <form action="franchise_exec.php" method="post">
                <div class="col-sm-6"> 
                   <div class="form-group">
-                   	<select id="cinecafes_franchise" class="form-control" name="frnch" required>
-                   		<option selected>Select Franchise</option>
+                   	<select id="" class="form-control" name="frnch" required>
+                   		<option value="">Select Franchise</option>
                    		<option value="Master Franchise.">Master Franchise.</option>
                    		<option value="Standalone Franchise">Standalone Franchise</option>
                    	</select>
