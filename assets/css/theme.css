@@ -1484,7 +1484,7 @@ footer #big_footer .copy_text p a:hover{
 }
 
 #contact_page .contact_txt p, #contact_page .contact_txt p a{
-    color: #fff;
+    color: #b7b7b7;
     font-size: 14px;
     font-weight: 400;
     font-family: 'OptimusPrinceps';
@@ -1510,7 +1510,7 @@ footer #big_footer .copy_text p a:hover{
 }
 
 #contact_page p, #contact_page ul li{
-	color: #fff;
+	color: #b7b7b7;
 	font-family: 'OptimusPrinceps'!important;
 	font-size: 16px;
 }
@@ -1634,7 +1634,7 @@ ul.cancellation_list li:before{
 /********************************************************
 ********************************************************/
 #contact_page label{
-	color: #fff;
+	color: #b7b7b7;
 	
 }
 .modal-header .close span { color: #fcb040; }
