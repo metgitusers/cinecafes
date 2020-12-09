@@ -16,10 +16,8 @@ $today=date('h:i:s a');
 $to = $femail;
 $subject = "Thank You For showing interest for franchise";
 
-$message = "Hello,";
-$message = "Thank you for applying as Franchise. We will be contacting you soon.";
-$message = "Regards,";
-$message = "Team Cinecafes";
+
+$message = "Hello,<br/>Thank you for applying as Franchise. We will be contacting you soon.</br>Regards,</br>Team Cinecafes";
 
 // Always set content-type when sending HTML email
 $headers = "MIME-Version: 1.0" . "\r\n";
