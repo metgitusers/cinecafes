@@ -535,7 +535,7 @@ ECOSPACE ESNT 3A0501, BLOCK -A, 5TH FLOOR, PLOT NO. IIF/11, NEW TOWN, <br> KOLKA
       </div>
       <div class="modal-body" id="contact_page">
               <p><b>The booking shall be deemed to be cancelled in the following circumstances: -</b></p>
-              <ul>
+              <ul class="cancellation_list">
                   <li>The booking is valid only for the viewing at a specified Cine Cafes. The booking shall become valueless and non-refundable if not used on the date specified on its face.</li>
                   <li>If, in the opinion of a representative of the Cine Cafes, the user is in breach of these Online Booking Terms or is under the influence of drugs or alcohol, or that it is necessary for the safety or comfort or security of other customers or for the protection of property, the representative reserves the right to refuse the entry or request the Customer to leave the cafe and may if necessary physically remove the Customer from the cafe or physically restrain the Customer.
 The customer has an option to cancel online on cinecafes mobile App on the terms as mentioned herein-below. However, no ticket and F& B cancellation will be entertained once patron enters the cafe premises.

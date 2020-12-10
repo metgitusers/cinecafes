@@ -617,20 +617,12 @@ header .header_dwn .logo_area{
 	margin-bottom: 0;
 	display: inline-block;
 	position: relative;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	padding-bottom: 60px;
 }
 
 #banner-carousel .overlay h4:after{
-	background: url(../img/main_heading_after_bg.png) repeat-x;
-	width: 435px;
-	height: 42px;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: 0 auto;
-	content: "";
+	width: 311px; height: 30px; background: url(../img/sub_heading_after_bg.png) repeat-x; content: ""; position: absolute; left: 0; bottom: 0; right: 0; margin: auto;
 }
 
 /*
@@ -723,7 +715,7 @@ header .header_dwn .logo_area{
     font-family: 'OptimusPrinceps';
     margin-top: 30px;
     margin-bottom: 0;
-    text-transform: uppercase;
+    text-transform: capitalize;
 	position: relative;
 	padding: 0 0 40px 0;
 }
