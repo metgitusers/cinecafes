@@ -598,7 +598,7 @@ header .header_dwn .logo_area{
 	font-family: 'OptimusPrincepsSemiBold';
 	margin-top: 0;
 	margin-bottom: 10px;
-	text-transform: uppercase;
+	text-transform: capitalize;
 }
 
 #banner-carousel .overlay h2 strong{
