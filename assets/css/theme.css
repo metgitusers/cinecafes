@@ -764,7 +764,7 @@ header .header_dwn .logo_area{
 	font-family: 'OptimusPrinceps';
 	font-weight: 300;
 	padding: 14px 0 14px 0;
-		text-transform: uppercase;
+		text-transform: capitalize;
 }
 
 .welcome_area .wel_com_txt .btn-view{
