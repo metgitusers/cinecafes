@@ -677,6 +677,139 @@ class Api extends CI_Controller
     }
     $this->displayOutput($response);
   }
+
+    //apple login
+    public function appleLogin()
+    {
+      $ap = json_decode(file_get_contents('php://input'), true);
+      if ($this->checkHttpMethods($this->http_methods[0])) {
+        if (sizeof($ap)) {
+          if (empty($ap['device_type'])) {
+            $response['status']['error_code'] = 1;
+            $response['status']['message']    = 'Device type is required.';
+           
+            $this->displayOutput($response);
+          }
+          if (!empty($ap['device_type'])) {
+            if($ap['device_type']!=1 && $ap['device_type']!=1)
+            {
+              $response['status']['error_code'] = 1;
+              $response['status']['message']    = 'Device type invalid.It should be 1-IOS or 2-Android.';
+              $this->displayOutput($response);
+            }          
+          }
+          
+          if (empty($ap['device_token'])) {
+            $response['status']['error_code'] = 1;
+            $response['status']['message']    = 'Device token is required.';
+            $this->displayOutput($response);
+          }
+          if (empty($ap['apple_id'])) {
+            $response['status']['error_code'] = 1;
+            $response['status']['message']    = 'Apple id is required.';
+            $this->displayOutput($response);
+          }
+        
+          $check_member_condition = array('apple_id' => $ap['apple_id']);
+          $memberdetails          = $this->mcommon->getRow('user', $check_member_condition);
+          //echo $this->db->last_query(); die;
+          if(empty($memberdetails)){
+              $response['status']['error_code'] = 0;
+              $response['status']['message']    = 'Invalid Apple id';
+              $this->displayOutput($response);
+          }
+          elseif($memberdetails['is_delete'] != '0'){
+              $response['status']['error_code'] = 0;
+              $response['status']['message']    = 'Member account is removed by admin';
+              $this->displayOutput($response);
+          }
+          elseif($memberdetails['status'] == '0'){
+              $response['status']['error_code'] = 0;
+              $response['status']['message']    = 'Member account is not in active status';
+              $this->displayOutput($response);
+          }
+          else{
+              $user_id      = $memberdetails['user_id'];
+              $condition      = array('user_id' =>$user_id);
+              $update_arr     = array('login_status' =>'1');
+              $update_result  = $this->mapi->update('user',$condition,$update_arr);
+              if($update_result){
+                  $response['status']['error_code'] = 0;
+                  $response['status']['message']    = 'Login Successfully';
+                  $response['response']['user']   = $memberdetails;
+                  $api_token_details                = $this->mapi->getRow('api_token', $condition);
+                  $device_token_details             = $this->mapi->getRow('device_token', $condition);
+                  //echo $api_token_details."%%%".$device_token_details;exit;
+                  if (empty($api_token_details) && empty($device_token_details)) {
+  
+                    $device_token_data['user_id']          = $user_id;
+                    $device_token_data['device_type']        = $ap['device_type'];
+                    $device_token_data['device_token']       = '';
+                    $device_token_data['fcm_token']          = $ap['device_token'];
+                    $device_token_data['login_status']       = '1';
+                    $device_token_data['date_of_creation']   = date('Y-m-d H:i:s');
+                    $device_token_data['session_start_time'] = date('Y-m-d H:i:s');
+                    $device_token_data['session_end_time']   = '';
+  
+                    $insert_data          = $this->mapi->insert('device_token', $device_token_data);
+  
+                    $api_token_data['user_id']          = $user_id;
+                    $api_token_data['device_type']        = $ap['device_type'];
+                    $api_token_data['access_token']       = md5(mt_rand() . '_' . $memberdetails['user_id']);
+                    $api_token_data['date_of_creation']   = date('Y-m-d H:i:s');
+                    $api_token_data['session_start_time'] = date('Y-m-d H:i:s');
+                    $api_token_data['session_end_time']   = '';
+  
+                    $insert_data      = $this->mapi->insert('api_token', $api_token_data);
+                    
+                  } else {
+                    $condition_token                    = array('user_id' =>$user_id);
+  
+                    $api_token_updata['device_type']    = $ap['device_type'];
+                    $api_token_updata['access_token']   = $api_token_details['access_token'];
+                    $update_data  = $this->mapi->update('api_token', $condition_token, $api_token_updata);
+  
+                    $device_token_updata['device_type']     = $ap['device_type'];
+                    $device_token_updata['fcm_token']       = $ap['device_token'];
+                    $update_data  = $this->mapi->update('device_token', $condition_token, $device_token_updata);
+  
+                    
+                  }
+  
+                  $member_all_details= $this->mapi->getMemberDetailsRow(array('user.user_id' => $user_id));               
+                    if ($member_all_details) {
+                      // if($all_member_details['profile_img'] !='' ){
+                      //   $all_member_details['profile_pic_updated'] = '1';
+                      // }
+                      // else{
+                      //   $all_member_details['profile_pic_updated'] = '0';
+                      // }
+                      $response['status']['error_code'] = 0;
+                      $response['status']['message']    = 'Login Successfully';
+                      $response['response']['user']   = $member_all_details;
+                      
+                    } else {
+                      $response['status']['error_code'] = 1;
+                      $response['status']['message']    = 'Unable to get user data';                    
+                    }
+              }
+              else {
+                $response['status']['error_code'] = 1;
+                $response['status']['message']    = 'Oops!something went wrong...';
+              }          
+          }        
+        }
+        else {
+          $response['status']['error_code'] = 1;
+          $response['status']['message']    = 'Please fill up all required fields';        
+        }
+      }
+      else{
+          $response['status']['error_code'] = 1;
+          $response['status']['message']    = 'Wrong http method type.';        
+      }
+      $this->displayOutput($response);
+    }
   ///send otp to mobile no
   public function mobileOtpGenerate()
   {
