@@ -77,9 +77,9 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	
 
-	'username' => 'cinecafe2',
+	'username' => 'cinecafes_cine2',
 	'password' => 'v8S$D$K?9NBbhsde',
-	'database' => 'cinecafe2',
+	'database' => 'cinecafes_cine2',
 
 	
 	//'username' => 'root', 
