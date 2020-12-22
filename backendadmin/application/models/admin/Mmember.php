@@ -65,7 +65,7 @@ class Mmember extends CI_Model {
         
     }
 	public function getMemberDetails($condition = null){
-        $this->db->select("user.*,user_profile.profile_img,user_profile.address,user_profile.lat,user_profile.lng,DATE_FORMAT(user_profile.dob, '%d/%m/%Y') as dob,user_profile.gender as gender,user_profile.marriage_status,user_profile.doa");
+        $this->db->select("user.*,user_profile.profile_img,user_profile.address,user_profile.lat,user_profile.lng,DATE_FORMAT(user_profile.dob, '%d/%m/%Y') as dob, user_profile.dob d_o_b, user_profile.gender as gender,user_profile.marriage_status,user_profile.doa");
         $this->db->join('user_profile', 'user_profile.user_id = user.user_id', 'inner'); 
         
        // $this->db->join('package_membership_mapping', 'package_membership_mapping.member_id = mm.member_id', 'left');

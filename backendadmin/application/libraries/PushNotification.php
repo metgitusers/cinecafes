@@ -4,16 +4,18 @@
   function __construct() {
         $this->CI =& get_instance();
      }
-  public function send_android_notification($fcmtoken, $data) { 
+  //public function send_android_notification($fcmtoken, $data) {
+  public function send_android_notification($arrayToSend) {
     //pr($data);
     $url = "https://fcm.googleapis.com/fcm/send";
-            $token = $fcmtoken; 
+            //$token = $fcmtoken; 
              
             $serverKey = 'AAAA15rbgcY:APA91bHG9YdDsYS3UPXL5H-uV4dxGBVTXPbdXNnU3_Og052IIPgzHw5d7RQrjrPi2CC1JjfnNIxQVudCa580beTxY2BHI4zgDBauQsw9p9b6e9NKu7e-4mBHWZCzQHuvXPRrXhXwmKig';
-            $title = $data['title'];
-            $body = $data['message'];
-            $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '1','data'=>array());
-            $arrayToSend = array('to' => $token, 'notification' => $notification, 'priority'=>'high');
+            // $title = $data['title'];
+            // $body = $data['message'];
+            // $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '1','data'=>array());
+            // $arrayToSend = array('to' => $token, 'notification' => $notification, 'priority'=>'high');
+            
             $json = json_encode($arrayToSend);
             $headers = array();
             $headers[] = 'Content-Type: application/json';
@@ -37,17 +39,20 @@
             }
             curl_close($ch);
   }
-  public function send_ios_notification($fcmtoken,$data){ 
+  //public function send_ios_notification($fcmtoken,$data){ 
+  public function send_ios_notification($arrayToSend){ 
                   
             $url = "https://fcm.googleapis.com/fcm/send";
-            $token = $fcmtoken; 
-            $serverKey = 'AAAAov-bqrI:APA91bF8rMdYalxEskc5qVxslBRfI9BAqok5__G-Bpwqi7piURwR3pp6iepH2edBdgdxGA_v_HK_UuTZF3PDjL6y5b6MyUa6n12_k6bEcvH6iSYd1ZhlroFITcG_YUg_q-xYDR_gsdSm';   
+           // $token = $fcmtoken; 
+            //$serverKey = 'AAAAov-bqrI:APA91bF8rMdYalxEskc5qVxslBRfI9BAqok5__G-Bpwqi7piURwR3pp6iepH2edBdgdxGA_v_HK_UuTZF3PDjL6y5b6MyUa6n12_k6bEcvH6iSYd1ZhlroFITcG_YUg_q-xYDR_gsdSm';
+            $serverKey = 'AAAA15rbgcY:APA91bHG9YdDsYS3UPXL5H-uV4dxGBVTXPbdXNnU3_Og052IIPgzHw5d7RQrjrPi2CC1JjfnNIxQVudCa580beTxY2BHI4zgDBauQsw9p9b6e9NKu7e-4mBHWZCzQHuvXPRrXhXwmKig';
             
-            $title = $data['title'];
-            $body = $data['message'];
-            $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '1','data'=>array());
-            $arrayToSend = array('to' => $token, 'notification' => $notification, 'priority'=>'high');
+            // $title = $data['title'];
+            // $body = $data['message'];
+            // $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '1','data'=>array());
+            // $arrayToSend = array('to' => $token, 'notification' => $notification, 'priority'=>'high');
             $json = json_encode($arrayToSend);
+            //print_r($json);
             $headers = array();
             $headers[] = 'Content-Type: application/json';
             $headers[] = 'Authorization: key='. $serverKey;

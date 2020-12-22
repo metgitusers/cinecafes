@@ -9,6 +9,7 @@ class Dashboard extends MY_Controller {
 		//$this->load->model('admin/mdashboard');
 		$this->load->model('admin/mreservation');
 		$this->load->model('admin/Mmembership');
+		$this->load->model('admin/mmember');
 	}
 	public function index() { 
 		$data=array();
@@ -36,8 +37,10 @@ class Dashboard extends MY_Controller {
 		$data['cafe_list'] =$this->mcommon->getDetails('master_cafe',$condition);
 		$table="user";
 		$condition_all_users['role_id']=0;
-		$all_users=$this->mcommon->getNumRows($table,$condition_all_users);
-
+		$condition_all_users['is_delete']=0;
+		//$all_users=$this->mcommon->getNumRows($table,$condition_all_users);
+		$all_users = $this->mmember->getMemberDetails($condition_all_users,'','','');
+		//echo $this->db->last_query();
 		$member_active_list					= $this->Mmembership->getMembershipDetails('1');
 		$member_active_cnt					= 0;
 		if(!empty($member_active_list)){
@@ -48,11 +51,13 @@ class Dashboard extends MY_Controller {
 		//app registered users
 		$condition_app_users['role_id']=0;
 		$condition_app_users['added_form']="App";
+		$condition_app_users['is_delete']= 0;
 		$app_users=$this->mcommon->getNumRows($table,$condition_app_users);
-		
+		$app_users = $this->mmember->getMemberDetails($condition_app_users,'','','');
+		//echo $this->db->last_query();
 		$data['club_members']= $club_members;
-		$data['all_users']=$all_users; 
-		$data['app_users']=$app_users; 
+		$data['all_users']= count($all_users); 
+		$data['app_users']=count($app_users); 
 		$data['title']= 'Dashboard';
 		$this->admin_load_view($data);
 		//$this->load->view('admin/layouts/index', $data);

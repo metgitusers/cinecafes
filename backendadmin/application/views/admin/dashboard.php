@@ -130,14 +130,24 @@
                         </div>
                       </div>
                     </div>
-                  </div>
                 <?php } ?>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                     <p style="text-align: left; margin-top: 30px;">
+                   <button style="display: inline-block; width: auto; vertical-align: top;margin-right: 10px;" type="submit"  class="btn btn-primary btn-user" id="search_btn">
+                        <i class="fa fa-search" aria-hidden="true"></i> Search
+                   </button>
+                   <button style="display: inline-block; width: auto; vertical-align: top;margin-right: 10px;" type="button" onclick="location.href='<?php echo base_url('admin/dashboard');?>';" class="btn btn-primary btn-user">Reset</button>
+                  </p>
+                  </div>
+                  <!--  -->
+
+                  </div>
                 <div class="row">
+<!--
               <div class='col-sm-2'>
                   <div class="form-group">
-                  
                      <p style="text-align: right; margin-top: 2px;">
-                 
                    <button type="submit"  class="btn btn-primary btn-user btn-block" id="search_btn">
                         <i class="fa fa-search" aria-hidden="true"></i> Search
                    </button>
@@ -148,15 +158,17 @@
                         <div class="form-group">
                         
                          <p style="text-align: left; margin-top: 2px;">
-                          <button type="button" onclick="location.href='<?php echo base_url('admin/reservation');?>';" class="btn btn-primary btn-user btn-block">Reset</button></p>
+                          <button type="button" onclick="location.href='<?php echo base_url('admin/dashboard');?>';" class="btn btn-primary btn-user btn-block">Reset</button></p>
                         </div>
                       </div>
+-->
 				   </div>
               </div>
             </form>
             <h1 class="h3 mb-0 text-gray-800">Today's Request For Reservation</h1>
-            <a href="<?php echo base_url(); ?>admin/reservation" class="btn btn-primary btn-user btn-block"> View All Reservation</a>
-              <div class="table-responsive dashboard_table">
+            <a href="<?php echo base_url(); ?>admin/reservation"  style="display: inline-block; width: auto;" class="btn btn-primary btn-user btn-block pull-right"> View All Reservation</a>
+             <div class="clearfix"></div>
+              <div class="table-responsive dashboard_table" style="margin-top: 20px; margin-bottom: 20px;">
                 <table class="table table-bordered" id="myReservation" width="100%" cellspacing="0">
                   <thead>
                    <tr>
@@ -213,7 +225,7 @@
                       <td><?php echo $row['no_of_guests'];?></td>
                       <td><?php echo "Rs.".' '.$row['total_price'];?></td>
                       <!-- <td><?php echo "Rs.".' '.($row['total_price']-$row['payable_amount']);?></td> -->
-                      <td><?php echo $row['payment_mode'];?></td>
+                      <td><?php echo !empty($row['payment_mode'])?$row['payment_mode']:'Backend Transaction';?></'td>
                       <td>
                         
 

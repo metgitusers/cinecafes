@@ -56,12 +56,12 @@
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" name="password" id="exampleInputPassword" placeholder="Password" required>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
-                    </div>
+                    </div> -->
                     <input type="submit" name="save" class="btn btn-primary btn-user btn-block" value="Login">
                    <!-- <hr>
                     <a href="index.html" class="btn btn-google btn-user btn-block">

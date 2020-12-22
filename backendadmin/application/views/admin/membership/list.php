@@ -49,7 +49,7 @@
                                                               <div class="form-body">
                                                                 <div class="user_permission_top">
                                                                   <div class="row" style="background-color:#000;padding:10px 10px 0 10px;">                            
-                                                                    <div class="col-sm-3">
+                                                                    <!-- <div class="col-sm-3">
                                                                       <div class="form-group" style="margin-bottom: 0;">
                                                                           <label>Registration date</label>
                                                                           <div class="settlement_inline">
@@ -78,11 +78,12 @@
                                                                             </select>
                                                                           </div>
                                                                       </div>
-                                                                    </div>
-                                                                    <div class="col-sm-3">
+                                                                    </div> -->
+                                                                    <div class="col-sm-5">
                                                                       <div class="form-group" style="margin-bottom: 0;">
                                                                           <label>Membership name</label>
-                                                                          <div class="settlement_inline">
+                                                                          <div class="settlement_inline" style="display: inline-block;
+    margin-left: 15px;">
                                                                             <select id="membership_name" class="js-select2" name="membership_name" data-show-subtext="true" data-live-search="true">
                                                                               <option value="">Select</option>
                                                                               <option value="">All</option>
@@ -95,9 +96,9 @@
                                                                           </div>
                                                                       </div>
                                                                     </div>                                                                   
-                                                                    <div class="col-md-3" style="margin-top:30px;">
+                                                                    <div class="col-md-3" style="">
                                                                       <div class="form-group">
-                                                                        <button type="button" class="btn btn-success pull-right" id="search_btn">
+                                                                        <button type="button" class="btn btn-success pull-left" id="search_btn">
                                                                           <i class="fa fa-search" aria-hidden="true"></i> GO
                                                                         </button>
                                                                       </div>

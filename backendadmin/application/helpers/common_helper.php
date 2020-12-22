@@ -36,10 +36,16 @@ if ( ! function_exists('test_method'))
       $obj->load->library('email');
       //print_r($data);die;
        $config['protocol']    = 'smtp';
-     $config['smtp_host']    = 'ssl://mail.cinecafes.com';
-     $config['smtp_port']    = '465';
-     $config['smtp_user']    = 'test@cinecafes.com';
-     $config['smtp_pass']    = 'WhHiMFO#tBbH';
+    //  $config['smtp_host']    = 'ssl://mail.fitser.com';
+    //  $config['smtp_port']    = '465';
+    //  $config['smtp_user']    = 'test123@fitser.com';
+    //  $config['smtp_pass']    = 'Test123@';
+
+      $config['protocol']    = 'smtp';
+      $config['smtp_host']    = 'ssl://mail.cinecafes.com';
+      $config['smtp_port']    = '465';
+      $config['smtp_user']    = 'test@cinecafes.com';
+      $config['smtp_pass']    = 'WhHiMFO#tBbH';
      $config['charset']    = 'utf-8';
      $config['newline']    = "\r\n";
      $config['mailtype'] = 'html'; // or html
@@ -55,6 +61,7 @@ if ( ! function_exists('test_method'))
       $obj->email->set_crlf( "\r\n" );
 
       //$obj->email->from($data['from_email'], $data['from_name']);
+      //$obj->email->from("test123@fitser.com", "Cinecafe");
       $obj->email->from("test@cinecafes.com", "Cinecafe");
       $obj->email->to($data['to']); 
 
@@ -71,8 +78,8 @@ if ( ! function_exists('test_method'))
     ////////////send sms//////////////////////////
     function smsSend($mobile,$message){
     //echo $mobile."<br>".$message;exit;
-    //$api_key = '45DB969F6550A9';
-    $api_key = '45DA414F762394';
+    $api_key = '45DB969F6550A9';
+    //$api_key = '45DA414F762394'; //19-11
     //$contacts = '97656XXXXX,97612XXXXX,76012XXXXX,80012XXXXX,89456XXXXX,88010XXXXX,98442XXXXX';
     $contacts= $mobile;
    

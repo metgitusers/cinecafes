@@ -2014,6 +2014,9 @@ $("#file-input").change(function(){
             extend: 'excelHtml5',
             autoFilter: true,
             title: 'BookingReportCinecafe',
+            exportOptions: {
+                            columns: [0,1,2,3,4,5,6,7,8]
+                        }
         }]
 
   });

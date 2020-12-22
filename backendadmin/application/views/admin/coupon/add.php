@@ -56,7 +56,7 @@
                   <div class="form-group">
                      <label>Select coupon Type*</label>
                       <input type="radio" id="coupon_type" name="coupon_type"  value="0" <?php //if($row['coupon_type']==0){ echo "checked"; }?>> Fixed
-                      <input type="radio" id="coupon_type" name="coupon_type"  value="1" <?php //if($row['coupon_type']==1){ echo "checked"; }?>> Variable
+                      <input type="radio" id="coupon_type" name="coupon_type"  value="1" <?php //if($row['coupon_type']==1){ echo "checked"; }?>> Percentage
                     </div>
                     
                 </div>

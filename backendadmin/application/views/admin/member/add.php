@@ -85,7 +85,7 @@
                               
                                 <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
-                                    <label>Membership Registration Date</label>
+                                    <label>Membership Registration Date *</label>
                                     <div class="input-group">
                                       <input style="width:92%;" type="text" id="membership_registration_dt" name="membership_registration" class="membership_reg_dt form-control" value="<?php echo set_value('membership_registration');?>" placeholder=""/>
                                       <div class="input-group-append">
@@ -103,7 +103,7 @@
                   <div class="form-group">
                                     <label>Expiry Date</label>
                                     <div class="input-group">
-                                      <input type="text" id="expiry_dt" name="expiry_dt" class="expiry_dt reg_exp_date form-control" value="<?php echo set_value('expiry_dt');?>" placeholder="" readonly/>
+                                      <input type="text" id="expiry_dt" name="expiry_dt" class="dtpicker reg_exp_date form-control" value="<?php echo set_value('expiry_dt');?>" placeholder="" readonly/>
                                       <p></p>
                                     </div>
                                   </div>
@@ -134,7 +134,7 @@
     			                        </div>
 								              <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
-      		                              <label>Date of birth *</label>
+      		                              <label>DOB </label>
       		                              <div class="input-group">
       		                                <input style="width:92%;" type="text" id="dob" name="dob" class="dt_birth form-control pickadate" value="<?php echo set_value('dob');?>" placeholder="" required readonly/>
       		                                <div class="input-group-append">
@@ -187,7 +187,7 @@
                                  <!--   (accept file extention - .gif,.jpg,.png,.jpeg) -->
                 								</div>
             							  </div>
-            							  <span style="margin-top: 2px;" class="smaillimgupload">
+            							  <span style="margin-top: 2px; height: 200px; width: 200px" class="smaillimgupload">
                    <span  style="text-decoration: none;"><img id="blah"></span></span>   
                           </div>
                           <div class="col-md-6 col-sm-12 col-xs-12">
@@ -303,7 +303,7 @@
                                  
                                    <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
-                                      <label>Membership Registration Date</label>
+                                      <label>Membership Registration Date *</label>
                                       <div class="input-group">
                                         <input style="width:92%;" type="text" id="edit_membership_reg_dt" name="edit_membership_registration" class="membership_reg_dt form-control" value="<?php if(!empty($member_package['buy_on'])){ echo DATE('d/m/Y',strtotime($member_package['buy_on']));}?>" placeholder="" />
                                         <div class="input-group-append">
@@ -320,7 +320,7 @@
                   <div class="form-group">
                                       <label>Expiry Date</label>
                                       <div class="input-group">
-                                        <input type="text" id="edit_expiry_dt" name="edit_expiry_dt" class="edit_expiry_dt reg_exp_date form-control" value="<?php if(!empty($member_package['expiry_date'])){ echo DATE('d/m/Y',strtotime($member_package['expiry_date']));} ?>" placeholder="" readonly/>
+                                        <input type="text" id="edit_expiry_dt" name="edit_expiry_dt" class="dtpicker edit_expiry_dt reg_exp_date form-control" value="<?php if(!empty($member_package['expiry_date'])){ echo DATE('d/m/Y',strtotime($member_package['expiry_date']));} ?>" placeholder="" readonly/>
                                         <p></p>
                                       </div>
                                     </div>
@@ -331,9 +331,9 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
                                     <label>Gender*</label>
-                                    <input type="radio" name="gender" id="mem_gender" value="male" <?php  if($member['gender']=='male') :?>checked<?php endif?> required/>
+                                    <input type="radio" name="gender" id="mem_gender" value="M" <?php  if($member['gender']=='M' || strtolower($member['gender']) == 'male' ) :?>checked<?php endif?> required/>
                                     <label style="display:inline;" for="gender">Male</label>
-                                    <input type="radio" name="gender" id="mem_gender" value="female" <?php  if($member['gender']=='female') :?>checked<?php endif?> required/>
+                                    <input type="radio" name="gender" id="mem_gender" value="F" <?php  if($member['gender']=='F' || strtolower($member['gender']) == 'female') :?>checked<?php endif?> required/>
                                     <label style="display:inline;" for="gender">Female</label>
                                   </div>
                                 </div>
@@ -342,15 +342,15 @@
                                       <label>Marital status</label>
                                       <input type="radio" name="marriage_status" id="mrg_status_edit" value="married" <?php  if($member['marriage_status']=='married') :?>checked<?php endif?>/>
                                       <label style="display:inline;" for="marriage_status">Married</label>
-                                      <input type="radio" name="marriage_status" id="mrg_status_edit" value="single" <?php  if($member['marriage_status']=='single') :?>checked<?php endif?> />
+                                      <input type="radio" name="marriage_status" id="mrg_status_edit" value="single" <?php  if($member['marriage_status']=='single') :?>checked<?php endif?> onclick="$('#doa_edit').val('');" />
                                       <label style="display:inline;" for="marriage_status">Single</label>
                                   </div>
                                 </div> 
                                 <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
-                                          <label>DOB *</label>
+                                          <label>DOB  </label>
                                           <div class="input-group">
-                                            <input style="width:92%;" type="text" id="dob" name="dob" class="dt_birth form-control pickadate" placeholder="" required="" value="<?php echo date('d/m/Y',strtotime($member['dob']));?>" readonly/>
+                                            <input style="width:92%;" type="text" id="dob" name="dob" class="dt_birth form-control pickadate" placeholder="dd/mm/yyyy" required="" value="<?php if($member['d_o_b']!='0000-00-00' && $member['d_o_b']!=NULL): echo $member['dob']; endif;?>" readonly placeholder="dd/mm/yyyy"  />
                                             <div class="input-group-append">
                                               <span class="input-group-text">
                                                 <span class="fa fa-calendar-o"></span>
@@ -366,7 +366,7 @@
                   <div class="form-group">
                                         <label>DOA </label>
                                         <div class="input-group">
-                                          <input style="width:92%;" type="text" id="doc_edit" name="doa" class="form-control pickadate" placeholder="dd/mm/yyyy"  value="<?php if($member['doa']!='0000-00-00'): echo date('d/m/Y',strtotime($member['doa']));endif;?>" />
+                                          <input style="width:92%;" type="text" id="doa_edit" name="doa" class="form-control pickadate" placeholder="dd/mm/yyyy"  value="<?php if($member['doa']!='0000-00-00' && $member['doa']!=NULL): echo $member['doa'];endif;?>" />
                                           <div class="input-group-append">
                                             <span class="input-group-text">
                                               <span class="fa fa-calendar-o"></span>
@@ -454,7 +454,7 @@
                               <i class="fa fa-floppy-o"  aria-hidden="true" onclick="$('.reg_exp_date').prop('readonly',false);"></i> Save
                             </button>
                           </div> -->
-                           <div class="row">
+                           <div class="row mt-2">
                 <div class="col-md-2 col-xs-2 col-xs-2">
                   <div class="form-group">
                    
@@ -463,7 +463,7 @@
                                                 </a>
                                                
                                                 
-                      
+                                                0033823: Add Coupon-User is able to select same date in start and ends on fields if user first select end date and then select start d
                      </div>
                 </div>
                  <div class="col-md-2 col-xs-2 col-xs-2">
@@ -521,6 +521,11 @@ $(document).ready(function() {
   //   todayHighlight: true,
   //   setDate: new Date()
   // });
+  $('.dtpicker').datepicker({
+    format: 'dd/mm/yyyy',
+    todayHighlight: true,
+    setDate: new Date()
+  });
 
   $('.dt_birth').datepicker({
     format: 'dd/mm/yyyy',

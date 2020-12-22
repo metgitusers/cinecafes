@@ -76,16 +76,11 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	
-////dev server
-	// 'username' => 'cinecafes_cine2',
-	// 'password' => 'v8S$D$K?9NBbhsde',
-	// 'database' => 'cinecafe2',
-///live server
-	'username' => 'cinecafes_cine2',
-	'password' => 'v8S$D$K?9NBbhsde',
-	'database' => 'cinecafes_cine2',
 
-//local 	
+	'username' => 'cinecafe2',
+	'password' => 'v8S$D$K?9NBbhsde',
+	'database' => 'cinecafe2',
+
 	
 	//'username' => 'root', 
 	//'password' => '',

@@ -79,7 +79,19 @@
                         
                       </td>
                       <td><?php echo $row['category_name'];?></td>
-                      <td><?php echo $row['duration'];?></td>
+                      <td>
+                        <?php 
+                        $durationArr=explode(".",$row['duration']);
+                        
+                        echo $durationArr[0]." Hr";
+                        if(count($durationArr)>1)
+                        {
+                          if($durationArr[1]>0)
+                          {
+                            echo " ".$durationArr[1]." Min";
+                          }
+                        }
+                        ?></td>
                      
                        <td><?php if(!empty($row['description'])){ echo substr($row['description'],0,40); }?>
                        <?php if(strlen($row['description'])>40){ echo "...";}?></td>

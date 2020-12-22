@@ -35,7 +35,7 @@
                         <p><span>Date: </span><?php echo date('d-m-Y', strtotime($row['reservation_date']));?></p>
 						 </div>
                        <div class="col-md-3 col-sm-12 col-xs-12">
-                        <p><span>Time: </span><?php echo $row['reservation_time'];?> to <?php echo $row['reservation_end_time'];?></p>
+                        <p><span>Time: </span><?php echo date('g:i a', strtotime($row['reservation_time']))." to ".date('g:i a', strtotime($row['reservation_end_time']));?> </p>
 						 </div>
                        <div class="col-md-3 col-sm-12 col-xs-12">
                         <p><span>No of guests:</span> <?php echo $row['no_of_guests'];?> </p>

@@ -7,7 +7,7 @@ class Mreview extends CI_Model{
 
     public function getReviewList()
     {
-        $this->db->select('rating_review.*,CONCAT(master_cafe.cafe_name, "-",master_cafe.cafe_place) AS cafe_name,user.name,user.email');
+        $this->db->select('rating_review.*,CONCAT(master_cafe.cafe_name, "-",master_cafe.cafe_place) AS cafe_name,user.name,user.email, user.mobile');
         $this->db->from('rating_review');
         $this->db->join('master_cafe', 'master_cafe.cafe_id = rating_review.cafe_id');
         $this->db->join('user', 'user.user_id = rating_review.user_id');

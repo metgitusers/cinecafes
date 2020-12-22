@@ -306,14 +306,4 @@ class Reservation extends MY_Controller {
 		 	
 	   }
     }
-    
-     ////////add reservation /////////////////////////////////////////////////
-	  public function test_mail()
-	{ 
-	    $data=array();
-	    $data['to']="05duttaisha@gmail.com";
-	   $data['subject']="test mail";
-	   $data['message']="test msg";
-	   sendmail($data);
-	}
 }

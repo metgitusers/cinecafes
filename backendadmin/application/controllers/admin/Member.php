@@ -26,9 +26,10 @@ class Member extends MY_Controller {
 		$data['content'] 				= 'admin/member/list';
 		$data['member_active_list'] 	= $this->mmember->get_member_list('1');
 		$data['member_inactive_list'] = $this->mmember->get_member_list('0');
-		$condition['is_delete']=0;
-		$condition['status']=1;
+		//$condition['is_delete']=0;
+		//$condition['status']=1;
 		$condition['role_id']=0;
+		$condition['is_delete']=0;
 
 		///** added by ishani on 09.18.2020  ** //
 		$start_date="";
@@ -42,14 +43,22 @@ class Member extends MY_Controller {
 	       		$end_date= $this->input->post('end_date');
 	        }
 	        if(!empty($_POST['user_type'])){
-	       		$user_type= $this->input->post('user_type');
+				$user_type= $this->input->post('user_type');
+				if(strtolower($user_type) != 'admin')
+				$condition['added_form'] =  strtolower($user_type)=='app'?'App':'Admin';  
 	        }
 	        //die;
-	     }
+		 }
+		 if(!empty($user_type)){
+			$user_type= $user_type;
+			if(strtolower($user_type) != 'admin')
+			$condition['added_form'] =  strtolower($user_type)=='app'?'App':'Admin';  
+		}
 	     $data['start_date']=$start_date;
 	     $data['end_date']=$end_date;
 	     $data['user_type']=$user_type;
 		$data['member_all_list'] 	= $this->mmember->getMemberDetails($condition,$user_type,$start_date,$end_date);
+		//echo $this->db->last_query();
 		//pr($data);		
 		
 		$this->admin_load_view($data);		
@@ -183,6 +192,13 @@ class Member extends MY_Controller {
 	    	else{
 	    		$doa	= '';
 	    	}
+
+	    	if(!empty($this->input->post( 'dob' ))){
+	    		$dob	= date('Y-m-d',strtotime(str_replace('/','-',$this->input->post("dob"))));
+	    	}
+	    	else{
+	    		$dob	= '';
+	    	}
 	    	//echo "hzj".$doa;exit;
 	    	//$password			= $this->input->post( 'password' );
 	    			$data = array(		
@@ -209,7 +225,7 @@ class Member extends MY_Controller {
 					'gender' 							=> $this->input->post( 'gender' ),
 					'marriage_status' 					=> $this->input->post( 'marriage_status' ),
 					'address' 					=> $this->input->post( 'address' ),
-					'dob' 								=> DATE('Y-m-d',strtotime(str_replace('/','-',$this->input->post("dob")))),				
+					'dob' 								=> $dob,				
 					'doa' 								=> $doa,
 					'profile_img'						=> $profile_img,
 					
@@ -230,7 +246,10 @@ class Member extends MY_Controller {
 		        		else{
 		        			$expiry_dt ='';
 		        		}
-
+						$package_type_name  = "";
+						$package_name  		= "";
+						$package_price  	= "";
+						$package_type_id  = "";
 	        		if($this->input->post( 'membership_id' )!=''&& $this->input->post( 'package_id' ) !=''){
 	        			//echo 1; die;
 	        			$pkg_condition		= array('user_id'=>$user_id,'status' =>'1');
@@ -352,7 +371,8 @@ class Member extends MY_Controller {
 		        	}	        		
 
 			$this->session->set_flashdata('success_msg','User details updated successfully');
-			redirect('admin/member/edit/'.$user_id);
+			redirect('admin/member');
+			//redirect('admin/member/edit/'.$user_id);
 		}
 	}
 	/*
@@ -427,6 +447,13 @@ class Member extends MY_Controller {
 	    	else{
 	    		$doa	= '';
 	    	}
+
+	    	if(!empty($this->input->post( 'dob' ))){
+	    		$dob	= date('Y-m-d',strtotime(str_replace('/','-',$this->input->post("dob"))));
+	    	}
+	    	else{
+	    		$dob	= '';
+	    	}
         	$data = array(		
 						
 			'name' 						=> $this->input->post( 'name' ),	
@@ -455,7 +482,7 @@ class Member extends MY_Controller {
 			'gender' 							=> $this->input->post( 'gender' ),
 			'marriage_status' 					=> $this->input->post( 'marriage_status' ),
 			'address' 					=> $this->input->post( 'address' ),
-			'dob' 								=> DATE('Y-m-d',strtotime(str_replace('/','-',$this->input->post("dob")))),				
+			'dob' 								=> $dob,				
 			'doa' 								=> $doa,
 			'profile_img'						=> $img,
 			
@@ -472,6 +499,10 @@ class Member extends MY_Controller {
 									'status'		=> '1'
 								);
 				//$this->mcommon->insert('log',$log_data);
+				$package_type_name  = "";
+				$package_name  		= "";
+				$package_price  	= "";
+				$package_type_id  = "";
         		if($this->input->post( 'package_id' ) !=''){
 
 	        				
@@ -526,7 +557,7 @@ class Member extends MY_Controller {
 		        								);
 	    			$this->mcommon->insert('transaction_history',$pck_trans_array_data);
 
-    			}
+    			} 
         		/****************** Send membership ID to the member ****************************/
         		$logo					= 	base_url('public/images/logo.png');
 				$params['name']			=	$this->input->post( 'first_name' );

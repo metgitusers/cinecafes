@@ -31,12 +31,30 @@
                          
               <form method="post" id="NotificationAddform" role="form" action="<?php echo base_url();?>admin/notification/add_content" autocomplete="off"  enctype="multipart/form-data">
                 <div class="row">
-                  <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group emoji">
+                      <label>Title*</label>
+                      <input type="text" maxlength="150" name="message_title" id="message_title" class="form-control emoji_text" value="<?php echo set_value('message_title');?>" required>
+                  </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label>Image <small>(Accept format image only)</small></label>
+                      <input type="file" name="file" id="file" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group emoji">
+                      <label>Ticker</label>
+                      <input type="text" maxlength="150" name="ticker" id="ticker" class="form-control" value="<?php echo set_value('ticker');?>" >
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <label>Message*</label>
                       <!-- <input type="text" name="name" id="name" class="form-control" value="<?php echo set_value('name');?>" 
                       required> -->
-                      <textarea required="required" name="offer_text" id="offer_text" class="form-control"></textarea>
+                      <textarea required="required" maxlength="250" name="offer_text" id="offer_text" class="form-control emoji_text"></textarea>
                        
                     </div>
                 </div>
@@ -61,16 +79,12 @@
                     </div>
                 </div>
               <?php } ?>
-              
-              
-               
                <div class="col-md-2 col-xs-2 col-xs-2">
                   <div class="form-group">
                      <button type="submit" class="btn btn-primary btn-user btn-block">Send </button>
                         <!--  <input type="submit" name="submit" value="Submit"/> -->
                      </div>
                 </div>
-            
             </div>          
           </div>
         </form>
@@ -78,6 +92,11 @@
         <!-- /.container-fluid -->
 
       </div>
+      <style>
+          .emoji div{
+            z-index: 99;
+          }
+      </style>
       <!-- End of Main Content -->
       <script type="text/javascript">
         $("#selectAll").click(function(){
@@ -92,3 +111,36 @@
 
         });
       </script>
+
+  </style>
+<script src="<?=base_url('public/js/inputEmoji.js')?>"></script>
+      <!-- End of Main Content -->
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $("#file").change(function () {
+              var validExtensions = ["jpg","jpeg","png","gif"];
+              var file = $(this).val().split('.').pop();
+              if (validExtensions.indexOf(file) == -1) {
+                  $("#file").val(null);
+                  alert("Only formats are allowed : "+validExtensions.join(', '));
+              }
+              if (this.files[0].size >= 550000) {
+                  $("#file").val(null);
+                  alert("File size is to large. Accepted size below 500k: ");
+              }
+              });
+          //emoji
+          $('.emoji_text').emoji({place: 'after'});
+        })
+        $("#selectAll").click(function(){
+          if($(this).prop("checked")) {
+                //$(".checkBox").prop("checked", true);
+                $("input[type=checkbox]").prop('checked', true);
+            } else {
+                //$(".checkBox").prop("checked", false);
+                $("input[type=checkbox]").prop('checked', false);
+            }  
+        
+
+        });
+</script>

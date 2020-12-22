@@ -6,7 +6,7 @@
 }
 </style>
 <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid"> 
 
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">Update Room</h1>
@@ -35,6 +35,7 @@
                   <div class="form-group">
                       <label>Room No*</label>
                       <input type="text" name="room_no" id="room_no" class="form-control"  value="<?php echo $row['room_no'];?>" required>
+                      <?php echo form_error('room_no', '<div class="error">', '</div>'); ?>
                     </div>
                 </div>
                   <?php if(!empty($roomtype_list)){ ?>
@@ -47,6 +48,7 @@
                             <option value="<?php echo $row2['room_type_id'];?>" <?php if($row2['room_type_id']==$row['room_type_id']){ echo "selected"; }?>><?php //echo $row2['room_type_id'];?><?php echo $row2['room_type_name'];?></option>
                              <?php } ?>
                              </select>
+                             <?php echo form_error('room_type_id', '<div class="error">', '</div>'); ?>
                     </div>
                 </div>
               <?php } ?>
@@ -60,6 +62,7 @@
                             <option value="<?php echo $row1['cafe_id'];?>" <?php if($row1['cafe_id']==$row['cafe_id']){ echo "selected"; }?>><?php //echo $row1['cafe_id'];?><?php echo $row1['cafe_name']."-".$row1['cafe_place'];?></option>
                              <?php } ?>
                              </select>
+                             <?php echo form_error('cafe_id', '<div class="error">', '</div>'); ?>
                     </div>
                 </div>
               <?php } ?>
@@ -68,12 +71,14 @@
                   <div class="form-group">
                      <label>Max Capacity*</label>
                        <input class="form-control" type="number" min="1"   name="no_of_people" id="no_of_people"  value="<?php echo $row['no_of_people'];?>"> 
+                       <?php echo form_error('no_of_people', '<div class="error">', '</div>'); ?>
                     </div>
                 </div>
                <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                      <label>Screen*</label>
                        <input class="form-control" type="number" min="1" step="0.01" name="screen_size" id="screen_size"  value="<?php echo $row['screen_size'];?>"> 
+                       <?php echo form_error('screen_size', '<div class="error">', '</div>'); ?>
                     </div>
                 </div>
                

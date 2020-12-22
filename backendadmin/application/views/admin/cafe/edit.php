@@ -133,10 +133,11 @@
                 
                 <?php if(!empty($img_list)){ ?>
                    <div class="col-md-12 col-sm-12 col-xs-12">
+                   <!-- <img style="margin-top: 2px;height:120px;width:120px; display:none" id="blah" src=""> -->
                    <div class="product-media-img"> 
                    <?php foreach($img_list as $img){ ?>
                    <div class="pro_img">
-                  <img style="margin-top: 2px;height:120px;width:120px;" id="blah" src="<?php echo base_url();?>public/upload_images/cafe_images/<?php echo $img['image'];?>" alt="Cafe Image" ><span> <a class="delete_cafe_img btn btn-danger btn-circle btn-sm" id="<?php echo $img['cafe_img_id']; ?>" href="javascriot:void(0);">
+                  <img style="margin-top: 2px;height:120px;width:120px;" id="blah_1" src="<?php echo base_url();?>public/upload_images/cafe_images/<?php echo $img['image'];?>" alt="Cafe Image" ><span> <a class="delete_cafe_img btn btn-danger btn-circle btn-sm" id="<?php echo $img['cafe_img_id']; ?>" href="javascriot:void(0);">
                         <i class="fas fa-trash"></i> </a></span>
                         <!-- <button  style="float:left"  class="btn pull-right btn-danger delete_pro_img" id="<?php echo $img['cafe_img_id']; ?>"><i class="fa fa-trash-o"></i></button> -->
                  <!--  <input type="hidden" name="cafe_img_name[]" id="cafe_img_name" value="<?php echo $img['image'];?>"> -->

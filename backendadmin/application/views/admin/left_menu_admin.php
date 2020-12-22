@@ -23,7 +23,7 @@
        <!-- Nav Item - cafe -->
       <li class="nav-item <?php if($this->uri->segment(2)=='cafe'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/cafe'); ?>">
-          <i class="fas fa-fw fa-folder"></i>
+          <img src="<?=base_url('public/img/icon_2.png')?>" alt="icon">
           <span>Cafe</span></a>
           
       </li>
@@ -33,7 +33,7 @@
       <!-- Nav Item - cafe -->
       <li class="nav-item <?php if($this->uri->segment(2)=='setting'&&$this->uri->segment(2)=='price'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/setting/price'); ?>">
-          <i class="fas fa-fw fa-folder"></i>
+        <img src="<?=base_url('public/img/icon_3.png')?>" alt="icon">
           <span>Hourly Price</span></a>
       </li>
       <!-- Divider -->
@@ -66,7 +66,7 @@
        <!-- Nav Item - movie -->
        <li class="nav-item <?php if($this->uri->segment(2)=='moviecategory' || $this->uri->segment(2)=='movie'){ echo "active"; }?>">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwoMovie" aria-expanded="true" aria-controls="collapseTwo1">
-          <i class="fas fa-fw fa-cog"></i>
+        <img src="<?=base_url('public/img/icon_4.png')?>" alt="icon">
           <span>Movie</span>
         </a>
         <div id="collapseTwoMovie" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
@@ -89,7 +89,7 @@
       
        <li class="nav-item <?php if($this->uri->segment(2)=='roomtype' || $this->uri->segment(2)=='room'){ echo "active"; }?>">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwoRoom" aria-expanded="true" aria-controls="collapseTwoRoom">
-          <i class="fas fa-fw fa-cog"></i>
+        <img src="<?=base_url('public/img/icon_5.png')?>" alt="icon">
           <span>Room</span>
         </a>
         <div id="collapseTwoRoom" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
@@ -108,41 +108,41 @@
        <!-- Nav Item - coupon  -->
       <li class="nav-item <?php if($this->uri->segment(2)=='coupon'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/coupon'); ?>">
-          <i class="fas fa-fw fa-folder"></i>
+        <img src="<?=base_url('public/img/icon_6.png')?>" alt="icon">
           <span>Coupon</span></a>
       </li>
       <hr class="sidebar-divider my-0">
         <!-- Nav Item - media  -->
        <li class="nav-item <?php if($this->uri->segment(2)=='media'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/media'); ?>">
-          <i class="fas fa-fw fa-folder"></i>
+        <img src="<?=base_url('public/img/icon_7.png')?>" alt="icon">
           <span>Entertainment Media</span></a>
       </li> 
        <hr class="sidebar-divider my-0">
         <!-- Nav Item - banner  -->
        <li class="nav-item <?php if($this->uri->segment(2)=='banner'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/banner'); ?>">
-          <i class="fas fa-fw fa-folder"></i>
+        <img src="<?=base_url('public/img/icon_8.png')?>" alt="icon">
           <span>Banner</span></a>
       </li> 
        <hr class="sidebar-divider my-0">
         <!-- Nav Item - cms  -->
        <li class="nav-item <?php if($this->uri->segment(2)=='cms'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/cms'); ?>">
-          <i class="fas fa-fw fa-folder"></i>
+        <img src="<?=base_url('public/img/icon_9.png')?>" alt="icon">
           <span>Cms</span></a>
       </li> 
        <hr class="sidebar-divider my-0">
         <!-- Nav Item - review  -->
        <li class="nav-item <?php if($this->uri->segment(2)=='review'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/review'); ?>">
-          <i class="fas fa-fw fa-folder"></i>
+        <img src="<?=base_url('public/img/icon_10.png')?>" alt="icon">
           <span>Review</span></a>
       </li> 
 
       <li class="nav-item <?php if($this->uri->segment(2)=='membership'){ echo"active"; }?>">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+        <img src="<?=base_url('public/img/icon_11.png')?>" alt="icon">
           <span>Membership Package</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
@@ -154,8 +154,8 @@
             <h6 class="collapse-header">Membership Plan</h6>
 
               <a class="collapse-item <?php if($this->uri->segment(2)=='packagetype'){ echo"active"; }?>" href="<?php echo base_url('admin/packagetype'); ?>" >Package Type</a>
-              <a class="collapse-item <?php if($this->uri->segment(2)=='package' && $this->uri->segment(2)=='add'){ echo"active"; }?>" href="<?php echo base_url('admin/package/add'); ?>" >Add new Membership plan</a>
-              <a class="collapse-item <?php if($this->uri->segment(2)=='package'){ echo"active"; }?>" href="<?php echo base_url('admin/package'); ?>" >List of Membership plan</a>
+              <a class="collapse-item <?php if($this->uri->segment(2)=='package' && $this->uri->segment(3)=='add'){ echo"active"; }?>" href="<?php echo base_url('admin/package/add'); ?>" >Add new Membership plan</a>
+              <a class="collapse-item <?php if($this->uri->segment(2)=='package' && $this->uri->segment(3)== ''){ echo"active"; }?>" href="<?php echo base_url('admin/package'); ?>" >List of Membership plan</a>
               <a class="collapse-item <?php if($this->uri->segment(2)=='PackageBenefit' && $this->uri->segment(2)=='add'){ echo"active"; }?>" href="<?php echo base_url('admin/PackageBenefit/add'); ?>" >Add new Membership Benifit</a>
               <a class="collapse-item <?php if($this->uri->segment(2)=='PackageBenefit'){ echo"active"; }?>" href="<?php echo base_url('admin/PackageBenefit'); ?>" >List of Membership Benifit</a>
 
@@ -165,7 +165,7 @@
 
       <li class="nav-item <?php if($this->uri->segment(2)=='member'){ echo"active"; }?>">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo1" aria-expanded="true" aria-controls="collapseTwo1">
-          <i class="fas fa-fw fa-cog"></i>
+        <img src="<?=base_url('public/img/icon_12.png')?>" alt="icon">
           <span>User</span>
         </a>
         <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
@@ -181,7 +181,7 @@
       </li>
         <li class="nav-item">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="true" aria-controls="collapseTwo2">
-          <i class="fas fa-fw fa-cog"></i>
+        <img src="<?=base_url('public/img/icon_13.png')?>" alt="icon">
           <span>Subadmin</span>
         </a>
         <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
@@ -199,27 +199,27 @@
         <!-- Nav Item - wallet  -->
       <li class="nav-item <?php if($this->uri->segment(2)=='wallet'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/wallet'); ?>">
-          <i class="fas fa-fw fa-folder"></i>
+        <img src="<?=base_url('public/img/icon_14.png')?>" alt="icon">
           <span>Wallet</span></a>
       </li>
        <hr class="sidebar-divider my-0">
        <!-- Nav Item - reservation  -->
       <li class="nav-item <?php if($this->uri->segment(2)=='reservation'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/reservation'); ?>">
-          <i class="fas fa-fw fa-folder"></i>
+        <img src="<?=base_url('public/img/icon_15.png')?>" alt="icon">
           <span>Reservation</span></a>
       </li>
         <hr class="sidebar-divider my-0">
        <!-- Nav Item - transactionhistory  -->
       <li class="nav-item <?php if($this->uri->segment(2)=='transactionhistory'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/transactionhistory'); ?>">
-          <i class="fas fa-fw fa-folder"></i>
+        <img src="<?=base_url('public/img/icon_16.png')?>" alt="icon">
           <span>Transactionhistory</span></a>
       </li>
       <hr class="sidebar-divider my-0">
       <li class="nav-item <?php if($this->uri->segment(2)=='notification'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/notification/offer'); ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <img src="<?=base_url('public/img/icon_17.png')?>" alt="icon">
           <span>Push Notification</span></a>
       </li>
 

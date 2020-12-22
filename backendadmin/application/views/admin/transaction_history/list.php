@@ -100,6 +100,7 @@
                       <th>Customer Details</th>
                       
                       <th>Amount</th>
+                      <th style="display: none">Transaction type</th>
                       <th>Payment Mode</th>
                       <th class="no-sort">Status</th>
                       <!-- <th class="no-sort">Action</th>  -->
@@ -114,6 +115,7 @@
                       <th>Customer Details</th>
                       
                       <th>Amount</th>
+                      <th style="display: none">Transaction type</th>
                       <th>Payment Mode</th>
                       <th class="no-sort">Status</th>
                       <!-- <th class="no-sort">Action</th>  -->
@@ -172,6 +174,7 @@
                       <br><a href="mailto:<?php echo $row['email'];?>"><?php echo $row['email'];?></a>
                       <br><?php echo $row['mobile'];?></td>                  
                       <td style="color:<?php echo $color; ?>"><?php echo $arrow." Rs.".' '.$row['amount']; ?> </td>
+                      <td style="display: none"><?= $row['add_wallet'] ==1?'CR':'DR' ?></td>
                       <td><?php echo $row['payment_mode'];?></td>
                       <td>
                          <?php if($row['payment_status']==2){ echo "<p style='color:red;font-size: 15px;''>Failure</p>"; } else if($row['payment_status']==1){  echo "<p style='color:green;font-size: 15px;''>Success</p>"; } else if($row['payment_status']==0){  echo "<p style='color:red;font-size: 15px;''>Pending</p>"; }  ?>

@@ -86,7 +86,7 @@ class PackageBenefit extends MY_Controller {
 		
 		$data					= array();		
 		if($this->input->post()){			
-			$this->form_validation->set_rules('benefit_name','Benefit Name','required|is_unique[package_benefits.benefit_name]',array('is_unique'=>'This %s already exists.'));
+			$this->form_validation->set_rules('benefit_name','Benefit Name','trim|required');
 			$this->form_validation->set_rules('benefit_description','Benefit Description','trim|required');
 			if($this->form_validation->run()==FALSE){
 				$data['pck_benefit_data']	= '';
@@ -95,31 +95,43 @@ class PackageBenefit extends MY_Controller {
 			
 			}else{
 				//echo '<pre>'; print_r($this->input->post());die;
-					
-				$insert_data['benefit_name']		= $this->input->post('benefit_name');
-				$insert_data['benefit_description']	= $this->input->post('benefit_description');
-				$insert_data['created_on']			= date('Y-m-d');
-				$insert_data['status'] 				= 1;
-				$insert_id	=	$this->mcommon->insert('package_benefits',$insert_data);
-				
-				if($insert_id){
-					$log_data = array('action' 		=> 'Add',
-									  'statement' 	=> "Added a new package benefits named-'".$this->input->post('benefit_name')."'",
-									  'action_by'	=> $this->session->userdata('user_data'),
-									  'IP'			=> getClientIP(),
-									  'id'          => $insert_id,
-					  	  		  	  'type'        =>"Package Benefit",
-									  'status'		=> '1'
-									);
-					//$this->mcommon->insert('log',$log_data);
-					$this->session->set_flashdata('success_msg','A new package benefit added successfully');
-					redirect(base_url('admin/PackageBenefit'));
+				$this->db->where('LOWER(benefit_name)', $this->input->post('benefit_name'));
+				$this->db->where('is_delete',0);
+				$d = $this->db->get('package_benefits')->row();
+				//echo $this->db->last_query();
+				if(!empty($d)){
+					//echo 'if';
+					$this->session->set_flashdata('error_message', 'The Benifit name is already exists');
+					$data['pck_benefit_data']	= '';
+					$data['content'] 			= 'admin/package_benefite/add_edit_benefit';
+					$this->admin_load_view($data);
+				}else{
+					//echo 'else';
+					$insert_data['benefit_name']		= $this->input->post('benefit_name');
+					$insert_data['benefit_description']	= $this->input->post('benefit_description');
+					$insert_data['created_on']			= date('Y-m-d');
+					$insert_data['status'] 				= 1;
+					$insert_id	=	$this->mcommon->insert('package_benefits',$insert_data);
+					//echo $this->db->last_query();
+					if($insert_id){
+						$log_data = array('action' 		=> 'Add',
+										'statement' 	=> "Added a new package benefits named-'".$this->input->post('benefit_name')."'",
+										'action_by'	=> $this->session->userdata('user_data'),
+										'IP'			=> getClientIP(),
+										'id'          => $insert_id,
+										'type'        =>"Package Benefit",
+										'status'		=> '1'
+										);
+						//$this->mcommon->insert('log',$log_data);
+						$this->session->set_flashdata('success_msg','A new package benefit added successfully');
+						redirect(base_url('admin/PackageBenefit'));
 
-				}
-				else{
-						
-					$this->session->set_flashdata('error_msg','Oops!Something went wrong...');
-					redirect(base_url('admin/PackageBenefit'));				
+					}
+					else{
+							
+						$this->session->set_flashdata('error_msg','Oops!Something went wrong...');
+						redirect(base_url('admin/PackageBenefit'));				
+					}
 				}	
 			}
 		}

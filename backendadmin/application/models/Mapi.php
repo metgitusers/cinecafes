@@ -113,11 +113,11 @@
        //  $query = "select reservation.*,room.room_no,movie.name from reservation left join room on reservation.room_id = room.room_id left join movie on reservation.movie_id = movie.movie_id where unix_timestamp(concat(`reservation_date`,' ',`reservation_time`)) < unix_timestamp(now()) order by reservation.reservation_id desc";     
        // //echo $query;exit;
        //  $query1 = $this->db->query($query);
-        $this->db->select("reservation.*,room.room_no,movie.name,master_cafe.cafe_name,master_cafe.cafe_place,master_cafe.cafe_location,(IF(cafe_images.image !='',CONCAT('".base_url()."public/upload_images/cafe_images/',cafe_images.image),'".base_url()."public/upload_images/No_Image_Available.jpg')) as cafe_image");
+        $this->db->select("reservation.*,room.room_no,movie.name,master_cafe.cafe_name,master_cafe.cafe_place,master_cafe.cafe_location");
         $this->db->join('room', 'room.room_id = reservation.room_id', 'left');
         $this->db->join('movie', 'movie.movie_id = reservation.movie_id', 'left'); 
         $this->db->join('master_cafe', 'master_cafe.cafe_id = reservation.cafe_id', 'left');
-        $this->db->join('cafe_images', 'cafe_images.cafe_id = reservation.cafe_id', 'left');
+       // $this->db->join('cafe_images', 'cafe_images.cafe_id = reservation.cafe_id', 'left');
         $this->db->where($condition);
         if($status=="past")
         {
@@ -144,11 +144,22 @@
         $List=$query->result_array();
         for($i=0;$i<count($List);$i++)
         {
-         
+            $reservation_id=$List[$i]['reservation_id'];
+         //////////////////////////get cafe image single////////////////
+            $this->db->select("(IF(cafe_images.image !='',CONCAT('".base_url()."public/upload_images/cafe_images/',cafe_images.image),'".base_url()."public/upload_images/No_Image_Available.jpg')) as cafe_image");
+            $this->db->where("cafe_id",$List[$i]['cafe_id']);
+            $this->db->order_by("cafe_img_id","DESC");
+       
+            $this->db->limit(1,0);
+            $query_cafeImg=$this->db->get("cafe_images");
+            $cafeImg_arr=array();
+            $cafeImg_arr=$query_cafeImg->row_array();
+            $List[$i]['cafe_image'] =$cafeImg_arr['cafe_image']; 
+         /////////////////////////////////////////////////////////////
           ////////////////////////get food.............................
             $food_arr=array();
             
-            $reservation_id=$List[$i]['reservation_id'];
+            
 
             //food list
             $this->db->select("reservation_food_mapping.*,food.name,food.veg_nonveg,(IF(food.image !='',CONCAT('".base_url()."public/upload_images/food_images/',food.image),'".base_url()."public/upload_images/No_Image_Available.jpg')) as image,food_category.category_name,food_variant.food_variant_name");

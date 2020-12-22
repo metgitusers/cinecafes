@@ -62,7 +62,7 @@
                       
                       <td><?php echo $row['benefit_name'];?></td>
                       
-                       <td><?php if(!empty($row['benefit_description'])){ echo substr($row['benefit_description'],0,40); }?>
+                       <td><?php if(!empty($row['benefit_description'])){ echo substr($row['benefit_description'],0,100); }?>
                        <?php if(strlen($row['benefit_description'])>40){ echo "...";}?></td>
                      <!-- <td><?php echo date('d-m-Y', strtotime($row['created_on']));?></td>  -->
                       <td>

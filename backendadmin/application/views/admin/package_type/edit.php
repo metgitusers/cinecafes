@@ -10,6 +10,7 @@
 
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">Update Package</h1>
+          <div class="clearfix"></div>
           <div class="form_panel"> 
              <?php if ($this->session->flashdata('Packagetype_success_message')) : ?>
                 <div class="alert alert-success" role="alert">

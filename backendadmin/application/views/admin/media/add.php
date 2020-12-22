@@ -33,7 +33,7 @@
                 <div class="row">
                   <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
-                      <label>Media Name*</label>
+                      <label>Media Name *</label>
                      
                        <input type="text" name="media_name" id="media_name" class="form-control"
                         value="<?php echo set_value('media_name');?>" 
@@ -45,7 +45,7 @@
 
                  <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
-                     <label>Image</label>
+                     <label>Image *</label>
                        <input type="file" id="file-input" name="imgInp" required="required">
                       
                     </div>

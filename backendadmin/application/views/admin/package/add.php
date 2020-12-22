@@ -170,7 +170,7 @@
                                           <div class="input-group-prepend">
                                             <!-- <span class="input-group-text" id="basic-addon1">₹</span> -->
                                           </div> 
-                                          <input class="" type="number" name="package_price" placeholder="price" value="">
+                                          <input class="" type="number" name="package_price" min="0" required placeholder="price" value="">
                                          </div>
                                          <div class="input-group">
                                            
@@ -362,7 +362,7 @@
                                           <div class="input-group-prepend">
                                             <!-- <span class="input-group-text" id="basic-addon1">₹</span> -->
                                           </div> 
-                                          <input class="" type="number" name="package_price" placeholder="price" value="<?php echo $package['package_price']; ?>">
+                                          <input class="" type="number" name="package_price"  min="0" required placeholder="price" value="<?php echo $package['package_price']; ?>">
                                          </div>
                                          <div class="input-group">
                                           <div class="input-group-prepend">

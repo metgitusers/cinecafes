@@ -38,7 +38,7 @@
 							<th width="15">Cafe</th>
 							<th width="15">User Name</th>
 							<th width="25">Email</th>
-							<!-- <th class="no-sort">Rating</th> -->
+							<th class="no-sort">Mobile</th>
 							<th class="no-sort">Service Rating</th>
 							<th class="no-sort">Quality Rating</th>
 							<th class="no-sort">Review comment</th>
@@ -53,7 +53,7 @@
 							<th width="15">Cafe</th>
 							<th width="15">User Name</th>
 							<th width="25">Email</th>
-							<!-- <th class="no-sort">Rating</th> -->
+							<th class="no-sort">Mobile</th>
 							<th class="no-sort">Service Rating</th>
 							<th class="no-sort">Quality Rating</th>
 							<th class="no-sort">Review comment</th>
@@ -80,7 +80,9 @@
 									<?php echo $row['email'];?>
 								</a>
 							</td>
-							
+							<td>
+								<?php echo $row['mobile'];?>
+							</td>
 							<td>
 
 						<?php if($row['service_rating']==1){?> <i class="fa fa-star" aria-hidden="true"></i>
@@ -134,6 +136,5 @@
 </div>
 <!-- /.container-fluid -->
 
-<
-/div>
+</div>
 <!-- End of Main Content-->
