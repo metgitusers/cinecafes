@@ -62,4 +62,17 @@ class Dashboard extends MY_Controller {
 		$this->admin_load_view($data);
 		//$this->load->view('admin/layouts/index', $data);
 	}
+
+	// common method to delete image
+	public function deleteImage()
+	{
+		$this->db->where($this->input->post('key'), $this->input->post('id'));
+		if($this->db->delete($this->input->post('table'))){
+			$response = array('status'=> 1);
+		}else{
+			$response = array('status'=> 0);
+		}
+
+		echo json_encode($response);
+	}
 }

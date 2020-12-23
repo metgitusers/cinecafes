@@ -67,9 +67,18 @@
                         </div>
                       </div>
                     </div>
+                    <div class="col-sm-3">
+                     <p style="text-align: left; margin-top: 30px;">
+         
+           <button type="submit" style="display: inline-block; width: auto; vertical-align: top;margin-right: 10px;"  class="btn btn-primary btn-user btn-block" id="search_btn">
+                <i class="fa fa-search" aria-hidden="true"></i> Search
+           </button>
+            <button type="button" style="display: inline-block; width: auto; vertical-align: top;margin-right: 10px;" onclick="location.href='<?php  echo base_url('admin/transactionhistory');?>';" class="btn btn-primary btn-user ">Reset</button>
+          </p>	
                   </div>
                 <?php } ?>
                 <div class="row">
+<!--
       <div class='col-sm-2'>
           <div class="form-group">
            <label>&nbsp;</label>
@@ -89,6 +98,7 @@
                 </div>
               </div> 
 		   </div>
+-->
 		   <div class="table-responsive">
                 <table class="table table-bordered" id="myTransactionhistory" width="100%" cellspacing="0">
                   <thead>

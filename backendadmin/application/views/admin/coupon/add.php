@@ -55,8 +55,8 @@
                  <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                      <label>Select coupon Type*</label>
-                      <input type="radio" id="coupon_type" name="coupon_type"  value="0" <?php //if($row['coupon_type']==0){ echo "checked"; }?>> Fixed
-                      <input type="radio" id="coupon_type" name="coupon_type"  value="1" <?php //if($row['coupon_type']==1){ echo "checked"; }?>> Percentage
+                      <input type="radio" id="coupon_type" class="coupon-type" name="coupon_type"  value="0"> Fixed
+                      <input type="radio" id="coupon_type" name="coupon_type" class="coupon-type" value="1"> Percentage
                     </div>
                     
                 </div>
@@ -64,17 +64,34 @@
                 <span class="error"></span>
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
-                     <label>Amount*</label>
+                     <label>Discount Amount*</label>
                        <input class="form-control" type="number" min="1" name="amount" id="amount"  value="<?php echo set_value('amount');?>"> 
                     </div>
                 </div>
                 
-                <!--  <div class="col-md-4 col-sm-12 col-xs-12">
+                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
-                     <label>Min Price</label>
+                     <label>Min Purchase Amount</label>
                        <input class="form-control" type="number" min="1" name="min_price" id="min_price"  value="<?php echo set_value('min_price');?>"> 
                     </div>
-                </div> -->
+                </div>
+                 <div class="col-md-4 col-sm-12 col-xs-12 max-discount-percentage" style="display: none">
+                  <div class="form-group">
+                     <label>Max Discount Amount</label>
+                       <input class="form-control" type="number" min="1" name="max_discount_amount" id="max_discount_amount"  value="<?php echo set_value('max_discount_amount');?>"> 
+                    </div>
+                </div>
+                <script>
+                  $('.coupon-type').on('click', function(){
+                    if($(this).val() == 1){
+                      $('.max-discount-percentage').show();
+                      $('#max_discount_amount').attr('required', true);
+                    }else{
+                      $('.max-discount-percentage').hide();
+                      $('#max_discount_amount').attr('required', false);
+                    }
+                  })
+                </script>
                <div class="col-md-2 col-xs-2 col-xs-2">
                   <div class="form-group">
                      <button type="submit" class="btn btn-primary btn-user btn-block">Submit</button>

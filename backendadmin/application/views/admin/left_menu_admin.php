@@ -214,7 +214,7 @@
       <li class="nav-item <?php if($this->uri->segment(2)=='transactionhistory'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/transactionhistory'); ?>">
         <img src="<?=base_url('public/img/icon_16.png')?>" alt="icon">
-          <span>Transactionhistory</span></a>
+          <span>Transaction History</span></a>
       </li>
       <hr class="sidebar-divider my-0">
       <li class="nav-item <?php if($this->uri->segment(2)=='notification'){ echo"active"; }?>">

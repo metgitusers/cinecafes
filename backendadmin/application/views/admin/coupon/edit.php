@@ -55,27 +55,48 @@
                  <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                      <label>Select coupon Type*</label>
-                      <input type="radio" id="coupon_type" name="coupon_type"  value="0" <?php if($row['coupon_type']==0){ echo "checked"; }?>> Fixed
-                      <input type="radio" id="coupon_type" name="coupon_type"  value="1" <?php if($row['coupon_type']==1){ echo "checked"; }?>> Percentage
+                     <div class="coupontype_box">
+                      <input type="radio" id="coupon_type" class="coupon_type" name="coupon_type"  value="0" <?php if($row['coupon_type']==0){ echo "checked"; }?>> Fixed
+					  </div>
+                      <div class="coupontype_box">
+                      <input type="radio" id="coupon_type" class="coupon_type" name="coupon_type"  value="1" <?php if($row['coupon_type']==1){ echo "checked"; }?>> Percentage
+					  </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
-                     <label>Amount*</label>
+                     <label>Discount Amount*</label>
                        <input class="form-control" type="number" min="1" name="amount" id="amount"  value="<?php echo $row['amount'];?>"> 
                     </div>
                 </div>
-                 <!-- <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
-                     <label>Min Price</label>
-                       <input class="form-control" type="number"  name="min_price" id="min_price"  value="<?php echo $row['min_price'];?>"> 
+                     <label>Min Purchase Amount</label>
+                       <input class="form-control" type="number" min="1" name="min_price" id="min_price"  value="<?php echo $row['min_price'];?>"> 
                     </div>
-                </div> -->
-                <div class="col-md-2 col-xs-2 col-xs-2">
+                </div>
+                 <div class="col-md-4 col-sm-12 col-xs-12 max-discount-percentage" style="display: <?= $row['coupon_type']==1?'':'none'?> ">
+                  <div class="form-group">
+                     <label>Max Discount Amount</label>
+                       <input class="form-control" type="number" min="1" name="max_discount_amount" id="max_discount_amount"  value="<?php echo $row['max_discount_amount'];?>"> 
+                    </div>
+                </div>
+                <script>
+                  $('.coupon_type').on('click', function(){
+                    if($(this).val() == 1){
+                      $('.max-discount-percentage').show();
+                      $('#max_discount_amount').attr('required', true);
+                    }else{
+                      $('.max-discount-percentage').hide();
+                      $('#max_discount_amount').attr('required', false);
+                    }
+                  })
+                </script>
+                <div class="col-md-12 col-xs-2 col-xs-2">
                   <div class="form-group">
                      <input type="hidden" name="end_on_old" value="<?php echo $row['end_on'];?>">
                      <input type="hidden" name="coupon_id" value="<?php echo $row['coupon_id'];?>">
-                     <button type="submit" class="btn btn-primary btn-user btn-block">Upadte</button>
+                     <button type="submit" class="btn btn-primary btn-user">Upadte</button>
                        
                      </div>
                 </div> 

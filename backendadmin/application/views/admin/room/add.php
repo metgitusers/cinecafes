@@ -120,17 +120,16 @@
 function _readURL(input) {
 var FileUploadPath = input.files;
 if (FileUploadPath.length <= 0) {
-            alert("Please upload an Image");
+    alert("Please upload an Image");
 } else {
   var i = 0;
    for(i = 0; i< FileUploadPath.length; i++ ){
-     console.log(FileUploadPath[i]);
+     //console.log(FileUploadPath[i]);
     var validExtensions = ["jpg","jpeg","png","gif"];
     var f = FileUploadPath[i].name.split('.').pop();
-    console.log(f);
+    //console.log(f);
     console.log(validExtensions.indexOf(f));
     if (validExtensions.indexOf(f) == 0) {
-        console.log('pass');
         var reader = new FileReader();
         reader.onload = function(event) {
             $($.parseHTML('<img style="width:200px; height: 200px; margin: 7px;">')).attr('src', event.target.result).appendTo('.image-preview');
@@ -141,7 +140,6 @@ if (FileUploadPath.length <= 0) {
   }
 }
 $("#file-input-m").change(function(){
-  console.log('text');
   _readURL(this);
 });
 </script>

@@ -65,8 +65,5 @@ class Index extends MY_Controller {
 		}
 		
 	}
-	
-
-	
 }
 

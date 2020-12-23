@@ -51,7 +51,7 @@
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <label>Cafe Name*</label>
-                      <input type="text" name="cafe_name" id="cafe_name" class="form-control"  value="Cinacafe" readonly="readonly">
+                      <input type="text" name="cafe_name" id="cafe_name" class="form-control"  value="<?php echo $row['cafe_name'];?>" required>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">

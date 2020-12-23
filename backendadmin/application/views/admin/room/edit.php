@@ -86,23 +86,33 @@
                  <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                      <label>Image</label>
-                        <input type="file"  id="file-input" name="image" >
+                        <input type="file" id="file-input-m" name="image[]" multiple>
                        
                     </div>
                 </div>
-                 
-                  <div class="col-md-4 col-sm-12 col-xs-12">
-                 <span class="smaillimgupload" style="margin-top: 2px; display: inline-block; margin-bottom: 15px;">
-                   <!--  <img src="<?php echo base_url();?>public/assets/img/110x110.png" id="blah2" style="height:100px;width:100px;"> -->
-                   <?php if(!empty($row['image'])){?>
-                        <img src="<?php echo base_url();?>public/upload_images/room_images/<?php echo $row['image'];?>" id="blah" style="height:100px;width:100px;">
-                        <?php }else{?>
-                         <span  style="text-decoration: none;"><img id="blah"></span>
-
-                      <?php } ?>
-                     
-                   </span> 
-					</div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  <span style="margin-top: 2px;">
+                      <span  style="text-decoration: none; display: inline-flex;" class="image-preview">
+                      <?php
+                        $this->db->where('room_id', $row['room_id']);
+                        $room_images = $this->db->get('room_images')->result();
+                        if(!empty($room_images)){
+                          foreach ($room_images as $key => $value) {
+                            ?>
+                              <div class="room_image_sec">
+                                <img width="200px;" src="<?=base_url('public/upload_images/room_images/'.$value->image)?>" style="margin: 7px;" id="blah">
+                                <span class="del-icon">
+                                  <i data-table="room_images" data-key="room_image_id" data-id="<?=$value->room_image_id?>" class="fa fa-trash remove-image"></i>
+                                </span>
+                              </div>
+                            <?php
+                          }
+                        }
+                      ?>
+                      
+                      </span>
+                    </span> 
+                </div>
                  
                   <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="form-group">
@@ -127,3 +137,31 @@
 
       </div>
       <!-- End of Main Content -->
+      <script>
+  //////////////room image/////////////////////////////////////
+function _readURL(input) {
+var FileUploadPath = input.files;
+if (FileUploadPath.length <= 0) {
+    alert("Please upload an Image");
+} else {
+  var i = 0;
+   for(i = 0; i< FileUploadPath.length; i++ ){
+     //console.log(FileUploadPath[i]);
+    var validExtensions = ["jpg","jpeg","png","gif"];
+    var f = FileUploadPath[i].name.split('.').pop();
+    //console.log(f);
+    console.log(validExtensions.indexOf(f));
+    if (validExtensions.indexOf(f) == 0) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            $($.parseHTML('<img style="width:200px; height: 200px; margin: 7px;">')).attr('src', event.target.result).appendTo('.image-preview');
+        }
+        reader.readAsDataURL(input.files[i]);
+    }
+   }
+  }
+}
+$("#file-input-m").change(function(){
+  _readURL(this);
+});
+</script>

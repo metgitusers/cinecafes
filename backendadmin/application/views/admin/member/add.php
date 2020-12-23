@@ -187,8 +187,16 @@
                                  <!--   (accept file extention - .gif,.jpg,.png,.jpeg) -->
                 								</div>
             							  </div>
+            							  
+            							  <div class="clear"></div>
+            							  <div class="col-md-12">
+            							  <div class="row">
+            							  <div class="col-md-3">
             							  <span style="margin-top: 2px; height: 200px; width: 200px" class="smaillimgupload">
-                   <span  style="text-decoration: none;"><img id="blah"></span></span>   
+                   <span  style="text-decoration: none;"><img id="blah"></span></span> 
+                         </div> 
+                         </div> 
+                         </div>
                           </div>
                           <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
@@ -463,7 +471,7 @@
                                                 </a>
                                                
                                                 
-                                                0033823: Add Coupon-User is able to select same date in start and ends on fields if user first select end date and then select start d
+                                            
                      </div>
                 </div>
                  <div class="col-md-2 col-xs-2 col-xs-2">

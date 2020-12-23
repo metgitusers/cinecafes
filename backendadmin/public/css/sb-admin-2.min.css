@@ -52,7 +52,7 @@ body {
 	font-size:1rem;
 	font-weight:400;
 	line-height:1.5;
-	color:#b5b5b5;
+	color:#fff;
 	text-align:left;
 	background-color:#fff;
 	font-size:14px;
@@ -294,7 +294,8 @@ margin-bottom:.5rem;
 	font-size:2rem
 }
 .h3, h3 {
-	font-size:1.75rem
+	font-size: 1.30rem;
+    padding: 10px 0 0 0;
 }
 .h4, h4 {
 	font-size:1.5rem
@@ -1348,7 +1349,7 @@ padding:.75rem;
 padding:.75rem;
 	vertical-align:top;
 	border-top:1px solid #e3e6f0;
-	color:#b5b5b5;
+	color:#fff;
 	font-size:16px;
 }
 .table thead th {
@@ -1372,7 +1373,7 @@ padding:.3rem
 
 
 .table-bordered td a{
-	color: #b5b5b5;
+	color: #fff;
 	text-decoration: underline;
 }
 
@@ -8587,7 +8588,7 @@ text-align:left
 }
 .sidebar.toggled {
 overflow:visible;
-width:6.5rem!important
+width:14rem!important
 }
 .sidebar.toggled .nav-item .collapse {
 position:absolute;
@@ -8616,13 +8617,13 @@ margin:0
 margin-bottom:1rem
 }
 .sidebar.toggled .nav-item .nav-link {
-text-align:center;
-padding:.75rem 1rem;
-width:6.5rem
+text-align: left;
+    padding: .75rem 1rem;
+    width: 14rem;
 }
 .sidebar.toggled .nav-item .nav-link span {
-font-size:.65rem;
-display:block
+    font-size: .75rem;
+    display: inline-block;
 }
 .sidebar.toggled .nav-item .nav-link i {
 margin-right:0
@@ -9246,7 +9247,7 @@ border-radius: 5px;
 .form_panel .form-group label{
 display:block;
 color:#F68310;
-font-size:13px;
+font-size:16px;
 font-family: 'OptimusPrinceps';
 margin:0 0 10px 0;
 }
@@ -9261,6 +9262,10 @@ padding:0 15px;
 font-size:16px;
 color:#F68310;
 font-family: 'OptimusPrinceps';
+}
+
+.form_panel input[type="text"]::placeholder, .form_panel input[type="tel"]::placeholder, .form_panel input[type="password"]::placeholder, .form_panel input[type="email"]::placeholder, .form_panel select, .form_panel input[type="number"]::placeholder{
+	color: #F68310;
 }
 
 .form_panel select option{
@@ -9309,7 +9314,7 @@ color:#000;
 .form_panel .form-group p {
 	padding: 0 0 15px 0;
 	margin: 0;
-	color: #b5b5b5;
+	color: #fff;
 	font-size: 12px;
 	font-family: 'OptimusPrinceps';
 	font-weight: 700;
@@ -9317,7 +9322,7 @@ color:#000;
 }
 
 .form_panel .form-group p a{
-	color:#b5b5b5;
+	color:#fff;
 }
 
 .user .form-group input[type="email"], .user .form-group input[type="password"]{
@@ -9501,4 +9506,46 @@ margin-bottom: 30px;}
 	color:#F68310!important;
 	border-bottom: #262626 solid 1px;
 	border-top: #262626 solid 1px;
+}
+
+#cms_description{
+	height: 230px;
+}
+
+.pkg_select_div .pkg_type, .pkg_select_div .input-group{
+	margin-bottom: 1rem;
+}
+
+.clr{
+	clear: both;
+}
+
+.coupontype_box{
+	color: #F68310;
+    font-size: 15px;
+    font-family: 'OptimusPrinceps';
+    margin: 0 10px 10px 0;
+    display: inline-block;
+}
+
+.image-preview{
+	position:relative;
+}
+
+.del-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 999;
+    background: #F68310;
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 10px 0 0 0;
+}
+
+.room_image_sec{
+	display: inline-block;
+	position: relative;
 }

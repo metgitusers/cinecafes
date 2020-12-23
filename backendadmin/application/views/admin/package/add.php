@@ -43,7 +43,7 @@
                   <div class="col-md-6 col-sm-12 col-xs-12">
                    <div class="form-group">
                       <label>Membership Benefits*</label>
- <select style="height:50px;" id="benefit_id" class="js-select2" name="benefit_id[]" data-show-subtext="true" data-live-search="true" required multiple>
+ <select style="height:100px; border-radius:10px; padding: 15px;" id="benefit_id" class="js-select2" name="benefit_id[]" data-show-subtext="true" data-live-search="true" required multiple>
                                     <option value="">Select Benefits</option>
                                     <?php if(!empty($package_benefits)): ?>
                                     <?php   foreach($package_benefits as $blist): ?>
@@ -92,7 +92,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                    <div class="form-group">
                                   <label>Membership Title<sup></sup></label>
-                                  <textarea  id="cms_description2" name="package_title" required="required" cols="80"></textarea>                                  
+                                  <textarea  id="cms_description2" name="package_title" required cols="80"></textarea>                                  
                               </div>
                               <?php echo form_error('package_title', '<div class="error">', '</div>'); ?>
                             </div>
@@ -101,7 +101,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                    <div class="form-group">
                                   <label>Membership Description<sup></sup></label>
-                                  <textarea  id="cms_description" name="package_description" required="required" rows="10" cols="80"></textarea>                                  
+                                  <textarea  id="cms_description" name="package_description" required rows="10" cols="80"></textarea>                                  
                               </div>
                               <?php echo form_error('package_description', '<div class="error">', '</div>'); ?>
                             </div>
@@ -111,7 +111,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                  <div class="form-group">
                                     <label>Membership terms and condition<sup></sup></label>
-                                    <textarea  id="cms_description" name="package_terms" required="required" rows="10" cols="80">•   - Your membership is valid for 12 months from the date of issuance of the membership. The introductory membership fee is Rs. 500.
+                                    <textarea  id="cms_description" name="package_terms" required rows="10" cols="80">•   - Your membership is valid for 12 months from the date of issuance of the membership. The introductory membership fee is Rs. 500.
 • - The membership card is not transferable. The membership card has no cash value and cannot be traded. Lost or misplaced cards shall not be replaced
 • - Membership discount can be availed only upon presentation of your valid Cine Cafes Membership Card. The value of the specific discount does not include taxes.
 • - The liability of the company is limited to the amount paid.
@@ -269,7 +269,7 @@
                                   <div class="col-md-12 col-sm-12 col-xs-12">
                                    <div class="form-group">
 	                                  <label>Membership Title<sup></sup></label>
-	                                  <textarea  id="cms_description2" name="package_title" required="required" cols="80"><?php echo $package['package_title']?></textarea>                                  
+	                                  <textarea  id="cms_description2" name="package_title" required cols="80"><?php echo $package['package_title']?></textarea>                                  
 	                              </div>
 	                              <?php echo form_error('package_title', '<div class="error">', '</div>'); ?>
 	                            </div>
@@ -278,7 +278,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                  <div class="form-group">
                                     <label>Membership Description<sup></sup></label>
-                                    <textarea  id="cms_description" name="package_description" required="required" rows="10" cols="80"><?php echo $package['package_description']?></textarea>
+                                    <textarea  id="cms_description" name="package_description" required rows="10" cols="80"><?php echo $package['package_description']?></textarea>
                                 </div>
                                 <?php echo form_error('package_description', '<div class="error">', '</div>'); ?>
                               </div>
@@ -287,7 +287,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                  <div class="form-group">
                                     <label>Membership terms and condition<sup></sup></label>
-                                    <textarea  id="cms_description" name="package_terms" required="required" rows="10" cols="80"><?php echo $package['package_terms']?></textarea>
+                                    <textarea  id="cms_description" name="package_terms" required rows="10" cols="80"><?php echo $package['package_terms']?></textarea>
                                 </div>
                                 
                               </div>

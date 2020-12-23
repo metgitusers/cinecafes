@@ -35,7 +35,7 @@
                     <tr>
                       <th>Sl No.</th>
                       <th>Room no</th>
-                      <th>Image</th>
+                      <!-- <th>Image</th> -->
                       <th>Room Type</th>
                       <th>Cafe</th>
                       <th>Max Capacity</th>
@@ -50,7 +50,7 @@
                     <tr>
                        <th>Sl No.</th>
                       <th>Room no</th>
-                      <th>Image</th>
+                      <!-- <th>Image</th> -->
                       <th>Room Type</th>
                       <th>Cafe</th>
                       <th>No Of people</th>
@@ -68,9 +68,7 @@
                       <tr>
                       <td><?php echo $i;?></td>
                       <td><?php echo $row['room_no'];?></td>
-                      <td>
-                      
-                        <!-- <img src="https://via.placeholder.com/110x110" class="product-img" alt="product img"> -->
+                      <!-- <td>
                         <?php if(!empty($row['image'])){?>
                                
                                 <img style="height:35px;width:35px;" src="<?php echo  base_url().'public/upload_images/room_images/'.$row['image']; ?>"  alt="">
@@ -78,8 +76,7 @@
                                        <?php  }else{ ?>
                                 <img  style="height:35px;width:35px;" src="<?php echo base_url();?>public/assets/img/110x110.png">
                                        <?php  } ?>
-                        
-                      </td>
+                      </td> -->
                       <td><?php echo $row['room_type_name'];?></td>
                       <td><?php echo $row['cafe_name']."-".$row['cafe_place'];?></td>
                       <td><?php echo $row['no_of_people'];?></td>

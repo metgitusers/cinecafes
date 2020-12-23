@@ -44,11 +44,11 @@
                                                                 <a class="nav-link" data-toggle="tab" href="#trash_user">Trash Driver</a>
                                                             </li> -->
                                                         </ul>
-                                                        <div class="px-3" style="margin-top:10px">
+                                                        <div class="" style="margin-top:10px">
                                                             <form id="bond_report_form" action="" method="Post" class="form custom_form_style">
                                                               <div class="form-body">
                                                                 <div class="user_permission_top">
-                                                                  <div class="row" style="background-color:#000;padding:10px 10px 0 10px;">                            
+                                                                  <div class="row" style="background-color:#000;padding:10px 10px 5px 10px; margin-left: 0;">                            
                                                                     <!-- <div class="col-sm-3">
                                                                       <div class="form-group" style="margin-bottom: 0;">
                                                                           <label>Registration date</label>

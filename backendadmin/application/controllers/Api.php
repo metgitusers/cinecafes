@@ -2924,6 +2924,7 @@ class Api extends CI_Controller
 
           $availability_status        = $this->mapi->is_available($reservation_date,$room_id,$start_time_range,$end_time_range);
           
+          //echo $this->db->last_query();
 
     }
 

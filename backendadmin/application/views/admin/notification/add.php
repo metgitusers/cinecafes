@@ -15,6 +15,7 @@
                       <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                     </span>
                     <span class="text">List</span></a></p> -->
+                <div class="clr"></div>    
           <div class="form_panel"> 
             <?php if ($this->session->flashdata('Movie_success_message')) : ?>
                 <div class="alert alert-success" role="alert">
@@ -54,7 +55,7 @@
                       <label>Message*</label>
                       <!-- <input type="text" name="name" id="name" class="form-control" value="<?php echo set_value('name');?>" 
                       required> -->
-                      <textarea required="required" maxlength="250" name="offer_text" id="offer_text" class="form-control emoji_text"></textarea>
+                      <textarea required maxlength="250" name="offer_text" id="offer_text" class="form-control emoji_text"></textarea>
                        
                     </div>
                 </div>

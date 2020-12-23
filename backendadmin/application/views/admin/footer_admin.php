@@ -105,6 +105,38 @@ CKEDITOR.replace('cms_description');
 
 </script>
 <script>
+  //common function to remove preview image
+  $('.remove-image').on('click', function(){
+    if(confirm("Are you sure you want to delete this ?")){
+    var id = $(this).data('id');
+    var table = $(this).data('table');
+    var key = $(this).data('key');
+    $.ajax({
+       type: "POST",
+       url: '<?php echo base_url('admin/dashboard/deleteImage')?>',
+       data:{
+         id: id,
+         table: table,
+         key: key
+         },
+       dataType:'JSON',
+       success: function(response){
+         console.log(response);
+         if(response.status == 1){
+           alert('Image deleted successfully');
+            window.location.href = window.location.href;
+         }
+         else{
+          alert('Unable to delete image');
+           //nothing to do 
+         }
+       },
+       error:function(response){
+       
+       }
+   }); 
+ }
+  })
 ////////delete food image//////////////////
 $(document).on('click','.delete_img',function(){
     if(confirm("Are you sure you want to delete this ?")){

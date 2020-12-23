@@ -79,7 +79,7 @@ $db['default'] = array(
 
 	'username' => 'cinecafes_cine2',
 	'password' => 'v8S$D$K?9NBbhsde',
-	'database' => 'cinecafes_cine2',
+	'database' => 'cinecafes_cine2',,
 
 	
 	//'username' => 'root', 

@@ -73,9 +73,19 @@
                         </div>
                       </div>
                     </div>
+                    <div class="col-sm-3">
+                    	 <p style="text-align: left; margin-top: 30px;">                 
+						   <button style="display: inline-block; width: auto; vertical-align: top;margin-right: 10px;" type="submit"  class="btn btn-primary btn-user btn-block" id="search_btn">
+								<i class="fa fa-search" aria-hidden="true"></i> Search
+						   </button>
+						   <button style="display: inline-block; width: auto; vertical-align: top;margin-right: 10px;" type="button" onclick="location.href='<?php echo base_url('admin/reservation');?>';" class="btn btn-primary btn-user ">Reset</button>
+						  </p>
+					 </div>
+                    
                   </div>
                 <?php } ?>
                 <div class="row">
+<!--
               <div class='col-sm-2'>
                   <div class="form-group">
                    
@@ -93,6 +103,7 @@
                           <button type="button" onclick="location.href='<?php echo base_url('admin/reservation');?>';" class="btn btn-primary btn-user btn-block">Reset</button></p>
                         </div>
                       </div>
+-->
 					<div class="clearfix"></div>
 					</div>
              <div class="table-responsive">
