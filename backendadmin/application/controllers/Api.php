@@ -4496,6 +4496,43 @@ public function checkMembership(){
     $this->displayOutput($response);  
   }
 
+    /**---------------------------API By Chayan */
+  /*
+    ** @request user_id
+  */
+  public function getProfile()
+  {
+    $ap = json_decode(file_get_contents('php://input'), true);
+    if ($this->checkHttpMethods($this->http_methods[0])) {
+      if (sizeof($ap)) {
+        if (empty($ap['user_id'])) {
+          $response['status']['error_code'] = 1;
+          $response['status']['message']    = 'unauthenticated request.';
+         
+          $this->displayOutput($response);
+        }
+         $member_all_details= $this->mapi->getMemberDetailsRow(array('user.user_id' => $ap['user_id']));               
+          if ($member_all_details) {
+                $response['status']['error_code'] = 0;
+                $response['status']['message']    = 'Success';
+                $response['response']['user']   = $member_all_details;
+                
+              } else {
+                $response['status']['error_code'] = 1;
+                $response['status']['message']    = 'unauthenticated request.';                    
+              }  
+      }
+      else {
+        $response['status']['error_code'] = 1;
+        $response['status']['message']    = 'Please fill up all required fields';        
+      }
+    }
+    else{
+        $response['status']['error_code'] = 1;
+        $response['status']['message']    = 'Wrong http method type.';        
+    }
+    $this->displayOutput($response);
+  }
  /////////////////////////version control/////////////////////////////
   
   public function version_control()
