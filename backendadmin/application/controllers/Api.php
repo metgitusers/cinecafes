@@ -63,10 +63,9 @@ class Api extends CI_Controller
                                 'added_form'            => 'App',
                                 'created_date'            => date('Y-m-d H:i:s')
                               );
-
             $user_id      = $this->mapi->insert('user', $insert_array);
 
-            $memberDetails= $this->mapi->getMemberDetailsRow(array('user.apple_id' => $user_id));
+            $memberDetails= $this->mapi->getMemberDetailsRow(array('user.user_id' => $user_id));
           }
           //create auth token for login user
           $condition      = array('user_id' =>$user_id);
