@@ -57,7 +57,13 @@ class Api extends CI_Controller
             $user_id      = $memberDetails['user_id'];
           }else{
             $profile_status = 0;
-            $insert_array = array('apple_id'=> $ap['apple_id']);
+            $insert_array = array(
+                                'apple_id'=> $ap['apple_id'],
+                                'status'                => '1',
+                                'added_form'            => 'App',
+                                'created_date'            => date('Y-m-d H:i:s')
+                              );
+
             $user_id      = $this->mapi->insert('user', $insert_array);
 
             $memberDetails= $this->mapi->getMemberDetailsRow(array('user.apple_id' => $user_id));
