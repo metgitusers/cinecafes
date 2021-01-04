@@ -48,25 +48,30 @@ class Api extends CI_Controller
         */
         if(isset($ap['apple_id']) && !empty($ap['apple_id'])){
           $memberDetails= $this->mapi->getMemberDetailsRow(array('user.apple_id' => $ap['apple_id']));
+          // echo $this->db->last_query();
+          //print_r($memberDetails);
           if(!empty($memberDetails)){
-            $memberProfileDetails= $this->mapi->getMemberDetailsRow(['user.email' => $ap['email'], 'user.mobile'=> $ap['email']]);
+            //$memberProfileDetails= $this->mapi->getMemberDetailsRow(['user.email' => $ap['email'], 'user.mobile'=> $ap['email']]);
             $profile_status = 0;
-            if(!empty($memberProfileDetails)){
+            if(!empty($memberDetails[0]['email'])){
               $profile_status = 1;
             }
-            $user_id      = $memberDetails['user_id'];
+            $user_id      = $memberDetails[0]['user_id'];
           }else{
+            //echo 'else';
             $profile_status = 0;
             $insert_array = array(
-                                'apple_id'=> $ap['apple_id'],
-                                'status'                => '1',
-                                'added_form'            => 'App',
-                                'created_date'            => date('Y-m-d H:i:s')
-                              );
+                                  'apple_id'=> $ap['apple_id'],
+                                  'status'                => '1',
+                                  'added_form'            => 'App',
+                                  'created_date'            => date('Y-m-d H:i:s')
+                                );
             $user_id      = $this->mapi->insert('user', $insert_array);
-
             $memberDetails= $this->mapi->getMemberDetailsRow(array('user.user_id' => $user_id));
+            // echo $this->db->last_query();
+            // print_r($memberDetails);
           }
+          //echo '$user_id'.$user_id; die;
           //create auth token for login user
           $condition      = array('user_id' =>$user_id);
             $update_arr     = array('login_status' =>'1');
