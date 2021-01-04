@@ -68,10 +68,10 @@ class Api extends CI_Controller
                                 );
             $user_id      = $this->mapi->insert('user', $insert_array);
             $memberDetails= $this->mapi->getMemberDetailsRow(array('user.user_id' => $user_id));
-          echo $this->db->last_query();
+          //echo $this->db->last_query();
             // print_r($memberDetails);
           }
-          echo '$user_id'.$user_id; die;
+          //echo '$user_id'.$user_id; die;
           //create auth token for login user
           $condition      = array('user_id' =>$user_id);
             $update_arr     = array('login_status' =>'1');
