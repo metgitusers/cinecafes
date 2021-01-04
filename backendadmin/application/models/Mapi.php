@@ -7,7 +7,7 @@
     ///////////////////added for member details//////////////////////////////
     public function getMemberDetailsRow($condition){
         $this->db->select("user.*,(IF(user_profile.profile_img !='',CONCAT('".base_url()."public/upload_images/profile_photo/',user_profile.profile_img),'".base_url()."public/upload_images/No_Image_Available.jpg')) as profile_image,user_profile.address,user_profile.lat,user_profile.lng,DATE_FORMAT(user_profile.dob, '%d/%m/%Y') as dob,user_profile.gender as gender");
-        $this->db->join('user_profile', 'user_profile.user_id = user.user_id', 'inner'); 
+        $this->db->join('user_profile', 'user_profile.user_id = user.user_id', 'left');  //Change inner to left for apple_login
         //$this->db->join('api_token', 'api_token.user_id = user.user_id', 'inner');
        // $this->db->join('package_membership_mapping', 'package_membership_mapping.member_id = mm.member_id', 'left');
        
