@@ -71,7 +71,8 @@ class Api extends CI_Controller
           //echo $this->db->last_query();
             // print_r($memberDetails);
           }
-          //echo '$user_id'.$user_id; die;
+          echo $this->db->last_query();
+          echo '$user_id'.$user_id;
           //create auth token for login user
           $condition      = array('user_id' =>$user_id);
             $update_arr     = array('login_status' =>'1');
