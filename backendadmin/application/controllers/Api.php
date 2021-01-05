@@ -67,12 +67,16 @@ class Api extends CI_Controller
                                   'created_date'            => date('Y-m-d H:i:s')
                                 );
             $user_id      = $this->mapi->insert('user', $insert_array);
+            //update user_profile
+            $profile_arr=array();
+            $profile_arr['user_id']           = $user_id;         
+            $profile_arr['created_by']       = $user_id;
+            $profile_arr['created_date']       = date('Y-m-d H:i:s');
+            
+            $this->mcommon->insert('user_profile',$profile_arr);
+            
             $memberDetails= $this->mapi->getMemberDetailsRow(array('user.user_id' => $user_id));
-          //echo $this->db->last_query();
-            // print_r($memberDetails);
           }
-          // echo $this->db->last_query();
-          // echo '$user_id'.$user_id;
           //create auth token for login user
           $condition      = array('user_id' =>$user_id);
             $update_arr     = array('login_status' =>'1');
