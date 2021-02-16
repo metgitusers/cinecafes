@@ -12,7 +12,7 @@
    .toggle-password {
     position: absolute;
     right: 25px;
-    top: 54px;
+    top: 64px;
 }
 </style>
 <!-- Begin Page Content -->
@@ -25,6 +25,7 @@
                       <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                     </span>
                     <span class="text">List</span></a></p> -->
+                    <div class="clearfix"></div>
           <div class="form_panel"> 
             <?php if ($this->session->flashdata('success_message')) : ?>
                 <div class="alert alert-success" role="alert">

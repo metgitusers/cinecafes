@@ -10,7 +10,11 @@ class Index extends MY_Controller {
 	}
 	public function index()
 	{
-		$this->load->view('admin/login_admin');
+		if($this->session->userdata('admin') && !empty($this->session->userdata('admin'))){
+			redirect('admin/dashboard', 'refresh');
+		}else{
+			$this->load->view('admin/login_admin');
+		}
 	}
 	// Check for user login process
 	public function admin_login() { 

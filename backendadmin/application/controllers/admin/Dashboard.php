@@ -34,6 +34,7 @@ class Dashboard extends MY_Controller {
         $data['cafe_id']= $cafe_id;
         $condition=array('status'=>1,'is_delete='=>0);
 		$data['list']=$this->mreservation->getreservationList($start_date,$end_date,$cafe_id);
+		//echo $this->db->last_query();
 		$data['cafe_list'] =$this->mcommon->getDetails('master_cafe',$condition);
 		$table="user";
 		$condition_all_users['role_id']=0;

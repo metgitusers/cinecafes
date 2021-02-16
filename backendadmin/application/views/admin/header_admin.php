@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Cine Cafe</title>
+  <title>Cine Cafes</title>
 
   <!-- Custom fonts for this template-->
 
@@ -20,7 +20,8 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   
-
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="<?php echo base_url() ?>public/css/sb-admin-2.min.css" rel="stylesheet">
   <!-- <link href="<?php echo base_url() ?>public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
@@ -28,18 +29,24 @@
   <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet"> -->
   <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap4.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="<?= base_url('public/admin_assets/jquery-ui.css') ?>">
+	<link rel="stylesheet" type="text/css" href="<?= base_url('public/admin_assets/sweetalert2.min.css') ?>">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/> -->
+
    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css
 "/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.css"/>
   -->
 
 <!--  <script src="<?php echo base_url() ?>public/vendor/jquery/jquery.min.js"></script>
- --> <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> 
+ -->
+
+ <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> 
+ <script src="<?=base_url('public/admin_assets/jquery-ui.min.js')?>"></script>
+ 
+ <script src="<?php echo base_url('public/admin_assets/jquery.slimscroll.js') ?>"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-
-
 
 </head>
 
@@ -210,7 +217,7 @@
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
-            <!-- Nav Item - User Information -->
+            Nav Item - User Information -->
             <?php 
             $user_info=$this->session->userdata('admin');
             ?>

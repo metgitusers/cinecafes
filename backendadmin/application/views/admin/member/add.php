@@ -37,11 +37,24 @@
                       <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
-			                          <label>Name *</label>
+			                          <label>First Name *</label>
 			                          <input type="text" onkeypress="nospaces(this)" onkeyup="nospaces(this)" class="form-control" required="" value="<?php echo set_value('name');?>" name="name">
 			                        </div>
 		                      	</div>
-                          	
+                          	<!-- <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                    <label>Middle Name</label>
+                                    <input type="text" onkeypress="nospaces(this)" onkeyup="nospaces(this)" class="form-control" required name="middle_name" value="<?php echo set_value('middle_name')?>" >
+                                  </div>
+                                  <?php echo form_error('name', '<div class="error">', '</div>'); ?>                               
+                                </div> -->
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                    <label>Last Name *</label>
+                                    <input type="text" onkeypress="nospaces(this)" onkeyup="nospaces(this)" class="form-control" required name="last_name" value="<?php echo set_value('last_name')?>" >
+                                  </div>
+                                  <?php echo form_error('name', '<div class="error">', '</div>'); ?>                               
+                                </div>
                             <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
     	                              		<label>Email ID</label>
@@ -64,6 +77,18 @@
                                   <span style="color:red"></span>
                                 </div>
                               </div>
+                              <script>
+                                $(document).ready(function(){
+                                  $('#new_membership_id').on('keyup', function(){
+                                    let v = $(this).val().trim();
+                                    $('#membership_registration_dt').prop('disabled', v.length > 0? false: true);
+                                  })
+                                  $('#new_package_id').on('change', function(){
+                                    let v = $(this).val().trim();
+                                    $('#expiry_dt').prop('disabled', v != ""? false: true);
+                                  })
+                                })
+                                </script>
                               <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
                                 <label>Membership Package</label>
@@ -85,9 +110,9 @@
                               
                                 <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
-                                    <label>Membership Registration Date *</label>
+                                    <label>Membership Registration Date</label>
                                     <div class="input-group">
-                                      <input style="width:92%;" type="text" id="membership_registration_dt" name="membership_registration" class="membership_reg_dt form-control" value="<?php echo set_value('membership_registration');?>" placeholder=""/>
+                                      <input style="width:92%;" type="text" autocomplete="off" disabled id="membership_registration_dt" name="membership_registration" class="membership_reg_dt form-control" value="<?php echo set_value('membership_registration');?>" placeholder=""/>
                                       <div class="input-group-append">
                                         <span class="input-group-text">
                                           <span class="fa fa-calendar-o"></span>
@@ -103,7 +128,7 @@
                   <div class="form-group">
                                     <label>Expiry Date</label>
                                     <div class="input-group">
-                                      <input type="text" id="expiry_dt" name="expiry_dt" class="dtpicker reg_exp_date form-control" value="<?php echo set_value('expiry_dt');?>" placeholder="" readonly/>
+                                      <input type="text" id="expiry_dt" name="expiry_dt" disabled class="dtpicker reg_exp_date form-control" value="<?php echo set_value('expiry_dt');?>" placeholder="" readonly/>
                                       <p></p>
                                     </div>
                                   </div>
@@ -152,7 +177,7 @@
                   <div class="form-group">
                                       <label>Date of anniversary</label>
                                       <div class="input-group">
-                                        <input style="width:92%;" type="text" id="doc" name="doa" class="form-control pickadate" value="<?php echo set_value('doa');?>" placeholder="" />
+                                        <input style="width:92%;" type="text" id="doc" name="doa" class="dt_birth form-control pickadate" value="<?php echo set_value('doa');?>" placeholder="" />
                                         <div class="input-group-append">
                                           <span class="input-group-text">
                                             <span class="fa fa-calendar-o"></span>
@@ -233,10 +258,7 @@
                  <div class="col-md-4 col-xs-2 col-xs-2">
                   <div class="form-group">
                     <!--  <button type="submit" class="btn btn-primary btn-user btn-block">Submit</button> -->
-                   
-                                               
-                                                
-                                                  <button type="submit" id="add_btn" class="btn btn-primary btn-user btn-block" onclick="$('.reg_exp_date').prop('readonly',false);">
+                <button type="submit" id="add_btn" style="margin: 0 !important" class="btn btn-primary btn-user btn-block" onclick="$('.reg_exp_date').prop('readonly',false);">
                             <!-- <i class="fa fa-floppy-o" aria-hidden="true"></i> --> Save
                           </button>
                       
@@ -253,12 +275,26 @@
                           
                             <div class="row">                                
                                  <div class="col-md-6 col-sm-12 col-xs-12">
-                  <div class="form-group">
-                                    <label>Name *</label>
+                                    <div class="form-group">
+                                    <label>First Name *</label>
                                     <input type="text" onkeypress="nospaces(this)" onkeyup="nospaces(this)" class="form-control" required name="name" value="<?php echo $member['name']?>" >
                                   </div>
                                   <?php echo form_error('name', '<div class="error">', '</div>'); ?>                               
-                                </div>                              
+                                </div>
+                                <!-- <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                    <label>Middle Name</label>
+                                    <input type="text" onkeypress="nospaces(this)" onkeyup="nospaces(this)" class="form-control" required name="middle_name" value="<?php echo $member['middle_name']?>" >
+                                  </div>
+                                  <?php echo form_error('name', '<div class="error">', '</div>'); ?>                               
+                                </div> -->
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                    <label>Last Name *</label>
+                                    <input type="text" onkeypress="nospaces(this)" onkeyup="nospaces(this)" class="form-control" required name="last_name" value="<?php echo $member['last_name']?>" >
+                                  </div>
+                                  <?php echo form_error('name', '<div class="error">', '</div>'); ?>                               
+                                </div>
                                 
                                  <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
@@ -277,16 +313,29 @@
                                   </div>
 
                                   <div class="col-md-6 col-sm-12 col-xs-12">
-                  <div class="form-group">
+                                    <div class="form-group">
                                       <label>Club Mebership Id </label>
                                       <input type="text" onkeypress="nospaces(this)" onkeyup="nospaces(this)" id="membership_id" placeholder="eg: 1club03022020"name="membership_id" class="form-control" value="<?php if(!empty($member_package)){ echo $member_package['membership_no']; } ?>">
                                       <span style="color:red"></span>
                                                                       
                                     </div>
                                   </div>
+                                  <script>
+                                    $(document).ready(function(){
+                                      $('#membership_id').on('keyup', function(){
+                                        let v = $(this).val().trim();
+                                        $('#edit_membership_reg_dt').prop('disabled', v.length > 0? false: true);
+                                      })
+                                      $('#package_id').on('change', function(){
+                                        let v = $(this).val().trim();
+                                        $('#edit_expiry_dt').prop('disabled', v !=""? false: true);
+                                      })
+                                    })
+                                    
+                                  </script>
                                    <?php //echo  $member_package['package_id']; echo "<br>";?>
                                     <div class="col-md-6 col-sm-12 col-xs-12">
-                  <div class="form-group">
+                                <div class="form-group">
                                 <!--   <div class="form-group col-sm-4" style="margin-bottom: 0;"> -->
                                     <label><?php //echo $member_package['package_id']; ?>Membership Package</label>
                                     <div id="memb_package" class="settlement_inline">
@@ -310,10 +359,10 @@
                                                                  
                                  
                                    <div class="col-md-6 col-sm-12 col-xs-12">
-                  <div class="form-group">
-                                      <label>Membership Registration Date *</label>
+                                      <div class="form-group">
+                                      <label>Membership Registration Date</label>
                                       <div class="input-group">
-                                        <input style="width:92%;" type="text" id="edit_membership_reg_dt" name="edit_membership_registration" class="membership_reg_dt form-control" value="<?php if(!empty($member_package['buy_on'])){ echo DATE('d/m/Y',strtotime($member_package['buy_on']));}?>" placeholder="" />
+                                        <input style="width:92%;" type="text" autocomplete="off" disabled id="edit_membership_reg_dt" name="edit_membership_registration" class="membership_reg_dt form-control" value="<?php if(!empty($member_package['buy_on'])){ echo DATE('d/m/Y',strtotime($member_package['buy_on']));}?>" placeholder="" />
                                         <div class="input-group-append">
                                           <span class="input-group-text">
                                             <span class="fa fa-calendar-o"></span>
@@ -328,7 +377,7 @@
                   <div class="form-group">
                                       <label>Expiry Date</label>
                                       <div class="input-group">
-                                        <input type="text" id="edit_expiry_dt" name="edit_expiry_dt" class="dtpicker edit_expiry_dt reg_exp_date form-control" value="<?php if(!empty($member_package['expiry_date'])){ echo DATE('d/m/Y',strtotime($member_package['expiry_date']));} ?>" placeholder="" readonly/>
+                                        <input type="text" id="edit_expiry_dt" name="edit_expiry_dt" disabled class="dtpicker edit_expiry_dt reg_exp_date form-control" value="<?php if(!empty($member_package['expiry_date'])){ echo DATE('d/m/Y',strtotime($member_package['expiry_date']));} ?>" placeholder="" readonly/>
                                         <p></p>
                                       </div>
                                     </div>
@@ -374,7 +423,7 @@
                   <div class="form-group">
                                         <label>DOA </label>
                                         <div class="input-group">
-                                          <input style="width:92%;" type="text" id="doa_edit" name="doa" class="form-control pickadate" placeholder="dd/mm/yyyy"  value="<?php if($member['doa']!='0000-00-00' && $member['doa']!=NULL): echo $member['doa'];endif;?>" />
+                                          <input style="width:92%;" type="text" id="doa_edit" name="doa" class="dt_birth form-control pickadate" placeholder="dd/mm/yyyy"  value="<?php if($member['doa']!='0000-00-00' && $member['doa']!=NULL): echo $member['doa'];endif;?>" />
                                           <div class="input-group-append">
                                             <span class="input-group-text">
                                               <span class="fa fa-calendar-o"></span>
@@ -478,7 +527,7 @@
                   <div class="form-group">
                     
                    
-                          <button id="update_btn" type="submit" class="btn btn-primary btn-user btn-block">
+                          <button id="update_btn" type="submit" class="btn btn-primary btn-user btn-block" style="margin: 0 !important">
                               <i class="fa fa-floppy-o"  aria-hidden="true" onclick="$('.reg_exp_date').prop('readonly',false);"></i> Update
                             </button>
                       

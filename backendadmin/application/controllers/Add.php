@@ -13,6 +13,7 @@ class Add extends MY_Controller {
 	}
 	
 	public function add_user(){
+		//pr($_POST);
 		$data 	=  array();
 		$result =  array();
 		

@@ -1,5 +1,5 @@
 <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="javascript:void(0);">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=base_url('admin')?>">
         <img src="<?php echo base_url() ?>public/img/logo.png" alt="logo" />
       </a>
 
@@ -222,9 +222,25 @@
           <img src="<?=base_url('public/img/icon_17.png')?>" alt="icon">
           <span>Push Notification</span></a>
       </li>
-
-      
-      
+      <!-- food application by cs -->      
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseFood" aria-expanded="true" aria-controls="collapseTwo2">
+        <img src="<?=base_url('public/img/icon_13.png')?>" alt="icon">
+          <span>Food Gallery</span>
+        </a>
+        <div id="collapseFood" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" >
+          <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item <?= ($this->uri->segment(2)=='food' && $this->uri->segment(3)=='app-access')?'active':''?>" href="<?=base_url('admin/food/app-access')?>" ><img src="<?=base_url('public/img/icon_12.png')?>"> Food App Access</a>
+              <a class="collapse-item <?= ($this->uri->segment(2)=='food' && $this->uri->segment(3)=='category')?'active':''?>" href="<?=base_url('admin/food/category')?>"><img src="<?=base_url('public/admin_assets/images/food_category.png')?>"> Food Categories</a>
+              <a class="collapse-item <?= ($this->uri->segment(2)=='food' && $this->uri->segment(3)=='items')?'active':''?>" href="<?=base_url('admin/food/items')?>" ><img src="<?=base_url('public/admin_assets/images/food_item.png')?>"> Food Items</a>
+              <a class="collapse-item <?= ($this->uri->segment(2)=='food' && $this->uri->segment(3)=='addon')?'active':''?>" href="<?=base_url('admin/food/addon')?>" ><img src="<?=base_url('public/admin_assets/images/item_addon.png')?>"> Item Addons</a>
+              <a class="collapse-item <?= ($this->uri->segment(2)=='food' && $this->uri->segment(3)=='coupon')?'active':''?>" href="<?=base_url('admin/food/coupon')?>" ><img src="<?=base_url('public/admin_assets/images/item_coupon.png')?>"> Item Coupon</a>
+              <a class="collapse-item <?= ($this->uri->segment(2)=='food' && $this->uri->segment(3)=='orders')?'active':''?>" href="<?=base_url('admin/food/orders')?>"><img src="<?=base_url('public/admin_assets/images/food_order.png')?>"> Orders</a>
+							
+          </div>
+        </div>
+      </li>
+       <hr class="sidebar-divider my-0">
       
 
       <!-- Sidebar Toggler (Sidebar) -->

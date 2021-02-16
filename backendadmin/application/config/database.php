@@ -77,14 +77,19 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	
 
-	'username' => 'cinecafes_cine2',
-	'password' => 'v8S$D$K?9NBbhsde',
-	'database' => 'cinecafes_cine2',
+	// 'username' => 'cinecafe2',
+	// 'password' => 'v8S$D$K?9NBbhsde',
+	// 'database' => 'cinecafe2',
+
+	//live DB
+	// 'username' => 'cinecafes_cine2',
+	// 'password' => 'v8S$D$K?9NBbhsde',
+	// 'database' => 'cinecafes_cine2',
 
 	
-	//'username' => 'root', 
-	//'password' => '',
-	//'database' => 'cinecafe2',
+	'username' => 'root', 
+	'password' => '',
+	'database' => 'cinecafe',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

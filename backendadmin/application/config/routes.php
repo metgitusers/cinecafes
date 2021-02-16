@@ -75,3 +75,47 @@ $route['default_controller'] = 'index';
 $route['recoverPasswordUser/recoverAccount']= 'recoverPasswordUser/recoverAccount';
 $route['recoverPasswordUser/(:any)']        = 'recoverPasswordUser/forgotpassword/$1';
 $route['404_override'] 						= 'custom404';
+
+
+
+/**------------------------------ Food section start -------------------------------------- */
+$route['api/get-categories']            = 'food/api/getCategories';
+$route['api/get-items']                 = 'food/api/items';
+$route['api/get-category-items']        = 'food/api/getCategorieItems';
+$route['api/get-addons']                = 'food/api/getAddons';
+$route['api/get-coupons']               = 'food/api/getCoupons';
+
+//search by item
+$route['api/get-search-items']          = 'food/api/getSearchItems';
+
+//apply coupon
+$route['api/apply-coupon']               = 'food/api/applyCoupon';
+$route['api/remove-coupon']              = 'food/api/removeCoupon';
+
+$route['api/user-checkout']              = 'food/api/userCheckout';
+$route['api/order']                      = 'food/api/order';
+$route['api/get-ordered-history']        = 'food/api/getOrderedHistory';
+
+$route['api/add-cart-item']             = 'food/api/addItemToCart';
+$route['api/remove-cart-item']          = 'food/api/removeItemFromCart';
+$route['api/get-cart-items']            = 'food/api/getCartItems';
+
+/*--------Address--------*/ 
+$route['api/add-address']                      = 'food/api/addAddress';
+$route['api/remove-address']                   = 'food/api/removeAddress';
+$route['api/get-address']                      = 'food/api/getAddress';
+$route['api/make-default-address']             = 'food/api/makeDefaultAddress';
+
+
+/*-----------------------------Admin APIs------------------------------*/ 
+$route['api/get-frontend-orders']              = 'food/api/getFrontendOrders';
+
+/*----------------------------- Admin Orders ----------------------------------------*/ 
+$route['admin/food/orders/updateBookingStatus']              = 'admin/food/orders/updateBookingStatus';
+$route['admin/food/orders/(:any)']              = 'admin/food/orders/orderDetails/$1';
+
+
+/**------------------------ Food aplication access from app----------------------------------*/
+$route['admin/food/app-access']                 =   'admin/food/index/getAppAccess';
+
+$route['api/get-food-application-status']   = 'food/api/getFoodApplicationStatus';

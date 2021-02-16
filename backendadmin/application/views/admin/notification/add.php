@@ -43,7 +43,7 @@
                       <label>Image <small>(Accept format image only)</small></label>
                       <input type="file" name="file" id="file" class="form-control">
                     </div>
-                  </div>
+                  </div> 
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group emoji">
                       <label>Ticker</label>
@@ -67,13 +67,16 @@
                       <div class="row">
                        <?php foreach($user_list as $row1){?>
                        <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="form-check">
-                          <input class="form-check-input move_cafe_checkbox" type="checkbox" value="<?php echo $row1['user_id'];?>" name="user_id[]" >
-                          <label class="form-check-label" for="<?php echo $row1['name'];?>">
-                            <?php echo $row1['name'];?>
+                        <div class="form-check addlabelcheck">
+                          <div class="addlabelcheck_box">
+                          <input class="move_cafe_checkbox" type="checkbox" value="<?php echo $row1['user_id'];?>" name="user_id[]" >
+                          &nbsp; <label class="form-check-label" for="<?php echo $row1['name'].' '.$row1['last_name'];?>">
+                            <?php echo $row1['name'].' '.$row1['last_name'];?>
                           </label>
+                          </div>
                         </div>
                         </div>
+                     
                          <?php } ?>
                          </div>
                         
@@ -112,8 +115,6 @@
 
         });
       </script>
-
-  </style>
 <script src="<?=base_url('public/js/inputEmoji.js')?>"></script>
       <!-- End of Main Content -->
       <script type="text/javascript">
@@ -125,6 +126,7 @@
                   $("#file").val(null);
                   alert("Only formats are allowed : "+validExtensions.join(', '));
               }
+              //restected for 
               if (this.files[0].size >= 550000) {
                   $("#file").val(null);
                   alert("File size is to large. Accepted size below 500k: ");

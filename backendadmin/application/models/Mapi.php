@@ -7,7 +7,7 @@
     ///////////////////added for member details//////////////////////////////
     public function getMemberDetailsRow($condition){
         $this->db->select("user.*,(IF(user_profile.profile_img !='',CONCAT('".base_url()."public/upload_images/profile_photo/',user_profile.profile_img),'".base_url()."public/upload_images/No_Image_Available.jpg')) as profile_image,user_profile.address,user_profile.lat,user_profile.lng,DATE_FORMAT(user_profile.dob, '%d/%m/%Y') as dob,user_profile.gender as gender");
-        $this->db->join('user_profile', 'user_profile.user_id = user.user_id', 'left');  //Change inner to left for apple_login
+        $this->db->join('user_profile', 'user_profile.user_id = user.user_id', 'left'); // change inner to left on 23-12 to continue apple login by cs
         //$this->db->join('api_token', 'api_token.user_id = user.user_id', 'inner');
        // $this->db->join('package_membership_mapping', 'package_membership_mapping.member_id = mm.member_id', 'left');
        
@@ -42,17 +42,17 @@
         
         ////for multiple images
         $List=$query->result_array();
-        for($i=0;$i<count($List);$i++)
-        {
+        // for($i=0;$i<count($List);$i++)
+        // {
          
-          ////////////////////////get images.............................
-            $images_arr=array();
-            $mapped_id=$List[$i]['movie_id'];
-            $mapped_column_name="movie_id";
-            $table_img="movie_images";
-            $images_arr =$this->getOtherData($table_img,$mapped_column_name,$mapped_id);
-            $List[$i]['images'] =$images_arr;          
-        }
+        //   ////////////////////////get images.............................
+        //     $images_arr=array();
+        //     $mapped_id=$List[$i]['movie_id'];
+        //     $mapped_column_name="movie_id";
+        //     $table_img="movie_images";
+        //     $images_arr =$this->getOtherData($table_img,$mapped_column_name,$mapped_id);
+        //     $List[$i]['images'] =$images_arr;          
+        // }
         return $List;
     }
 
@@ -97,7 +97,7 @@
         $this->db->join('room_type', 'room_type.room_type_id = room.room_type_id', 'inner'); 
        
         $this->db->where($condition);
-        if(!empty($order_col) && !empty($order_type)){
+        if(!empty($order_col) && !empty($order_type)){ 
         $this->db->order_by($order_col,$order_type);
         }
         if($length>0){
@@ -156,44 +156,45 @@
             $cafeImg_arr=$query_cafeImg->row_array();
             $List[$i]['cafe_image'] =$cafeImg_arr['cafe_image']; 
          /////////////////////////////////////////////////////////////
-          ////////////////////////get food.............................
+          ////////////////////////get ordered food by chayan.............................
             $food_arr=array();
+            $where = array('ro.reservation_id'=>$List[$i]['reservation_id']);
+            $order_join = [];
+            $order_join[] = ['table' => 'food_order_status fos', 'on' => 'fos.food_order_status_id = food_orders.food_order_status_id', 'type' => 'left'];
+            $order_join[] = ['table' => 'reservation_orders ro', 'on' => 'ro.order_id = food_orders.food_order_id', 'type' => 'left'];
+            $orders = $this->mcommon->select('food_orders', $where, 'food_orders.food_order_id, fos.food_order_status', 'food_order_id', 'DESC', $order_join);
+
+            $join = [];
+            $join[] = ['table' => 'food_items fi', 'on' => 'fi.food_item_id = food_order_items.item_id', 'type' => 'left'];
+            $join2= [];
+            $join2[] = ['table' => 'food_item_addons fi', 'on' => 'fi.food_item_addon_id = food_order_items.item_addon_id', 'type' => 'left'];
             
-            
-
-            //food list
-            $this->db->select("reservation_food_mapping.*,food.name,food.veg_nonveg,(IF(food.image !='',CONCAT('".base_url()."public/upload_images/food_images/',food.image),'".base_url()."public/upload_images/No_Image_Available.jpg')) as image,food_category.category_name,food_variant.food_variant_name");
-            $this->db->join('food', 'food.food_id = reservation_food_mapping.food_id', 'left');
-            $this->db->join('food_category', 'food_category.category_id = food.category_id', 'left'); 
-            $this->db->join('food_variant', 'food_variant.food_variant_id = reservation_food_mapping.food_variant_id', 'left'); 
-       
-            $this->db->where("reservation_food_mapping.reservation_id",$reservation_id);
-            $query_food=$this->db->get("reservation_food_mapping");
-            $food_arr=array();
-            $food_data=$query_food->result_array();
-            $food_arr=$food_data;
-            //echo $this->db->last_query(); die;
-
-            //addon list
-            for($k=0;$k<count($food_arr);$k++)
-            {
-               $food_id=$food_arr[$k]['food_id'];
-
-               $addon_arr=array();
-               if($food_id>0)
-               {
-               $this->db->select("reservation_addon_mapping.*,food_addon.addon_text as addon");
-               $this->db->join('food_addon', 'food_addon.addon_id = reservation_addon_mapping.addon_id', 'left');
-               $this->db->where("reservation_addon_mapping.reservation_id",$reservation_id);
-               $this->db->where("reservation_addon_mapping.food_id",$food_id);
-                $query_addon=$this->db->get("reservation_addon_mapping");
-                $addon_arr=$query_addon->result_array();
+            $total_items = 0;
+            $total_amount = 0;
+            if($orders){
+                foreach ($orders as $key => $order) {
+                $order->delivery_charge = 0;  //for now untill develop delivery charge management
+                //$order->address = $this->mcommon->getRow('food_ordered_address', ['order_id'=> $order->food_order_id]);
+                $List[$i]['items'] = $this->mcommon->select('food_order_items', ['food_order_items.food_order_id'=>$order->food_order_id,'food_order_items.item_addon_id'=> null], 'food_order_items.*, fi.*', '', '', $join);
+                if(!empty($List[$i]['items'])){
+                    foreach ($List[$i]['items'] as $key => $value) {
+                        $total_items++;
+                        $total_amount = $total_amount+$value->quantity*$value->price;
+                    }
                 }
-              $food_arr[$k]['addon_list']=$addon_arr;
-                
+                $List[$i]['addons'] = $this->mcommon->select('food_order_items', ['food_order_items.food_order_id'=>$order->food_order_id,'food_order_items.item_addon_id !='=> null], 'food_order_items.*, fi.*', '', '', $join2);
+                if(!empty($List[$i]['addons'])){
+                    foreach ($List[$i]['addons'] as $key => $value) {
+                        $total_items++;
+                        $total_amount = $total_amount+$value->quantity*$value->price;
+                    }
+                }
+                //$food_arr[] = $order;
+                }
             }
-            
-            $List[$i]['food_list'] =$food_arr;          
+            $List[$i]['total_items'] = $total_items;
+            $List[$i]['total_amount'] = $total_amount;
+            //$List[$i]['food_list'] =$food_arr;
         }
         // echo '<pre>';
         // print_r($List);
@@ -576,18 +577,20 @@
         //return $query->result_array();
 
         $List=$query->row_array();
-        for($i=0;$i<count($List);$i++)
-        {
-         
-          ////////////////////////get images.............................
-            $images_arr=array();
-            $mapped_id=$List['cafe_id'];
-            $mapped_column_name="cafe_id";
-            $table_img="cafe_images";
-            $images_arr =$this->getOtherData($table_img,$mapped_column_name,$mapped_id);
-            $List['images'] =$images_arr;          
+        if(!empty($List)){
+            for($i=0;$i<count($List);$i++)
+            {
+            
+            ////////////////////////get images.............................
+                $images_arr=array();
+                $mapped_id=$List['cafe_id'];
+                $mapped_column_name="cafe_id";
+                $table_img="cafe_images";
+                $images_arr =$this->getOtherData($table_img,$mapped_column_name,$mapped_id);
+                $List['images'] =$images_arr;          
+            }
+            return $List;
         }
-        return $List;
     }
     /////////////////////////////get images///////////////////
     public function getOtherData($table=NULL,$mapped_column_name=NULL,$mapped_id=NULL)
@@ -604,7 +607,7 @@
     ////////////////////////////////cafe list by distance //////////////////////////////////////
     public function get_data_limit_by_distance($table,$condition,$order_col=null,$order_type=null,$start=null,$length=null,$user_id=null,$fromlat,$fromlng){
         $this->db->select($table.'.*,( 3959 * acos( cos( radians('.$fromlat.') ) * cos( radians( cafe_lat ) ) 
-    * cos( radians( cafe_lng ) - radians('.$fromlng.') ) + sin( radians('.$fromlat.') ) * sin(radians(cafe_lat)) ) ) AS distance');
+    * cos( radians( cafe_lng ) - radians('.$fromlng.') ) + sin( radians('.$fromlat.') ) * sin(radians(cafe_lat)) ) ) AS distance, CONCAT(cafe_name, "-",cafe_place) AS cafe_name');
         $this->db->from($table);
         $this->db->where($condition);
 
@@ -712,5 +715,28 @@
 
     }
 
+    /**------------------------ adding function for food */
+	public function getItemAvailabilityDetails($request_day, $request_time, $food_item_id)
+	{
+		//check if the item have any alternate time scheduled
+		$this->db->select('x.price, x.is_seen, x.time');
+		$this->db->join('food_item_available_days y', 'y.food_item_available_day_id = x.food_item_available_day_id', 'left');
+		$this->db->where('y.food_item_id', $food_item_id);
+		$this->db->where('y.day', $request_day);
+		//$this->db->where('x.time <=', $request_time);//CONVERT( TIME, '10:00:22 PM' );
+		//$this->db->where('CONVERT(varchar, x.time, 108)', "<=", $request_time);//CONVERT( TIME, '10:00:22 PM' );
+		$result = $this->db->get('food_item_available_day_times x')->row();
+		// echo 'sql'.$this->db->last_query();
+		// print_r($result);
+		// echo $request_time;
+		// echo strtotime($result->time).' <= '.strtotime($request_time).'<br>';
+		if(empty($result) || strtotime($result->time) >= strtotime($request_time)){
+			$this->db->select('x.price, x.is_seen');
+			$this->db->where('x.food_item_id', $food_item_id);
+			$this->db->where('x.day', $request_day);
+			$result = $this->db->get('food_item_available_days x')->row();
+		}
+		return $result;
+	}
 
 }

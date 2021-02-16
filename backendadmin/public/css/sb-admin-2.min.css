@@ -48,7 +48,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 body {
 	margin:0;
-	font-family: 'OptimusPrinceps';
+	font-family: 'Roboto Slab', serif;
 	font-size:1rem;
 	font-weight:400;
 	line-height:1.5;
@@ -60,7 +60,7 @@ body {
 
 
 @font-face {
-    font-family: 'OptimusPrinceps';
+    font-family: 'Roboto Slab', serif;
     src: url('../fonts/OptimusPrinceps.eot');
     src: url('../fonts/OptimusPrinceps.eot') format('embedded-opentype'),
          url('../fonts/OptimusPrinceps.woff2') format('woff2'),
@@ -200,11 +200,17 @@ button:focus {
 	outline:5px auto -webkit-focus-ring-color
 }
 button, input, optgroup, select, textarea {
-	margin:0 0 15px 0!important;
+	margin:15px 0 15px 0!important;
 	font-family:inherit;
 	font-size:inherit;
 	line-height:inherit
 }
+
+
+
+
+
+
 button, input {
 	overflow:visible
 }
@@ -1363,7 +1369,7 @@ padding:.75rem;
 padding:.3rem
 }
 .table-bordered {
-	 border: 1px solid #3c3c3c;
+	 border: 1px solid #3c3c3c !important;
 }
 .table-bordered td, .table-bordered th {
     border: 1px solid #3c3c3c;
@@ -1589,7 +1595,7 @@ padding:.375rem .75rem;
 	border:1px solid #d1d3e2;
 border-radius:.35rem;
 transition:border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-	text-transform: lowercase;
+	/* text-transform: lowercase; */
 }
 @media (prefers-reduced-motion:reduce) {
 .form-control {
@@ -4824,7 +4830,7 @@ max-width:1140px
 	z-index:1070;
 	display:block;
 	margin:0;
-	font-family: 'OptimusPrinceps';
+	font-family: 'Roboto Slab', serif;
 	font-style:normal;
 	font-weight:400;
 	line-height:1.5;
@@ -4920,7 +4926,7 @@ border-radius:.35rem
 	z-index:1060;
 	display:block;
 	max-width:276px;
-	font-family: 'OptimusPrinceps';
+	font-family: 'Roboto Slab', serif;
 	font-style:normal;
 	font-weight:400;
 	line-height:1.5;
@@ -9252,7 +9258,7 @@ border-radius: 5px;
 display:block;
 color:#F68310;
 font-size:16px;
-font-family: 'OptimusPrinceps';
+font-family: 'Roboto Slab', serif;
 margin:0 0 10px 0;
 }
 
@@ -9265,7 +9271,7 @@ background-color:transparent;
 padding:0 15px;
 font-size:16px;
 color:#F68310;
-font-family: 'OptimusPrinceps';
+font-family: 'Roboto Slab', serif;
 }
 
 .form_panel input[type="text"]::placeholder, .form_panel input[type="tel"]::placeholder, .form_panel input[type="password"]::placeholder, .form_panel input[type="email"]::placeholder, .form_panel select, .form_panel input[type="number"]::placeholder{
@@ -9284,7 +9290,7 @@ border: #F68310 solid 1px;
 background-color: transparent;
 font-size: 12px;
 color: #F68310;
-font-family: 'OptimusPrinceps';
+font-family: 'Roboto Slab', serif;
 padding: 7px 15px 0 15px;
 }
 
@@ -9297,7 +9303,7 @@ width: 100%;
     padding: 15px 15px;
     font-size: 16px;
     color: #F68310!important;
-    font-family: 'OptimusPrinceps';
+    font-family: 'Roboto Slab', serif;
     resize: none;
 }
 
@@ -9308,7 +9314,7 @@ background-color:transparent;
 padding:8px 40px;
 font-size:16px;
 color:#fff;
-font-family: 'OptimusPrinceps';
+font-family: 'Roboto Slab', serif;
 margin:15px 0 0 0;
 background:#F68310;
 font-weight:600;
@@ -9320,7 +9326,7 @@ color:#000;
 	margin: 0;
 	color: #fff;
 	font-size: 12px;
-	font-family: 'OptimusPrinceps';
+	font-family: 'Roboto Slab', serif;
 	font-weight: 700;
 	border-bottom: #353535 solid 1px;
 }
@@ -9338,7 +9344,7 @@ padding: 0 15px;
 font-size: 12px;
 color: #F68310;
 height:40px;
-font-family: 'OptimusPrinceps';
+font-family: 'Roboto Slab', serif;
 }
 
 .loginbottom_text a{
@@ -9383,7 +9389,7 @@ margin:60px 0 0 0;}
 
 .smaillimgupload{}
 
-.user_permission_top .form-group select{
+.user_permission_top .form-group select{ 
 	width:100%;
 height:35px;
 border-radius:50px;
@@ -9391,8 +9397,10 @@ border:#F68310 solid 1px;
 background-color:transparent;
 padding:0 15px;
 font-size:12px;
-color:#F68310;
-font-family: 'OptimusPrinceps';
+font-size: 13px;
+color: #6e707e;
+font-weight: 600;
+font-family: 'Roboto Slab', serif;
 }
 
 .reserform_panel input[type="text"], .reserform_panel select{
@@ -9463,7 +9471,7 @@ width:150px!important;}
 	margin: 0;
 	color: #F68310;
 	font-weight: bold;
-	font-family: 'OptimusPrinceps';
+	font-family: 'Roboto Slab', serif;
 	font-size: 20px;
 }
 
@@ -9477,7 +9485,7 @@ width:150px!important;}
 	font-size: 15px;
 	color: #F68310;
 	font-weight: bold;
-	font-family: 'OptimusPrinceps';
+	font-family: 'Roboto Slab', serif;
 	display: inline-block;
 	padding-right: 10px;
 }
@@ -9527,7 +9535,7 @@ margin-bottom: 30px;}
 .coupontype_box{
 	color: #F68310;
     font-size: 15px;
-    font-family: 'OptimusPrinceps';
+    font-family: 'Roboto Slab', serif;
     margin: 0 10px 10px 0;
     display: inline-block;
 }
@@ -9556,4 +9564,164 @@ margin-bottom: 30px;}
 
 .pkg_select_div .pkg_type, .pkg_select_div input[type="number"]{
 	margin-bottom: 15px!important;
+}
+
+#logoutModal .modal-content{
+	background: #000!important;
+}
+
+#logoutModal h5{
+	color: #F68310!important;
+}
+
+#logoutModal .close {
+    position: absolute;
+    top: -13px;
+    right: 0;
+}
+
+#logoutModal .modal-header{
+	border-bottom:0;
+}
+
+#logoutModal .modal-footer{
+	border-top:0;
+}
+
+/*  */
+.table.table-striped thead tr th:first-child {
+    width: 20px!important;
+}
+.order-info p{
+	margin-bottom: 0px;
+}
+
+.invoice_details{
+	box-shadow:2px 2px 10px #000;
+	padding:15px;
+	border-radius:5px;
+	margin-bottom: 20px;
+}
+
+.propduct_name_invoice span{
+	color: #F68310;
+	font-size:18px;
+}
+
+
+.propduct_name_invoice b{
+	font-size: 16px;
+    font-weight: normal;
+}
+
+.propduct_Quentity_invoice span{
+	color: #fff;
+	display:block;
+	font-size: 18px;
+	
+}
+
+.propduct_total_invoice{
+	text-align: right;
+}
+
+.propduct_total_invoice b{
+	color: #F68310;
+    font-size: 28px;
+	padding: 0 0 0 0;
+    display: block;
+	font-weight: normal;
+	margin: 0;
+    line-height: 26px;
+}
+
+.propduct_total_invoice span{
+	color: #fff;
+	font-size: 12px;
+}
+
+.invoice_detailsaddon{
+	margin-top:15px;
+	box-shadow:none;
+	border-top:1px solid #3c3c3c;
+	padding: 15px 0;
+}
+
+.invoice_detailsaddon .propduct_name_invoice span {
+    color: #F68310;
+    font-size: 16px;
+}
+
+.invoice_detailsaddon .propduct_total_invoice b {
+    color: #F68310;
+    font-size: 23px;
+    padding: 0 0 0 0;
+    display: block;
+    font-weight: normal;
+}
+.fa.fa-inr{
+	font-size: 18px;
+}
+
+.totalamount{
+	color:#fff;
+	font-size: 16px;
+	padding: 5px 0;
+}
+
+.totalamount_price{
+	color: #F68310;
+    font-size: 30px;
+	text-align: right;
+	padding: 0;
+}
+
+.invoice_total{
+	width: 400px;
+    float: right;
+	padding: 0 30px 0 0;
+}
+.swal2-confirm.swal2-styled{
+	margin-right: 5px !important;
+}
+.text-success{
+	color: #13855c!important;
+}
+
+.addlabelcheck label{
+	display: inline-block!important;
+    font-size: 15px !important;
+    width: 86%;
+    height: 28px;
+    overflow: hidden;
+    margin: 0 !important;
+    padding: 11px 0 0 0;
+}
+
+.addlabelcheck input[type="checkbox"]{
+	margin: 0!important;
+	width:18px;
+	height:18px;
+}
+
+.addlabelcheck_box{
+	background: #000;
+	padding: 3px 10px 15px 10px;
+	margin-bottom: 15px;
+}
+
+.addlabelcheck{
+	padding-left:0 !important;
+}
+ .toggleappaccess_1 span{
+	vertical-align: top !important;
+	display: inline-block !important;
+	padding: 1px 20px 0 0;
+	font-size: 18px;
+	width: 500px;
+    margin: 0 0 15px 0;
+}
+
+.toggleappaccess_1 input[type="checkbox"]{
+	margin:0 !important;
 }

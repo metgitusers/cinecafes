@@ -71,7 +71,7 @@
                         <!-- <img src="https://via.placeholder.com/110x110" class="product-img" alt="product img"> -->
                         <?php if(!empty($row['image'])){?>
                                
-                                <img style="height:35px;width:35px;" src="<?php echo  base_url().'public/upload_images/movie_images/'.$row['image']; ?>"  alt="">
+                                <img style="height:35px;width:35px;" src="<?php echo  $row['image']; ?>"  alt="">
                                       
                                        <?php  }else{ ?>
                                 <img  style="height:35px;width:35px;" src="<?php echo base_url();?>public/assets/img/110x110.png">

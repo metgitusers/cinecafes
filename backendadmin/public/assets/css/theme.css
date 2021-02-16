@@ -1492,6 +1492,10 @@ footer #big_footer .copy_text p a:hover{
 	-o-transition-duration: 0.5s;
 	transition-duration: 0.5s;
 }
+
+.table.table-striped thead tr th:first-child {
+    width: 20px!important;
+}
 /********************************************************
 ********************************************************/
 .mrg80T{

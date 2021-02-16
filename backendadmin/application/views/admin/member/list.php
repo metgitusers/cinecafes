@@ -67,29 +67,29 @@
 	   </div>
     </div>
 
-<!--
-    <div class="row">
-      <div class='col-sm-2'>
-        <div class="form-group">
+      <!--
+          <div class="row">
+            <div class='col-sm-2'>
+              <div class="form-group">
 
-          <p style="text-align: right; margin-top: 2px;">
+                <p style="text-align: right; margin-top: 2px;">
 
-            <button type="submit" class="btn btn-primary btn-user btn-block" id="search_btn">
-              <i class="fa fa-search" aria-hidden="true"></i> Search
-            </button>
-          </p>
-        </div>
-      </div>
-      <div class='col-sm-2'>
-        <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-user btn-block" id="search_btn">
+                    <i class="fa fa-search" aria-hidden="true"></i> Search
+                  </button>
+                </p>
+              </div>
+            </div>
+            <div class='col-sm-2'>
+              <div class="form-group">
 
-          <p style="text-align: left; margin-top: 2px;">
-            <button type="button" onclick="location.href='<?php echo base_url('admin/member');?>';"
-              class="btn btn-primary btn-user btn-block">Reset</button></p>
-        </div>
-      </div>
-    </div>
--->
+                <p style="text-align: left; margin-top: 2px;">
+                  <button type="button" onclick="location.href='<?php echo base_url('admin/member');?>';"
+                    class="btn btn-primary btn-user btn-block">Reset</button></p>
+              </div>
+            </div>
+          </div>
+      -->
 </div>
 </form>
 <div class="container-fluid">
@@ -116,7 +116,8 @@
         <thead>
           <tr>
             <th>SL No.</th>
-            <th>Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Source</th>
             <th>Mobile</th>
             <th>Email</th>
@@ -128,8 +129,9 @@
         </thead>
         <tfoot>
           <tr>
-            <th>Sl No.</th>
-            <th>Name</th>
+            <th>Sl No.</th>            
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Source</th>
             <th>Mobile</th>
             <th>Email</th>
@@ -149,6 +151,7 @@
 
             <td><?= $key + 1 ?></td>
             <td class="name_space"=""><?= ucfirst($actv_mem['name']) ?></td>
+            <td class="name_space"=""><?= ucfirst($actv_mem['last_name']) ?></td>
             <?php if($actv_mem['added_form'] == "Admin"): 
                                     $added_form  = 'Offline';
                                   elseif($actv_mem['added_form'] == "App"): 

@@ -103,23 +103,27 @@ class Mreservation extends CI_Model{
         //echo $this->db->last_query();die;
         return $result; 
     } 
-    public function getFoodById($reservation_id){
-        
-        $this->db->select('reservation_food_mapping.*,food.*,food_variant.*,food_category.category_name');
-        $this->db->from('reservation_food_mapping');
-        $this->db->join('food', 'food.food_id = reservation_food_mapping.food_id');
-        $this->db->join('food_category', 'food_category.category_id = food.category_id');
-        $this->db->join('food_variant', 'food_variant.food_variant_id = reservation_food_mapping.food_variant_id');
-        //$this->db->where("food.status", "1");
-        //$this->db->where("food.is_delete", "0");
-        //$this->db->where("food_variant.status", "1");
-        //$this->db->where("food_variant.is_delete", "0");
-        //$this->db->where("food_category.status", "1");
-        //$this->db->where("food_category.is_delete", "0");
-        $this->db->where('reservation_food_mapping.reservation_id',$reservation_id);
+    // public function getFoodById($reservation_id){        
+    //     $this->db->select('reservation_food_mapping.*,food.*,food_variant.*,food_category.category_name');
+    //     $this->db->from('reservation_food_mapping');
+    //     $this->db->join('food', 'food.food_id = reservation_food_mapping.food_id');
+    //     $this->db->join('food_category', 'food_category.category_id = food.category_id');
+    //     $this->db->join('food_variant', 'food_variant.food_variant_id = reservation_food_mapping.food_variant_id');
+    //     $this->db->where('reservation_food_mapping.reservation_id',$reservation_id);
+    //     $query=$this->db->get();
+    //     $result = $query->row_array();
+    //     //echo $this->db->last_query();die;
+    //     return $result; 
+    // } 
+    //get ordered food while reservation
+    public function getFoodById($reservation_id){        
+        $this->db->select('rf.*,foi.*');
+        $this->db->from('reservation_orders rf');
+        $this->db->join('food_order_items foi', 'rf.order_id = foi.food_order_id');
+        //$this->db->join('food_category', 'food_category.category_id = food.category_id');
+        $this->db->where('rf.reservation_id',$reservation_id);
         $query=$this->db->get();
         $result = $query->row_array();
-        //echo $this->db->last_query();die;
         return $result; 
     } 
     public function getAddonById($reservation_id){

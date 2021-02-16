@@ -58,7 +58,8 @@
  
   <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script> -->
   <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.js"></script> -->
   
@@ -100,9 +101,18 @@ https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js -->
 <!--------------added by soma on 24/07/20------------------------------->
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <script type="text/javascript">
-CKEDITOR.config.basicEntities = false;
-CKEDITOR.replace('cms_description');
+// CKEDITOR.config.basicEntities = false;
+// CKEDITOR.replace('cms_description');
 
+</script>
+<script>
+	$('#reservation-food ').slimscroll({
+		size: '5px',
+		width: '100%',
+		height: 'auto',
+		height: '400px',
+    color:'#F68310'
+	});
 </script>
 <script>
   //common function to remove preview image
@@ -2072,6 +2082,9 @@ $("#file-input").change(function(){
       $('#myTransactionhistory').DataTable({
       // "processing": true,
       // "paging": true,
+      "language": {
+        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+      },
        "columnDefs": [
        { 
           "targets": 'no-sort',//last column
@@ -2434,10 +2447,11 @@ var currDate = new Date();
         });;
 
  ///start time
+ var p_time = "<?=date('H:i A')?>";
   $('#reservation_time').timepicker({
     timeFormat: 'h:mm p',
-    interval: 60,
-    minTime: '12:00pm',
+    interval: 15,
+    minTime: p_time,
     maxTime: '11:00pm',
     //defaultTime: '12',
     startTime: '12',
@@ -2566,4 +2580,83 @@ function populate_room(cafe_id)
 
 }
 
+</script>
+
+
+<!-- By Chayan  -->
+<script src="<?=base_url('public/admin_assets/sweetalert2.all.min.js')?>"></script>
+<script src="<?=base_url('public/admin_assets/common-function.js')?>"></script>
+<script>
+$(document)  .ready(function(){
+    $(document).on("click", ".change-p-status", function(e) {
+    e.preventDefault();
+    var status = $(this).attr("data-status");
+    let msg = '';
+    if(status == 3){
+      msg = "delete";
+    }else if(status == 1){
+      msg = "active";
+    }else{
+      msg = "inactive";
+    }
+    Swal.fire({
+        title: "Are you sure want to "+msg+" this ?",
+        type: "warning",
+        showCancelButton: true, // true or false  
+        confirmButtonColor: "#dd6b55",
+        cancelButtonColor: "#48cab2",
+        confirmButtonText: "Yes !!!", 
+    }).then((result) => {
+        if (result.value) { 
+            let id = $(this).attr("data-id");
+            let indexKey = $(this).attr("data-key-id");
+            let table = $(this).attr("data-table");
+            let dataJson = {
+                id: id,
+                indexKey: indexKey,
+                table: table,
+                status: status,
+            };
+            if (id && table) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?=base_url('food/api/')?>" + "changeStatus",
+                    data: JSON.stringify(dataJson),
+                    success: function(res) {
+                        if (res.status.error_code == 0) {
+                            if (status == 3) {
+                                swalAlert("Data deleted successfully", "success");
+                                setTimeout(function(){
+                                  location.reload();
+                                  //drawTable();
+                                }, 2000);
+                            } else { 
+                                if (status == 0) {
+                                    $("#" + id).attr("data-status", "1"); 
+                                    $("#" + id).removeClass("text-success");
+                                    $("#" + id).addClass("text-danger");
+                                    $("#" + id).html("Inactive");
+                                } else {
+                                    $("#" + id).attr("data-status", "0");
+                                    $("#" + id).removeClass("text-danger");
+                                    $("#" + id).addClass("text-success");
+                                    $("#" + id).html("Active");
+                                }
+                                swalAlert(res.status.message, "success");
+                            }
+                        } else {
+                            swalAlert(res.status.message, "warning");
+                        }
+                    },
+                });
+            }
+          }
+      });
+  });
+})
+</script>
+<script>
+  $(document).ready(function(){
+    $('.timepicker').timepicker({});
+  })
 </script>

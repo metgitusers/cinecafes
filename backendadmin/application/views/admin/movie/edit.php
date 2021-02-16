@@ -2,8 +2,26 @@
   .error{
    color: #FF0000;
    font-size: 15px;
-    
 }
+.delete_img{
+    position: absolute;
+    top: 1px;
+    right: 16px;
+    cursor: pointer;
+  }
+.delete_img_1{
+    position: absolute;
+    top: 1px;
+    right: 16px;
+    cursor: pointer;
+  }
+  .default_image{
+    position: absolute;
+    top: -15px;
+    cursor: pointer;
+    right: -4px;
+    display: none;
+  }
 </style>
 <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -107,38 +125,48 @@
                     </div>
                 </div>
                 
-                 <div class="col-md-4 col-sm-12 col-xs-12">
+                <!-- <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                      <label>Poster</label>
                        <input type="file"  id="file-input" name="image" >
                         
                     </div>
                     <div class="col-md-12">
-						    <span class="smaillimgupload" style="margin-top: 2px; display: inline-block; margin-bottom: 15px;">
-                   <!--  <img src="<?php echo base_url();?>public/assets/img/110x110.png" id="blah2" style="height:100px;width:100px;"> -->
+						      <span class="smaillimgupload" style="margin-top: 2px; display: inline-block; margin-bottom: 15px;">
                    <?php if(!empty($row['image'])){?>
                         <img src="<?php echo base_url();?>public/upload_images/movie_images/<?php echo $row['image'];?>" id="blah" style="height:100px;width:100px;">
                         <?php }else{?>
                        <span  style="text-decoration: none;"><img id="blah"></span>
-
                       <?php } ?>
-                     
                    </span>
-					     </div>
-                </div>
-                 
-					   
-                <div class="col-md-4 col-sm-12 col-xs-12">
+					        </div>
+                </div> -->
+                <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="form-group">
-                     <label>More Poster</label>
-                    
-                      
-                      <input type="file" name="files[]" id="file-input1" multiple accept="image/jpeg, image/png, image/gif,"> 
-                       
-                    </div>
+                    <label>Movie Poster</label>
+                    <input type="file" name="files[]" id="images" multiple accept="image/jpeg, image/png, image/gif,">
+                  </div>
                 </div>
-                
-                
+                <!-- end poster images -->
+                <div class="col-md-12">
+                  <div class="row image-section">
+                  <?php
+                    if(isset($img_list)){
+                        foreach($img_list as $img){
+                          ?>
+                            <div class="col-md-2 uploadimgbox">
+                              <div class="delete_img_1">
+                                <i class="fa fa-trash text-danger remove-image" data-table="movie_images" data-key="movie_img_id" data-id="<?=$img['movie_img_id']?>"></i>
+                              </div>
+                              <img src="<?=base_url('public/upload_images/movie_images/'.$img['image'])?>" alt="movie_image" style="height:100%;width: 100%;" />
+                            </div>
+                          <?php
+                        }
+                    }
+                  ?>
+                  </div>
+                </div>
+                <!-- end poster images -->                
                  <?php if(!empty($cafe_list)){ ?>
               <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="form-group">
@@ -159,26 +187,6 @@
                     </div>
                 </div>
               <?php } ?>
-                
-                
-                
-               <?php if(!empty($img_list)){ ?>
-                   <div class="col-md-12 col-sm-12 col-xs-12">
-                   <div class="product-media-img"> 
-                   <div class="row">
-                   <?php foreach($img_list as $img){ ?>
-                   <div class="col-md-3 col-sm-12 col-xs-12">
-                   <div class="pro_img">
-                  <img style="margin-top: 2px;height:120px;width:120px;" id="blah" src="<?php echo base_url();?>public/upload_images/movie_images/<?php echo $img['image'];?>" alt="Movie Image" ><span> <a class="delete_movie_img btn btn-danger btn-circle btn-sm" id="<?php echo $img['movie_img_id']; ?>" href="javascriot:void(0);">
-                        <i class="fas fa-trash"></i> </a></span>
-                        <!-- <button  style="float:left"  class="btn pull-right btn-danger delete_pro_img" id="<?php echo $img['cafe_img_id']; ?>"><i class="fa fa-trash-o"></i></button> -->
-                 <!--  <input type="hidden" name="cafe_img_name[]" id="cafe_img_name" value="<?php echo $img['image'];?>"> -->
-           </div>
-              </div>
-               <?php }?>
-               </div>
-              <?php }?>
-                 
                   <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <label>Description</label>
@@ -251,3 +259,62 @@
           
         });
       </script>
+<script>
+  $(document).ready(function(){
+    function readURL(input, previewElement) {
+      for(var i=0; i<input.files.length; i++ ){
+        if(input.files[i]['type']== 'image/jpg' || input.files[i]['type']== 'image/jpeg' || input.files[i]['type']== 'image/gif' || input.files[i]['type'] == 'image/png'){
+          
+          if (input.files && input.files[i]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              $('.image-section').show();
+              /*$('.image-section').append('<div class="col-md-2 uploadimgbox"><div class="delete_img" data-val="'+e.target.result+'"  ><i class="fas fa-times-circle" ></i></div><img src="'+e.target.result+'" alt="product" style="height:100%;width: 100%;" /></div>'); */
+              $('.image-section').append('<div class="col-md-2 uploadimgbox"><div class="delete_img"><i class="fa fa-trash text-danger"></i></div><input type="hidden" name="movie_images[]" value="'+e.target.result+'"><img src="'+e.target.result+'" alt="product" style="height:100%;width: 100%;" /><div class="default_image"><input type="radio" class="" value="'+(i+1)+'" name="default_image"></div></div>');
+            }
+            reader.readAsDataURL(input.files[i]); // convert to base64 string
+          }
+        }
+      }
+    }
+
+    $("#images").change(function () {
+      readURL(this, '#preview-image');
+    });
+
+    $(document).on('click', '.delete_img', function(){
+       $(this).parent(".uploadimgbox").remove();
+    })
+
+    /**---------------- delete moview images from server------ */
+    $('.fa-trash.text-danger.image-list').on('click', function(){
+      $.ajax({
+              type: "POST",
+              url: '<?php echo base_url('admin/movie/changecafemovie')?>',
+              data:{
+                movie_id:movie_id,
+                },
+              success: function(response){
+                if(response ==1 ){
+                  if(status==1)
+                  {
+                    //alert('Movie mapped with cafe successfully');
+                  }
+                  else
+                  {
+                    //alert('Movie removed from cafe successfully');
+                  }
+                  
+                   
+                }
+                else{
+                  //alert('Please try again to change cafe movie mapping');
+                }
+              },
+              error:function(response){
+               //error msg
+              }
+          }); 
+    })
+  })
+</script>

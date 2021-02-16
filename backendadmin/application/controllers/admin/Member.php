@@ -58,7 +58,7 @@ class Member extends MY_Controller {
 	     $data['end_date']=$end_date;
 	     $data['user_type']=$user_type;
 		$data['member_all_list'] 	= $this->mmember->getMemberDetails($condition,$user_type,$start_date,$end_date);
-		//echo $this->db->last_query();
+		//echo $this->db->last_query(); die;
 		//pr($data);		
 		
 		$this->admin_load_view($data);		
@@ -109,6 +109,7 @@ class Member extends MY_Controller {
 		$data			= array();
 		$package_price 	= '0.00';
 		$this->form_validation->set_rules('name', 'Name', 'trim|required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
 		
 		$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required');
@@ -215,6 +216,10 @@ class Member extends MY_Controller {
 					'updated_by'       =>        $this->session->userdata('user_data'),
           			'updated_date'            => date('Y-m-d H:i:s'),  	
 					);
+					//check is available
+					if($this->input->post( 'last_name' )){
+						$data['last_name']	= $this->input->post( 'last_name' );
+					}
 	    			//pr($data);
 					$condition	= array('user_id'=>$user_id);
 		        	$this->mcommon->update('user',$condition,$data);
@@ -335,7 +340,7 @@ class Member extends MY_Controller {
 						//$this->mcommon->insert('log',$log_data);
 
 	        			$logo					= 	base_url('public/images/logo.png');
-						$params['name']			=	$this->input->post( 'first_name' );
+						$params['name']			=	$this->input->post( 'name' ).' '.$this->input->post( 'last_name' );
 						$params['to']			=	$this->input->post( 'email' );
 						//$params['to']			=	'sreelabiswas.kundu@met-technologies.com';
 						$details 				=   "Membership Id: ".$this->input->post( 'membership_id' )."<br>"."Membership name: ".$package_name."<br>"."Membership type: ".$package_type_name."<br>"."Membership Price:(₹) ".$package_price."<br>"."Expire On: ".DATE('d/m/Y',strtotime($expiry_dt));											
@@ -395,6 +400,7 @@ class Member extends MY_Controller {
 		$email 	=  $this->input->post( 'email' );
 		
 		$this->form_validation->set_rules('name', 'Name', 'trim|required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
 		
 		if(!empty($email)){
 			$this->form_validation->set_rules('email', 'Email', 'trim|valid_email|is_unique[user.email]',array('is_unique'=>'This %s already exists.'));
@@ -456,7 +462,7 @@ class Member extends MY_Controller {
 	    	}
         	$data = array(		
 						
-			'name' 						=> $this->input->post( 'name' ),	
+			'name' 						=> $this->input->post( 'name' ),		
 		
 			//'country_code'						=>'91',	
 			'mobile' 							=> $this->input->post( 'mobile' ),
@@ -471,6 +477,10 @@ class Member extends MY_Controller {
 			'created_by' 						=> $this->session->userdata('user_data'),			
 			'created_date' 						=> date('Y-m-d H:i:s'),				
 			);
+			//check is available
+			if($this->input->post( 'last_name' )){
+				$data['last_name']	= $this->input->post( 'last_name' );
+			}
         	$user_id = $this->mcommon->insert('user',$data);
 
         	if($user_id)
@@ -560,7 +570,7 @@ class Member extends MY_Controller {
     			} 
         		/****************** Send membership ID to the member ****************************/
         		$logo					= 	base_url('public/images/logo.png');
-				$params['name']			=	$this->input->post( 'first_name' );
+				$params['name']			=	$this->input->post( 'name').' '.$this->input->post( 'last_name' );
 				$params['to']			=	$this->input->post( 'email' );	
 				$params['password']		=	$password;	
 				//$params['to']			=	'sreelabiswas.kundu@met-technologies.com';

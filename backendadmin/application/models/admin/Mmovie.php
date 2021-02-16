@@ -10,7 +10,6 @@ class Mmovie extends CI_Model{
     }
 
     public function getmovieList(){
-
         $this->db->select('movie.*,movie_category.category_name');
         $this->db->from('movie');
         $this->db->join('movie_category', 'movie_category.category_id = movie.category_id');

@@ -136,21 +136,21 @@ class Room extends MY_Controller {
 		} else {
 			
 			//print_r($this->input->post()); die;
-            if(!empty($_FILES['image']['name'])){
+            // if(!empty($_FILES['image']['name'])){
 
-				$image_path = './public/upload_images/room_images';
-                $file=$this->imageupload->image_upload_modified($image_path,'image');
-				if($file['status']==1){
-                    $data['image']=$file['result'];
+			// 	$image_path = './public/upload_images/room_images';
+            //     $file=$this->imageupload->image_upload_modified($image_path,'image');
+			// 	if($file['status']==1){
+            //         $data['image']=$file['result'];
                    
-                }else{
-                    $this->session->set_flashdata('error_msg',$file['result']);
-                    //redirect('admin/food/edit','refersh');
-                    $this->edit($movie_id);
-				}
-			} else{
-				$data['image']=$this->input->post('old_image');
-			} 
+            //     }else{
+            //         $this->session->set_flashdata('error_msg',$file['result']);
+            //         //redirect('admin/food/edit','refersh');
+            //         $this->edit($movie_id);
+			// 	}
+			// } else{
+			// 	$data['image']=$this->input->post('old_image');
+			// } 
             
           	$udata = array(
 		 	    'room_no'   => $this->input->post('room_no'),
@@ -167,7 +167,26 @@ class Room extends MY_Controller {
             
             $condition=array('room_id' => $room_id);
             $this->mcommon->update('room',$condition, $udata);
-		 	//echo $this->db->last_query();die;
+			 //echo $this->db->last_query();die;
+			 //insert room images
+			 if(!empty($_FILES['image']['name'])){
+				$image_path = './public/upload_images/room_images';
+				for($i=0; $i< count($_FILES['image']['name']); $i++){
+					if($i<=3){
+						$filename = $_FILES['image']['name'][$i];
+						$allowed =  array('gif', 'png', 'jpg', 'jpeg', 'JPG', 'JPEG', 'PNG', 'GIF');
+						$ext = pathinfo($filename, PATHINFO_EXTENSION);
+						if (in_array($ext, $allowed)) {
+							$image_file = time() . mt_rand(11111, 999999).'.' . $ext;
+							$DIR_IMG_NORMAL = getcwd() . "/public/upload_images/room_images/" . $image_file;
+							if (move_uploaded_file($_FILES['image']['tmp_name'][$i], $DIR_IMG_NORMAL)) {
+								$images = array('image'=>$image_file, 'room_id'=> $room_id);
+								$this->mcommon->insert('room_images', $images);
+							} 
+						}
+					}
+				}
+			}
 		 		
 		 	$this->session->set_flashdata('success_message','Room Updated successfully.');
 		 	redirect('admin/room');

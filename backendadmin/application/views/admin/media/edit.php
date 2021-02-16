@@ -39,7 +39,7 @@
                    <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                      <label>Image *</label>
-                       <input type="file"  id="file-input" name="imgInp" required="required">
+                       <input type="file"  id="file-input" name="imgInp">
                         
                     </div>
                 </div>

@@ -46,10 +46,10 @@ if ( ! function_exists('test_method'))
       $config['smtp_port']    = '465';
       $config['smtp_user']    = 'test@cinecafes.com';
       $config['smtp_pass']    = 'WhHiMFO#tBbH';
-     $config['charset']    = 'utf-8';
-     $config['newline']    = "\r\n";
-     $config['mailtype'] = 'html'; // or html
-     $config['validation'] = TRUE; // bool whether to validate email or not
+      $config['charset']    = 'utf-8';
+      $config['newline']    = "\r\n";
+      $config['mailtype'] = 'html'; // or html
+      $config['validation'] = TRUE; // bool whether to validate email or not
 
       $obj->email->initialize($config);
 
@@ -64,7 +64,7 @@ if ( ! function_exists('test_method'))
       //$obj->email->from("test123@fitser.com", "Cinecafe");
       $obj->email->from("test@cinecafes.com", "Cinecafe");
       $obj->email->to($data['to']); 
-
+      //echo $data['to'];
       $obj->email->subject($data['subject']);
       $obj->email->message($data['message']);  
 
@@ -77,29 +77,29 @@ if ( ! function_exists('test_method'))
 
     ////////////send sms//////////////////////////
     function smsSend($mobile,$message){
-    //echo $mobile."<br>".$message;exit;
     $api_key = '45DB969F6550A9';
     //$api_key = '45DA414F762394'; //19-11
     //$contacts = '97656XXXXX,97612XXXXX,76012XXXXX,80012XXXXX,89456XXXXX,88010XXXXX,98442XXXXX';
     $contacts= $mobile;
-   
+
     $from = 'CINCAF';
     $sms_text = urlencode($message);
+
     //Submit to server
+
     $ch = curl_init();
-    curl_setopt($ch,CURLOPT_URL, "https://sms.hitechsms.com/app/smsapi/index.php");
+    curl_setopt($ch,CURLOPT_URL, "http://sms.hitechsms.com/app/smsapi/index.php");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, "key=".$api_key."&campaign=0&routeid=13&type=text&contacts=".$contacts."&senderid=".$from."&msg=".$sms_text);
     $response = curl_exec($ch);
     curl_close($ch);
-    //echo $response;exit;
+   //echo $response;
     if(mb_substr($response, 0, 3)=='ERR'){
         return false;
     }else{
         return $response;
     }
-    //print_r($response);
 
   }
 
@@ -536,6 +536,20 @@ function eventFilterSearch($from_dt = null,$to_dt = null,$event_type){
     return  $ip_address;
   }
 
+      //Common date format for all
+      function d_format($d = '', $time_status = ''){
+        if($d != ''){
+          if($time_status != ''){
+            return date('d-M-Y h:i a', strtotime($d));
+          }else{
+            return date('d-M-Y', strtotime($d));
+          }
+          
+        }else{
+          return date('d-M-Y', strtotime(date()));
+        }
+  
+      }
   
     
 }

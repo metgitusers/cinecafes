@@ -221,7 +221,7 @@ class Cafe extends MY_Controller {
 		        'end_time' => $this->input->post('end_time'),
 		        
                 'cafe_description' => trim($this->input->post('cafe_description')),
-		        'status' => 1,
+		        //'status' => 1,
 		        'updated_by' =>$admin['user_id'],
 		        'update_on' => date('Y-m-d H:i:s'),
             );

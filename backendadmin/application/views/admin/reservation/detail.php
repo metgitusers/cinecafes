@@ -53,85 +53,86 @@
                           <b style="display: inline-block; padding-left: 10px;"><?php if(!empty($movie_list)){ echo $movie_list['name']; } }?></b>
                           </div>
 						 </div>
+                     <?php if(!empty($details)){ ?>
+                      <h5><u>Ordered Food</u></h5>
+                     <div class="row" id="reservation-food">
+                        <?php
+                          $total_apyable = 0;
+                          if($details){
+                              foreach ($details as $key => $order) {
+                                  $total_apyable = $total_apyable+($order->quantity*$order->ordered_price);
+                              ?>
+                          <div class="col-md-12">
+                              <div class="invoice_details">
+                                  <div class="row">
+                                      <div class="col-md-8">
+                                          <div class="propduct_name_invoice">
+                                              <span><?=$order->item_name?></span>
+                                              <p><?=$order->description?></p><br>
+                                              <b><?=$order->quantity?> X <?=$order->ordered_price?></b>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-1">
+                                          <div class="propduct_Quentity_invoice">
+                                          
+                                          </div>
+                                      </div>
+                                      
+                                      <div class="col-md-3">
+                                          <div class="propduct_total_invoice">
+                                              <b><i class="fa fa-inr" aria-hidden="true"></i>
+                                              <?=$order->quantity*$order->ordered_price?>
+                                              </b>
+                                          </div>
+                                      </div>
+                                      <div class="clearfix"></div>
+                                  </div>
+                                  <?php
+                                  if($order->addons){
+                                      foreach ($order->addons as $k => $addons) {
+                                          $total_apyable = $total_apyable+($addons->quantity*$addons->price);
+                                          ?>
+                                  <div class="row addon">
+                                      <div class="col-md-12">
+                                          <div class="invoice_details invoice_detailsaddon">
+                                              <div class="row">
+                                                  <div class="col-md-8">
+                                                      <div class="propduct_name_invoice">
+                                                          <span><?=$addons->addon_name?></span><br>
+                                                          <b><?=$addons->quantity?> X <?=$addons->price?></b>
+                                                      </div>
+                                                  </div>
+                                                  <div class="col-md-1">
+                                                      <div class="propduct_Quentity_invoice">
+                                                      
+                                                      </div>
+                                                  </div>
+                                                  <div class="col-md-3">
+                                                      <div class="propduct_total_invoice">
+                                                          <b><i class="fa fa-inr" aria-hidden="true"></i>
+                                                          <?=$addons->quantity * $addons->price?>
+                                                          </b>
+                                                      </div>
+                                                  </div>
+                                                  <div class="clearfix"></div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <?php
+                                      }
+                                  }
+                                  ?>
+                              </div>
+                          </div>
+                          <?php
+                              }
+                          }
+                          ?>
                     </div>
-                     <?php if(!empty($food_list)){ ?>
-
-                     <h5>Food</h5>
-                    
-                      <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <label>Food</label>
-                              <p><?php echo $food_list['name'];?></p> 
-                          </div>
-                      </div> 
-                        <div class="col-md-6 col-sm-12 col-xs-12">
-                          <div class="form-group">
-                              <label> Image</label>
-                              <?php if(!empty($food_list['image'])){?>
-                                       
-                                        <img style="height:75px;width:75px;" src="<?php echo  base_url().'public/upload_images/food_images/'.$food_list['image']; ?>"  alt="">
-                                              
-                                               <?php  }else{ ?>
-                                        <img  style="height:75px;width:75px;" src="<?php echo base_url();?>public/assets/img/110x110.png">
-                                               <?php  } ?>
-
-                          </div>
-                        </div> 
-                        <div class="col-md-6 col-sm-12 col-xs-12">
-                          <div class="form-group">
-                              <label>Category name</label>
-                                <p><?php echo $food_list['category_name'];?></p> 
-                            </div>
-                        </div> 
-                        <div class="col-md-6 col-sm-12 col-xs-12">
-                          <div class="form-group">
-                              <label>Quantity</label>
-                                <p><?php echo $food_list['quantity'];?></p> 
-                            </div>
-                        </div> 
-                         <div class="col-md-6 col-sm-12 col-xs-12">
-                            <div class="form-group">
-                                <label>Price</label>
-                                  <p><?php echo 'Rs.'.' '.$food_list['price'];?></p> 
-                              </div>
-                          </div> 
-                        <div class="col-md-6 col-sm-12 col-xs-12">
-                          <div class="form-group">
-                              <label>Variant</label>
-                                <p><?php echo $food_list['food_variant_name'];?></p> 
-                            </div>
-                        </div>
-                         <div class="col-md-6 col-sm-12 col-xs-12">
-                          <div class="form-group">
-                              <label>Variant Price</label>
-                                <p><?php echo 'Rs.'.' '.$food_list['food_variant_price'];?></p> 
-                          </div>
-                        </div> 
-                    <?php } ?>
-                    <?php if(!empty($addon_list)){ ?>
-                          <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="form-group">
-                                <label> <h1 class="h3 mb-4 text-gray-800">Addon Details (<?php echo count($addon_list)?>)</h1></label>
-                                 <!--  <p></p>  -->
-                              </div>
-                          </div>
-                              <?php foreach($addon_list as $addon){ ?>
-                                <div class="col-md-6 col-sm-12 col-xs-12">
-                            <div class="form-group">
-                                <label>Addon</label>
-                                  <p><?php echo $addon['addon_text'];?></p> 
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-sm-12 col-xs-12">
-                            <div class="form-group">
-                                <label>Addon Price</label>
-                                  <p><?php echo 'Rs.'.' '.$addon['addon_price'];?></p> 
-                              </div>
-                          </div>
-
-
-                      <?php } ?>
-                    <?php } ?>
+                   <?php
+                     }
+                   ?>
                 </div>
                 
                 
@@ -154,7 +155,7 @@
                       ?></p>
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12">
-                        <p><span>Total amount: </span>Rs. <?php echo $row['total_price'];?></p>
+                        <p><span>Total Amount: </span>Rs. <?php echo $row['total_price'];?></p>
 					   </div>
                         <?php if(!empty($row['coupon_code']) && $row['discount_amount']>0){?> 
                          <div class="col-md-3 col-sm-12 col-xs-12">

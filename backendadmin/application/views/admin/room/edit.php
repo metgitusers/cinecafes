@@ -90,28 +90,27 @@
                        
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                  <span style="margin-top: 2px;">
-                      <span  style="text-decoration: none; display: inline-flex;" class="image-preview">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row image-preview">
                       <?php
                         $this->db->where('room_id', $row['room_id']);
                         $room_images = $this->db->get('room_images')->result();
                         if(!empty($room_images)){
                           foreach ($room_images as $key => $value) {
                             ?>
+                            <div class="col-md-3 col-sm-12">
                               <div class="room_image_sec">
                                 <img width="200px;" src="<?=base_url('public/upload_images/room_images/'.$value->image)?>" style="margin: 7px;" id="blah">
                                 <span class="del-icon">
                                   <i data-table="room_images" data-key="room_image_id" data-id="<?=$value->room_image_id?>" class="fa fa-trash remove-image"></i>
                                 </span>
                               </div>
+                          </div>
                             <?php
                           }
                         }
                       ?>
-                      
-                      </span>
-                    </span> 
+                    </div>
                 </div>
                  
                   <div class="col-md-12 col-sm-12 col-xs-12">
@@ -154,7 +153,7 @@ if (FileUploadPath.length <= 0) {
     if (validExtensions.indexOf(f) == 0) {
         var reader = new FileReader();
         reader.onload = function(event) {
-            $($.parseHTML('<img style="width:200px; height: 200px; margin: 7px;">')).attr('src', event.target.result).appendTo('.image-preview');
+            $($.parseHTML('<img style="width:24%; height: auto; margin: 7px 10px 7px 0; display:inline-block; vertical-align: top;" />')).attr('src', event.target.result).appendTo('.image-preview');
         }
         reader.readAsDataURL(input.files[i]);
     }

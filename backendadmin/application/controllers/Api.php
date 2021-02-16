@@ -4,7 +4,8 @@ class Api extends CI_Controller
 {
   var $arr;
   var $obj;
-
+  var $request_day = '';
+  var $request_time = '';
   function __construct()
   {
     parent::__construct();
@@ -13,6 +14,8 @@ class Api extends CI_Controller
     $this->load->model('mapi');
     $this->arr = array();
     $this->obj = new stdClass();
+    $this->request_day = strtolower(date("l"));
+    $this->request_time = date("h:i A");
     $this->http_methods = array('POST', 'GET', 'PUT', 'DELETE');
     $this->logo = base_url() . 'public/images/logo_new.jpg';
     //$this->load->library('notification');
@@ -76,7 +79,10 @@ class Api extends CI_Controller
             $this->mcommon->insert('user_profile',$profile_arr);
             
             $memberDetails= $this->mapi->getMemberDetailsRow(array('user.user_id' => $user_id));
+            // echo $this->db->last_query();
+            // print_r($memberDetails);
           }
+          //echo '$user_id'.$user_id; die;
           //create auth token for login user
           $condition      = array('user_id' =>$user_id);
             $update_arr     = array('login_status' =>'1');
@@ -314,9 +320,8 @@ class Api extends CI_Controller
             $dob="";
           }    
         
-        $data = array(    
-               
-          'name'            => $ap['name'],   
+        $data = array(
+          'name'                  => $ap['name'],
           'mobile'                => $ap['mobile'],
           'password'              => md5($password),
           'original_password'     => $password,
@@ -326,9 +331,20 @@ class Api extends CI_Controller
           'apple_id'     => $apple_id,
           'status'                => '1',
           'added_form'            => 'App',
-
           'created_date'            => date('Y-m-d H:i:s'),       
         );
+
+        //options middle & last name as discussed
+        $middle_name = '';
+        if(isset($ap['middle_name']) && !empty('middle_name')){
+          $data['middle_name']  = $ap['middle_name'];
+          $middle_name = $ap['middle_name'];
+        }
+        $last_name = '';
+        if(isset($ap['last_name']) && !empty('last_name')){
+          $data['last_name']  = $ap['last_name'];
+          $last_name = $ap['last_name'];
+        }
         
         $user_id = $this->mcommon->insert('user', $data);        
         if($user_id)
@@ -336,7 +352,7 @@ class Api extends CI_Controller
 
             /** added by ishani on 18.09.2020 */
             //fn defined in common helper
-            $user_data['name']=$ap['name'];
+            $user_data['name']=$ap['name'].' '.$middle_name.' '.$last_name;
             $user_data['email']=$ap['email'];
             $user_data['mobile']=$ap['mobile'];
             insert_all_user($user_data);
@@ -358,7 +374,7 @@ class Api extends CI_Controller
             //echo $user_id;
 
             ///insert into device token
-            $device_token_data['user_id']          = $user_id;
+            $device_token_data['user_id']            = $user_id;
             $device_token_data['device_type']        = $ap['device_type'];
             $device_token_data['device_token']       = '';
             $device_token_data['fcm_token']          = $ap['device_token'];
@@ -369,7 +385,7 @@ class Api extends CI_Controller
 
             $insert_data          = $this->mapi->insert('device_token', $device_token_data);
 
-            $api_token_data['user_id']          = $user_id;
+            $api_token_data['user_id']            = $user_id;
             $api_token_data['device_type']        = $ap['device_type'];
             $api_token_data['access_token']       = md5(mt_rand() . '_' .$user_id);
             $api_token_data['date_of_creation']   = date('Y-m-d H:i:s');
@@ -385,7 +401,7 @@ class Api extends CI_Controller
             /************************* mail to the member ****************************/
             //$link               = base_url('api/member_activation/'.$user_id);
             //$logo               = base_url('public/images/logo.png');
-            $name=$ap['name'];
+            $name=$ap['name'].' '.$middle_name.' '.$last_name;
             $email=$ap['email'];
             $mail['name']       = $name;
             $mail['to']         = $email;    
@@ -934,7 +950,7 @@ class Api extends CI_Controller
             $this->displayOutput($response);
           }
           $message  = $otp." is the OTP."."\n ".ORGANIZATION_NAME;
-          $response_sms = smsSend($ap['mobile'],$message);
+          $response_sms = smsSend($ap['mobile'], $message);
 
           $update_arr = array('otp' =>$otp,'otp_generating_datetime' =>date('Y-m-d H:i'));
           $this->mapi->update('user',array('user_id' => $member_data['user_id']),$update_arr);
@@ -1095,8 +1111,6 @@ class Api extends CI_Controller
                     $device_token_updata['device_type']     = $ap['device_type'];
                     $device_token_updata['fcm_token']       = $ap['device_token'];
                     $update_data  = $this->mapi->update('device_token', $condition_token, $device_token_updata);
-
-                    
                   }
 
                   $member_all_details= $this->mapi->getMemberDetailsRow(array('user.user_id' => $user_id));               
@@ -1166,7 +1180,7 @@ class Api extends CI_Controller
           $this->mapi->update('user', $condition_member, $member_details);
 
           
-          $mail['name']     = $member_details['name'];
+          $mail['name']     = $member_details['name'].' '.$member_details['middle_name'].' '.$member_details['last_name'];
           $mail['to']       = $member_details['email'];
           $mail['subject']  = ORGANIZATION_NAME.' Recover Password';
 
@@ -1182,7 +1196,7 @@ class Api extends CI_Controller
           $mail['from_email']    = FROM_EMAIL;
           $mail['from_name']    = ORGANIZATION_NAME;
   
-            //sendmail($mail); 
+          //sendmail($mail); 
           //echo '<pre>';print_r($mail);die;
           if (sendmail($mail)) {
             $response['status']['error_code'] = 0;
@@ -1289,7 +1303,7 @@ class Api extends CI_Controller
             $response['status']['message']    = 'Address is required';
             //$response['response']   = $this->obj;
             
-            $this->displayOutput($status);
+            $this->displayOutput($response);
           }
           $lat="";
           $lng="";
@@ -1337,17 +1351,24 @@ class Api extends CI_Controller
           }     
             $user_id          = $ap['user_id'];
            $condition['user_id']=$user_id;
-            $data = array(    
-               
-          'name'            => $ap['name'],   
-          'mobile'                => $ap['mobile'],
-          'email'                 => $ap['email'], 
-          'updated_by'       => $user_id,
-          'updated_date'            => date('Y-m-d H:i:s'),       
-        );
+            $data = array(
+              'name'            => $ap['name'],
+              'mobile'          => $ap['mobile'],
+              'email'           => $ap['email'],
+              'updated_by'      => $user_id,
+              'updated_date'    => date('Y-m-d H:i:s'),     
+            );
+
+            //options middle & last name as discussed
+            if(isset($ap['middle_name']) && !empty('middle_name')){
+              $data['middle_name']  = $ap['middle_name'];
+            }
+            if(isset($ap['last_name']) && !empty('last_name')){
+              $data['last_name']  = $ap['last_name'];
+            }
         
-        //update user
-         $this->mcommon->update('user',$condition, $data);        
+            //update user
+            $this->mcommon->update('user',$condition, $data);        
         
             $profile_arr=array();
 
@@ -1587,9 +1608,7 @@ class Api extends CI_Controller
         //   }
 
         for($i=0;$i<count($List);$i++){  
-        // echo '<pre>';
-        // print_r($List[$i]);
-        // die; 
+          //$List[$i]['cafe_name'] = $List[$i]['cafe_name'].'-'.$List[$i]['cafe_place'];
         //review avg round off
         $List[$i]['avg_rating']=round($List[$i]['avg_rating']);    
           if(!empty($List[$i]['images']))
@@ -1901,10 +1920,10 @@ class Api extends CI_Controller
     $ap=json_decode(file_get_contents('php://input'), true);
     if($this->checkHttpMethods($this->http_methods[0])){
       if(sizeof($ap)){
-              if(empty($ap['user_id'])){
-                $response=array('status'=>array('error_code'=>1,'message'=>'User id is required'),'result'=>array('details'=>$this->obj));
-                $this->displayOutput($response);
-              }
+          if(empty($ap['user_id'])){
+            $response=array('status'=>array('error_code'=>1,'message'=>'User id is required'),'result'=>array('details'=>$this->obj));
+            $this->displayOutput($response);
+          }
 
           ////////////////////////////////////////////////////////////////////////
           $order_col='id';
@@ -1930,64 +1949,44 @@ class Api extends CI_Controller
       $List=array();
        for($i=0;$i<count($wishList);$i++)
        {
-        $condition=array();
-        $condition['cafe_id']=$wishList[$i]['cafe_id'];
-        
-        $table="master_cafe";
-        $user_id=$ap['user_id'];
-        $wishlistArr= $this->mapi->get_data_row($table,$condition,$user_id);    
-        $List[$i]=$wishlistArr;
+          $condition=array();
+          $condition['cafe_id']=$wishList[$i]['cafe_id'];
+          //check is deleted cafe or active
+          $condition['is_delete']=0;
+          $condition['status']=1;
+          
+          $table="master_cafe";
+          $user_id=$ap['user_id'];
+          $wishlistArr= $this->mapi->get_data_row($table,$condition,$user_id);
+          if(!empty($wishlistArr)){   
+            $List[$i]=$wishlistArr;
+          }
         }
-      //echo $this->db->last_query();die;
-      if(!empty($List)){
-
-        //////////////////////////////check for purchased or my uploaded////////.
-        // if(isset($ap['user_id'])&&$ap['user_id']>0)
-        //  {
-        //       $ListModified=$List;
-        //     for($i=0;$i<count($ListModified);$i++){ 
-        //       $video_id="";
-        //       $video_id=$List[$i]['video_id'];
-        //       $is_purchased=0;
-        //       $is_uploaded_by_me=0;
-              
-        //         if($video_id>0)
-        //         {
-        //           $is_purchased=$this->is_purchased($video_id,$ap['user_id']);
-        //           $is_uploaded_by_me=$this->is_uploaded_by_me($video_id,$ap['user_id']);
-        //           if($is_purchased>0||$is_uploaded_by_me>0)
-        //           {
-        //             unset($ListModified[$i]);
-        //           }
-        //         }
-        //     }
-        //     $List=array_values($ListModified); 
-        //   }
-
-        for($i=0;$i<count($List);$i++){  
-        // echo '<pre>';
-        // print_r($List[$i]);
-        // die;  
-        $List[$i]['cafe_name']= $List[$i]['cafe_name']."-".$List[$i]['cafe_place'] ; 
-        $List[$i]['avg_rating']=round($List[$i]['avg_rating']);  
-          if(!empty($List[$i]['images']))
-          {
-            for($k=0;$k<count($List[$i]['images']);$k++){
-              $List[$i]['images'][$k]['image']=base_url()."public/upload_images/cafe_images/".$List[$i]['images'][$k]['image'];
+       // print_r($List);
+       $result = [];
+       if($List){
+        foreach ($List as $key => $value) {
+          $result[] = $value;
+        }
+       }
+       $List =  $result;
+      if(count($List) > 0){
+        $c = 0;
+        for($i=0;$i<count($List);$i++){
+          if(isset($List[$i])){
+          $tr = round($List[$i]['avg_rating'], 0);
+          $List[$i]['cafe_name']= $List[$i]['cafe_name']."-".$List[$i]['cafe_place'] ; 
+          $List[$i]['avg_rating']= $tr;  
+            if(!empty($List[$i]['images']))
+            {
+              for($k=0;$k<count($List[$i]['images']);$k++){
+                $List[$i]['images'][$k]['image']=base_url()."public/upload_images/cafe_images/".$List[$i]['images'][$k]['image'];
+              }
             }
           }
-
-
-          //////////////////////////wishlist & cart checking/////////////////////
-          // if(isset($ap['user_id'])&&$ap['user_id']>0)
-          // {
-          //   ///////////////////////wishlist checking////////////////////
-          //   $List[$i]['wishlist']=$this->is_wishlisted($List[$i]['video_id'],$ap['user_id']);  
-          //   ///////////////////////cart checking////////////////////
-          //   $List[$i]['cart']=$this->is_cart($List[$i]['video_id'],$ap['user_id']);   
-          // }
          }
-        $response=array('status'=>array('error_code'=>0,'message'=>'success'),'result'=>array('total_count'=>$total_count,'list'=>$List));
+        
+        $response=array('status'=>array('error_code'=>0,'message'=>'success'),'result'=>array('total_count'=>count($List),'list'=>$List));
       }else{
         $response=array('status'=>array('error_code'=>0,'message'=>'No data found'),'result'=>array('list'=>$this->arr));
       }
@@ -2096,22 +2095,22 @@ class Api extends CI_Controller
           $total_count=$this->mapi->get_data_total_count($table,$condition);
           $List = $this->mapi->getMovieList($table,$condition,$order_col,$order_type,$start,$limit,$user_id,$cafe_id);
 
-          //echo $this->db->last_query();die;
+          //echo $this->db->last_query(); die;
           if(!empty($List)){
-            ///for multiple img /////////////////////////////////////
-
             for($i=0;$i<count($List);$i++){  
-              // echo '<pre>';
-              // print_r($List[$i]);
-              // die;     
-                if(!empty($List[$i]['images']))
-                {
-                  for($k=0;$k<count($List[$i]['images']);$k++){
-                    $List[$i]['images'][$k]['image']=base_url()."public/upload_images/movie_images/".$List[$i]['images'][$k]['image'];
-                  }
-                }
+              $movie_id=$List[$i]['movie_id'];
+              /*
+                get room tagged images
+              */
+              $select = "(IF(mi.image !='',CONCAT('".base_url()."public/upload_images/movie_images/',mi.image),'".base_url()."public/upload_images/No_Image_Available.jpg')) as image";
+              $movie_images = $this->mcommon->select('movie_images mi', ['mi.movie_id'=> $movie_id], $select);
+              if($movie_images){
+                $List[$i]['image'] = $movie_images[0]->image;
+              }else{
+                $List[$i]['image'] = base_url('public/upload_images/No_Image_Available.jpg');
               }
-            ///////////////////////////////////////////////////
+              $List[$i]['images'] = $movie_images;
+              }
             $response=array('status'=>array('error_code'=>0,'message'=>'success'),'result'=>array('total_count'=>$total_count,'list'=>$List));
           }else{
             $response=array('status'=>array('error_code'=>0,'message'=>'No data found'),'result'=>array('list'=>$this->arr));
@@ -2312,7 +2311,7 @@ class Api extends CI_Controller
           $condition['room.status']=1;
           $condition['room.is_delete']=0;
           //added to filter member capacity for a room
-          $condition['room.no_of_people >=']=$ap['no_of_people'];
+          $condition['room.no_of_people >=']= (int)$ap['no_of_people'];
 
           ///category id
           if(isset($ap['cafe_id'])&&$ap['cafe_id']>0)
@@ -2326,7 +2325,7 @@ class Api extends CI_Controller
           $table="room";
           $total_count=$this->mapi->get_data_total_count($table,$condition);
           $List = $this->mapi->getAvailableRoomList($table,$condition,$order_col,$order_type,$start,$limit);
-
+          //echo $this->db->last_query(); die;
         
           $reservation_time=DATE('H:i:s',strtotime($ap["reservation_time"]));
           $duration=$ap['duration'];
@@ -2337,13 +2336,27 @@ class Api extends CI_Controller
           
           //echo $this->db->last_query();die;
           if(!empty($List)){
+            $list_array = array();
             ///checking available status
-            for($i=0;$i<count($List);$i++){  
-            // echo '<pre>';
-            // print_r($List[$i]);
-            // die;     
-              $booked_status=0;
+            for($i=0;$i<count($List);$i++){
               $room_id=$List[$i]['room_id'];
+              //check availability
+              // $reservation_date = date("Y-m-d", strtotime(str_replace('/', '-', $date)));
+              // $reservation_time=DATE('H:i:s',strtotime($ap["reservation_time"]));
+              //$availability_status=$this->is_available($reservation_date,$room_id,$reservation_time,$duration);
+
+              /*
+                get room tagged images
+              */
+              $select = "(IF(ri.image !='',CONCAT('".base_url()."public/upload_images/room_images/',ri.image),'".base_url()."public/upload_images/No_Image_Available.jpg')) as image";
+              $room_images = $this->mcommon->select('room_images ri', ['ri.room_id'=> $room_id], $select);
+              if($room_images){
+                $List[$i]['image'] = $room_images[0]->image;
+              }else{
+                $List[$i]['image'] = base_url('public/upload_images/No_Image_Available.jpg');
+              }
+              $List[$i]['images'] = $room_images;
+              $booked_status=0;
               //////////////////////////wishlist & cart checking/////////////////////
               $availability_status=$this->is_available($reservation_date,$room_id,$reservation_time,$duration);
          
@@ -2351,11 +2364,14 @@ class Api extends CI_Controller
                 $booked_status=1;
               }
               $List[$i]['booked_status']=$booked_status;
+              if($booked_status == 0){
+                $list_array[] = $List[$i];
+              }
              }
             
 
             /////////////////////////////
-            $response=array('status'=>array('error_code'=>0,'message'=>'success'),'result'=>array('total_count'=>$total_count,'list'=>$List));
+            $response=array('status'=>array('error_code'=>0,'message'=>'success'),'result'=>array('total_count'=>count($list_array),'list'=>$list_array));
           }else{
             $response=array('status'=>array('error_code'=>0,'message'=>'No data found'),'result'=>array('list'=>$this->arr));
           }
@@ -2601,93 +2617,149 @@ class Api extends CI_Controller
                     $wallet_response_status=$this->deductWalllet($user_id,$payable_amount);
                   }
                   //////////////////////////
-                    $insrtarry    = array('reservation_date'    => $reservation_date,
-                                          'reservation_time'    => $reservation_time,
-                                          'reservation_end_time' =>$end_time_range,
-                                          'duration'=>$duration,
-                                          'cafe_id'             => $ap['cafe_id'],
-                                          'no_of_guests'        => $ap['no_of_guests'],
-                                          'total_price'          => $total_price,
-                                          'room_id'     =>       $ap['room_id'],
-                                          'user_id'           => $user_id,
-                                          'name'          => $ap['name'],
-                                          'email'               => $ap['email'],
-                                          'country_code'        => $ap['country_code'],
-                                          'mobile'       => $ap['mobile'],
-                                          'movie_id'     =>$movie_id,
-                                          'add_from'            => 'front',
-                                          'message'             => $message,
-                                          'coupon_code'  =>$coupon_code,
-                                          'discount_amount'  =>$discount_amount,
-                                          'membership_package_id'  =>$membership_package_id,
+                    $insrtarry    = array('reservation_date'      =>  $reservation_date,
+                                          'reservation_time'      =>  $reservation_time,
+                                          'reservation_end_time'  =>  $end_time_range,
+                                          'duration'              =>  $duration,
+                                          'cafe_id'               =>  $ap['cafe_id'],
+                                          'no_of_guests'          =>  $ap['no_of_guests'],
+                                          'total_price'           =>  $total_price,
+                                          'room_id'               =>  $ap['room_id'],
+                                          'user_id'               =>  $user_id,
+                                          'name'                  =>  $ap['name'],
+                                          'email'                 =>  $ap['email'],
+                                          'country_code'          =>  $ap['country_code'],
+                                          'mobile'                =>  $ap['mobile'],
+                                          'movie_id'              =>  $movie_id,
+                                          'add_from'              => 'front',
+                                          'message'               => $message,
+                                          'coupon_code'           =>  $coupon_code,
+                                          'discount_amount'       =>  $discount_amount,
+                                          'membership_package_id'  => $membership_package_id,
                                           'membership_discount_amount'  =>$membership_discount_amount,
                                           'membership_discount_percent'  =>$membership_discount_percent,
-                                          'payable_amount'  =>$payable_amount,
-                                          'media_type'             => $media_type,
-                                          'status'              => '1',
-                                          'reservation_type'    => 'App',
-                                          'created_by'          => $user_id,
-                                          'created_on'          => date('Y-m-d')
+                                          'payable_amount'        =>$payable_amount,
+                                          'payment_mode'          =>$ap['payment_mode'],    //added after discussion
+                                          'media_type'            => $media_type,
+                                          'status'                => '1',
+                                          'reservation_type'      => 'App',
+                                          'created_by'            => $user_id,
+                                          'created_on'            => date('Y-m-d')
                                         );
+                    /**
+                     *  Add cafe price while saving as discussed
+                     * on 10-02-2021
+                    */
+                    if(isset($ap['cafe_price'])){
+                      $insrtarry['cafe_price'] = $ap['cafe_price'];
+                    }
+
                     $reservation_id     = $this->mapi->insert('reservation',$insrtarry);
                     
                     if($reservation_id)
                     {
-                       //food insert if any
-                        if(isset($ap['food_list'])&&!empty($ap['food_list']))
-                        {
-                          $food_list=$ap['food_list'];
+                      /**
+                       * Food app option with reservation
+                      */
+                      if(isset($ap['order_id']) && !empty($ap['order_id'])){
+                        $invoice = '';
+                        $order_array = [];
+                        $order_array['food_order_status_id']= 1;   // Paid
+                        $order_array['order_status']= 1;   // Paid
+                        $order_array['status']= 1;   // Paid
+                        $order_array['invoice_url']= $invoice!=""?$invoice:null;   // Paid
 
-                          foreach($food_list as $food_data)
-                          {
-                            $food_id=$food_data['food_id'];
-                            $quantity=$food_data['quantity'];
-                            $food_variant_id="";
-                            $food_variant_price="";
-                            /** variant */
-                            if(isset($food_data['variant_data'])&&$food_data['variant_data']!="")
-                            {
-                              $food_variant_id=$food_data['variant_data']['food_variant_id'];
-                              $food_variant_price=$food_data['variant_data']['food_variant_price'];
-                            }
+                        // $order_array['order_date']= date('Y-m-d h:i a');
+                        // $order_array['created_at']= date('Y-m-d h:i a');
 
-                             $insrtarry_food = array('reservation_id' => $reservation_id,
-                                          'food_id'    => $food_id,
-                                          'quantity' =>$quantity,
-                                          'food_variant_id'=>$food_variant_id,
-                                          'food_variant_price'=>$food_variant_price
-                                        );
-                             $this->mapi->insert('reservation_food_mapping',$insrtarry_food);
-                            /** addon */
-                            if(isset($food_data['add_on_data'])&&$food_data['add_on_data']!="")
-                            {
-                                
-                                if(isset($food_data['add_on_data'])&&!empty($food_data['add_on_data']))
-                                {
-                                  $add_on_data=$food_data['add_on_data']; 
-                                  foreach($add_on_data as $addon)
-                                  {
-                                    $parent_food=array();
-                                    $food_id="";
-                                    $condition_addon=array();
-                                    $condition_addon['addon_id']=$addon['addon_id'];
-                                    $parent_food=$this->mapi->getRow('food_addon',$condition_addon);
-                                    $food_id=$parent_food['food_id'];
-                                    if($food_id>0)
-                                    {
-                                      $insrtarry_addon = array('reservation_id' => $reservation_id,
-                                          'addon_id'    => $addon['addon_id'],
-                                          'addon_price' =>$addon['addon_price'],
-                                          'food_id'    => $food_id
-                                        );
-                                      $this->mapi->insert('reservation_addon_mapping',$insrtarry_addon);
-                                    }
-                                    
-                                  }
-                                }
+                        $this->mcommon->update('food_orders', ['food_order_id'=> $ap['order_id']],  $order_array);
+
+                        //insert into reservation order
+                        $this->mcommon->insert('reservation_orders', ['reservation_id'=> $reservation_id, 'order_id'=> $ap['order_id'], 'user_id'=> $user_id]);
+                        //remove hide items from list
+                        $order_items = $this->mcommon->select('food_order_items', ['food_order_id'=> $ap['order_id']], '*');
+                        foreach($order_items as $item){
+                          $availability = $this->mapi->getItemAvailabilityDetails($this->request_day, $this->request_time, $item->item_id);
+                          // $availability->price;
+                          // $availability->is_seen;
+                          if(!empty(!$availability)){
+                            if($availability->is_seen == 0){
+                              $this->db->where('food_order_item_id', $item->food_order_item_id);
+                              $this->db->delete('food_order_items');
                             }
                           }
                         }
+                        //update coupon
+                        $this->mcommon->update('food_apply_coupon', ['user_id'=> $ap['user_id'], 'applied_status'=> 0], ['applied_status'=> 1, 'food_order_id'=> $ap['order_id']]);
+
+                        $trans_array = array(
+                          'food_order_id'=> $ap['order_id'],
+                          'transaction_id'=> $ap['transaction_id'],
+                          'source'=> 'App',
+                        );
+
+                        $this->mcommon->insert('food_order_transactions', $trans_array);
+
+                        //clear cart after check functionality
+                        $this->db->where(['user_id'=> $ap['user_id']]);
+                        $this->db->delete('food_cart_items');
+                      }
+                        //End food order
+                       //food insert if any
+                        // if(isset($ap['food_list'])&&!empty($ap['food_list']))
+                        // {
+                        //   $food_list=$ap['food_list'];
+
+                        //   foreach($food_list as $food_data)
+                        //   {
+                        //     $food_id=$food_data['food_id'];
+                        //     $quantity=$food_data['quantity'];
+                        //     $food_variant_id="";
+                        //     $food_variant_price="";
+                        //     /** variant */
+                        //     if(isset($food_data['variant_data'])&&$food_data['variant_data']!="")
+                        //     {
+                        //       $food_variant_id=$food_data['variant_data']['food_variant_id'];
+                        //       $food_variant_price=$food_data['variant_data']['food_variant_price'];
+                        //     }
+
+                        //      $insrtarry_food = array('reservation_id' => $reservation_id,
+                        //                   'food_id'    => $food_id,
+                        //                   'quantity' =>$quantity,
+                        //                   'food_variant_id'=>$food_variant_id,
+                        //                   'food_variant_price'=>$food_variant_price
+                        //                 );
+                        //      $this->mapi->insert('reservation_food_mapping',$insrtarry_food);
+                        //     /** addon */
+                        //     if(isset($food_data['add_on_data'])&&$food_data['add_on_data']!="")
+                        //     {
+                                
+                        //         if(isset($food_data['add_on_data'])&&!empty($food_data['add_on_data']))
+                        //         {
+                        //           $add_on_data=$food_data['add_on_data']; 
+                        //           foreach($add_on_data as $addon)
+                        //           {
+                        //             $parent_food=array();
+                        //             $food_id="";
+                        //             $condition_addon=array();
+                        //             $condition_addon['addon_id']=$addon['addon_id'];
+                        //             $parent_food=$this->mapi->getRow('food_addon',$condition_addon);
+                        //             $food_id=$parent_food['food_id'];
+                        //             if($food_id>0)
+                        //             {
+                        //               $insrtarry_addon = array('reservation_id' => $reservation_id,
+                        //                   'addon_id'    => $addon['addon_id'],
+                        //                   'addon_price' =>$addon['addon_price'],
+                        //                   'food_id'    => $food_id
+                        //                 );
+                        //               $this->mapi->insert('reservation_addon_mapping',$insrtarry_addon);
+                        //             }
+                                    
+                        //           }
+                        //         }
+                        //     }
+                        //   }
+                        // }
                        ///////////////////////////// 
 
                         ///insert to transaction table//////////////////////////////////
@@ -2759,7 +2831,7 @@ class Api extends CI_Controller
                           $mail_temp                = str_replace("{reservation_time}", $ap['reservation_time'], $mail_temp);
                           $mail_temp                = str_replace("{no_of_guests}", $ap['no_of_guests'], $mail_temp);
                           $mail_temp                = str_replace("{reservation_status}", "Confirmed", $mail_temp);
-
+                          //echo $mail_temp; die;
                           $mail['message']    = $mail_temp;
                           $mail['from_email']    = FROM_EMAIL;
                           $mail['from_name']    = ORGANIZATION_NAME;
@@ -2867,13 +2939,16 @@ class Api extends CI_Controller
             //         $this->displayOutput($response);
             // } 
             //else {
-                $dateArr=explode("/",$date) ;
-                $reservation_date=$dateArr[2]."-".$dateArr[1]."-".$dateArr[0]; 
-
+              //   $dateArr=explode("/",$date) ;
+              //  echo $reservation_date=$dateArr[2]."-".$dateArr[1]."-".$dateArr[0]; 
+                
                 //chk if its past date then reject request
                 $curDateTime = date("Y-m-d H:i:s");
-                $reservation_date_time = date("Y-m-d H:i:s", strtotime($reservation_date." ".$ap['reservation_time']));
-                  if($curDateTime>=$reservation_date_time)
+                //$reservation_date_time = date("Y-m-d H:i:s", strtotime($reservation_date." ".$ap['reservation_time']));
+                $reservation_date = date("Y-m-d", strtotime(str_replace('/', '-', $date)));
+                $reservation_date_time = $reservation_date." ".date('H:i:s', strtotime($ap['reservation_time']));
+                //echo $curDateTime.'>='.$reservation_date_time; die;
+                if($curDateTime>=$reservation_date_time)
                   {
                     $response['status']['error_code'] = 1;
                        $response['status']['message']    = 'Please select some date time in future';
@@ -2939,7 +3014,7 @@ class Api extends CI_Controller
 
           $availability_status        = $this->mapi->is_available($reservation_date,$room_id,$start_time_range,$end_time_range);
           
-          //echo $this->db->last_query();
+          //echo $this->db->last_query(); die;
 
     }
 
@@ -2998,7 +3073,6 @@ class Api extends CI_Controller
           $table="reservation";
           //$total_count=$this->mapi->get_data_total_count($table,$condition);
           $List = $this->mapi->getReservationList($table,$condition,$order_col,$order_type,$start,$limit,$status);
-
 
           //echo $this->db->last_query();die;
           if(!empty($List)){
@@ -3213,8 +3287,8 @@ class Api extends CI_Controller
           //calculate discount
           $coupon_amount=$coupon_data['amount'];
           $coupon_type=$coupon_data['coupon_type'];
-          $discount_amount="";
-          $payable_amount="";
+          $discount_amount= 0;
+          $payable_amount= 0;
           if($coupon_type==0) // fixed discount
           {
             $discount_amount=$coupon_amount;
@@ -3233,8 +3307,8 @@ class Api extends CI_Controller
           /////////////////////
           $response['status']['error_code'] = 0;
           $response['status']['message']    = "coupon applied";
-          $response['result']['discount_amount']    = $discount_amount;
-          $response['result']['payable_amount']    = $payable_amount;
+          $response['result']['discount_amount']    = round($discount_amount, 0);
+          $response['result']['payable_amount']    = round($payable_amount, 0);
         }
         else{
           $response['status']['error_code'] = 1;
@@ -3420,7 +3494,7 @@ class Api extends CI_Controller
                         /////////////////////////////////////////////////////////////////////////////
         
            $response['status']['error_code']            = 0;
-           $response['status']['message']               = 'Your membership purchase is succesful.';
+           $response['status']['message']               = 'Your membership purchase is successful.';
                            
         
 
@@ -3564,18 +3638,18 @@ public function checkMembership(){
               $this->displayOutput($response);
             }
           //calculate discount
-          $discount_amount="";
-          $payable_amount="";
+          $discount_amount = 0;
+          $payable_amount = 0;
          
-          $discount_amount=(($ap['total_amount']*$package_membership_list['discount_percent'])/100);
+          $discount_amount=round((($ap['total_amount']*$package_membership_list['discount_percent'])/100), 0);
           
           $payable_amount=$ap['total_amount']-$discount_amount;
           /////////////////////
           $response['status']['error_code'] = 0;
           $response['status']['message']    = "subscription discount applied";
           $response['result']['membership_package_id']    = $package_membership_list['package_id'];
-          $response['result']['membership_discount_amount']    = $discount_amount;
-          $response['result']['membership_payable_amount']    = $payable_amount;
+          $response['result']['membership_discount_amount']    = round($discount_amount, 0);
+          $response['result']['membership_payable_amount']    = round($payable_amount, 0);
           $response['result']['membership_discount_percent']    = $package_membership_list['discount_percent'];
         }
         else{
@@ -3831,109 +3905,109 @@ public function checkMembership(){
   }
 
   ////deduct money from wallet
-
-  public function deductWalllet($user_id,$amount)
-  {
+    // moved to my_controller
+  // public function deductWalllet($user_id,$amount)
+  // {
     
-        if(empty($user_id)||empty($amount))
-        {
-          $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'Invalid user id or amount';
+  //       if(empty($user_id)||empty($amount))
+  //       {
+  //         $response['status']['error_code'] = 1;
+  //         $response['status']['message']    = 'Invalid user id or amount';
            
-            $this->displayOutput($response);
-        }
+  //           $this->displayOutput($response);
+  //       }
 
-          $condition  = array('user_id'=>$user_id);
-          $user_row   = $this->mcommon->getRow('user',$condition);
-          if (empty($user_row)) {
-            $response['status']['error_code'] = 1;
-            $response['status']['message']    = 'Invalid user id.';
+  //         $condition  = array('user_id'=>$user_id);
+  //         $user_row   = $this->mcommon->getRow('user',$condition);
+  //         if (empty($user_row)) {
+  //           $response['status']['error_code'] = 1;
+  //           $response['status']['message']    = 'Invalid user id.';
            
-            $this->displayOutput($response);
-          }
+  //           $this->displayOutput($response);
+  //         }
 
-          if($user_row['wallet']<$amount)
-          {
-             $response['status']['error_code'] = 1;
-            $response['status']['message']    = 'Insuffivient amount in wallet. Present balance is '.$user_row['wallet'];
+  //         if($user_row['wallet']<$amount)
+  //         {
+  //            $response['status']['error_code'] = 1;
+  //           $response['status']['message']    = 'Insuffivient amount in wallet. Present balance is '.$user_row['wallet'];
            
-            $this->displayOutput($response);
-          }
-          //update to wallet user table//////////////////////////
-          $present_amount=$user_row['wallet'];
-          $updated_amount=$present_amount-$amount;
-          $user_data=array();
-          $user_data['wallet']=$updated_amount;
-          $this->mcommon->update('user',$condition,$user_data);
+  //           $this->displayOutput($response);
+  //         }
+  //         //update to wallet user table//////////////////////////
+  //         $present_amount=$user_row['wallet'];
+  //         $updated_amount=$present_amount-$amount;
+  //         $user_data=array();
+  //         $user_data['wallet']=$updated_amount;
+  //         $this->mcommon->update('user',$condition,$user_data);
 
-          ///////////////////////////////////////////////////////////////
-                      ////Notification////////////////////////////////////////////
-                      //get user info
-                      $condition_user['user_id']=$user_id;
-                      $user_row=$this->mapi->getRow("user",$condition_user); 
+  //         ///////////////////////////////////////////////////////////////
+  //                     ////Notification////////////////////////////////////////////
+  //                     //get user info
+  //                     $condition_user['user_id']=$user_id;
+  //                     $user_row=$this->mapi->getRow("user",$condition_user); 
                      
-                        $notification_title="Point deducted from wallet";
-                        $notification_des= $amount." point deducted from your wallet";
-                        $this->add_notification($user_id,$notification_title,$notification_des);
-                      /** Notification ends here.............................**/
+  //                       $notification_title="Point deducted from wallet";
+  //                       $notification_des= $amount." point deducted from your wallet";
+  //                       $this->add_notification($user_id,$notification_title,$notification_des);
+  //                     /** Notification ends here.............................**/
 
-                      /********************************** Send reservation details in sms *************************************************/
+  //                     /********************************** Send reservation details in sms *************************************************/
 
-                          $message  = $notification_des." at ".ORGANIZATION_NAME.". \n";
-                          $message .= "Present wallet balance is : ".$updated_amount;
+  //                         $message  = $notification_des." at ".ORGANIZATION_NAME.". \n";
+  //                         $message .= "Present wallet balance is : ".$updated_amount;
                           
-                          smsSend($user_row['mobile'],$message);
+  //                         smsSend($user_row['mobile'],$message);
 
-                        /********push notification fr membership ************************/
-                        $title=$notification_title;
-                        //$message   = $notification_des;
-                        $message_data = array('title' => $title,'message' => $notification_des);
-                        $user_fcm_token_data  = $this->mcommon->getRow('device_token',array('user_id' => $user_id));
-                        //pr($user_fcm_token_data);
-                        if(!empty($user_fcm_token_data)){
-                          $member_datas  = $this->mcommon->getRow('user',array('user_id' => $user_id));
-                            if($member_datas['notification_allow_type'] == '1'){
-                                if($user_fcm_token_data['device_type'] == 1){
-                                  $this->pushnotification->send_ios_notification($user_fcm_token_data['fcm_token'], $message_data);
-                                }
-                                else{
-                                  $this->pushnotification->send_android_notification($user_fcm_token_data['fcm_token'], $message_data);
-                                }
-                            }
+  //                       /********push notification fr membership ************************/
+  //                       $title=$notification_title;
+  //                       //$message   = $notification_des;
+  //                       $message_data = array('title' => $title,'message' => $notification_des);
+  //                       $user_fcm_token_data  = $this->mcommon->getRow('device_token',array('user_id' => $user_id));
+  //                       //pr($user_fcm_token_data);
+  //                       if(!empty($user_fcm_token_data)){
+  //                         $member_datas  = $this->mcommon->getRow('user',array('user_id' => $user_id));
+  //                           if($member_datas['notification_allow_type'] == '1'){
+  //                               if($user_fcm_token_data['device_type'] == 1){
+  //                                 $this->pushnotification->send_ios_notification($user_fcm_token_data['fcm_token'], $message_data);
+  //                               }
+  //                               else{
+  //                                 $this->pushnotification->send_android_notification($user_fcm_token_data['fcm_token'], $message_data);
+  //                               }
+  //                           }
 
-                          }
+  //                         }
 
-                          /*********Mail fn ...************************************************/
-                          $details            =  $message;  
-                          $name=$user_row['name'];
-                          $email=$user_row['email'];
-                          $mail['name']       = $name;
-                          $mail['to']         = $email;    
-                          //$params['to']     = 'sreelabiswas.kundu@met-technologies.com';
+  //                         /*********Mail fn ...************************************************/
+  //                         $details            =  $message;  
+  //                         $name=$user_row['name'];
+  //                         $email=$user_row['email'];
+  //                         $mail['name']       = $name;
+  //                         $mail['to']         = $email;    
+  //                         //$params['to']     = 'sreelabiswas.kundu@met-technologies.com';
                           
-                          $mail['subject']    = ORGANIZATION_NAME." wallet point deducted";                             
-                          $mail_temp          = file_get_contents('./global/mail/wallet_template.html');
-                          $mail_temp          = str_replace("{web_url}", base_url(), $mail_temp);
-                          $mail_temp          = str_replace("{logo}", LOGOURL, $mail_temp);
-                          $mail_temp          = str_replace("{shop_name}", ORGANIZATION_NAME, $mail_temp);  
-                          $mail_temp          = str_replace("{name}", $mail['name'], $mail_temp);
+  //                         $mail['subject']    = ORGANIZATION_NAME." wallet point deducted";                             
+  //                         $mail_temp          = file_get_contents('./global/mail/wallet_template.html');
+  //                         $mail_temp          = str_replace("{web_url}", base_url(), $mail_temp);
+  //                         $mail_temp          = str_replace("{logo}", LOGOURL, $mail_temp);
+  //                         $mail_temp          = str_replace("{shop_name}", ORGANIZATION_NAME, $mail_temp);  
+  //                         $mail_temp          = str_replace("{name}", $mail['name'], $mail_temp);
                                   
-                          $mail_temp          = str_replace("{current_year}", date('Y'), $mail_temp);                         
-                          $mail_temp                 =   str_replace("{details}", $details, $mail_temp);
+  //                         $mail_temp          = str_replace("{current_year}", date('Y'), $mail_temp);                         
+  //                         $mail_temp                 =   str_replace("{details}", $details, $mail_temp);
                           
                          
 
-                          $mail['message']    = $mail_temp;
-                          $mail['from_email']    = FROM_EMAIL;
-                          $mail['from_name']    = ORGANIZATION_NAME;
-                          sendmail($mail); 
+  //                         $mail['message']    = $mail_temp;
+  //                         $mail['from_email']    = FROM_EMAIL;
+  //                         $mail['from_name']    = ORGANIZATION_NAME;
+  //                         sendmail($mail); 
 
                          
                           
-                          /****************mail ends*******************************************/ 
-                        /////////////////////////////////////////////////////////////////////////////
-          return 1;
-  }
+  //                         /****************mail ends*******************************************/ 
+  //                       /////////////////////////////////////////////////////////////////////////////
+  //         return 1;
+  // }
   ////////////////////Wallet ends///////////////////////////////////
     //rating review list
   public function ratingReviewList(){
@@ -4223,21 +4297,24 @@ public function checkMembership(){
     $this->displayOutput($response);
   }
 
-  public function add_notification($user_id,$notification_title,$notification_des,$reservation_id=null)
-  {
-    if($reservation_id==null)
-    {
-      $reservation_id=0;
-    }
-    $notification_arr = array(      'user_id' => $user_id,
-                                    'notification_title'        => $notification_title,
-                                    'notification_description'  => $notification_des,
-                                    'reservation_id'  => $reservation_id,
-                                    'status'                    => '1',
-                                    'created_on'                => date('Y-m-d H:i:s')
-                                    );
-    $insert_data      = $this->mcommon->insert('notification', $notification_arr);
-  }
+  /*
+    ** Moved to my_controller
+  */
+  // public function add_notification($user_id,$notification_title,$notification_des,$reservation_id=null)
+	// {
+	//   if($reservation_id==null)
+	//   {
+	// 	$reservation_id=0;
+	//   }
+	//   $notification_arr = array(      'user_id' => $user_id,
+	// 								  'notification_title'        => $notification_title,
+	// 								  'notification_description'  => $notification_des,
+	// 								  'reservation_id'  => $reservation_id,
+	// 								  'status'                    => '1',
+	// 								  'created_on'                => date('Y-m-d H:i:s')
+	// 								  );
+	//   $insert_data      = $this->mcommon->insert('notification', $notification_arr);
+	// }
 
   /** media list **/
 
@@ -4402,7 +4479,6 @@ public function checkMembership(){
         
         $mobile   = $ap['mobile'];
         $otp      = mt_rand(1000,9999);
-        
        
           $message  = $otp." is the OTP."."\n ".ORGANIZATION_NAME;
           $response_sms = smsSend($ap['mobile'],$message);
@@ -4511,7 +4587,7 @@ public function checkMembership(){
     $this->displayOutput($response);  
   }
 
-    /**---------------------------API By Chayan */
+  /**---------------------------API By Chayan */
   /*
     ** @request user_id
   */
@@ -4548,6 +4624,7 @@ public function checkMembership(){
     }
     $this->displayOutput($response);
   }
+
  /////////////////////////version control/////////////////////////////
   
   public function version_control()
@@ -4665,5 +4742,124 @@ public function checkMembership(){
   }
   ////////////////////////Cinecafe Api ends///////////////////////////////////////////
   
+  //wallet deduction while purchasing
+	public function deductWalllet($user_id,$amount)
+	{
+		
+			if(empty($user_id)||empty($amount))
+			{
+			$response['status']['error_code'] = 1;
+			$response['status']['message']    = 'Invalid user id or amount';
+			
+				$this->displayOutput($response);
+			}
+
+			$condition  = array('user_id'=>$user_id);
+			$user_row   = $this->mcommon->getRow('user',$condition);
+			if (empty($user_row)) {
+				$response['status']['error_code'] = 1;
+				$response['status']['message']    = 'Invalid user id.';
+			
+				$this->displayOutput($response);
+			}
+
+			if($user_row['wallet']<$amount)
+			{
+				$response['status']['error_code'] = 1;
+				$response['status']['message']    = 'Insuffivient amount in wallet. Present balance is '.$user_row['wallet'];
+			
+				$this->displayOutput($response);
+			}
+			//update to wallet user table//////////////////////////
+			$present_amount=$user_row['wallet'];
+			$updated_amount=$present_amount-$amount;
+			$user_data=array();
+			$user_data['wallet']=$updated_amount;
+			$this->mcommon->update('user',$condition,$user_data);
+
+			///////////////////////////////////////////////////////////////
+						////Notification////////////////////////////////////////////
+						//get user info
+						$condition_user['user_id']=$user_id;
+						$user_row=$this->mapi->getRow("user",$condition_user); 
+						
+							$notification_title="Point deducted from wallet";
+							$notification_des= $amount." point deducted from your wallet";
+							$this->add_notification($user_id,$notification_title,$notification_des);
+						/** Notification ends here.............................**/
+
+						/********************************** Send reservation details in sms *************************************************/
+
+							$message  = $notification_des." at ".ORGANIZATION_NAME.". \n";
+							$message .= "Present wallet balance is : ".$updated_amount;
+							
+							smsSend($user_row['mobile'],$message);
+
+							/********push notification fr membership ************************/
+							$title=$notification_title;
+							//$message   = $notification_des;
+							$message_data = array('title' => $title,'message' => $notification_des);
+							$user_fcm_token_data  = $this->mcommon->getRow('device_token',array('user_id' => $user_id));
+							//pr($user_fcm_token_data);
+							if(!empty($user_fcm_token_data)){
+							$member_datas  = $this->mcommon->getRow('user',array('user_id' => $user_id));
+								if($member_datas['notification_allow_type'] == '1'){
+									if($user_fcm_token_data['device_type'] == 1){
+									$this->pushnotification->send_ios_notification($user_fcm_token_data['fcm_token'], $message_data);
+									}
+									else{
+									$this->pushnotification->send_android_notification($user_fcm_token_data['fcm_token'], $message_data);
+									}
+								}
+
+							}
+
+							/*********Mail fn ...************************************************/
+							$details            =  $message;  
+							$name=$user_row['name'];
+							$email=$user_row['email'];
+							$mail['name']       = $name;
+							$mail['to']         = $email;    
+							//$params['to']     = 'sreelabiswas.kundu@met-technologies.com';
+							
+							$mail['subject']    = ORGANIZATION_NAME." wallet point deducted";                             
+							$mail_temp          = file_get_contents('./global/mail/wallet_template.html');
+							$mail_temp          = str_replace("{web_url}", base_url(), $mail_temp);
+							$mail_temp          = str_replace("{logo}", LOGOURL, $mail_temp);
+							$mail_temp          = str_replace("{shop_name}", ORGANIZATION_NAME, $mail_temp);  
+							$mail_temp          = str_replace("{name}", $mail['name'], $mail_temp);
+									
+							$mail_temp          = str_replace("{current_year}", date('Y'), $mail_temp);                         
+							$mail_temp                 =   str_replace("{details}", $details, $mail_temp);
+							
+							
+
+							$mail['message']    = $mail_temp;
+							$mail['from_email']    = FROM_EMAIL;
+							$mail['from_name']    = ORGANIZATION_NAME;
+							sendmail($mail); 
+
+							
+							
+							/****************mail ends*******************************************/ 
+							/////////////////////////////////////////////////////////////////////////////
+			return 1;
+	}
+
+  public function add_notification($user_id,$notification_title,$notification_des,$reservation_id=null)
+	{
+	  if($reservation_id==null)
+	  {
+		$reservation_id=0;
+	  }
+	  $notification_arr = array(      'user_id' => $user_id,
+									  'notification_title'        => $notification_title,
+									  'notification_description'  => $notification_des,
+									  'reservation_id'  => $reservation_id,
+									  'status'                    => '1',
+									  'created_on'                => date('Y-m-d H:i:s')
+									  );
+	  $insert_data      = $this->mcommon->insert('notification', $notification_arr);
+	}
  
 }

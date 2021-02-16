@@ -510,6 +510,68 @@ public function get_rate(){
 
        
     }*/
+
+    /**Added by chayan */
+    public function select($from, $where = array(), $select = '', $order_by = '', $mode = '', $join = array(), $limit = '', $offset = 0, $group_by = '', $order_by2 = '')
+	{
+		if ($select) {
+			$this->db->select($select);
+		} else {
+			$this->db->select('*');
+		}
+		$this->db->from($from);
+		if (!empty($join)) {
+			foreach ($join as $qry) {
+				$this->db->join($qry['table'], $qry['on'], $qry['type']);
+			}
+		}
+		if (!empty($where)) {
+			$this->db->where($where);
+		}
+		if (!empty($group_by)) {
+			$this->db->group_by($group_by);
+		}
+		if ($order_by && $mode) {
+			$this->db->order_by($order_by, $mode);
+		} else {
+			$this->db->order_by($order_by);
+		}
+		// only for dispatched incident listing
+		if($order_by2){
+			$this->db->order_by($order_by2, $mode);
+		}
+		if ($limit) {
+			$this->db->limit($limit, $offset);
+		}
+		return $this->db->get()->result();
+	}
+
+    /**
+     * 
+     * Get ordered history
+     */
+    public function getOrderedHistory($condition = array())
+    {
+        $order_join[] = ['table' => 'food_order_status fos', 'on' => 'fos.food_order_status_id = food_orders.food_order_status_id', 'type' => 'left'];
+          $orders = $this->mcommon->select('food_orders', $condition, 'food_orders.*, fos.food_order_status', 'food_order_id', 'DESC', $order_join);
+          $orderedList = [];
+          $join[] = ['table' => 'food_items fi', 'on' => 'fi.food_item_id = food_order_items.item_id', 'type' => 'left'];
+          $join2[] = ['table' => 'food_item_addons fi', 'on' => 'fi.food_item_addon_id = food_order_items.item_addon_id', 'type' => 'left'];
+          
+          if($orders){
+            foreach ($orders as $key => $order) {
+              $order->delivery_charge = 0;  //for now untill develop delivery charge management
+              $order->address = $this->mcommon->getRow('food_ordered_address', ['order_id'=> $order->food_order_id]);
+              $order->items = $this->mcommon->select('food_order_items', ['food_order_items.food_order_id'=>$order->food_order_id,'food_order_items.item_addon_id'=> null], 'food_order_items.*, fi.*', '', '', $join);
+              //print_r($order->items); die;
+              $order->addons = $this->mcommon->select('food_order_items', ['food_order_items.food_order_id'=>$order->food_order_id,'food_order_items.item_addon_id !='=> null], 'food_order_items.*, fi.*', '', '', $join2);
+              
+
+              $orderedList[] = $order;
+            }
+          }
+        return $orderedList;
+    }
 }
 
 

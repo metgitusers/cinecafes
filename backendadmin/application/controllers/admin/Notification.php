@@ -45,7 +45,7 @@ class Notification extends MY_Controller {
 		if ($this->form_validation->run() == FALSE) {
 		//echo "val error";die;
 		$this->session->set_flashdata('Movie_error_message','Something went wrong.Please try again');
-		$this->add();
+		//$this->add();
 		} 
 		
 	        else{
@@ -81,16 +81,15 @@ class Notification extends MY_Controller {
 				 	foreach ($user_arr as $user_id) {
 				 		$user_row=array();
 				 		$user_fcm_token_data  = $this->mcommon->getRow('device_token',array('user_id' => $user_id));
-                        //pr($user_fcm_token_data);
                         if(!empty($user_fcm_token_data)){
 						  $member_datas  = $this->mcommon->getRow('user',array('user_id' => $user_id));
-						// print_r($member_datas);
 						// print_r($user_fcm_token_data);
                             if($member_datas['notification_allow_type'] == '1'){
                                 if($user_fcm_token_data['device_type'] == 1){
 								  //$this->pushnotification->send_ios_notification($user_fcm_token_data['fcm_token'], $message_data);
 								  $push_array = array("to" => 
 														//"d_C0y2ibSU9GsMxMH3nhCj:APA91bGdwAjyMIFPZCtiWrO4UZ7OGlBsYIPjyrJaD_K1aytOKxAJGReiUdJOg8Cr5_Z3SvNi2UkDBMa_NumyGR70hFZvr2cUOcVjFcZHYOSWX2qDzwIbnbi2kCttaiVBvd0ssjA4jidt",
+														//"f9J_O9hkUkPKpXtDfLrmzq:APA91bGuwCZF8wtEkgwB3bZkAO0SRUZovzizQ1OfaBoGsDJ02s6D4gUH1exjTjPU2hP1WaRipaFwtd6PJ4oBn6Qc4EHt3wYOBwcB4EdOZC9jj_Zjo700xO9eqT92BD-9i5CH589trDVF",
 														$user_fcm_token_data['fcm_token'],
 														"mutable_content"=> true,
 														"notification" => array(
@@ -98,8 +97,8 @@ class Notification extends MY_Controller {
 															"title"=> $title
 														),
 														"data"=> array(
-															"urlImageString"=> $msg_img,
-															"ticker"=> $ticker
+															"urlImageString"=> $msg_img
+															//"ticker"=> $ticker
 														)
 													);
 									//print_r($push_array);
@@ -108,7 +107,7 @@ class Notification extends MY_Controller {
                                 else{
 								  //$this->pushnotification->send_android_notification($user_fcm_token_data['fcm_token'], $message_data);
 								  $push_array = array("to" => 
-														//"d_C0y2ibSU9GsMxMH3nhCj:APA91bGdwAjyMIFPZCtiWrO4UZ7OGlBsYIPjyrJaD_K1aytOKxAJGReiUdJOg8Cr5_Z3SvNi2UkDBMa_NumyGR70hFZvr2cUOcVjFcZHYOSWX2qDzwIbnbi2kCttaiVBvd0ssjA4jidt",
+														//"f0EMOUzGQwO4MwkeBhjUed:APA91bGIJRG1zHI2jsTceIv6qzsfHJX8afiUdGx9ljoMusxYGNNDqhTtIwMeumOP72WgPLvW_yx0ZXDOpbe5bSUTJLrDA7IpByLq6Qc65Y22reJDKLFpdXW_p1_My-M0BUyRfg-o8W-i",
 														$user_fcm_token_data['fcm_token'],
 														"collapse_key"=> "type_a",
 														"notification" => array(
@@ -125,23 +124,24 @@ class Notification extends MY_Controller {
 
                           }
 				 	}
+
+									//echo json_encode($push_array);
+          
+						$idata = array(
+							'offer'   => $this->input->post('offer_text'),		       
+						'user_id' => $users,
+						"title"=> $title,
+						"image"=>$msg_img,
+						"ticker"=> $ticker
+						
+						// 'created_on' => date('Y-m-d H:i:s'),
+					);
+
+						$this->mcommon->insert('push_notification', $idata);
+						
+						$this->session->set_flashdata('Movie_success_message','Notification send successfully.');
 			 	}
 
-				//echo json_encode($push_array);
-          
-			$idata = array(
-		 		'offer'   => $this->input->post('offer_text'),		       
-				'user_id' => $users,
-				"title"=> $title,
-				"image"=>$msg_img,
-				"ticker"=> $ticker
-		        
-		       // 'created_on' => date('Y-m-d H:i:s'),
-            );
-
-		 	$this->mcommon->insert('push_notification', $idata);
-		 	
-		 	$this->session->set_flashdata('Movie_success_message','Notification send successfully.');
 		 	redirect('admin/notification/offer');
 	   }
     }

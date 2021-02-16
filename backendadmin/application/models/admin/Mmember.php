@@ -64,13 +64,20 @@ class Mmember extends CI_Model {
         return $query->result_array();
         
     }
-	public function getMemberDetails($condition = null){
+	public function getMemberDetails($condition = null,$user_type = '',$start_date='',$end_date=''){
         $this->db->select("user.*,user_profile.profile_img,user_profile.address,user_profile.lat,user_profile.lng,DATE_FORMAT(user_profile.dob, '%d/%m/%Y') as dob, user_profile.dob d_o_b, user_profile.gender as gender,user_profile.marriage_status,user_profile.doa");
         $this->db->join('user_profile', 'user_profile.user_id = user.user_id', 'inner'); 
         
        // $this->db->join('package_membership_mapping', 'package_membership_mapping.member_id = mm.member_id', 'left');
        
         $this->db->where($condition);
+        if($start_date != '' && $end_date != '' ){
+            $this->db->where('user.created_date >=', date('Y-m-d', strtotime($start_date)));
+            $this->db->where('user.created_date <=', date('Y-m-d', strtotime($end_date)));
+        }
+        if($user_type != ''){
+            $this->db->where('user.role_id', $user_type == 'App'?'App':'Admin');
+        }
         //$this->db->where('package_membership_mapping.status','1');
         $this->db->order_by("user.user_id","DESC");
         $query=$this->db->get('user');

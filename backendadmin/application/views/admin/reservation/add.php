@@ -48,7 +48,7 @@
                <div class="col-md-4 col-sm-12 col-xs-12 r_duration" style="display:none;">
                   <div class="form-group">
                     <label>Duration*</label>
-                     <select class="form-control" id="duration" name="duration" required="required" >
+                     <select class="form-control" id="duration" name="duration" required="required" > 
                       
                       
                     </select>

@@ -17,6 +17,18 @@ class Movie extends MY_Controller {
 	public function index()
 	{
 		$data['list']=$this->mmovie->getmovieList();
+		if($data['list']){
+			foreach ($data['list'] as $key => $value) {
+				//get image for movie
+				$images = $this->mcommon->select('movie_images mi', ['mi.movie_id'=> $value['movie_id'], 'mi.is_default'=> 1], '*');
+				$img = '';
+				if($images){
+					$img = base_url($images[0]->thumbnail);
+				}
+				$data['list'][$key]['image'] = $img;
+			}
+		}
+		//print_r($data['list']); die;
 		$data['title']='Movie List';
 		$data['content']='admin/movie/list';
 		$this->admin_load_view($data);
@@ -97,39 +109,33 @@ class Movie extends MY_Controller {
 		    	redirect('admin/movie/add');
 	        }*/
 	        else{
-
-			
-            
-            if(!empty($_FILES['image']['name'])){
-
-				$image_path = './public/upload_images/movie_images';
-                $file=$this->imageupload->image_upload_modified($image_path,'image');
-				if($file['status']==1){
-                    $data['image']=$file['result'];
-                    //$image = $data['image'];
-                }else{
-                    $this->session->set_flashdata('Movie_error_message',$file['result']);
-                    $this->add();
-				}
-			} else{
-				//$data['image']=" ";
-			} 
+            // if(!empty($_FILES['image']['name'])){
+			// 	$image_path = './public/upload_images/movie_images';
+            //     $file=$this->imageupload->image_upload_modified($image_path,'image');
+			// 	if($file['status']==1){
+            //         $data['image']=$file['result'];
+            //         //$image = $data['image'];
+            //     }else{
+            //         $this->session->set_flashdata('Movie_error_message',$file['result']);
+            //         $this->add();
+			// 	}
+			// } else{
+			// 	//$data['image']=" ";
+			// } 
 			if(empty($this->input->post('minute'))){
 				$movie_duration=$this->input->post('duration');
 
 			}else{
 				$movie_duration=$this->input->post('duration').'.'.$this->input->post('minute');
-
 			}
           
 			$idata = array(
 		 		'name'   => $this->input->post('name'),
-		       
 		        'category_id' => $this->input->post('category_id'),
 		        //'duration' => $this->input->post('duration'),
 		        //'duration' => $this->input->post('duration').'.'.$this->input->post('minute'),
 		        'duration' => $movie_duration,
-                'image' => $data['image'],
+                //'image' => $data['image'],
                 'description' => trim($this->input->post('description')),
 		        'status' => 1,
 		       // 'created_by' =>$admin['user_id'],
@@ -138,6 +144,34 @@ class Movie extends MY_Controller {
 
 		 	$movie_id=$this->mcommon->insert('movie', $idata);
 		 	if($movie_id>0){
+			/*--------------------- save moview poster-------------------*/
+			$attr_val = [];
+			if($image_array = $this->input->post('movie_images')){
+				foreach($image_array as $key => $value){
+				  //echo $value;
+				  $match_string = substr($value, 0, 5);
+				  if($match_string == 'data:'){
+					list($type, $value) = explode(';', $value);
+					list(, $value)      = explode(',', $value);
+					$decoded=base64_decode($value);
+					$img_name = $key.'_'.time().'.jpg';
+					$img_path = getcwd().'/public/upload_images/movie_images/'.$img_name;
+					if(file_put_contents($img_path, $decoded)){
+						//create thumbnails
+					$thumbnail = $this->doImageThumbnail($source = $img_path, $img_name = $img_name);
+					$attr_val[] = array(
+						'image'=> $img_name,
+						'thumbnail'=> $thumbnail,
+						'movie_id'=> $movie_id,
+						'is_default'=> $key == 0?1:0
+						);
+					}
+				  }
+				}
+				if(!empty($attr_val)){
+					$this->mcommon->batch_insert('movie_images', $attr_val);
+				}
+			  }
 		 	///////////////////////////added for cafe movie mapping////////////////////////////////
 		 	$cafe_movie_arr=$this->input->post('cafe_movie');	
 		 		if(!empty($cafe_movie_arr))
@@ -152,49 +186,48 @@ class Movie extends MY_Controller {
 		 	/////////////////////////////////////////////////////////////////////////////////////////
 
 			 	/* multiple product image upload*/
-					if(!empty($_FILES["files"]["name"][0])){
-		    		$imageDetailArray 		= array();
-					//echo  "okk";exit;
-					$config = array(
-						'upload_path'   => './public/upload_images/movie_images',
-						'allowed_types' => '*',
-						'overwrite'     => 1,  
-						'max_size'      => 0
-					);
-					$this->load->library('upload', $config);				
-					$images = array();
-					foreach ($_FILES["files"]["name"] as $key => $image_list) {
-						$_FILES['images[]']['name']		= $_FILES["files"]["name"][$key];
-						$_FILES['images[]']['type']		= $_FILES["files"]["type"][$key];
-						$_FILES['images[]']['tmp_name']	= $_FILES["files"]["tmp_name"][$key];
-						$_FILES['images[]']['error']	= $_FILES["files"]['error'][$key];
-						$_FILES['images[]']['size']		= $_FILES["files"]['size'][$key];
-						$this->upload->initialize($config);
+				// if(!empty($_FILES["files"]["name"][0])){
+		    	// 	$imageDetailArray 		= array();
+				// 	$config = array(
+				// 		'upload_path'   => './public/upload_images/movie_images',
+				// 		'allowed_types' => '*',
+				// 		'overwrite'     => 1,  
+				// 		'max_size'      => 0
+				// 	);
+				// 	$this->load->library('upload', $config);				
+				// 	$images = array();
+				// 	foreach ($_FILES["files"]["name"] as $key => $image_list) {
+				// 		$_FILES['images[]']['name']		= $_FILES["files"]["name"][$key];
+				// 		$_FILES['images[]']['type']		= $_FILES["files"]["type"][$key];
+				// 		$_FILES['images[]']['tmp_name']	= $_FILES["files"]["tmp_name"][$key];
+				// 		$_FILES['images[]']['error']	= $_FILES["files"]['error'][$key];
+				// 		$_FILES['images[]']['size']		= $_FILES["files"]['size'][$key];
+				// 		$this->upload->initialize($config);
 
-						if ($this->upload->do_upload('images[]')) {
-							$imageDetailArray 		= $this->upload->data();
-							$imgArry[]				= $imageDetailArray['file_name'];
+				// 		if ($this->upload->do_upload('images[]')) {
+				// 			$imageDetailArray 		= $this->upload->data();
+				// 			$imgArry[]				= $imageDetailArray['file_name'];
 							
-						} else {
-							//echo "11";exit;								
-							$error = $this->upload->display_errors();	
-							//$this->session->set_flashdata('success_message','');					
-							$this->session->set_flashdata('error_message', $error);
-							redirect('admin/movie/add');
-						}
-					}
-					//echo "<pre>"; print_r($imgArry);die;
-					if(!empty($imgArry)){
-						foreach($imgArry as $img){	
-							$movie_images	= array('movie_id'=>$movie_id,'image'  => $img);
-							$this->mcommon->insert('movie_images',$movie_images);
-							//echo $this->db->last_query();die;
-						}						
-						//$this->session->set_flashdata('error_msg','');
-						//$this->session->set_flashdata('success_msg','Cafe image added successfully');				
+				// 		} else {
+				// 			//echo "11";exit;								
+				// 			$error = $this->upload->display_errors();	
+				// 			//$this->session->set_flashdata('success_message','');					
+				// 			$this->session->set_flashdata('error_message', $error);
+				// 			redirect('admin/movie/add');
+				// 		}
+				// 	}
+				// 	//echo "<pre>"; print_r($imgArry);die;
+				// 	if(!empty($imgArry)){
+				// 		foreach($imgArry as $img){	
+				// 			$movie_images	= array('movie_id'=>$movie_id,'image'  => $img);
+				// 			$this->mcommon->insert('movie_images',$movie_images);
+				// 			//echo $this->db->last_query();die;
+				// 		}						
+				// 		//$this->session->set_flashdata('error_msg','');
+				// 		//$this->session->set_flashdata('success_msg','Cafe image added successfully');				
 						
-					}
-				}
+				// 	}
+				// }
 
 			/* multiple product image upload*/
 		 	 } 
@@ -204,9 +237,8 @@ class Movie extends MY_Controller {
 	   }
     }
 
-     public function update_content()
-	{   
-	    //echo "<pre>"; print_r($this->input->post());die;
+    public function update_content()
+	{
 	    $movie_id=$this->input->post('movie_id');  
 		  
 	    $this->form_validation->set_rules('name','Movie Name','trim|required');
@@ -216,9 +248,7 @@ class Movie extends MY_Controller {
 	   // $this->form_validation->set_rules('description','Description','trim|required');
 	
 		if ($this->form_validation->run() == FALSE) {
-		//echo "validation error";die;
 		$this->session->set_flashdata('Movie_error_message','Not updated.Something went wrong');
-		//echo "valida error";die;
 	    $this->edit($movie_id);
 		} 
 		/*else if($this->input->post('description')){
@@ -229,21 +259,35 @@ class Movie extends MY_Controller {
 	        }*/
 	        else{
 			
-            if(!empty($_FILES['image']['name'])){
-
-				$image_path = './public/upload_images/movie_images';
-                $file=$this->imageupload->image_upload_modified($image_path,'image');
-				if($file['status']==1){
-                    $data['image']=$file['result'];
-                   
-                }else{
-                    $this->session->set_flashdata('Movie_error_message',$file['result']);
-                    //redirect('admin/food/edit','refersh');
-                    $this->edit($movie_id);
+            /*--------------------- save moview poster-------------------*/
+			$attr_val = [];
+			if($image_array = $this->input->post('movie_images')){
+				foreach($image_array as $key => $value){
+				  //echo $value;
+				  $match_string = substr($value, 0, 5);
+				  if($match_string == 'data:'){
+					list($type, $value) = explode(';', $value);
+					list(, $value)      = explode(',', $value);
+					$decoded=base64_decode($value);
+					$img_name = $key.'_'.time().'.jpg';
+					$img_path = getcwd().'/public/upload_images/movie_images/'.$img_name;
+					if(file_put_contents($img_path, $decoded)){
+						//create thumbnails
+					$thumbnail = $this->doImageThumbnail($source = $img_path, $img_name = $img_name);
+					$attr_val[] = array(
+						'image'=> $img_name,
+						'thumbnail'=> $thumbnail,
+						'movie_id'=> $movie_id,
+						'is_default'=> $key == 0?1:0
+						);
+					}
+				  }
 				}
-			} else{
-				$data['image']=$this->input->post('old_image');
-			} 
+				if(!empty($attr_val)){
+					$this->mcommon->batch_insert('movie_images', $attr_val);
+				}
+			  }
+		 	///////////////////////////added for cafe movie mapping////////////////////////////////
 			if(empty($this->input->post('minute'))){
 				$movie_duration=$this->input->post('duration');
 
@@ -256,14 +300,12 @@ class Movie extends MY_Controller {
           
 		 	$udata = array(
 		 	    'name'   => $this->input->post('name'),
-		       
 		        'category_id' => $this->input->post('category_id'),
 		        //'duration' => $this->input->post('duration'),
 		        //'duration' => $this->input->post('duration').'.'.$this->input->post('minute'),
 		        'duration' => $movie_duration,
                 'image' => $data['image'],
                 'description' => trim($this->input->post('description')),
-		      
 		        //'updated_by' =>$admin['user_id'],
 		        //'updated_on' => date('Y-m-d H:i:s'),
             );
@@ -272,56 +314,46 @@ class Movie extends MY_Controller {
             $this->mcommon->update('movie',$condition, $udata);
 
             /* multiple product image upload*/
-					if(!empty($_FILES["files"]["name"][0])){
-		    		$imageDetailArray 		= array();
-					//echo  "okk";exit;
-					$config = array(
-						'upload_path'   => './public/upload_images/movie_images',
-						'allowed_types' => '*',
-						'overwrite'     => 1,  
-						'max_size'      => 0
-					);
-					$this->load->library('upload', $config);				
-					$images = array();
-					foreach ($_FILES["files"]["name"] as $key => $image_list) {
-						$_FILES['images[]']['name']		= $_FILES["files"]["name"][$key];
-						$_FILES['images[]']['type']		= $_FILES["files"]["type"][$key];
-						$_FILES['images[]']['tmp_name']	= $_FILES["files"]["tmp_name"][$key];
-						$_FILES['images[]']['error']	= $_FILES["files"]['error'][$key];
-						$_FILES['images[]']['size']		= $_FILES["files"]['size'][$key];
-						$this->upload->initialize($config);
-
-						if ($this->upload->do_upload('images[]')) {
-							$imageDetailArray 		= $this->upload->data();
-							$imgArry[]				= $imageDetailArray['file_name'];
-							
-						} else {
-							//echo "11";exit;								
-							$error = $this->upload->display_errors();	
-							//$this->session->set_flashdata('success_message','');					
-							$this->session->set_flashdata('error_message', $error);
-							redirect('admin/movie/add');
-						}
-					}
-					//echo "<pre>"; print_r($imgArry);die;
-					if(!empty($imgArry)){
-						foreach($imgArry as $img){	
-							$movie_images	= array('movie_id'=>$movie_id,'image'  => $img);
-							$this->mcommon->insert('movie_images',$movie_images);
-							//echo $this->db->last_query();die;
-						}						
-						//$this->session->set_flashdata('error_msg','');
-						//$this->session->set_flashdata('success_msg','Cafe image added successfully');				
+				// if(!empty($_FILES["files"]["name"][0])){
+		    	// 	$imageDetailArray 		= array();
+				// 	$config = array(
+				// 		'upload_path'   => './public/upload_images/movie_images',
+				// 		'allowed_types' => '*',
+				// 		'overwrite'     => 1,  
+				// 		'max_size'      => 0
+				// 	);
+				// 	$this->load->library('upload', $config);				
+				// 	$images = array();
+				// 	foreach ($_FILES["files"]["name"] as $key => $image_list) {
+				// 		$_FILES['images[]']['name']		= $_FILES["files"]["name"][$key];
+				// 		$_FILES['images[]']['type']		= $_FILES["files"]["type"][$key];
+				// 		$_FILES['images[]']['tmp_name']	= $_FILES["files"]["tmp_name"][$key];
+				// 		$_FILES['images[]']['error']	= $_FILES["files"]['error'][$key];
+				// 		$_FILES['images[]']['size']		= $_FILES["files"]['size'][$key];
+				// 		$this->upload->initialize($config);
+				// 		if ($this->upload->do_upload('images[]')) {
+				// 			$imageDetailArray 		= $this->upload->data();
+				// 			$imgArry[]				= $imageDetailArray['file_name'];
+				// 		} else {							
+				// 			$error = $this->upload->display_errors();
+				// 			$this->session->set_flashdata('error_message', $error);
+				// 			redirect('admin/movie/add');
+				// 		}
+				// 	}
+				// 	if(!empty($imgArry)){
+				// 		foreach($imgArry as $img){	
+				// 			$movie_images	= array('movie_id'=>$movie_id,'image'  => $img);
+				// 			$this->mcommon->insert('movie_images',$movie_images);
+				// 		}
 						
-					}
-				}
+				// 	}
+				// }
 
 			/* multiple product image upload*/
 		 	//echo $this->db->last_query();die;
 		 		
 		 	$this->session->set_flashdata('Movie_success_message','Movie Updated successfully.');
 		 	redirect('admin/movie');
-		 	
 	   }
     }
    

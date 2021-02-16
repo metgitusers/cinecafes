@@ -49,7 +49,7 @@ class Reservation extends MY_Controller {
 		//$this->load->view('admin/layouts/index', $data);
 	}
 	
-	public function detail($reservation_id)
+	public function detail($reservation_id) 
 	{
 		$data['row'] =$this->mreservation->getreservationById($reservation_id);
 		//echo "<pre>";print_r($data['row']);die;
@@ -66,9 +66,21 @@ class Reservation extends MY_Controller {
 			$data['movie_list']=$this->mreservation->getMovieById($movie_id);
 	    }
 	    
-		$data['food_list']=$this->mreservation->getFoodById($reservation_id);
-		$data['addon_list']=$this->mreservation->getAddonById($reservation_id);
-	    
+		
+		$join[] = ['table' => 'food_order_items foi', 'on' => 'foi.food_order_id = rf.order_id', 'type' => 'left'];
+		$join[] = ['table' => 'food_items fi', 'on' => 'fi.food_item_id = foi.item_id', 'type' => 'left'];
+		$details= $this->mcommon->select('reservation_orders rf', ['rf.reservation_id'=> $reservation_id], 'foi.*, fi.*, foi.price ordered_price', 'foi.food_order_item_id', 'ASC', $join);
+		$order_details_array = [];
+		if(!empty($details)){
+			$join2[] = ['table' => 'food_order_items foi', 'on' => 'foi.food_order_id = rf.order_id', 'type' => 'left'];
+			$join2[] = ['table' => 'food_item_addons fi', 'on' => 'fi.food_item_addon_id = foi.item_addon_id', 'type' => 'left'];
+			foreach ($details as $key => $value) {
+				$value->addons = $this->mcommon->select('reservation_orders rf', ['rf.reservation_id'=>$reservation_id,'foi.item_addon_id !='=> null], 'foi.*, fi.*', '', '', $join2);
+				$order_details_array[] = $value;
+			}
+		}		
+		$data['details']=	$order_details_array;
+	    //print_r($data['food_list']); die;
 		$coupon_code= $data['row']['coupon_code'];
 		//echo $coupon_code;die;
 		if(!empty($coupon_code)){

@@ -153,7 +153,7 @@
         <!-- /.col -->
       </div>
     </form>
-    
+    <!-- password must be minimum 6 characters contening atleast 1 alphabate and 1 nummber -->
     <!--<div class="social-auth-links text-center">
       <p>- OR -</p>
       <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
@@ -182,6 +182,15 @@
     alert('New Password field is required');
     return false;
    }
+    //if(newpassword1.match(letters)) // || newpassword1.length <6
+    if(newpassword1.search(/[a-z]/i) < 0 || newpassword1.search(/[0-9]/) < 0 || newpassword1.length <6) // || newpassword1.length <6
+    {
+      alert('Password must be minimum 6 characters containing atleast 1 alphabet and 1 number');
+      return false;
+    }
+
+    //return false;
+
    if(newpassword2 == '' || newpassword2==0){
     alert('Confirm Password field is required');
     return false;
