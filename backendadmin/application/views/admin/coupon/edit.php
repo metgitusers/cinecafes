@@ -43,16 +43,16 @@
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                      <label>Start on*</label>
-                       <input class="form-control" type="text"  name="start_on" id="start_on"  value="<?php echo $row['start_on'];?>"> 
+                       <input class="form-control start-date-1" type="text"  name="start_on" id=""  value="<?php echo $row['start_on'];?>"> 
                     </div>
                 </div>
                  <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                      <label>End on*</label>
-                       <input class="form-control" type="text"  name="end_on" id="end_on"  value="<?php echo $row['end_on'];?>"> 
+                       <input class="form-control end-date-1" type="text"  name="end_on" id=""  value="<?php echo $row['end_on'];?>"> 
                     </div>
                 </div>
-                 <div class="col-md-4 col-sm-12 col-xs-12">
+                 <div class="col-md-4 col-sm-12 col-xs-12  mt-3">
                   <div class="form-group">
                      <label>Select coupon Type*</label>
                      <div class="coupontype_box">
@@ -63,19 +63,19 @@
 					  </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="col-md-4 col-sm-12 col-xs-12  mt-3">
                   <div class="form-group">
                      <label>Discount Amount*</label>
                        <input class="form-control" type="number" min="1" name="amount" id="amount"  value="<?php echo $row['amount'];?>"> 
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="col-md-4 col-sm-12 col-xs-12  mt-3">
                   <div class="form-group">
                      <label>Min Purchase Amount</label>
                        <input class="form-control" type="number" min="1" name="min_price" id="min_price"  value="<?php echo $row['min_price'];?>"> 
                     </div>
                 </div>
-                 <div class="col-md-4 col-sm-12 col-xs-12 max-discount-percentage" style="display: <?= $row['coupon_type']==1?'':'none'?> ">
+                 <div class="col-md-4 col-sm-12 col-xs-12 max-discount-percentage  mt-3" style="display: <?= $row['coupon_type']==1?'':'none'?> ">
                   <div class="form-group">
                      <label>Max Discount Amount</label>
                        <input class="form-control" type="number" min="1" name="max_discount_amount" id="max_discount_amount"  value="<?php echo $row['max_discount_amount'];?>"> 
@@ -92,15 +92,16 @@
                     }
                   })
                 </script>
-                <div class="col-md-12 col-xs-2 col-xs-2">
-                  <div class="form-group">
-                     <input type="hidden" name="end_on_old" value="<?php echo $row['end_on'];?>">
-                     <input type="hidden" name="coupon_id" value="<?php echo $row['coupon_id'];?>">
-                     <button type="submit" class="btn btn-primary btn-user">Upadte</button>
-                       
-                     </div>
-                </div> 
-               
+                <div class="col-md-12">
+                  <div class="col-md-12 col-xs-2 col-xs-2">
+                    <div class="form-group">
+                      <input type="hidden" name="end_on_old" value="<?php echo $row['end_on'];?>">
+                      <input type="hidden" name="coupon_id" value="<?php echo $row['coupon_id'];?>">
+                      <button type="submit" class="btn btn-primary btn-user">Upadte</button>
+                        
+                      </div>
+                  </div> 
+                </div>
                 
                 </div>
             
@@ -112,3 +113,31 @@
 
       </div>
       <!-- End of Main Content -->
+      <script type="text/javascript">
+$(document).ready(function() {
+  //edit time 
+  $('.end-date-1').datepicker({
+    dateFormat: 'mm-dd-yy',
+        minDate: new Date($('.start-date-1').val()),
+        //selectYears: true,
+        selectMonths: true
+      });
+
+  $('.start-date-1').datepicker({
+    dateFormat: 'mm-dd-yy',
+    minDate: new Date(),
+    //selectYears: true,
+    selectMonths: true,
+    onClose: function (date) {
+      $( ".end-date-1" ).datepicker( "destroy" );
+      var selectedDate = new Date(date);
+      $('.end-date-1').datepicker({
+        dateFormat: 'mm-dd-yy',
+        minDate: selectedDate,
+        //selectYears: true,
+        selectMonths: true
+      });
+      }
+  });
+});
+</script>

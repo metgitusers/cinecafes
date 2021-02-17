@@ -2,7 +2,7 @@
   .toggle-password {
     position: absolute;
     right: 25px;
-    top: 40px;
+    top: 51px;
 }
 
   .error{

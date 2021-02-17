@@ -33,7 +33,7 @@
                                                     <div class="form-group reserform_panel">
                                                     <label>From Date</label>
                                                     <div class="input-group">
-                                                        <input id="start_date" name="start_date" type="text" class="form-control" value="" placeholder="YYYY/MM/DD">
+                                                        <input id="start_date" name="start_date" type="text" class="form-control" value="" autocomplete="off" placeholder="YYYY/MM/DD">
                                                         <div class="input-group-append">
                                                         <span class="input-group-text">
                                                             <span class="fa fa-calendar-o"></span>
@@ -46,7 +46,7 @@
                                                 <div class="form-group reserform_panel">
                                                 <label>To Date</label>
                                                 <div class="input-group">
-                                                    <input id="end_date" name="end_date" type="text" class="form-control" value="" placeholder="YYYY/MM/DD">
+                                                    <input id="end_date" name="end_date" type="text" class="form-control" value="" autocomplete="off" placeholder="YYYY/MM/DD">
                                                     <div class="input-group-append">
                                                     <span class="input-group-text">
                                                         <span class="fa fa-calendar-o"></span>

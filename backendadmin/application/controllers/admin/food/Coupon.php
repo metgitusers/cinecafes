@@ -62,17 +62,18 @@ class Coupon extends MY_Controller {
 				$this->_load_view($result);
 			}
 			else{
-				
+				//print_r($this->input->post());
 				$data = array(
 					'coupon_code' 	=> $this->input->post('coupon_code'),
-					'start_date'	=> date('Y-m-d', strtotime($this->input->post('start_date'))),
-					'end_date'		=> date('Y-m-d', strtotime($this->input->post('end_date'))),
+					'start_date'	=> date('Y-m-d', strtotime(str_replace('-', '/', $this->input->post('start_date')))),
+					'end_date'		=> date('Y-m-d', strtotime(str_replace('-', '/', $this->input->post('end_date')))),
 					'min_purchase_amount'		=> $this->input->post('min_purchase_amount'),
 					'discount_amount'			=> $this->input->post('discount_amount'),
 					'max_uses'			=> $this->input->post('max_uses'),
 					'coupon_type'		=> !empty($this->input->post('coupon_type'))?$this->input->post('coupon_type'):1,
 				);
 
+				//print_r($data); die;
 				if(empty($this->input->post('food_coupon_id'))){
 					$result = $this->mcommon->insert('food_coupons',$data);
 					$msg = "Add new coupon";

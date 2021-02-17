@@ -125,7 +125,7 @@
                 </div> 
                  <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
-                      <label>Reservation for</label>
+                      <label>Reservation for*</label>
                       
                        <select class="form-control" id="reservation_for" name="reservation_for" required="required" onchange="reservation_type_change(this.value);" >
                         <option value="">Select</option>
@@ -168,7 +168,7 @@
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
-                      <label>Name</label>
+                      <label>Name*</label>
                       <input type="text" name="name" id="name" class="form-control"  value="<?php echo set_value('name');?>" required>
                     </div>
                 </div>

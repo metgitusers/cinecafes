@@ -14,25 +14,25 @@
 </style>
 <!-- Begin Page Content -->
         <div class="container-fluid">
-
+            <?php if ($this->session->flashdata('profile_success_message')) : ?>
+                <div class="alert alert-success">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                  <?php echo $this->session->flashdata('profile_success_message') ?>
+                </div>
+            <?php endif ?>
+            <?php if ($this->session->flashdata('profile_error_message')) : ?>
+                <div class="alert alert-danger">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                  <?php echo $this->session->flashdata('profile_error_message') ?>
+                </div>
+            <?php endif ?>
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">Profile</h1>
                  
                 <div class="form_panel"> 
 
 
-                    <?php if ($this->session->flashdata('profile_success_message')) : ?>
-                        <div class="alert alert-success">
-                          <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
-                          <?php echo $this->session->flashdata('profile_success_message') ?>
-                        </div>
-                    <?php endif ?>
-                    <?php if ($this->session->flashdata('profile_error_message')) : ?>
-                        <div class="alert alert-danger">
-                          <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
-                          <?php echo $this->session->flashdata('profile_error_message') ?>
-                        </div>
-                    <?php endif ?>
+                    
                
                  
                     <form id="profileForm" method="Post" action="<?= base_url(); ?>admin/user/update_content" enctype="multipart/form-data">

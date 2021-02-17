@@ -48,7 +48,7 @@
           <i class="fas fa-fw fa-cog"></i>
           <span>Food</span>
         </a>
-        <div id="collapseTwoFood" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+        <div id="collapseTwoFood" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"  >
           <div class="bg-white py-2 collapse-inner rounded">
             
               <a class="collapse-item <?php if($this->uri->segment(2)=='foodcategory'){ echo "active"; }?>" href="<?php echo base_url('admin/foodcategory'); ?>" >Food Category</a>
@@ -69,7 +69,7 @@
         <img src="<?=base_url('public/img/icon_4.png')?>" alt="icon">
           <span>Movie</span>
         </a>
-        <div id="collapseTwoMovie" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+        <div id="collapseTwoMovie" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"  >
           <div class="bg-white py-2 collapse-inner rounded">
             
               <a class="collapse-item <?php if($this->uri->segment(2)=='moviecategory'){ echo "active"; }?>" href="<?php echo base_url('admin/moviecategory'); ?>" >Movie Category</a>
@@ -92,7 +92,7 @@
         <img src="<?=base_url('public/img/icon_5.png')?>" alt="icon">
           <span>Room</span>
         </a>
-        <div id="collapseTwoRoom" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+        <div id="collapseTwoRoom" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"  >
           <div class="bg-white py-2 collapse-inner rounded">
             
               <a class="collapse-item <?php if($this->uri->segment(2)=='roomtype'){ echo "active"; }?>" href="<?php echo base_url('admin/roomtype'); ?>" >Room Type</a>
@@ -145,7 +145,7 @@
         <img src="<?=base_url('public/img/icon_11.png')?>" alt="icon">
           <span>Membership Package</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"  >
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Members</h6>
               <a class="collapse-item <?php if($this->uri->segment(2)=='member' && $this->uri->segment(3)=='add'){ echo"active"; }?>" href="<?php echo base_url('admin/member/add'); ?>" >Add new Member</a>
@@ -156,8 +156,8 @@
               <a class="collapse-item <?php if($this->uri->segment(2)=='packagetype'){ echo"active"; }?>" href="<?php echo base_url('admin/packagetype'); ?>" >Package Type</a>
               <a class="collapse-item <?php if($this->uri->segment(2)=='package' && $this->uri->segment(3)=='add'){ echo"active"; }?>" href="<?php echo base_url('admin/package/add'); ?>" >Add new Membership plan</a>
               <a class="collapse-item <?php if($this->uri->segment(2)=='package' && $this->uri->segment(3)== ''){ echo"active"; }?>" href="<?php echo base_url('admin/package'); ?>" >List of Membership plan</a>
-              <a class="collapse-item <?php if($this->uri->segment(2)=='PackageBenefit' && $this->uri->segment(2)=='add'){ echo"active"; }?>" href="<?php echo base_url('admin/PackageBenefit/add'); ?>" >Add new Membership Benifit</a>
-              <a class="collapse-item <?php if($this->uri->segment(2)=='PackageBenefit'){ echo"active"; }?>" href="<?php echo base_url('admin/PackageBenefit'); ?>" >List of Membership Benifit</a>
+              <a class="collapse-item <?php if($this->uri->segment(2)=='PackageBenefit' && $this->uri->segment(3)=='add'){ echo"active"; }?>" href="<?php echo base_url('admin/PackageBenefit/add'); ?>" >Add Membership Benefit</a>
+              <a class="collapse-item <?php if($this->uri->segment(2)=='PackageBenefit' && empty($this->uri->segment(3))){ echo"active"; }?>" href="<?php echo base_url('admin/PackageBenefit'); ?>" >List of Membership Benefit</a>
 
           </div>
         </div>
@@ -168,7 +168,7 @@
         <img src="<?=base_url('public/img/icon_12.png')?>" alt="icon">
           <span>User</span>
         </a>
-        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"  >
           <div class="bg-white py-2 collapse-inner rounded">
             
               <a class="collapse-item <?php if($this->uri->segment(2)=='member' && $this->uri->segment(3)=='add'){ echo"active"; }?>" href="<?php echo base_url('admin/member/add'); ?>" >Add new User</a>
@@ -184,11 +184,11 @@
         <img src="<?=base_url('public/img/icon_13.png')?>" alt="icon">
           <span>Subadmin</span>
         </a>
-        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"  >
           <div class="bg-white py-2 collapse-inner rounded">
             
-              <a class="collapse-item" href="<?php echo base_url('admin/subadmin/add'); ?>" >Add new Subadmin</a>
-              <a class="collapse-item" href="<?php echo base_url('admin/subadmin'); ?>" >All Subadmin</a>
+              <a class="collapse-item <?php if($this->uri->segment(2)=='subadmin' && $this->uri->segment(3)=='add'){ echo"active"; }?>" href="<?php echo base_url('admin/subadmin/add'); ?>" >Add new Subadmin</a>
+              <a class="collapse-item <?php if($this->uri->segment(2)=='subadmin' && empty($this->uri->segment(3)=='add')){ echo"active"; }?>" href="<?php echo base_url('admin/subadmin'); ?>" >All Subadmin</a>
               
             
 

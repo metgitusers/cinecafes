@@ -173,7 +173,7 @@
                       <label>Choose Cafe</label>
                       <div class="row">
                        <?php foreach($cafe_list as $row1){?>
-                       <div class="col-md-3 col-sm-12 col-xs-12">
+                       <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="form-check">
                           <input class="form-check-input move_cafe_checkbox" type="checkbox" value="<?php echo $row1['cafe_id'];?>" name="cafe_movie[]" <?php if (in_array($row1['cafe_id'], $movie_cafe_arr)) { ?>checked="checked" <?php } ?>>
                           <label class="form-check-label" for="<?php echo $row1['cafe_name'];?>">

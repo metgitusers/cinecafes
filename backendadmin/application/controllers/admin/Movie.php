@@ -23,7 +23,7 @@ class Movie extends MY_Controller {
 				$images = $this->mcommon->select('movie_images mi', ['mi.movie_id'=> $value['movie_id'], 'mi.is_default'=> 1], '*');
 				$img = '';
 				if($images){
-					$img = base_url($images[0]->thumbnail);
+					$img = !empty($images[0]->thumbnail)?base_url($images[0]->thumbnail):'';
 				}
 				$data['list'][$key]['image'] = $img;
 			}
@@ -304,7 +304,7 @@ class Movie extends MY_Controller {
 		        //'duration' => $this->input->post('duration'),
 		        //'duration' => $this->input->post('duration').'.'.$this->input->post('minute'),
 		        'duration' => $movie_duration,
-                'image' => $data['image'],
+                //'image' => $data['image'],
                 'description' => trim($this->input->post('description')),
 		        //'updated_by' =>$admin['user_id'],
 		        //'updated_on' => date('Y-m-d H:i:s'),

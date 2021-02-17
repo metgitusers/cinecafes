@@ -22,7 +22,7 @@ class Commoncontroller extends MY_Controller
 	{
 		redirect('/');
 	}
-	private function outputJson($response)
+	public function outputJson($response)
 	{
 		header('Content-Type: application/json');
 		echo json_encode($response);

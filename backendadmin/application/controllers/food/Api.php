@@ -1824,14 +1824,14 @@ class Api extends MY_Controller
       if (sizeof($ap)) {        
           $where = array('fo.status'=> 1, 'order_status'=> 1);
           if(!empty($ap['start_date']) && !empty($ap['end_date'])){
-            $where['order_date >='] = date('Y-m-d', strtotime($ap['start_date']));
-            $where['order_date <='] = date('Y-m-d', strtotime($ap['end_date']));
+            $where['order_date >='] = date('Y-m-d 00:00:01', strtotime($ap['start_date']));
+            $where['order_date <='] = date('Y-m-d 23:59:59', strtotime($ap['end_date']));
           }
           
           //$categories = $this->mcommon->getDetails('food_categories', $where);
           $join[] = ['table' => 'user u', 'on' => 'u.user_id = fo.user_id', 'type' => 'left'];
           $items = $this->mcommon->select('food_orders fo', $where, 'fo.*, u.name first_name, u.last_name', 'fo.food_order_id', 'DESC', $join);
-          //echo $this->db->last_query();
+          //echo $this->db->last_query(); 
           if(isset($ap['source']) && $ap['source'] == 'WEB'){
             $this->data['orders'] = (object)$items;
             $this->data['order_status'] = $this->mcommon->select('food_order_status', ['status'=> 1], '*', 'order', 'ASC');

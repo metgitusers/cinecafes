@@ -24,12 +24,12 @@ class Reservation extends MY_Controller {
 		$end_date="";
 		$cafe_id="";
 		if(!empty($_POST['start_date'])){
-       		$start_date= $this->input->post('start_date');
+       		$start_date= date('Y-m-d', strtotime($this->input->post('start_date')));
         }else{
         	//$start_date=" ";
         }
         if(!empty($_POST['end_date'])){
-       		$end_date= $this->input->post('end_date');
+       		$end_date= date('Y-m-d', strtotime($this->input->post('end_date')));
         }else{
         	//$end_date=" ";
         }
@@ -41,6 +41,7 @@ class Reservation extends MY_Controller {
         $data['cafe_id']= $cafe_id;
         //$data['list']=$this->mreservation->getreservationList();
 		$data['list']=$this->mreservation->getreservationList($start_date,$end_date,$cafe_id);
+		//echo $this->db->last_query(); die;
 		$condition=array('status'=>1,'is_delete='=>0);
 		$data['cafe_list'] =$this->mcommon->getDetails('master_cafe',$condition);
 		$data['title']='Reservation List';
@@ -199,8 +200,8 @@ class Reservation extends MY_Controller {
 	    $this->form_validation->set_rules('mobile','mobile','required');
 	    $this->form_validation->set_rules('no_of_guests','no of guests','trim|required');
 	    $this->form_validation->set_rules('reservation_date','reservation date','trim|required');
-	    $this->form_validation->set_rules('reservation_time','reservation time','required');
-	    $this->form_validation->set_rules('duration','duration','trim|required');
+	    //$this->form_validation->set_rules('reservation_time','reservation time','required');
+	    //$this->form_validation->set_rules('duration','duration','trim|required');
 	    $this->form_validation->set_rules('cafe_id','Cafe','trim|required');
 	    $this->form_validation->set_rules('room_id','Room','trim|required');
 	  	$this->form_validation->set_rules('reservation_type','Type','trim|required');
@@ -209,6 +210,7 @@ class Reservation extends MY_Controller {
 	
 		if ($this->form_validation->run() == FALSE) {
 		//echo "val error";die;
+		//echo validation_errors(); die;
 		$this->session->set_flashdata('error_message','Validation error');
 		$this->add();
 		} else {
@@ -217,16 +219,17 @@ class Reservation extends MY_Controller {
 			$reservation_date=$this->input->post('reservation_date');
 			$room_id=$this->input->post('room_id');
 			$duration=$this->input->post('duration');
-             $reservation_time=DATE('H:i:s',strtotime($this->input->post('reservation_time')));
-             $end_time_range           = date('H:i:s',strtotime("+".$duration." hours", strtotime($reservation_time)));
+			$reservation_time=DATE('H:i:s');
+			$end_time_range           = date('H:i:s',strtotime("+".$duration." hours", strtotime($reservation_time)));
 			$availability_status=$this->is_available($reservation_date,$room_id,$reservation_time,$duration);
-         
-             if($availability_status!=0){
-             	$this->session->set_flashdata('error_message','This time this room is not available');
-				$this->add();
-             }
-             else
-             {
+			/* commented due to off time in frontend -- */
+
+            //  if($availability_status!=0){
+            //  	$this->session->set_flashdata('error_message','This time this room is not available');
+			// 	$this->add();
+            //  }
+            //  else
+            //  {
              	if($this->input->post('user_id')>0)
              	{
              		$user_id=$this->input->post('user_id');
@@ -268,10 +271,10 @@ class Reservation extends MY_Controller {
 
                   //////////////////////////
              	$admin=$this->session->userdata('admin');
-                    $insrtarry    = array('reservation_date'    => $this->input->post('reservation_date'),
+                    $insrtarry    = array('reservation_date'    => date('Y-m-d', strtotime($this->input->post('reservation_date'))),
                                           'reservation_time'    => $reservation_time,
                                           'reservation_end_time' =>$end_time_range,
-                                          'duration'=>$this->input->post('duration'),
+                                          'duration'=> $this->input->post('duration') ?? 1,
                                           'cafe_id'             => $this->input->post('cafe_id'),
                                           'no_of_guests'        => $this->input->post('no_of_guests'),
                                           'total_price'          => $total_price,
@@ -291,8 +294,10 @@ class Reservation extends MY_Controller {
                                           'created_by'          => $admin['user_id'],
                                           'created_on'          => date('Y-m-d')
                                         );
-                    $reservation_id     = $this->mapi->insert('reservation',$insrtarry);
 
+					//print_r($insrtarry); die;
+                    $reservation_id     = $this->mapi->insert('reservation',$insrtarry);
+					
                     /** added by ishani on 18.09.2020 */
                     //fn defined in common helper
                     $user_data['name']=$name;
@@ -311,7 +316,7 @@ class Reservation extends MY_Controller {
                           smsSend($mobile,$message);
                      /******************************************************************/
 		 			$this->session->set_flashdata('success_message','Booking confirmed.');
-             }
+             //}
 			
 			
 		 	redirect('admin/reservation');

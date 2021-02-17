@@ -2,7 +2,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; <?php echo ORGANIZATION_NAME. date('Y'); ?></span>
+            <span>Copyright &copy; <?php echo ORGANIZATION_NAME.' '. date('Y'); ?></span>
           </div>
         </div>
       </footer>
@@ -2293,6 +2293,7 @@ $(function () {
 
 
 ////common fn for status update 
+//$(document).on('click','.change-p-status',function(){
 $(document).on('click','.change-p-status',function(){
     //if(confirm("Are you sure you want to delete this ?")){
        var selector = $(this);
@@ -2301,27 +2302,37 @@ $(document).on('click','.change-p-status',function(){
        var column_name = $(this).attr('data-column_name');
        var id = $(this).attr('id');
        var table = $(this).attr('data-table');
-       
-       $.ajax({
-          type: "POST",
-          url: '<?php echo base_url('commoncontroller/changeStatus')?>',
-          data:{status:status,column_name:column_name,id:id,table:table},
-          dataType:'html',
-          success: function(response){
-            //alert(response);
-             window.location.reload();
-            if(response ==1 ){
-              // do something 
-               
+       Swal.fire({
+          title: "Are you sure want to update status ?",
+          type: "warning",
+          showCancelButton: true, // true or false  
+          confirmButtonColor: "#dd6b55",
+          cancelButtonColor: "#48cab2",
+          confirmButtonText: "Yes !!!", 
+      }).then((result) => {
+          if (result.value) { 
+          $.ajax({
+            type: "POST",
+            url: '<?php echo base_url('commoncontroller/changeStatus')?>',
+            data:{status:status,column_name:column_name,id:id,table:table},
+            dataType:'html',
+            success: function(response){
+              //alert(response);
+              window.location.reload();
+              if(response ==1 ){
+                // do something 
+                
+              }
+              else{
+                //nothing to do 
+              }
+            },
+            error:function(response){
+            //error msg
             }
-            else{
-              //nothing to do 
-            }
-          },
-          error:function(response){
-           //error msg
-          }
-      }); 
+          }); 
+        }
+      })
    // }
     return false;
 });
@@ -2588,7 +2599,7 @@ function populate_room(cafe_id)
 <script src="<?=base_url('public/admin_assets/common-function.js')?>"></script>
 <script>
 $(document)  .ready(function(){
-    $(document).on("click", ".change-p-status", function(e) {
+    $(document).on("click", "#food_dataTable .change-p-status", function(e) {
     e.preventDefault();
     var status = $(this).attr("data-status");
     let msg = '';
