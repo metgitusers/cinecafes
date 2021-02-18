@@ -58,8 +58,8 @@ class Coupon extends MY_Controller {
 		} else {
           	$idata = array(
 		 		'coupon_code'   => $this->input->post('coupon_code'),
-		        'start_on' => $this->input->post('start_on'),
-		        'end_on' => $this->input->post('end_on'),
+		        'start_on' => date('Y-m-d', strtotime($this->input->post('start_on'))),
+		        'end_on' => date('Y-m-d', strtotime($this->input->post('end_on'))),
 		        'coupon_type' => $this->input->post('coupon_type'),
                 'min_price' => $this->input->post('min_price'),
 				'amount' => $this->input->post('amount'),
@@ -94,15 +94,16 @@ class Coupon extends MY_Controller {
 	    $this->edit($coupon_id);
 		} else {
 			if(!empty($this->input->post('end_on'))){
-				$end_on=$this->input->post('end_on');
+				$end_on=date('Y-m-d', strtotime($this->input->post('end_on')));
 			}else{
-				$end_on=$this->input->post('end_on_old');
+				$end_on=date('Y-m-d', strtotime($this->input->post('end_on_old')));
 
 			}
 
 			$udata = array(
 		 	    'coupon_code'   => $this->input->post('coupon_code'),
-		        'start_on' => $this->input->post('start_on'),
+		        //'start_on' => $this->input->post('start_on'),
+				'start_on' => date('Y-m-d', strtotime($this->input->post('start_on'))),
 		       // 'end_on' => $this->input->post('end_on'),
 		        'end_on' => $end_on,
 		        'coupon_type' => $this->input->post('coupon_type'),
@@ -147,14 +148,4 @@ class Coupon extends MY_Controller {
 		$this->mcommon->update('coupon',$condition,$udata);
 		echo 1;
 	}
-  
-  
-	
-   
-	
-	
-
-
-	
-
 }

@@ -13,7 +13,7 @@ class Cafe extends MY_Controller {
 		$this->load->model('mcommon');
 		$this->load->model('admin/mcafe');
 		$this->load->library('imageupload');
-		
+
 		ini_set("allow_url_fopen", 1);
 		ini_set("allow_url_include", 1);
 	}
@@ -81,10 +81,12 @@ class Cafe extends MY_Controller {
 					   //$apiKey = 'api-key'; // Google maps now requires an API key.
 						$apiKey = 'AIzaSyBygzKjcQExaecyS1lz35vPwzLRhhqRBfk'; // Google maps now requires an API key.
 						// Get JSON results from this request
-						$geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false&key='.$apiKey);
-						$geo = json_decode($geo, true); // Convert the JSON to an array
+						$geo = "";
+						// $geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false&key='.$apiKey);
+						// $geo = json_decode($geo, true); // Convert the JSON to an array
 						//var_dump($geo);
-
+						$latitude = "";
+						$longitude = "";
 						if (isset($geo['status']) && ($geo['status'] == 'OK')) {
 						  $latitude = $geo['results'][0]['geometry']['location']['lat']; // Latitude
 						  $longitude = $geo['results'][0]['geometry']['location']['lng']; // Longitude
@@ -196,8 +198,10 @@ class Cafe extends MY_Controller {
 					   //$apiKey = 'api-key'; // Google maps now requires an API key.
 						$apiKey = 'AIzaSyBygzKjcQExaecyS1lz35vPwzLRhhqRBfk'; // Google maps now requires an API key.
 						// Get JSON results from this request
-						$geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false&key='.$apiKey);
-						$geo = json_decode($geo, true); // Convert the JSON to an array
+						$latitude = "";
+						$longitude = "";
+						// $geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false&key='.$apiKey);
+						// $geo = json_decode($geo, true); // Convert the JSON to an array
 						//var_dump($geo);
 
 						if (isset($geo['status']) && ($geo['status'] == 'OK')) {
@@ -320,13 +324,4 @@ class Cafe extends MY_Controller {
 		//echo $this->db->last_query();die;
 		echo 1;
 	}
-  
-	
-   
-	
-	
-
-
-	
-
 }
