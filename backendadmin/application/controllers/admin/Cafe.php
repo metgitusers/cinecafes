@@ -13,7 +13,9 @@ class Cafe extends MY_Controller {
 		$this->load->model('mcommon');
 		$this->load->model('admin/mcafe');
 		$this->load->library('imageupload');
-
+		
+		ini_set("allow_url_fopen", 1);
+		ini_set("allow_url_include", 1);
 	}
 	public function index()
 	{
