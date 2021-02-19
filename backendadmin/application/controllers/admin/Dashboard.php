@@ -21,11 +21,11 @@ class Dashboard extends MY_Controller {
 		$end_date=date('Y-m-d');
 		$cafe_id="";
 		if(!empty($_POST['start_date'])){
-       		$start_date= $this->input->post('start_date');
-        }
-        if(!empty($_POST['start_date'])){
-       		$end_date= $this->input->post('end_date');
-        }
+			$start_date= date('Y-m-d', strtotime($this->input->post('start_date')));
+		}
+		if(!empty($_POST['end_date'])){
+				$end_date= date('Y-m-d', strtotime($this->input->post('end_date')));
+		}
         if(!empty($_POST['cafe_id'])){
        		$cafe_id= $this->input->post('cafe_id');
         }

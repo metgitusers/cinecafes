@@ -20,11 +20,11 @@ class Transactionhistory extends MY_Controller {
 		$end_date="";
 		$user_id="";
 		if(!empty($_POST['start_date'])){
-       		$start_date= $this->input->post('start_date');
-        }
-        if(!empty($_POST['end_date'])){
-       		$end_date= $this->input->post('end_date');
-        }
+			$start_date= date('Y-m-d', strtotime($this->input->post('start_date')));
+		}
+		if(!empty($_POST['end_date'])){
+				$end_date= date('Y-m-d', strtotime($this->input->post('end_date')));
+		}
         if(!empty($_POST['user_id'])){
        		$user_id= $this->input->post('user_id');
         }
