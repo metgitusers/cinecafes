@@ -52,4 +52,26 @@ class Commoncontroller extends MY_Controller
 		echo 1;
 		exit;
 	}
+	/**
+	 * 	Migrate by split name into name & last_name
+	*/
+	public function migrateNameIntoLastname()
+	{
+		$data = $this->mcommon->select('user', ['name !='=> null, 'last_name'=> null], 'name, user_id');
+		if($data){
+			foreach($data as $value){
+				$name_array = explode(" ", $value->name);
+				if(!empty($name_array) && count($name_array) > 1){
+					$c = count($name_array);
+					$lname = $name_array[$c-1];
+					unset($name_array[$c-1]);
+					$insert = array(
+						'last_name'=> ucwords($lname),
+						'name'=> ucwords(implode(" ", $name_array))
+					);
+					$this->mcommon->update('user', ['user_id'=> $value->user_id], $insert);
+				}
+			}
+		}
+	}
 }

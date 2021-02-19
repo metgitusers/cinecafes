@@ -9,7 +9,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Add Cafe</h1>
+          <h1 class="h3 mb-4 text-gray-800">Add Cine Cafes</h1>
             <p align="right"><a href="<?php echo base_url();?>admin/cafe" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -37,7 +37,7 @@
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <label>Cafe Name*</label>
-                      <input type="text" name="cafe_name" id="cafe_name" class="form-control"  value="Cinacafe" readonly="readonly">
+                      <input type="text" name="cafe_name" id="cafe_name" class="form-control"  value="Cine Cafes" readonly="readonly">
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">

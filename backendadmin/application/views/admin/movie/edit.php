@@ -22,6 +22,9 @@
     right: -4px;
     display: none;
   }
+  .uploadimgbox{
+    margin-top: 15px;
+  }
 </style>
 <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -170,13 +173,13 @@
                  <?php if(!empty($cafe_list)){ ?>
               <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="form-group">
-                      <label>Choose Cafe</label>
+                      <label class="mt-2">Choose Cafe</label>
                       <div class="row">
                        <?php foreach($cafe_list as $row1){?>
                        <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="form-check">
-                          <input class="form-check-input move_cafe_checkbox" type="checkbox" value="<?php echo $row1['cafe_id'];?>" name="cafe_movie[]" <?php if (in_array($row1['cafe_id'], $movie_cafe_arr)) { ?>checked="checked" <?php } ?>>
-                          <label class="form-check-label" for="<?php echo $row1['cafe_name'];?>">
+                          <input class="form-check-input move_cafe_checkbox" type="checkbox" value="<?php echo $row1['cafe_id'];?>" name="cafe_movie[]" <?php if (in_array($row1['cafe_id'], $movie_cafe_arr)) { ?>checked="checked" <?php } ?> style="padding: 0; margin-top: 6px !important; display: inline-block;">
+                          <label class="form-check-label" for="<?php echo $row1['cafe_name'];?>" style="padding: 0; margin: 0 0 0 15px; display: inline-block;">
                             <?php echo $row1['cafe_name']."-".$row1['cafe_place'];?>
                           </label>
                         </div>

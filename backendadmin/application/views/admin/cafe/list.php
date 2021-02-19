@@ -2,7 +2,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Cafe</h1>
+          <h1 class="h3 mb-2 text-gray-800">Cine Cafes</h1>
         <!--   <a class="" href="<?php echo base_url();?>admin/cafe/add">+Add</a> -->
          <p align="right"><a href="<?php echo base_url();?>admin/cafe/add" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
@@ -36,7 +36,7 @@
                       <th width="8">Sl No.</th>
                       <th class="no-sort" width="25">Image</th>
                      <!--  <th>Item Name</th> -->
-                      <th width="15">Cafe</th>
+                      <th width="15">Cine Cafes</th>
                       <th width="25">Address</th>
                      <!--  <th>Price</th> -->
                      <!--  <th>Start date</th> -->
@@ -49,7 +49,7 @@
                       <th width="8">Sl No.</th>
                       <th class="no-sort" width="25">Image</th>
                      <!--  <th>Item Name</th> -->
-                      <th width="15">Cafe</th>
+                      <th width="15">Cine Cafes</th>
                       <th width="25">Address</th>
                      <!--  <th>Price</th> -->
                      <!--  <th>Start date</th> -->

@@ -116,7 +116,7 @@
                                             </div>
                                             <div class="col-md-2">
                                              <label>Change on</label>
-                                            <input type="text" name="change_on[]" value="<?=!empty($row)?$row->time:''?>" placeholder="12.30 pm" class="form-control timepicker">
+                                            <input type="text" name="change_on[]" value="<?=!empty($row)?$row->time:''?>" placeholder="12.30 pm" class="form-control timepicker" autocomplete="off">
                                             </div>
                                             <div class="col-md-3">
                                              <label>Change Price</label>

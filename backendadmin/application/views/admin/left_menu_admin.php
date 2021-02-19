@@ -24,7 +24,7 @@
       <li class="nav-item <?php if($this->uri->segment(2)=='cafe'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/cafe'); ?>">
           <img src="<?=base_url('public/img/icon_2.png')?>" alt="icon">
-          <span>Cafe</span></a>
+          <span>Cine Cafes</span></a>
           
       </li>
       <!-- Divider -->

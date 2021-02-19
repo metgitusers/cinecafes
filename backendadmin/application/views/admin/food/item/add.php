@@ -100,7 +100,7 @@
                                             </div>
                                             <div class="col-md-2">
                                              <label>Change on</label>
-                                            <input type="text" name="change_on[]" value="" placeholder="12.30 pm" class="form-control timepicker day-time-<?=$day?>">
+                                            <input type="text" name="change_on[]" value="" placeholder="12.30 pm" class="form-control timepicker day-time-<?=$day?>" autocomplete="off">
                                             </div>
                                             <div class="col-md-3">
                                              <label>Change Price</label>
