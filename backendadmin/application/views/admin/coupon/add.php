@@ -77,7 +77,7 @@
                 </div>
                  <div class="col-md-4 col-sm-12 col-xs-12 max-discount-percentage mt-3" style="display: none">
                   <div class="form-group">
-                     <label>Max Discount Amount</label>
+                     <label>Max Discount Amount*</label>
                        <input class="form-control" type="number" min="1" name="max_discount_amount" id="max_discount_amount"  value="<?php echo set_value('max_discount_amount');?>"> 
                     </div>
                 </div>
