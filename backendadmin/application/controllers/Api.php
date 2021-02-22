@@ -4639,15 +4639,18 @@ public function checkMembership(){
 	      if(!empty($ap['version_ios'])) {
           		$version_ios = $ap['version_ios'];
           		$version_data['version_ios']=$version_ios;
-
+          		if(isset($ap['is_mandatory']) && !empty($ap['is_mandatory'])) {
+                $version_data['is_mandatory_ios'] = $ap['is_mandatory'];
+            }	
         	}
         	if(!empty($ap['version_android'])) {
           		$version_android = $ap['version_android'];
           		$version_data['version_app']=$version_android;
+              if(isset($ap['is_mandatory']) && !empty($ap['is_mandatory'])) {
+                $version_data['is_mandatory'] = $ap['is_mandatory'];
+            }	
         	}	    
-        	if(isset($ap['is_mandatory']) && !empty($ap['is_mandatory'])) {
-          		$version_data['is_mandatory'] = $ap['is_mandatory'];
-        	}	    
+        	    
           $update_version_where    = array('id' => '1');
           $this->mcommon->update('version_control',$update_version_where,$version_data);
             
@@ -4752,7 +4755,7 @@ public function checkMembership(){
           $response['status']['error_code'] = 0;
             $response['status']['message']    = '';
             $updateResponseArr['updateRequired']="Yes";
-            if($versiondetails['is_mandatory']==1)
+            if($versiondetails['is_mandatory_ios']==1)
             {
               $updateResponseArr['severity']="critical";
               $updateResponseArr['dialog_message']=$versiondetails['msg_mandatory'];
