@@ -4742,7 +4742,7 @@ public function checkMembership(){
         $versiondetails          = $this->mapi->getRow('version_control', $check_version_condition);
         $updateResponseArr=array();
          // 1.0 >= 1.2
-        if($versiondetails['version_ios'] > $ap['version'])
+        if($versiondetails['version_ios'] < $ap['version'])
         {
           $response['status']['error_code'] = 0;
             $response['status']['message']    = '';
@@ -4752,7 +4752,7 @@ public function checkMembership(){
         }
         else
         {
-          $response['status']['error_code'] = 0;
+            $response['status']['error_code'] = 0;
             $response['status']['message']    = '';
             $updateResponseArr['updateRequired']="Yes";
             if($versiondetails['is_mandatory_ios']==1)
