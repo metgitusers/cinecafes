@@ -4606,7 +4606,7 @@ public function checkMembership(){
           if ($member_all_details) {
               if($member_all_details){
                 foreach($member_all_details as $key => $value){
-                  $member_all_details[$key] = ($value == "" || $value == null)?"":$value;
+                  $member_all_details[$key] = $value == null?"":$value;
                 }
               } 
               $response['status']['error_code'] = 0;
