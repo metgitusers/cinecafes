@@ -39,7 +39,7 @@ class Mtransactionhistory extends CI_Model{
        
         if(!empty($start_date) && !empty($end_date) ){
            //$this->db->where('reservation_date between "'.$start_dt.'" and "'.$end_dt.'"');
-           $this->db->where('transaction_date between "'.date('Y-m-d h:i:s', strtotime($start_date)).'" and "'.date('Y-m-d 23:59:00', strtotime($end_date)).'"');
+           $this->db->where('transaction_date between "'.date('Y-m-d 00:00:01', strtotime($start_date)).'" and "'.date('Y-m-d 23:59:00', strtotime($end_date)).'"');
         }
         if($user_id > 0){
            //$this->db->where('reservation_date between "'.$start_dt.'" and "'.$end_dt.'"');

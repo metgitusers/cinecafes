@@ -33,7 +33,7 @@ class Transactionhistory extends MY_Controller {
         $data['user_id']=$user_id; 
        
 		$data['list']=$this->mtransactionhistory->getTransactionhistoryList($start_date,$end_date,$user_id);
-		//echo $this->db->last_query();
+		echo $this->db->last_query();
 		$data['user_list'] =$this->mtransactionhistory->getDistinctUser();
 		//echo '<pre>';
 		//print_r($data['list']); die;
