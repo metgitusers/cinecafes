@@ -4604,11 +4604,14 @@ public function checkMembership(){
         }
          $member_all_details= $this->mapi->getMemberDetailsRow(array('user.user_id' => $ap['user_id']));               
           if ($member_all_details) {
-              if($member_all_details){
-                foreach($member_all_details as $key => $value){
-                  $member_all_details[$key] = $value == null?"":$value;
-                }
-              } 
+            foreach($member_all_details as $key => $value){
+              if($member_all_details[$key]['fb_id'] == null){
+                $member_all_details[$key]['fb_id'] = "";
+              }
+              if($member_all_details[$key]['apple_id'] == null){
+                $member_all_details[$key]['apple_id'] = "";
+              }
+            }
               $response['status']['error_code'] = 0;
               $response['status']['message']    = 'Success';
               $response['response']['user']   = $member_all_details;
