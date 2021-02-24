@@ -92,7 +92,7 @@
                     }
                   })
                 </script>
-                <div class="col-md-12">
+                <div class="col-md-12 mt-5">
                   <div class="col-md-12 col-xs-2 col-xs-2">
                     <div class="form-group">
                       <input type="hidden" name="end_on_old" value="<?php echo $row['end_on'];?>">
