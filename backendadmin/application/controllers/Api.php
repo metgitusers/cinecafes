@@ -4604,14 +4604,19 @@ public function checkMembership(){
         }
          $member_all_details= $this->mapi->getMemberDetailsRow(array('user.user_id' => $ap['user_id']));               
           if ($member_all_details) {
-                $response['status']['error_code'] = 0;
-                $response['status']['message']    = 'Success';
-                $response['response']['user']   = $member_all_details;
+              if($member_all_details){
+                foreach($member_all_details as $key => $value){
+                  $member_all_details[$key] = ($value == "" || $value == null)?"":$value;
+                }
+              } 
+              $response['status']['error_code'] = 0;
+              $response['status']['message']    = 'Success';
+              $response['response']['user']   = $member_all_details;
                 
-              } else {
-                $response['status']['error_code'] = 1;
-                $response['status']['message']    = 'unauthenticated request.';                    
-              }  
+          } else {
+            $response['status']['error_code'] = 1;
+            $response['status']['message']    = 'unauthenticated request.';                    
+          }  
       }
       else {
         $response['status']['error_code'] = 1;
