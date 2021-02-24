@@ -3252,7 +3252,7 @@ class Api extends CI_Controller
           $this->displayOutput($response);
         }
         
-        $coupon_data = $this->mapi->getRow('coupon',array('coupon_code' => $ap['coupon_code']));
+        $coupon_data = $this->mapi->getRow('coupon',array('coupon_code' => $ap['coupon_code'], 'is_delete'=> 0));
         if(!empty($coupon_data)){
           if($coupon_data['is_delete']==1)
           {
