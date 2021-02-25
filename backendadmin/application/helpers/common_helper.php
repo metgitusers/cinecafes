@@ -35,17 +35,12 @@ if ( ! function_exists('test_method'))
       $obj =get_object();
       $obj->load->library('email');
       //print_r($data);die;
-       $config['protocol']    = 'smtp';
-    //  $config['smtp_host']    = 'ssl://mail.fitser.com';
-    //  $config['smtp_port']    = '465';
-    //  $config['smtp_user']    = 'test123@fitser.com';
-    //  $config['smtp_pass']    = 'Test123@';
-
+      $config['protocol']    = 'smtp';
       $config['protocol']    = 'smtp';
       $config['smtp_host']    = 'ssl://mail.cinecafes.com';
       $config['smtp_port']    = '465';
-      $config['smtp_user']    = 'test@cinecafes.com';
-      $config['smtp_pass']    = 'WhHiMFO#tBbH';
+      $config['smtp_user']    = 'dev@cinecafes.com';
+      $config['smtp_pass']    = 'hvkMnwY8Qskh';
       $config['charset']    = 'utf-8';
       $config['newline']    = "\r\n";
       $config['mailtype'] = 'html'; // or html
