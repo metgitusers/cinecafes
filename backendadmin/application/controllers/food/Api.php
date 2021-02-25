@@ -1199,7 +1199,7 @@ class Api extends MY_Controller
 
           $logo               =   base_url('public/images/logo.png');
           $params['name']     =   $user_name;
-          $params['to']       =   $user_email; 
+          $params['to']       =   'chayansamanta@gmail.com';//$user_email; 
           $details            =   "Food ordered on: ".date('d-M-Y, h:i a')."<br>"." has successfully received with ordered no-: ".$ap['order_id'];
           $params['subject']  =   'Cinecafe - Food ordered successfully done';                             
           $mail_temp          =   file_get_contents('./global/mail/food_ordered.html');
