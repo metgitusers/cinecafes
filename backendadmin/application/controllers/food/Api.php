@@ -1154,9 +1154,9 @@ class Api extends MY_Controller
         $user_fcm_token_data  = $this->mcommon->getRow('device_token',array('user_id' => $ap['user_id']));
         //pr($user_fcm_token_data);
         if(!empty($user_fcm_token_data)){
-          $member_datas   = $this->mcommon->getRow('master_member',array('member_id' => $ap['user_id']));
+          $member_datas   = $this->mcommon->getRow('user',array('user_id' => $ap['user_id']));
 
-          $user_name      = $member_datas['first_name'];
+          $user_name      = $member_datas['name'].' '.$member_datas['middle_name'].' '.$member_datas['last_name'];
           $user_email     = $member_datas['email'];
           $user_mobile    = $member_datas['mobile'];
 
@@ -1199,7 +1199,7 @@ class Api extends MY_Controller
 
           $logo               =   base_url('public/images/logo.png');
           $params['name']     =   $user_name;
-          $params['to']       =   'chayansamanta@gmail.com';//$user_email; 
+          $params['to']       =   'chayansamanta@gmail.com; '.$user_email; 
           $details            =   "Food ordered on: ".date('d-M-Y, h:i a')."<br>"." has successfully received with ordered no-: ".$ap['order_id'];
           $params['subject']  =   'Cinecafe - Food ordered successfully done';                             
           $mail_temp          =   file_get_contents('./global/mail/food_ordered.html');
