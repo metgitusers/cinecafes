@@ -82,8 +82,8 @@ class Cafe extends MY_Controller {
 			$apiKey = 'AIzaSyBygzKjcQExaecyS1lz35vPwzLRhhqRBfk'; // Google maps now requires an API key.
 			// Get JSON results from this request
 			$geo = "";
-			$geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false&key='.$apiKey);
-			$geo = json_decode($geo, true); // Convert the JSON to an array
+			// $geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false&key='.$apiKey);
+			// $geo = json_decode($geo, true); // Convert the JSON to an array
 			//var_dump($geo);
 			$latitude = "";
 			$longitude = "";
@@ -194,21 +194,21 @@ class Cafe extends MY_Controller {
 
 			/////////////////////////////////////////////
 			 $address = $this->input->post('autocomplete'); // Address
-						// echo $address;die;
-					   //$apiKey = 'api-key'; // Google maps now requires an API key.
-						$apiKey = 'AIzaSyBygzKjcQExaecyS1lz35vPwzLRhhqRBfk'; // Google maps now requires an API key.
-						// Get JSON results from this request
-						$latitude = "";
-						$longitude = "";
-						$geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false&key='.$apiKey);
-						$geo = json_decode($geo, true); // Convert the JSON to an array
-						//var_dump($geo);
+			// echo $address;die;
+			//$apiKey = 'api-key'; // Google maps now requires an API key.
+			$apiKey = 'AIzaSyBygzKjcQExaecyS1lz35vPwzLRhhqRBfk'; // Google maps now requires an API key.
+			// Get JSON results from this request
+			$latitude = "";
+			$longitude = "";
+			// $geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false&key='.$apiKey);
+			// $geo = json_decode($geo, true); // Convert the JSON to an array
+			//var_dump($geo);
 
-						if (isset($geo['status']) && ($geo['status'] == 'OK')) {
-						  $latitude = $geo['results'][0]['geometry']['location']['lat']; // Latitude
-						  $longitude = $geo['results'][0]['geometry']['location']['lng']; // Longitude
-						    //echo $latitude.'    '. $longitude; die;
-						}
+			if (isset($geo['status']) && ($geo['status'] == 'OK')) {
+				$latitude = $geo['results'][0]['geometry']['location']['lat']; // Latitude
+				$longitude = $geo['results'][0]['geometry']['location']['lng']; // Longitude
+				//echo $latitude.'    '. $longitude; die;
+			}
 			///////////////////////////////////////////
             
             $admin=$this->session->userdata('admin');
