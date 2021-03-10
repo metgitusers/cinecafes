@@ -1,6 +1,6 @@
 <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=base_url('admin')?>">
-        <img src="<?php echo base_url() ?>public/img/logo.png" alt="logo" />
+        <img src="<?php echo base_url() ?>public/img/website-logo.png" alt="logo" />
       </a>
 
       <!-- Divider -->

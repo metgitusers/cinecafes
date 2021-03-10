@@ -437,11 +437,11 @@ class Api extends CI_Controller
               /* sms */
             $mobile_no=$ap['mobile'];
            
-            $message =  "Welcome to ".ORGANIZATION_NAME. "\n Thank you for your registration. Your profile has been created.\n Team \n".ORGANIZATION_NAME;
-
+            //$message =  "Welcome to ".ORGANIZATION_NAME. "\n Thank you for your registration. Your profile has been created.\n Team \n".ORGANIZATION_NAME;
+            $message = "Dear ".$name." \n";
+            $message .= "Welcome to ". ORGANIZATION_NAME ." .Thank you for your registration. Your profile has been created. \n";
+            $message .= ORGANIZATION_NAME;
             smsSend($mobile_no,$message);
-
-
 
             $response['status']['error_code'] = 0;
             $response['status']['message']    = 'Registration succesful';
@@ -2785,9 +2785,19 @@ class Api extends CI_Controller
 
                       /********************************** Send reservation details in sms *************************************************/
 
-                          $message  = "Thank you for confirming your Reservation at ".ORGANIZATION_NAME.". Your reservation details are: \n";
-                          $message .= "Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']."\n Date: ".$reservation_date."\n Time: ".$reservation_time."\n No. of Guests: ".$ap['no_of_guests'];
-                          $message .= " We would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.";
+                          // $message  = "Thank you for confirming your Reservation at ".ORGANIZATION_NAME.". Your reservation details are: \n";
+                          // $message .= "Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']."\n Date: ".$reservation_date."\n Time: ".$reservation_time."\n No. of Guests: ".$ap['no_of_guests'];
+                          // $message .= " We would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.";
+                          
+                          $message  = "Dear ".$ap['name']." \n";
+                          $message  .="Thank you for confirming your Reservation at Cinecafes.".". \n"; 
+                          $message  .="Your reservation details are: \n";
+                          $message  .="Cafe: ".$cafe_row['cafe_name']." \n";
+                          $message  .="Date: ".$reservation_date." \n";
+                          $message  .="Time: ".$reservation_time." \n".
+                          $message  .="No. of Guests: ".$ap['no_of_guests'].". \n";
+                          $message  .="We would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.\n";
+                          $message  .=ORGANIZATION_NAME;
                           smsSend($ap['mobile'],$message);
 
                         /********push notification fr reservation ************************/
@@ -3437,9 +3447,15 @@ class Api extends CI_Controller
 
                       /********************************** Send reservation details in sms *************************************************/
 
-                          $message  = "Membership is at".ORGANIZATION_NAME." is in active status. Your membership details are: \n";
-                          $message .= "Membership name: ".$package_name."\n Membership type: ".$package_type_name."\n Membership Price: ".$package_price;
+                          // $message  = "Membership is at".ORGANIZATION_NAME." is in active status. Your membership details are: \n";
+                          // $message .= "Membership name: ".$package_name."\n Membership type: ".$package_type_name."\n Membership Price: ".$package_price;
                           
+                          $message  = "Dear ".$user_row['name'].' '.$user_row['last_name'].". \n";
+                          $message  .= "Your Membership at ". ORGANIZATION_NAME ." is Active. Membership details are:\n";
+                          $message  .= "Membership name: ".$package_name.". \n";
+                          $message  .= "Membership type: ".$package_type_name.". \n";
+                          $message  .= "Membership Price: ".$package_price.". \n";
+                          $message  .= ORGANIZATION_NAME;
                           smsSend($user_row['mobile'],$message);
 
                         /********push notification fr membership ************************/
@@ -3751,9 +3767,12 @@ public function checkMembership(){
 
                       /********************************** Send reservation details in sms *************************************************/
 
-                          $message  = $notification_des." at ".ORGANIZATION_NAME.". \n";
-                          $message .= "Present wallet balance is : ".$updated_amount;
+                          // $message  = $notification_des." at ".ORGANIZATION_NAME.". \n";
+                          // $message .= "Present wallet balance is : ".$updated_amount;
                           
+                          $message = 'Dear'.$user_row['name'].' '.$user_row['last_name'].". \n";
+                          $message .= $ap['amount']." point added to your wallet at Cinecafes. Present wallet balance is : ".$updated_amount."\n";
+                          $message .= ORGANIZATION_NAME;
                           smsSend($user_row['mobile'],$message);
 
                         /********push notification fr membership ************************/
@@ -4841,7 +4860,8 @@ public function checkMembership(){
 						/********************************** Send reservation details in sms *************************************************/
 
 							$message  = $notification_des." at ".ORGANIZATION_NAME.". \n";
-							$message .= "Present wallet balance is : ".$updated_amount;
+							$message .= "Present wallet balance is : ".$updated_amount.". \n";
+              $message .= ORGANIZATION_NAME;
 							
 							smsSend($user_row['mobile'],$message);
 

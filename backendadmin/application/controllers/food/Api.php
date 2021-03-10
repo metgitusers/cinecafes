@@ -18,7 +18,7 @@ class Api extends MY_Controller
     $this->arr = array();
     $this->obj = new stdClass();
     $this->http_methods = array('POST', 'GET', 'PUT', 'DELETE');
-    $this->logo = base_url() . 'public/images/logo_new.jpg';
+    $this->logo = base_url() . 'public/img/website-logo.png';
     $this->request_day = strtolower(date("l"));
     $this->request_time = date("h:i A");
     //$this->load->library('notification');
