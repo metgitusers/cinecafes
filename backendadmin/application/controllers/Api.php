@@ -2790,13 +2790,13 @@ class Api extends CI_Controller
                           // $message .= " We would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.";
                           
                           $message  = "Dear ".$ap['name']." \n";
-                          $message  .="Thank you for confirming your Reservation at Cinecafes.".". \n"; 
-                          $message  .="Your reservation details are: \n";
-                          $message  .="Cafe: ".$cafe_row['cafe_name']." \n";
+                          $message  .= "Thank you for confirming your Reservation at Cinecafes.".". \n"; 
+                          $message  .= "Your reservation details are: \n";
+                          $message  .="Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']." \n";
                           $message  .="Date: ".$reservation_date." \n";
-                          $message  .="Time: ".$reservation_time." \n".
+                          $message  .="Time: ".$reservation_time." \n";
                           $message  .="No. of Guests: ".$ap['no_of_guests'].". \n";
-                          $message  .="We would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.\n";
+                          $message  .= "We would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.\n\n";
                           $message  .=ORGANIZATION_NAME;
                           smsSend($ap['mobile'],$message);
 
