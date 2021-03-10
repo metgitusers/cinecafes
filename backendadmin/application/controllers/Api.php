@@ -439,7 +439,7 @@ class Api extends CI_Controller
            
             //$message =  "Welcome to ".ORGANIZATION_NAME. "\n Thank you for your registration. Your profile has been created.\n Team \n".ORGANIZATION_NAME;
             $message = "Dear ".$name." \n";
-            $message .= "Welcome to ". ORGANIZATION_NAME ." .Thank you for your registration. Your profile has been created. \n";
+            $message .= "Welcome to Cinecafes .Thank you for your registration. Your profile has been created. \n";
             $message .= ORGANIZATION_NAME;
             smsSend($mobile_no,$message);
 
@@ -2796,7 +2796,7 @@ class Api extends CI_Controller
                           $message  .="Date: ".$reservation_date." \n";
                           $message  .="Time: ".$reservation_time." \n";
                           $message  .="No. of Guests: ".$ap['no_of_guests'].". \n";
-                          $message  .= "We would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.\n\n";
+                          $message  .= "We would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.\n";
                           $message  .=ORGANIZATION_NAME;
                           smsSend($ap['mobile'],$message);
 
@@ -3150,7 +3150,7 @@ class Api extends CI_Controller
 
                       /********************************** Send reservation details in sms *************************************************/
 
-                          $message  = "Your request for reservation at ".ORGANIZATION_NAME." is cancelled. Your reservation details are: \n";
+                          $message  = "Your request for reservation at Cinecafes is cancelled. Your reservation details are: \n";
                           $message .= "Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']."\n Date: ".$reservation_date."\n Time: ".$reservation_time."\n No. of Guests: ".$no_of_guests;
                          
                           smsSend($mobile,$message);
@@ -3451,7 +3451,7 @@ class Api extends CI_Controller
                           // $message .= "Membership name: ".$package_name."\n Membership type: ".$package_type_name."\n Membership Price: ".$package_price;
                           
                           $message  = "Dear ".$user_row['name'].' '.$user_row['last_name'].". \n";
-                          $message  .= "Your Membership at ". ORGANIZATION_NAME ." is Active. Membership details are:\n";
+                          $message  .= "Your Membership at Cinecafes is Active. Membership details are:\n";
                           $message  .= "Membership name: ".$package_name.". \n";
                           $message  .= "Membership type: ".$package_type_name.". \n";
                           $message  .= "Membership Price: ".$package_price.". \n";
@@ -4859,7 +4859,7 @@ public function checkMembership(){
 
 						/********************************** Send reservation details in sms *************************************************/
 
-							$message  = $notification_des." at ".ORGANIZATION_NAME.". \n";
+							$message  = $notification_des." at Cinecafes \n";
 							$message .= "Present wallet balance is : ".$updated_amount.". \n";
               $message .= ORGANIZATION_NAME;
 							
