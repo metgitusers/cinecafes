@@ -3770,7 +3770,7 @@ public function checkMembership(){
                           // $message  = $notification_des." at ".ORGANIZATION_NAME.". \n";
                           // $message .= "Present wallet balance is : ".$updated_amount;
                           
-                          $message = 'Dear'.$user_row['name'].' '.$user_row['last_name'].". \n";
+                          $message = 'Dear '.$user_row['name'].' '.$user_row['last_name'].". \n";
                           $message .= $ap['amount']." point added to your wallet at Cinecafes. Present wallet balance is : ".$updated_amount."\n";
                           $message .= ORGANIZATION_NAME;
                           smsSend($user_row['mobile'],$message);
