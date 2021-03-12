@@ -688,9 +688,10 @@
 
     //chk availability of reservation room
     public function is_available($reservation_date,$room_id,$start_time_range,$end_time_range){
+  
     $table="reservation";
     $response_no=0; //default variable count value
-     if($reservation_date !='' && $room_id !="" && $start_time_range != "" && $end_time_range != "") {
+     if($reservation_date!=''&&$room_id!=""&&$start_time_range!=""&&$end_time_range!="") {
        $reservation_condition    = "reservation_date= '".$reservation_date."' and room_id = '".$room_id."' and ((reservation_time between '".$start_time_range."' and '".$end_time_range."') or (reservation_end_time between '".$start_time_range."' and '".$end_time_range."')) and status!=2";
        $this->db->where($reservation_condition);    
         $query=$this->db->get($table);

@@ -119,9 +119,3 @@ $route['admin/food/orders/(:any)']              = 'admin/food/orders/orderDetail
 $route['admin/food/app-access']                 =   'admin/food/index/getAppAccess';
 
 $route['api/get-food-application-status']   = 'food/api/getFoodApplicationStatus';
-
-/**
- * API version 2
- * New updated APIs
-*/
-$route['api/v1/availablility_chk']              =   'v1/api/availablility_chk';
