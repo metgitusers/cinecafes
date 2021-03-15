@@ -1699,7 +1699,9 @@ ul.cancellation_list li:before{
 	border-radius: 0 7px 7px 0;
 	margin-left: 0;
 	padding: 10px 20px 14px 20px;
-	background: #03444a;
+	background: url(../img/popup-bg.jpg) repeat center top;
+    background-size: cover;
+    border-bottom: #2c2c2c solid 1px;
 	transition: .5s ease-in-out;
 	top: 331px;
 	z-index: 9999;
@@ -1733,12 +1735,12 @@ ul.cancellation_list li:before{
 #header1 input[type="text"], #header1 input[type="tel"], #header1 input[type="email"] {
 	width: 100%;
 	height: 34px;
-	border-radius: 22px;
+	border-radius: 0;
 	margin: 0 0 13px 0;
 	padding: 0 0 0 15px;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 12px;
-	border: 1px solid #fff;
+	    border: 1px solid #fcb040;
 	background: #03444a;
 	color: #fff;
 	letter-spacing: 1px;
