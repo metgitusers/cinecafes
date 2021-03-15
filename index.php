@@ -104,7 +104,7 @@
 <div class="side_panal">
   <div id="header1">
     <div id="sidebar" onclick="open_panel()">
-	<div class="be_franshise"><a href="javascript:void(0)" class="blink_me"><img src="assets/img/befranchise.png" alt="">be a franchise</a></div>
+	<div class="be_franshise"><a href="javascript:void(0)" class=""><img src="assets/img/befranchise.png" alt="">be a franchise</a></div>
     </div>
     <h3> Be a Franchise </h3>
     <div class="slide_inbox_ribban"></div>
