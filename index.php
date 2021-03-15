@@ -187,7 +187,7 @@
 					
 					<div class="col-sm-6">
 						<div class="row">
-							<div class="gallery_img"> <a href="assets/img/gallery8.jpg" class="big"><img src="assets/img/gallery8.jpg" alt="" title="gallery"></a>
+							<div class="gallery_img"> <a href="assets/img/gal_new08.jpg" class="big"><img src="assets/img/gal_new08.jpg" alt="" title="gallery"></a>
                             <div class="gallery_txt">
                                 
                                 <img src="assets/img/search.png" alt=""> </div>
