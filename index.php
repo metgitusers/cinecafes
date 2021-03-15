@@ -104,9 +104,37 @@
 <div class="side_quote hide_s" width="0"> 
 	<div role="form" class="wpcf7">
 <div class="screen-reader-response"></div>
-
+<form action="/#wpcf7-f439-o1" method="post" class="wpcf7-form" novalidate="novalidate">
+<div style="display: none;">
+<input type="hidden" name="_wpcf7" value="439">
+<input type="hidden" name="_wpcf7_version" value="5.0.2">
+<input type="hidden" name="_wpcf7_locale" value="en_US">
+<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f439-o1">
+<input type="hidden" name="_wpcf7_container_post" value="0">
+</div>
+<p><span class="wpcf7-form-control-wrap text-179"><input type="text" name="text-179" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Your Name"></span><span class="wpcf7-form-control-wrap email-268"><input type="email" name="email-268" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Your E-mail"></span><span class="wpcf7-form-control-wrap tel-872"><input type="tel" name="tel-872" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel" aria-required="true" aria-invalid="false" placeholder="Phone Number"></span><span class="wpcf7-form-control-wrap textarea-798"><textarea name="textarea-798" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Your Message"></textarea></span>
+</p><div class="wpcf7-form-control-wrap"><div data-sitekey="6LcgnSgTAAAAABcqo_C4juBpf617x4UHXn899nPd" class="wpcf7-form-control g-recaptcha wpcf7-recaptcha"><div style="width: 304px; height: 78px;"><div><iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcgnSgTAAAAABcqo_C4juBpf617x4UHXn899nPd&amp;co=aHR0cHM6Ly93d3cuZml0c2VyLmNvbTo0NDM.&amp;hl=en&amp;v=a7xT2d71Jli62wQMfeUUrLcO&amp;size=normal&amp;cb=c13djmt3myux" width="304" height="78" role="presentation" name="a-akiyvo4rjszp" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div>
+<noscript>
+	<div style="width: 302px; height: 422px;">
+		<div style="width: 302px; height: 422px; position: relative;">
+			<div style="width: 302px; height: 422px; position: absolute;">
+				<iframe src="https://www.google.com/recaptcha/api/fallback?k=6LcgnSgTAAAAABcqo_C4juBpf617x4UHXn899nPd" frameborder="0" scrolling="no" style="width: 302px; height:422px; border-style: none;">
+				</iframe>
+			</div>
+			<div style="width: 300px; height: 60px; border-style: none; bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px; background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+				<textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;">
+				</textarea>
+			</div>
+		</div>
+	</div>
+</noscript>
+</div>
+<div class="col-sm-6"><input type="submit" value="Send" class="wpcf7-form-control wpcf7-submit"></div>
+<div class="col-sm-6"><a href="javascript:void(0);" class="click_clz" style="display: none;">Close</a></div>
+<div class="clearfix"></div>
+<div class="wpcf7-response-output wpcf7-display-none"></div></form>
 	</div> 
-	<div class="be_franshise"><a class="blink_me" href="" data-toggle="modal" data-target="#be_franshise_panel"><img src="assets/img/befranchise.png" alt="">be a franchise</a></div>
+	<div class="be_franshise"><a class="blink_me" href=""><img src="assets/img/befranchise.png" alt="">be a franchise</a></div>
   <!--<a href="javascript:void(0);" class="click_clz">close</a>--> 
   
 </div>
