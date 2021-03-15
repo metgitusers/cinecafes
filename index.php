@@ -134,7 +134,7 @@
 <div class="clearfix"></div>
 <div class="wpcf7-response-output wpcf7-display-none"></div></form>
 	</div> 
-	<div class="be_franshise"><a class="blink_me" href=""><img src="assets/img/befranchise.png" alt="">be a franchise</a></div>
+	<div class="be_franshise" class="blink_me"><img src="assets/img/befranchise.png" alt="">be a franchise</div>
   <!--<a href="javascript:void(0);" class="click_clz">close</a>--> 
   
 </div>
