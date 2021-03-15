@@ -61,7 +61,7 @@
 			<div class="col-lg-6 col-md-6 col-sm-6 header_right">
 				<div class="row">
 				<div class="header_right">
-				<div class="be_franshise"><a class="blink_me" href=""  data-toggle="modal" data-target="#be_franshise_panel"><img src="assets/img/befranchise.png" alt="">be a franchise</a></div>					
+				<!--<div class="be_franshise"><a class="blink_me" href=""  data-toggle="modal" data-target="#be_franshise_panel"><img src="assets/img/befranchise.png" alt="">be a franchise</a></div>	-->				
 				<div class="social_area">
             <ul class="social-network social-circle">
               <li><a href="https://www.facebook.com/CineCafes/" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
@@ -110,46 +110,48 @@
     <div class="slide_inbox_ribban"></div>
  <div class="row" id="contact_form1">
               
-              <form action="contact_exec.php" method="post">
+              <form action="franchise_exec.php" method="post">
+               <div class="col-sm-6"> 
+                  <div class="form-group">
+                   	<select id="" class="form-control" name="frnch" required>
+                   		<option value="">Select Franchise</option>
+                   		<option value="Master Franchise.">Master Franchise.</option>
+                   		<option value="Standalone Franchise">Standalone Franchise</option>
+                   	</select>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
                 <div class="col-sm-6"> 
                   <div class="form-group">
-                    <label>First Name</label>
-                    <input id="" name="fnm" pattern="[a-zA-Z -]+" type="text" class="form-control" placeholder="First Name" required>
+                    <label>Name</label>
+                    <input id="" type="text" pattern="[a-zA-Z -]+" class="form-control" name="ffnm" placeholder="Name" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Last Name</label>
-                    <input id="" name="lnm" pattern="[a-zA-Z -]+" type="text" class="form-control" placeholder="Last Name" required>
+                    <label>Phone No.</label>
+                    <input id="" type="text" pattern="[0-9]+" class="form-control" name="flnm" placeholder="Phone Number" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Subject</label>
-                    <input id="" name="sub" pattern="[a-zA-Z -]+" type="text" class="form-control" placeholder="Subject" required>
+                    <label>City</label>
+                    <input id="" type="text" pattern="[a-zA-Z -]+" class="form-control" name="fsub" placeholder="City" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Email</label> <span class="err_msg" id="error_email"></span>
-                    <input id="" name="email" type="text" class="form-control" placeholder="Email" required>
+                    <input id="" type="text" class="form-control" name="femail" placeholder="Email" required>
                   </div>
                 </div>
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="">Message</label> <span class="err_msg" id="error_msg"></span>
-                    <textarea id=""  class="form-control" name="msg" id="" cols="" rows="5" placeholder="Enter Message"></textarea>
+                    <textarea id="" class="form-control" name="fmsg" id="" cols="" rows="5" placeholder="Enter Message"></textarea>
                   </div>
 				  
-				  
 				
-			
-				<!--<div class="form-group">
-                    <div class="g-recaptcha" id="cinecafes_captcha" data-type="image" data-sitekey="6LfCstsUAAAAAKRYBjnCM6s5sbiXOJWIryW1w_FP"></div>
-                    
-                  </div>-->
-			
-			
 				  
                   <div class="form-group">
                     <button id="" class="btn btn-black">Submit</button>
@@ -622,7 +624,7 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
 
 
 
-
+<!--
 <div class="modal fade" id="be_franshise_panel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -690,7 +692,7 @@ The customer has an option to cancel online on cinecafes mobile App on the terms
       
     </div>
   </div>
-</div>
+</div>-->
 
 <!-- Bootstrap core JavaScript --> 
 <script src="assets/js/jquery.1.11.3.min.js"></script> 

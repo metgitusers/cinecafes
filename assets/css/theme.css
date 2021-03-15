@@ -1587,6 +1587,7 @@ ul.cancellation_list li:before{
 	color: #fcb040;
 	text-transform: uppercase;
 	text-decoration: none;
+	background: #000;
 }
 
 .be_franshise a img{
