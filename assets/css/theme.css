@@ -1474,11 +1474,11 @@ footer #big_footer .copy_text p a:hover{
     border-radius: 0;
    font-family: 'OptimusPrinceps';
     border: #fcb040 1px solid;
-    padding: 13px 33px;
+    padding: 8px 33px;
     font-size: 18px;
     font-weight: 300;
     text-decoration: none;
-    margin-top: 19px;
+    margin-top: 10px;
     transition-duration: 1s;
     -webkit-transition-duration: 1s;
     display: inline-block;
