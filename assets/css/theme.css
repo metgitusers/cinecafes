@@ -1682,16 +1682,16 @@ ul.cancellation_list li:before{
     left: -360px;
     padding: 20px;
     position: fixed;
-    top: 67%;
+    top: 47%;
     width: 360px;
     z-index: 99;
 }
 
 .side_quote .be_franshise {
     position: absolute;
-    right: -95px;
-    top: 60%;
-    width: 185px;
+    right: -118px;
+    top: 0%;
+    width: 237px;
     cursor: pointer;
     transform: rotate(
 -89deg);
