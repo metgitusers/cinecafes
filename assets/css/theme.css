@@ -1681,8 +1681,11 @@ ul.cancellation_list li:before{
 
 #sidebar {
 	position: absolute;
-       top: 133px;
-    right: -117px;
+    top: 82px;
+    left: -132px;
+    transform: rotate(
+90deg
+);
 }
 #sidebar1 {
 	position: absolute;
