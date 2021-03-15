@@ -1703,7 +1703,7 @@ ul.cancellation_list li:before{
     background-size: cover;
     border-bottom: #2c2c2c solid 1px;
 	transition: .5s ease-in-out;
-	top: 331px;
+	top: 141px;
 	z-index: 9999;
 }
 #header1.active {
@@ -1766,3 +1766,4 @@ ul.cancellation_list li:before{
 #header1 .invalid textarea{
     border: 1px solid #f00;
 }
+#header1 label{color:#fff;}
