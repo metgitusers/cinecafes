@@ -1679,7 +1679,7 @@ ul.cancellation_list li:before{
 
 .side_quote {
     background: #f2f2f2;
-    left: -360px;
+    right: -360px;
     padding: 20px;
     position: fixed;
     top: 47%;
@@ -1689,11 +1689,11 @@ ul.cancellation_list li:before{
 
 .side_quote .be_franshise {
     position: absolute;
-    right: -118px;
+    left: -161px;
     top: 0%;
     width: 237px;
     cursor: pointer;
     transform: rotate(
 -89deg);
-	height: 0;
+    height: 0;
 }
