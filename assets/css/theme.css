@@ -1683,8 +1683,8 @@ ul.cancellation_list li:before{
 
 #sidebar {
 	position: absolute;
-    top: 82px;
-    right: -132px;
+    top: 92px;
+    right: -146px;
     transform: rotate(
 90deg
 );
@@ -1695,7 +1695,7 @@ ul.cancellation_list li:before{
 	right: 85px;
 }
 #header1 {
-	width: 304px;
+	width: 342px;
 	position: fixed;
 	left: -304px;
 	border-radius: 0 7px 7px 0;
@@ -1743,7 +1743,7 @@ ul.cancellation_list li:before{
 	font-family: 'Open Sans', sans-serif;
 	font-size: 12px;
 	    border: 1px solid #fcb040;
-	background: #03444a;
+
 	color: #fff;
 	letter-spacing: 1px;
 }
