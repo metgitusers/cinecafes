@@ -857,12 +857,14 @@ $(document).ready(function(){
 	
 	
 
-  
+     $(document).ready(function () {
+       
             $(".show_side").click(function () {
                 $(".side_quote").hasClass("hide_s")
                     ? ($(".side_quote").animate({ left: "0" }), $(".side_quote").removeClass("hide_s"), $(".side_quote").addClass("show"), $(".click_clz").fadeIn())
                     : $(".side_quote").hasClass("show") && ($(".side_quote").animate({ left: "-360px" }), $(".side_quote").removeClass("show"), $(".side_quote").addClass("hide_s"), $(".click_clz").fadeOut());
-            }),
+            })
+	 });
 
 </script>
 <script src="https://www.google.com/recaptcha/api.js?render=6LcI1f0ZAAAAAAkV8ztzcA1SWqQRTpo3Cs3iSClS"></script>
