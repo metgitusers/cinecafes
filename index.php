@@ -257,7 +257,7 @@
 					</div>
 					<div class="col-sm-6">
 						<div class="row">
-							<div class="gallery_img"> <a href="assets/img/gallery1.jpg" class="big"><img src="assets/img/gallery1.jpg" alt="" title="gallery"></a>
+							<div class="gallery_img"> <a href="assets/img/cine-cafe3.jpg" class="big"><img src="assets/img/cine-cafe3.jpg" alt="" title="gallery"></a>
                             <div class="gallery_txt">
                                 
                                 <img src="assets/img/search.png" alt=""> </div>
