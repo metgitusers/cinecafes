@@ -1684,7 +1684,7 @@ ul.cancellation_list li:before{
 
 #sidebar {
 	position: absolute;
-    top: 115px;
+    top: 145px;
     right: -146px;
     transform: rotate(
 90deg
@@ -1706,7 +1706,7 @@ ul.cancellation_list li:before{
     background-size: cover;
     border-bottom: #2c2c2c solid 1px;
 	transition: .5s ease-in-out;
-	top: 204px;
+	top: 152px;
 	z-index: 9999;
 }
 #header1.active {
