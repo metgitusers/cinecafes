@@ -100,7 +100,7 @@
 		text-align: center;
 	}
 	
-	#header1 {
+	.active #header1 {
 		width: 300px;}
 }
 
