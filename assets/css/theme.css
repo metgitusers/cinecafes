@@ -1679,6 +1679,16 @@ ul.cancellation_list li:before{
 
 
 
+
+.be_franshise .blink_me {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 0;
+    border: #fcb040 solid 2px;
+    color: #fcb040;
+    text-transform: uppercase;
+    text-decoration: none;
+}
 #sidebar {
 	position: absolute;
     top: 82px;
