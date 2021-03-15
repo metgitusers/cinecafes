@@ -1706,7 +1706,7 @@ ul.cancellation_list li:before{
     background-size: cover;
     border-bottom: #2c2c2c solid 1px;
 	transition: .5s ease-in-out;
-	top: 141px;
+	top: 204px;
 	z-index: 9999;
 }
 #header1.active {
