@@ -111,7 +111,7 @@
  <div class="row" id="contact_form1">
               
               <form action="franchise_exec.php" method="post">
-               <div class="col-sm-6"> 
+               <div class="col-sm-12"> 
                   <div class="form-group">
                    	<select id="" class="form-control" name="frnch" required>
                    		<option value="">Select Franchise</option>
@@ -148,7 +148,7 @@
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="">Message</label> <span class="err_msg" id="error_msg"></span>
-                    <textarea id="" class="form-control" name="fmsg" id="" cols="" rows="5" placeholder="Enter Message"></textarea>
+                    <textarea id="" class="form-control" name="fmsg" id="" cols="" rows="3" placeholder="Enter Message"></textarea>
                   </div>
 				  
 				
