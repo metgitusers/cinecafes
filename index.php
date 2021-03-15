@@ -52,7 +52,7 @@
 				<div class="row">
 					<div class="top_contact">
 					<ul class="con_list">
-						<li><a href="tel:9181000 01001 "><i class="fa fa-phone"></i> Call +91 7827633006</a></li>
+						<li><a href="tel:6290821850"><i class="fa fa-phone"></i> Call +91 6290821850</a></li>
 						<!--<li><a href=""><i class="fa fa-map-marker"></i> 118 Main abcd Road</a></li>-->
 					</ul>
 				</div>
