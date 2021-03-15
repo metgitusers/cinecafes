@@ -1676,3 +1676,21 @@ ul.cancellation_list li:before{
 }
 .modal-header .close span { color: #fcb040; }
 .modal-header .close { margin-top: -2px; opacity: 1!important; border: 0; }
+
+.side_quote {
+    background: #f2f2f2;
+    left: -360px;
+    padding: 20px;
+    position: fixed;
+    top: 20%;
+    width: 360px;
+    z-index: 99;
+}
+
+.side_quote>img {
+    position: absolute;
+    right: -39px;
+    top: 0;
+    width: 40px;
+    cursor: pointer;
+}
