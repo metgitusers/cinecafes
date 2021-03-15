@@ -1702,7 +1702,8 @@ ul.cancellation_list li:before{
 	border-radius: 0 7px 7px 0;
 	margin-left: 0;
 	padding: 10px 20px 14px 20px;
-	background: url(../img/popup-bg.jpg) repeat center top;
+	/*background: url(../img/popup-bg.jpg) repeat center top;*/
+	background-color: #000;
     background-size: cover;
     border-bottom: #2c2c2c solid 1px;
 	transition: .5s ease-in-out;
