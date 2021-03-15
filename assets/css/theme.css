@@ -1697,3 +1697,4 @@ ul.cancellation_list li:before{
 -89deg);
     height: 0;
 }
+.open{width:200px;display: block!important;}
