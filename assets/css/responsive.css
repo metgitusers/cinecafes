@@ -101,7 +101,7 @@
 	}
 	
 	.active#header1 {
-		width: 300px;}
+		width: 300px;top: 85px;}
 }
 
 /*@media only screen and (max-width: 678px) {
