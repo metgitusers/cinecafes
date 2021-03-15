@@ -101,7 +101,7 @@
 	</div>
 </header>
 
-<div class="side_quote hide_s" width="0"> 
+<div class="side_quote"> 
 	<div role="form" class="wpcf7">
 <div class="screen-reader-response"></div>
 <form action="/#wpcf7-f439-o1" method="post" class="wpcf7-form" novalidate="novalidate">
