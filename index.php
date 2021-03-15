@@ -306,7 +306,7 @@
 					    <li><img src="assets/img/payu-logo.png" class="dsgn"></li>
 -->
 						<!--<li><a href=""><i class="fa fa-map-marker"></i> 118 Main abcd Road</a></li>-->
-						<li><a href="tel:917827633006"><i class="fa fa-phone"></i>+91 7827633006</a></li>
+						<li><a href="tel:6290821850"><i class="fa fa-phone"></i>+91 6290821850</a></li>
 					</ul>
 					
 					<ul class="ftr_social_list">
