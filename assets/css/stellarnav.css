@@ -320,6 +320,7 @@ body.stellarnav-noscroll-x {
 }
 .stellarnav.mobile .menu-toggle, .stellarnav.mobile .dd-toggle, .stellarnav.mobile .close-menu, .stellarnav.mobile .call-btn-mobile, .stellarnav.mobile .location-btn-mobile {
 	display: inline-block;
+	text-align: center;
 }
 .stellarnav.mobile li.call-btn-mobile {
 	border-right: 1px solid rgba(255, 255, 255, .1);
