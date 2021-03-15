@@ -416,7 +416,7 @@ ECOSPACE ESNT 3A0501, BLOCK -A, 5TH FLOOR, PLOT NO. IIF/11, NEW TOWN, <br> KOLKA
                   </tr>
                 <tr>
                     <td width="85"><p><i class="fa fa-phone"></i><span>Phone:</span></p></td>
-                    <td><p> <a href="tel:917827633006">+91 7827633006</a> </p></td>
+                    <td><p> <a href="tel:6290821850">+91 6290821850</a> </p></td>
                   </tr>
                    <tr>
                     <td width="85"><p><i class="fa fa-envelope"></i><span>Email:</span></p></td>
