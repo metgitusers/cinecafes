@@ -1687,10 +1687,11 @@ ul.cancellation_list li:before{
     z-index: 99;
 }
 
-.side_quote img {
+.side_quote .be_franshise {
     position: absolute;
     right: -39px;
     top: 0;
     width: 40px;
     cursor: pointer;
+	transform: rotate(20deg);
 }
