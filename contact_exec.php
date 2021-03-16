@@ -22,14 +22,14 @@ $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 // More headers
-$headers .= 'From: <noreply@cinecafes.com>' . "\r\n";
-$headers .= 'Cc: info@cinecafes.com' . "\r\n";
+$headers .= 'From: <info@cinecafes.com>' . "\r\n";
+$headers .= 'Cc: puja.j@cinecafes.com' . "\r\n";
 
 mail($to,$subject,$message,$headers);
 	
 
 	
-$to1="arijitsom99@gmail.com";
+$to1="puja.j@cinecafes.com";
 $subject1 = $sub;
 
 $message1 .= '<p>Name: '.$fnm.' '.$lnm.'</p>';
@@ -41,8 +41,8 @@ $headers1 = "MIME-Version: 1.0" . "\r\n";
 $headers1 .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 // More headers
-$headers1 .= 'From: <noreply@cinecafes.com>' . "\r\n";
-$headers1 .= 'Cc: info@cinecafes.com' . "\r\n";
+$headers1 .= 'From: <info@cinecafes.com>' . "\r\n";
+//$headers1 .= 'Cc: info@cinecafes.com' . "\r\n";
 
 mail($to1,$subject1,$message1,$headers1);
 	
