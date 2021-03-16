@@ -14,7 +14,7 @@ $today=date('h:i:s a');
 
 		
 $to = $femail;
-$subject = "Thank You For showing interest for franchise";
+$subject = "Thank You For Showing Interest For Franchise";
 
 
 $message = "Hello,<br/>Thank you for applying as Franchise. We will be contacting you soon.</br>Regards,</br>Team Cinecafes";
