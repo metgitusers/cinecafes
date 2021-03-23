@@ -42,7 +42,7 @@ class Reservation extends MY_Controller
         $data['cafe_id'] = $cafe_id;
         //$data['list']=$this->mreservation->getreservationList();
         $data['list'] = $this->mreservation->getreservationList($start_date, $end_date, $cafe_id);
-        //echo $this->db->last_query(); die;
+        echo $this->db->last_query(); die;
         $condition = array('status' => 1, 'is_delete=' => 0);
         $data['cafe_list'] = $this->mcommon->getDetails('master_cafe', $condition);
         $data['title'] = 'Reservation List';
