@@ -44,7 +44,7 @@
                       <input type="file" name="file" id="file" class="form-control">
                     </div>
                   </div> 
-                  <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="col-md-12 col-sm-12 col-xs-12" style="display: none">
                     <div class="form-group emoji">
                       <label>Ticker</label>
                       <input type="text" maxlength="150" name="ticker" id="ticker" class="form-control" value="<?php echo set_value('ticker');?>" >

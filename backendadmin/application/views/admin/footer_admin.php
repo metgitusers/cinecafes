@@ -2277,9 +2277,8 @@ $(function () {
 //   });
 </script>
 <script>
-// $(function() {
-//     $('#end_time').timepicker();
-// });
+var total_amount = 0;
+var user_id = "";
  
   $(".toggle-password").click(function() {
       $(this).toggleClass("fa-eye fa-eye-slash");
@@ -2418,6 +2417,7 @@ $('#end_time1').timepicker({
     scrollbar: true
 });
 
+
 //add reservation date time validation
 var reservation_min_time="12:00pm";
 
@@ -2429,39 +2429,103 @@ var currDate = new Date();
     minDate: 0,
     maxDate: '+30D',
    //format: 'dd/mm/yyyy'
-    format: 'yyyy-mm-dd',
-     autoclose: true,
+   dateFormat: 'dd/mm/yy',
+    autoclose: true,
+    onSelect: function(dateText) {
+      
+        //reset cafe list
+        $('#cafe_id').val('');
+        var today = new Date();
+        var selectedDate = $('#reservation_date').datepicker('getDate');
+        today.setHours(0);
+        today.setMinutes(0);
+        today.setSeconds(0);
 
-
-  }).on('changeDate', function() {
-       var today = new Date();
-      var selectedDate = $('#reservation_date').datepicker('getDate');
-      today.setHours(0);
-      today.setMinutes(0);
-      today.setSeconds(0);
       //alert(selectedDate);
-       //alert(today);
-      if (Date.parse(today) == Date.parse(selectedDate)) {
-       // alert('today');
-       // alert(new Date().getHours());
-       var present_hr=new Date().getHours();
-       if(present_hr>12)
-       {
-        var reservation_min_time=(present_hr-12)+':00pm';
-         $("#reservation_time").timepicker('option',{'minTime': reservation_min_time});
-       }
+      //      //alert(today);
+      var p_time = '';
+      if (Date.parse(today) < Date.parse(selectedDate)) {
+        p_time = "10:00 AM";
+        console.log("1"+p_time);
+      }else{
+        p_time = "<?=date('H:i A')?>";
+        console.log("2"+p_time);
+      }
+      //$('#reservation_time').timepicker('setTime', null);
+      $('#reservation_time').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        minTime: p_time,
+        maxTime: '11:00pm',
+        //defaultTime: '12',
+        startTime: '12',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true,
+        change: function(time) {
+          //reset cafe list
+          $('#cafe_id').val('');
+          var today = new Date();
+          var selectedDate = $('#reservation_date').datepicker('getDate');
+          today.setHours(0);
+          today.setMinutes(0);
+          today.setSeconds(0);
+          //alert(selectedDate);
+          //alert(today);
+          if (Date.parse(today) == Date.parse(selectedDate)) {
+            if (new Date().getHours() > $(this).timepicker('getTime').getHours()) {
+              alert('Please select time in future not past time');
+              $(this).val('');
+            }
+          }
+          else
+            {
+              var html_dropdown="";
+              var max=24;
+              var dropdown_max=12;
+              var dropdown_max=parseInt(max)-parseInt($(this).timepicker('getTime').getHours());
+              for(i=1;i<=dropdown_max;i++)
+              {
+                var html_dropdown=html_dropdown+'<option value="'+i+'">'+i+'</option>';
+              }
+            }
+          }
+      });
+    }
+  });
+  // .on('changeDate', function() {
+  //   console.log('do');
+  //      var today = new Date();
+  //     var selectedDate = $('#reservation_date').datepicker('getDate');
+  //     today.setHours(0);
+  //     today.setMinutes(0);
+  //     today.setSeconds(0);
+  //     //alert(selectedDate);
+  //      //alert(today);
+  //     if (Date.parse(today) == Date.parse(selectedDate)) {
+  //      // alert('today');
+  //      // alert(new Date().getHours());
+  //      var present_hr=new Date().getHours();
+  //      console.log(present_hr);
+  //      if(present_hr>12)
+  //      {
+  //       var reservation_min_time=(present_hr-12)+':00pm';
+  //        $("#reservation_time").timepicker('option',{'minTime': reservation_min_time});
+  //      }
 
        
-      }
+  //     }else{
+  //       console.log('check');
+  //     }
       
-           $('.r_time').show();
-        });;
+  //          $('.r_time').show();
+  // });
 
  ///start time
  var p_time = "<?=date('H:i A')?>";
   $('#reservation_time').timepicker({
     timeFormat: 'h:mm p',
-    interval: 15,
+    interval: 30,
     minTime: p_time,
     maxTime: '11:00pm',
     //defaultTime: '12',
@@ -2470,7 +2534,9 @@ var currDate = new Date();
     dropdown: true,
     scrollbar: true,
     change: function(time) {
-       
+       //reset cafe list
+       $('#cafe_id').val('');
+
       var today = new Date();
 
        var selectedDate = $('#reservation_date').datepicker('getDate');
@@ -2499,11 +2565,11 @@ var currDate = new Date();
           {
             var html_dropdown=html_dropdown+'<option value="'+i+'">'+i+'</option>';
           }
-          $('#duration').html(html_dropdown);
-          $('.r_duration').show();
+          //$('#duration').html(html_dropdown);
+          //$('.r_duration').show();
         }
 
-        $('.r_duration').show();
+        //$('.r_duration').show();
       } 
       // var element = $(this), text;
       //       // get access to this Timepicker instance
@@ -2515,82 +2581,245 @@ var currDate = new Date();
    
 });
 
-
-
-function member_data(user_id)
+/**Populate reservation data */
+function member_data(userId)
 {
-  $.ajax({
-          type: "POST",
-          url: '<?php echo base_url('admin/reservation/get_member_data')?>',
-          data:{user_id:user_id},
-          dataType:'json',
-          success: function(response){
-            //console.log(response);
-            // alert(response.name);
-            // alert(response.email);
-            // alert(response.mobile);
-            $('#name').val(response.name);
-            $('#email').val(response.email);
-            $('#mobile').val(response.mobile);
-          },
-          error:function(response){
+  user_id = userId;
+  let u = $('#user_id :selected');
+  $('#name').val(u.text());
+  $('#email').val(u.data('email'));
+  $('#mobile').val(u.data('mobile'));
+
+  //
+  chkSubscriptionDiscount();  //API call to check membership discount
+  // $.ajax({
+  //         type: "POST",
+  //         url: '<?php echo base_url('admin/reservation/get_member_data')?>',
+  //         data:{user_id:user_id},
+  //         dataType:'json',
+  //         success: function(response){
+  //           $('#name').val(response.name);
+  //           $('#email').val(response.email);
+  //           $('#mobile').val(response.mobile);
+  //         },
+  //         error:function(response){
           
-          }
-      }); 
+  //         }
+  //     }); 
   
 }
-
 //function to display memeberr data in add reservation
 function reservation_type_change(selected_val)
 {
-  //alert(selected_val);
   if(selected_val=="1")
   {
-    
     $('.member_dd').show();
     $('.member_dd').attr("required",true);
   }
   else
   {
-    $('.member_dd').hide();
     $('.member_dd').attr("required",false);
+    $('#name').val('');
+    $('#email').val('');
+    $('#mobile').val('');
+    $('.member_dd').val('');
+    $('.member_dd').hide();
+    $('#membership-discount').hide();
   }
-
 }
-
 
 //populate room as per availability
 function populate_room(cafe_id)
 {
-  //alert(cafe_id);
-  var reservation_date=$('#reservation_date').val();
-  var reservation_time=$('#reservation_time').val();
-  var duration=$('#duration').val();
+  /**
+   * calculate room price
+  */
+  //calculateReservationCharge();
+  let jsonObj = {
+        no_of_guests: $('#no_of_guests').val(),
+        reservation_date: $('#reservation_date').val(),
+        reservation_time: $('#reservation_time').val(),
+        duration: $('#duration').val(),
+        cafe_id: cafe_id,
+      }
   $.ajax({
           type: "POST",
-          url: '<?php echo base_url('admin/reservation/get_available_room')?>',
-          data:{cafe_id:cafe_id,reservation_date:reservation_date,reservation_time:reservation_time,duration:duration},
-          //dataType:'json',
+          url: '<?php echo base_url('api/v1/availablility_chk')?>',
+          data: JSON.stringify(jsonObj),
+          dataType:'json',
           success: function(response){
-            console.log(response);
-            //alert(response);
-            if(response=="")
+            if(response.status.error_code==1)
             {
-              alert("No room available for this cafe at selected slot");
+              $('#ReservationAddform #cafe_id').val('');
+              alert(response.status.message);
             }
             else
             {
-              $('#room_id').html(response);
+              $('#ReservationAddform #room_id').html('');
+              $('#ReservationAddform #room_id').append('<option value=""> -- Select Room --</option>');
+              response.result.rooms.forEach(f=>{
+                $('#ReservationAddform #room_id').append('<option value="'+f.room_id+'">'+f.room_no+'</option>');
+              })
             }
-           
           },
           error:function(response){
-          
+            alert("Sorry!! something wrong");
           }
       }); 
-
 }
 
+//apply promo coupon
+$('#apply-reservation-coupon').on('click', function(){
+  if($('#coupon').val().trim() == ""){
+    alert('Cupon code is required');
+    return false;
+  }
+  if(total_amount == 0){
+    alert('Please select all the required fields to apply promo');
+    return false;
+  }
+  //check membership amount
+  // if($('#membership_discount_amount').val())
+  // {
+  //   total_amount= total_amount-parseInt($('#membership_discount_amount').val());
+  // }
+
+  let jsonObj = {
+    coupon_code: $('#coupon').val().trim(),
+    total_amount: total_amount
+      }
+  $.ajax({
+          type: "POST",
+          url: '<?php echo base_url('api/apply_promo')?>',
+          data: JSON.stringify(jsonObj),
+          dataType:'json',
+          success: function(response){
+            if(response.status.error_code==1)
+            {
+              alert(response.status.message);
+              $('#discount_amount').val('');
+              $('promo-discount strong').text('');
+              $('#promo-discount').hide();
+              $('#remove-reservation-coupon').hide();
+            }
+            else
+            {
+              $('#promo-discount strong').text(response.result.discount_amount);
+              $('#discount_amount').val(response.result.discount_amount);
+              $('#remove-reservation-coupon').show();
+              $('#promo-discount').show();
+              calPayableAmount();
+            }
+          },
+          error:function(response){
+            alert("Sorry!! something wrong");
+          }
+  });
+})
+
+//remove promo
+$('#remove-reservation-coupon').on('click', function(){
+  if(confirm('Are you sure to remove applied coupon?')){
+    $('#promo-discount strong').text('');
+    $('#discount_amount').val('');
+    $('#promo-discount').hide();
+    $('#coupon').val('');
+    calPayableAmount(coupon = false);
+    $(this).hide();
+  }
+})
+
+//get user details based on mobile number
+$('#mobile').on('focusout', function(){
+  let mobile = $(this).val().trim();
+  console.log(userData)
+  console.log(mobile)
+  if(mobile.length >= 10){
+    userData.forEach(f=>{
+      if(f.mobile == mobile){
+        $('#name').val(f.name);
+        $('#email').val(f.email);
+        $('#mobile').val(f.mobile);
+      }
+    })
+  }
+})
+
+
+$('.check-price').on('change', function(){
+  calculateReservationCharge();
+  
+  chkSubscriptionDiscount();
+})
+function calculateReservationCharge(){
+  let price = parseInt($('#cafe_id :selected').data('info'));
+  let guests = parseInt($('#no_of_guests').val());
+  let duration = parseInt($('#duration').val());
+  if(!isNaN(price) && !isNaN(guests) && !isNaN(duration)){
+    total_amount = price*guests*duration;
+    $('#reservation_charge').val(total_amount);
+
+    //calculate payable amount
+    calPayableAmount();
+  }else{
+    $('#reservation_charge').val('Reservation charge');
+  }
+}
+
+//calculate payable amount for each scenarion
+function calPayableAmount(coupon = true){
+  let amt = total_amount;
+  if($('#membership_discount_amount').val())
+  {
+    amt= amt-parseInt($('#membership_discount_amount').val());
+  }
+  if($('#discount_amount').val())
+  {
+    amt= amt-parseInt($('#discount_amount').val());
+  }
+  $('#payable-amount strong').text(amt);
+}
+
+
+function chkSubscriptionDiscount(){
+  if(user_id =="" || total_amount==0){
+    return false;
+  }
+  let jsonObj = {
+    user_id: user_id,
+    total_amount: total_amount
+      }
+  $.ajax({
+          type: "POST",
+          url: '<?php echo base_url('api/chkSubscriptionDiscount')?>',
+          data: JSON.stringify(jsonObj),
+          dataType:'json',
+          success: function(response){
+            console.log(response);
+            if(response.status.error_code==1)
+            {
+              alert(response.status.message);
+              $('#membership_discount_amount').val('');
+              $('#membership_discount_percent').val('');
+              $('#membership-discount strong').text('');
+              $('#membership-discount').hide();
+            }
+            else
+            {
+              $('#membership-discount strong').text(response.result.membership_discount_amount);
+              $('#membership_discount_amount').val(response.result.membership_discount_amount);
+              $('#membership_discount_percent').val(response.result.membership_discount_percent);
+
+              $('#membership-discount').show();
+
+              calPayableAmount();
+            }
+          },
+          error:function(response){
+            alert("Sorry!! something wrong");
+          }
+  });
+}
 </script>
 
 

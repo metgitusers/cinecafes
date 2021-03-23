@@ -91,7 +91,7 @@
 					  <div class="col-md-4 col-sm-12 col-xs-12">
 						 <span style="margin-top: 2px;">
                 <span  style="text-decoration: none; display: inline-flex;" class="image-preview">
-                  <img width="100%" style="margin-bottom: 30px;" id="blah">
+                  <!-- <img width="100%" style="margin-bottom: 30px;" id="blah"> -->
                  </span>
               </span> 
 					  </div>

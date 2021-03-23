@@ -135,8 +135,6 @@
                    ?>
                 </div>
                 
-                
-                
                 <div class="col-md-12 col-sm-12 col-xs-12">
                    <div class="form-group reservation_details">
                       <h5>Payment Details</h5>
@@ -144,14 +142,14 @@
 					   <div class="col-md-3 col-sm-12 col-xs-12">
                         <p><span>Payment Mode: </span>
                           <?php
-                          if($row['payment_mode']=="")
-                      {
-                        echo "Backend Transaction";
-                      }
-                      else
-                      {
-                        echo $row['payment_mode'];
-                      }
+                          if($row['add_from'] == 'admin')
+                            {
+                                echo $row['backend_payment_mode'];
+                            }
+                            else
+                            {
+                                echo $row['payment_mode'];
+                            }
                       ?></p>
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12">

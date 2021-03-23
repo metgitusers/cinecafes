@@ -2,7 +2,10 @@
   .error{
    color: #FF0000;
    font-size: 15px;
-    
+}
+#coupon{
+  width: 72%;
+  display: inline-flex;
 }
 </style>
 <!-- Begin Page Content -->
@@ -28,44 +31,39 @@
                   <?php echo $this->session->flashdata('error_message') ?>
                 </div>
             <?php endif ?>             
-              <form method="post" id="CafeAddform" role="form" action="<?php echo base_url();?>admin/reservation/add_content" autocomplete="off"  enctype="multipart/form-data">
+              <form method="post" id="ReservationAddform" role="form" action="<?php echo base_url();?>admin/reservation/add_content" autocomplete="off"  enctype="multipart/form-data">
                 <div class="row">
-             
                  <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <label>Reservation Date*</label>
-                      <input type="text" name="reservation_date" id="reservation_date" class="form-control"  value="<?php echo set_value('reservation_date');?>" required>
+                      <input type="text" name="reservation_date" id="reservation_date" class="form-control" placeholder="Reservation date" autocomplete="off" value="<?php echo set_value('reservation_date');?>" required>
                     </div>
                 </div>
-               
-                 <div class="col-md-4 col-sm-12 col-xs-12 r_time" style="display:none;">
+                 <div class="col-md-4 col-sm-12 col-xs-12 r_time">
                   <div class="form-group">
-                      <label>Start time*</label>
-                      <input type="text" name="reservation_time" id="reservation_time" class="form-control timepicker"  value="<?php echo set_value('reservation_time');?>" required >
+                      <label>Reservation Time*</label>
+                      <input type="text" name="reservation_time" id="reservation_time" class="form-control timepicker" placeholder="Reservation time" autocomplete="off" value="<?php echo set_value('reservation_time');?>" required >
                     </div>
                 </div>
                  
-               <div class="col-md-4 col-sm-12 col-xs-12 r_duration" style="display:none;">
+               <div class="col-md-4 col-sm-12 col-xs-12 r_duration">
                   <div class="form-group">
                     <label>Duration*</label>
-                     <select class="form-control" id="duration" name="duration" required="required" > 
-                      
-                      
+                     <select class="form-control check-price" id="duration" name="duration" required="required" > 
+                     <option value="">-- Select duration --</option>
+                        <?php
+                          for($i=1; $i<=12; $i++){
+                            echo "<option value=".$i.">".$i."</option>";
+                          }
+                        ?>
                     </select>
                     </div>
                 </div> 
-
-                <!-- <div class="col-md-4 col-sm-12 col-xs-12 r_end" style="display:none;">
-                  <div class="form-group">
-                      <label>End time*</label>
-                      <input type="text" name="reservation_end_time" id="reservation_end_time" class="form-control"  value="<?php echo set_value('reservation_end_time');?>" readonly>
-                    </div>
-                </div> -->
-
                 <div class="col-md-4 col-sm-12 col-xs-12 " >
                   <div class="form-group">
                     <label>No of Guests*</label>
-                     <select class="form-control" id="no_of_guests" name="no_of_guests" required="required" >
+                     <select class="form-control check-price" id="no_of_guests" name="no_of_guests" required="required" >
+                     <option value="">-- Select guest no --</option>
                       <?php for($i=1; $i<=8;$i++)
                       {
                         echo "<option value='".$i."'>".$i."</option>";
@@ -75,117 +73,135 @@
                     </select>
                     </div>
                 </div> 
-
                 <div class="col-md-4 col-sm-12 col-xs-12 " >
                   <div class="form-group">
                     <label>Cafe*</label>
-                     <select class="form-control" id="cafe_id" name="cafe_id" required="required" onchange="populate_room(this.value);">
-                      <option value=""> Select cafe</option>
-                     <?php foreach($cafe_list as $row1){?>
-                            <option value="<?php echo $row1['cafe_id'];?>" <?php //if($row1['id']==$row['cafe_id']){ echo "selected"; }?>><?php //echo $row1['cafe_id'];?><?php echo $row1['cafe_name']."-".$row1['cafe_place'];?></option>
-                             <?php } ?>
-                             </select>
-                      
-                    </select>
+                     <select class="form-control check-price" id="cafe_id" name="cafe_id" required="required" onchange="populate_room(this.value);">
+                      <option value="">-- Select cafe --</option>
+                      <?php foreach($cafe_list as $row1){?>
+                        <option value="<?php echo $row1['cafe_id'];?>" data-info="<?= $row1['price']?>"><?php echo $row1['cafe_name']."-".$row1['cafe_place'];?></option>
+                          <?php } ?>
+                        </select>
                     </div>
                 </div> 
                 <div class="col-md-4 col-sm-12 col-xs-12 " >
                   <div class="form-group">
                     <label>Room*</label>
                      <select class="form-control" id="room_id" name="room_id" required="required" >
-
+                     <option value=""> -- Select Room --</option>
+                      <!-- populate filter data -->
                      </select>
                   </div>
                 </div>
-
                 <div class="col-md-4 col-sm-12 col-xs-12 ">
                   <div class="form-group">
-                    <label>Reservation Type*</label>
-                     <select class="form-control" id="reservation_type" name="reservation_type" required="required" >
-                        <option value="Online">Online</option>
-                        <option value="Walkin">Walk-in</option>
-                        <option value="Phone">Phone</option>
-                      </select>
-                      
-                    </select>
+                    <label>Reservation Charge (Rs.)*</label>
+                    <input type="text" name="reservation_charge" id="reservation_charge" class="form-control" placeholder="Reservation charge" autocomplete="off" value="<?php echo set_value('reservation_charge');?>" readonly >
                     </div>
                 </div> 
-
-                
+                <div class="col-md-4 col-sm-12 col-xs-12 ">
+                  <div class="form-group">
+                    <label>Payment Type*</label>
+                     <select class="form-control" id="reservation_type" name="reservation_type" required="required" >
+                        <option value="Cash">Cash</option>
+                        <option value="Online">Online</option>
+                        <option value="UPI">UPI</option>
+                      </select>
+                    </div>
+                </div>
                 <div class="col-md-4 col-sm-12 col-xs-12 " >
                   <div class="form-group">
                     <label>Entertainment Media*</label>
                     <select class="form-control" id="media_type" name="media_type" required="required" >
+                    <option value="">-- Select media type --</option>
                      <?php foreach($media_list as $row1){?>
                             <option value="<?php echo $row1['media_name'];?>" <?php //if($row1['id']==$row['cafe_id']){ echo "selected"; }?>><?php //echo $row1['cafe_id'];?><?php echo $row1['media_name'];?></option>
                              <?php } ?>
-                      
                     </select>
                     </div>
                 </div> 
                  <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <label>Reservation for*</label>
-                      
                        <select class="form-control" id="reservation_for" name="reservation_for" required="required" onchange="reservation_type_change(this.value);" >
-                        <option value="">Select</option>
+                       <option value="">-- Select type --</option>
                         <option value="1">Member</option>
                         <option value="2">Guest</option>
-                       
                       </select>
-                      
-                    </select>
                     </div>
                 </div>
-
                 <div class="col-md-4 col-sm-12 col-xs-12 member_dd" style="display: none;">
                   <div class="form-group">
                       <label>Member</label>
-                      
                        <select class="form-control" id="user_id" name="user_id" onchange="member_data(this.value)">
-                        <option value="">Select</option>
+                       <option value="">-- Select member --</option>
                         <?php foreach($member_list as $row1){?>
-                            <option value="<?php echo $row1['user_id'];?>"><?php echo $row1['name'];?></option>
+                            <option value="<?php echo $row1['user_id'];?>" data-mobile="<?=$row1['mobile']?>" data-email="<?=$row1['email']?>"><?php echo $row1['name'];?></option>
                              <?php } ?>
-                       
                       </select>
-                      
-                    </select>
                     </div>
                 </div>
-
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <label>Mobile*</label>
-                      <input type="text" name="mobile" id="mobile" class="form-control"  value="<?php echo set_value('mobile');?>" required>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                  <div class="form-group">
-                      <label>Email Id</label>
-                      <input type="text" name="email" id="email" class="form-control"  value="<?php echo set_value('email');?>" >
+                      <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Mobile" value="<?php echo set_value('mobile');?>" required>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <label>Name*</label>
-                      <input type="text" name="name" id="name" class="form-control"  value="<?php echo set_value('name');?>" required>
+                      <input type="text" name="name" id="name" class="form-control" placeholder="Name"  value="<?php echo set_value('name');?>" required>
                     </div>
                 </div>
-                 
+                
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <label>Email Id</label>
+                      <input type="email" name="email" id="email" class="form-control" placeholder="Email"  value="<?php echo set_value('email');?>" >
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12" id="membership-discount" style="display: none">
+                  <div class="form-group">
+                      <label>Membership Discount</label>
+                      <p style="font-size: 19px;color: #F68310;">Rs. <strong>0</strong></p>
+                    </div>
+                </div>
+                  <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label>Apply Coupon</label>
+                        <input type="text" name="coupon" id="coupon" placeholder="Coupon code" class="form-control"  value="<?php echo set_value('coupon');?>" >
+                        <button type="button" class="btn btn-primary" id="apply-reservation-coupon" disabled>Apply</button>
+                        <button type="button" class="btn btn-primary" id="remove-reservation-coupon" style="display: none">Remove</button>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 col-xs-12" id="promo-discount" style="display: none">
+                    <div class="form-group">
+                        <label>Coupon Discount</label>
+                        <p style="font-size: 19px;color: #F68310;">Rs. <strong>0</strong></p>
+                      </div>
+                  </div>
+                 <div class="col-md-12 col-sm-12 col-xs-12" id="payable-amount">
+                  <div class="form-group">
+                      <label>Total Payable</label>
+                      <p style="font-size: 19px;color: #F68310;">Rs. <strong>0</strong></p> 
+                    </div>
+                </div>
                  <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <label>Message</label>
-                       <textarea id="message" name="message" class="form-control" ><?php echo set_value('message');?></textarea>
+                       <textarea id="message" name="message" class="form-control" placeholder="What is in your mind"><?php echo set_value('message');?></textarea>
                     </div>
-                </div> 
+                </div>
+                <input type="hidden" name="discount_amount" id="discount_amount" value="">
+                <input type="hidden" name="membership_discount_amount" id="membership_discount_amount" value="">
+                <input type="hidden" name="membership_discount_percent" id="membership_discount_percent" value="">
+
                 <div class="col-md-2 col-xs-2 col-xs-2">
                   <div class="form-group">
                      <button type="submit" class="btn btn-primary btn-user btn-block">Submit</button>
                         <!--  <input type="submit" name="submit" value="Submit"/> -->
                      </div>
                 </div>
-            
             </div>          
           </div>
         </form>
@@ -257,4 +273,23 @@ var placeSearch, autocomplete;
           });
         }
       }
+</script>
+<script>
+  var userData = <?=json_encode($user_list)?>;
+  $(document).ready(function(){
+    $('.timepicker').timepicker({});
+  })
+  $('#coupon').on('keyup', function(){
+    $('#apply-reservation-coupon').prop('disabled', $(this).val().length > 0 ?false:true);
+  })
+
+  $('#reservation_date').on('change', function(){
+    $('#cafe_id').val('');
+  })
+  $('#reservation_time').on('change', function(){
+    $('#cafe_id').val('');
+  })
+  $('#duration').on('change', function(){
+    $('#cafe_id').val('');
+  })
 </script>
