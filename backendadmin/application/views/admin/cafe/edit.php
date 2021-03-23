@@ -71,14 +71,12 @@
                     </div>
                     <?php //echo form_error('autocomplete','<span class="error">', '</span>'); ?>
                 </div>
-                
-                
-              <!--  <div class="col-md-4 col-sm-12 col-xs-12">
+               <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
-                     <label>Price*</label>
-                       <input class="form-control" type="number" min="1" name="price" id="price"  value="<?php echo $row['price'];?>"> 
+                     <label>Hourly Price*</label>
+                       <input class="form-control" type="number" min="1" step=".1" name="price" id="price"  value="<?php echo $row['price'];?>"> 
                     </div>
-                </div> -->
+                </div>
                  <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <label>Phone*</label>

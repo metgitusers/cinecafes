@@ -30,10 +30,6 @@
             <?php endif ?>             
               <form method="post" id="CafeAddform" role="form" action="<?php echo base_url();?>admin/cafe/add_content" autocomplete="off"  enctype="multipart/form-data">
                 <div class="row">
-             
-              
-              
-                
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <label>Cafe Name*</label>
@@ -44,7 +40,7 @@
                   <div class="form-group">
                       <label>Cafe Location*</label>
                       <input type="text" class="form-control"  name="cafe_place"  autocomplete="off" value="<?php //echo set_value('autocomplete');?>"  required>
-                    
+                  
                     </div>
                 </div>
                   <div class="col-md-4 col-sm-12 col-xs-12">
@@ -55,12 +51,12 @@
                     </div>
                 </div>
                 
-              <!--  <div class="col-md-4 col-sm-12 col-xs-12">
+               <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
-                     <label>Price*</label>
-                       <input class="form-control" type="number" min="1" name="price" id="price"  value="<?php echo set_value('price');?>"> 
+                     <label>Hourly Price*</label>
+                       <input class="form-control" type="number" min="1" step=".1" name="price" id="price"  value="<?php echo set_value('price');?>"> 
                     </div>
-                </div> -->
+                </div>
                  <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <label>Phone*</label>
@@ -109,10 +105,7 @@
                  <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                      <label>Image</label>
-                    
-                      
                       <input type="file" name="files[]" id="file-input" multiple accept="image/jpeg, image/png, image/gif,"> 
-                       
                     </div>
                 </div>
                  <div class="col-md-12 col-sm-12 col-xs-12">
@@ -127,13 +120,11 @@
                         <!--  <input type="submit" name="submit" value="Submit"/> -->
                      </div>
                 </div>
-            
             </div>          
           </div>
         </form>
         </div>
         <!-- /.container-fluid -->
-
       </div>
       <!-- End of Main Content -->
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBygzKjcQExaecyS1lz35vPwzLRhhqRBfk&libraries=geometry,places&ext=.js&callback=initAutocomplete" async defer></script>

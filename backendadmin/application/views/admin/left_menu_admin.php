@@ -31,11 +31,11 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - cafe -->
-      <li class="nav-item <?php if($this->uri->segment(2)=='setting'&&$this->uri->segment(2)=='price'){ echo"active"; }?>">
+      <!-- <li class="nav-item <?php if($this->uri->segment(2)=='setting'&&$this->uri->segment(2)=='price'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/setting/price'); ?>">
         <img src="<?=base_url('public/img/icon_3.png')?>" alt="icon">
           <span>Hourly Price</span></a>
-      </li>
+      </li> -->
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
      
