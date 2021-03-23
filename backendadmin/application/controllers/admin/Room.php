@@ -96,7 +96,7 @@ class Room extends MY_Controller {
 			 if(!empty($_FILES['image']['name'])){
 				$image_path = './public/upload_images/room_images';
 				for($i=0; $i< count($_FILES['image']['name']); $i++){
-					if($i<=3){
+					//if($i<=3){
 						$filename = $_FILES['image']['name'][$i];
 						$allowed =  array('gif', 'png', 'jpg', 'jpeg', 'JPG', 'JPEG', 'PNG', 'GIF');
 						$ext = pathinfo($filename, PATHINFO_EXTENSION);
@@ -108,7 +108,7 @@ class Room extends MY_Controller {
 								$this->mcommon->insert('room_images', $images);
 							} 
 						}
-					}
+					//}
 				}
 			}
 		 	$this->session->set_flashdata('success_message','Room added successfully.');
@@ -172,7 +172,7 @@ class Room extends MY_Controller {
 			 if(!empty($_FILES['image']['name'])){
 				$image_path = './public/upload_images/room_images';
 				for($i=0; $i< count($_FILES['image']['name']); $i++){
-					if($i<=3){
+					//if($i<=3){
 						$filename = $_FILES['image']['name'][$i];
 						$allowed =  array('gif', 'png', 'jpg', 'jpeg', 'JPG', 'JPEG', 'PNG', 'GIF');
 						$ext = pathinfo($filename, PATHINFO_EXTENSION);
@@ -184,7 +184,7 @@ class Room extends MY_Controller {
 								$this->mcommon->insert('room_images', $images);
 							} 
 						}
-					}
+					//}
 				}
 			}
 		 		

@@ -77,10 +77,10 @@ class Api extends CI_Controller
           $date=$ap['reservation_date'];
           $format="d/m/Y";
           //chk if its past date then reject request
-          $curDateTime = date("Y-m-d H:i:s");
+          $curDateTime = date("Y-m-d H:i");
           //$reservation_date_time = date("Y-m-d H:i:s", strtotime($reservation_date." ".$ap['reservation_time']));
           $reservation_date = date("Y-m-d", strtotime(str_replace('/', '-', $date)));
-          $reservation_date_time = $reservation_date." ".date('H:i:s', strtotime($ap['reservation_time']));
+          $reservation_date_time = $reservation_date." ".date('H:i', strtotime($ap['reservation_time']));
           //echo $curDateTime.'>='.$reservation_date_time; die;
           if($curDateTime>=$reservation_date_time)
             {
@@ -93,17 +93,17 @@ class Api extends CI_Controller
         //$room_id=$ap['room_id'];
         $cafe_id=$ap['cafe_id'];
         //get cafe details for cafe charge
-        $cafeDetails = $this->mcommon->select('master_cafe', ['cafe_id'=> $cafe_id, 'is_delete'=> 0], '*');
+        $cafeDetails = $this->mcommon->select('master_cafe', ['cafe_id'=> $cafe_id, 'status'=>1, 'is_delete'=> 0], '*');
         if(empty($cafeDetails)){
           $response['status']['error_code']           = 1;
-          $response['status']['message']              = 'Opp! Sorry the room is not available for the given date & time';
+          $response['status']['message']              = 'OOPs! Sorry the room is not available for the given date & time';
         }
 
-        $reservation_time=DATE('H:i:s',strtotime($ap["reservation_time"]));
+        $reservation_time=date('H:i',strtotime($ap["reservation_time"]));
         $duration=explode(' hr', strtolower($ap['duration']))[0];
         $selectedTime             = $reservation_time;
-        $start_time_range         = date('H:i:s',strtotime($selectedTime));
-        $end_time_range           = date('H:i:s',strtotime("+".$duration." hours", strtotime($selectedTime)));
+        $start_time_range         = date('H:i',strtotime($selectedTime));
+        $end_time_range           = date('H:i',strtotime("+".$duration." hours", strtotime($selectedTime)));
 
         //$availability_status=$this->isAvailable($reservation_date, $cafe_id, $reservation_time, $duration);
         //$availability_status=$this->is_available($reservation_date,$room_id,$reservation_time,$duration);
@@ -129,7 +129,7 @@ class Api extends CI_Controller
           $roomsList = count($this->mcommon->select('room', ['cafe_id'=> $cafe_id, 'is_delete'=> 0], '*', 'room_id'));
           if($roomsList <= $total_reservation ){
             $response['status']['error_code']           = 1;
-            $response['status']['message']              = 'Opp! Sorry the room is already reserved for the given date & time';
+            $response['status']['message']              = 'OOPs! Sorry the room is already reserved for the given date & time';
             $this->displayOutput($response);
           }else{
             //calculate total price            

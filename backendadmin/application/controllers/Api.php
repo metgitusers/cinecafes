@@ -2475,8 +2475,8 @@ class Api extends CI_Controller
                 $reservation_date=$dateArr[2]."-".$dateArr[1]."-".$dateArr[0]; 
 
                 //chk if its past date then reject request
-                $curDateTime = date("Y-m-d H:i:s");
-                $reservation_date_time = date("Y-m-d H:i:s", strtotime($reservation_date." ".$ap['reservation_time']));
+                $curDateTime = date("Y-m-d H:i");
+                $reservation_date_time = date("Y-m-d H:i", strtotime($reservation_date." ".$ap['reservation_time']));
                   if($curDateTime>=$reservation_date_time)
                   {
                     $response['status']['error_code'] = 1;
@@ -2550,12 +2550,12 @@ class Api extends CI_Controller
 
                 $isAvailable = false;
                 foreach($roomsList as $value){
-                  $reservation_time=DATE('H:i:s',strtotime($ap["reservation_time"]));
+                  $reservation_time=date('H:i',strtotime($ap["reservation_time"]));
                   $duration=$ap['duration'];
 
                   $selectedTime             = $reservation_time;
-                  $start_time_range         = date('H:i:s',strtotime($selectedTime));
-                  $end_time_range           = date('H:i:s',strtotime("+".$duration." hours", strtotime($selectedTime)));
+                  $start_time_range         = date('H:i',strtotime($selectedTime));
+                  $end_time_range           = date('H:i',strtotime("+".$duration." hours", strtotime($selectedTime)));
 
                   $availability_status=$this->is_available($reservation_date, $value->room_id, $reservation_time, $duration);
                   if($availability_status == 0){
@@ -2932,7 +2932,7 @@ class Api extends CI_Controller
                  if($availability_status!=0){
                     
                    $response['status']['error_code']           = 1;
-                   $response['status']['message']              = 'Opp!Sorry the room is already reserved for the given date & time';
+                   $response['status']['message']              = 'OOPs! Sorry the room is already reserved for the given date & time';
 
                    $this->displayOutput($response);
                  }
@@ -3208,6 +3208,7 @@ class Api extends CI_Controller
         }
         
         $coupon_data = $this->mapi->getRow('coupon',array('coupon_code' => $ap['coupon_code'], 'is_delete'=> 0));
+        //echo $this->db->last_query();
         if(!empty($coupon_data)){
           if($coupon_data['is_delete']==1)
           {
@@ -3219,6 +3220,13 @@ class Api extends CI_Controller
           {
             $response['status']['error_code'] = 1;
             $response['status']['message']    = "This coupon is deactivated by admin";
+            $this->displayOutput($response);
+          }
+          //echo $coupon_data['min_price'] .'<'. $ap['total_amount'];
+
+          if($coupon_data['min_price'] >= $ap['total_amount']){
+            $response['status']['error_code'] = 1;
+            $response['status']['message']    = "You total amount must be minimum ".(int)$coupon_data['min_price']." to avail coupon discount.";
             $this->displayOutput($response);
           }
           $today=date("Y-m-d");
@@ -4611,7 +4619,7 @@ public function checkMembership(){
     $room_list = array();
     $reservationDetails = $this->mcommon->select('reservation', ['reservation_id'=> $id], '*');
     if(!empty($reservationDetails)){
-      $roomsList = $this->mcommon->select('room', ['cafe_id'=> $cafe_id, 'is_delete'=> 0], '*', 'room_id');
+      $roomsList = $this->mcommon->select('room', ['cafe_id'=> $cafe_id, 'status'=>1, 'is_delete'=> 0], '*', 'room_id');
       if(!empty($roomsList)){
         $isAvailable = false;
         foreach($roomsList as $value){
