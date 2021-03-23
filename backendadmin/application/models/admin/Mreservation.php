@@ -30,7 +30,7 @@ class Mreservation extends CI_Model{
 
         $this->db->select('reservation.*,room.room_no,CONCAT(master_cafe.cafe_name, "-",master_cafe.cafe_place) AS cafe_name,transaction_history.payment_mode');
         $this->db->from('reservation');
-        $this->db->join('room', 'room.room_id = reservation.room_id');
+        $this->db->join('room', 'room.room_id = reservation.room_id', 'left');
         $this->db->join('master_cafe', 'master_cafe.cafe_id = reservation.cafe_id');
        
         //$this->db->join('user', 'user.user_id = reservation.user_id');
@@ -59,10 +59,10 @@ class Mreservation extends CI_Model{
     }
     public function getreservationById($reservation_id){
 
-        $this->db->select('reservation.*,room.room_no,room.no_of_people as room_no_of_people,room.description as room_description,room.image as room_image,CONCAT(master_cafe.cafe_name, "-",master_cafe.cafe_place) AS cafe_name,master_cafe.cafe_description,master_cafe.cafe_location,master_cafe.opening_hours as cafe_opening_hours,master_cafe.phone as cafe_phone,transaction_history.payment_mode');
+        $this->db->select('reservation.*, reservation.payment_mode backend_payment_mode, room.room_no,room.no_of_people as room_no_of_people,room.description as room_description,room.image as room_image,CONCAT(master_cafe.cafe_name, "-",master_cafe.cafe_place) AS cafe_name,master_cafe.cafe_description,master_cafe.cafe_location,master_cafe.opening_hours as cafe_opening_hours,master_cafe.phone as cafe_phone,transaction_history.payment_mode');
         $this->db->from('reservation');
-        $this->db->join('room', 'room.room_id = reservation.room_id');
-        $this->db->join('master_cafe', 'master_cafe.cafe_id = reservation.cafe_id');
+        $this->db->join('room', 'room.room_id = reservation.room_id', 'left');
+        $this->db->join('master_cafe', 'master_cafe.cafe_id = reservation.cafe_id', 'left');
         //$this->db->join('user', 'user.user_id = reservation.user_id');
         $this->db->join('transaction_history', 'transaction_history.reservation_id = reservation.reservation_id','left');
         $this->db->where('reservation.reservation_id',$reservation_id);
