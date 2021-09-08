@@ -38,7 +38,7 @@ if ( ! function_exists('test_method'))
       $config['protocol']    = 'smtp';
       $config['protocol']    = 'smtp';
       $config['smtp_host']    = 'ssl://mail.cinecafes.com';
-      $config['smtp_port']    = '465';
+      $config['smtp_port']    = '587';
       $config['smtp_user']    = 'dev@cinecafes.com';
       $config['smtp_pass']    = 'hvkMnwY8Qskh';
       $config['charset']    = 'utf-8';
