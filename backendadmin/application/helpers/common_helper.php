@@ -47,7 +47,6 @@ if ( ! function_exists('test_method'))
       $config['validation'] = TRUE; // bool whether to validate email or not
 
       $obj->email->initialize($config);
-
       
       if($attach!=''){
         $obj->email->attach($attach);
