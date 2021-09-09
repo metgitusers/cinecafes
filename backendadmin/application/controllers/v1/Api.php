@@ -384,5 +384,20 @@ class Api extends CI_Controller
 									  );
 	  $insert_data      = $this->mcommon->insert('notification', $notification_arr);
 	}
+
+  public function test_email(){
+    $mail['name']       = 'Met User';
+    $mail['to']         = 'chayan.samanta@met-technologies.com';    
+    //$params['to']     = 'sreelabiswas.kundu@met-technologies.com';
+    
+    $mail['subject']    = ORGANIZATION_NAME.' - SMPT Test';
+    $mail['from_email']    = FROM_EMAIL;
+    $mail['from_name']    = ORGANIZATION_NAME;
+    if(sendmail($mail)){
+      echo 'sent';
+    }else{
+      echo 'Not sent';
+    }
+  }
  
 }
