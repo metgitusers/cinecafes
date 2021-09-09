@@ -387,7 +387,7 @@ class Api extends CI_Controller
 
   public function test_email(){
     $mail['name']       = 'Met User';
-    $mail['to']         = 'chayan.samanta@met-technologies.com';    
+    $mail['to']         = 'chayansamanta@gmail.com';    
     //$params['to']     = 'sreelabiswas.kundu@met-technologies.com';
     
     $mail['subject']    = ORGANIZATION_NAME.' - SMPT Test';
