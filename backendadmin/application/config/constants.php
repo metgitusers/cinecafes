@@ -93,3 +93,4 @@ define('CURRENT_DATE',date('Y-m-d'));
 define('CURRENT_YEAR',date('Y'));
 define('FROM_EMAIL','info@cinecafe.com');
 define('ORGANIZATION_NAME','Cine Cafes');
+define('COMMISSION','25');
