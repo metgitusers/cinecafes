@@ -37,7 +37,7 @@ class ReservationCommission extends MY_Controller {
 		$responce_arr       = array();
 		$final_resv_commission_list   = array();		
         $cond   			= '1';
-        $commission_charge 	= 100;
+        $commission_charge 	= COMMISSION;
         $total_commission	= 0;   
         $total_reservation	= 0; 
         $from_dt      = $this->input->post("from_date");
