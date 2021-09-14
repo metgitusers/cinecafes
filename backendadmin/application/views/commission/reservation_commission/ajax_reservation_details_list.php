@@ -8,11 +8,12 @@
                 <tr>
                     <th class="border-top-0">SL No.</th>
                     <th class="border-top-0">Rev. No.</th>
-                    <th class="border-top-0">User Details</th>
+                    <th class="border-top-0">User Name</th>
+                    <th class="border-top-0">Email</th>
+                    <th class="border-top-0">Phone</th>
                     <th class="border-top-0">Date</th>
-                    <th class="border-top-0">Time</th>
-                    <th class="border-top-0">Cafe</th>
-                    <th class="border-top-0">Total Price</th>
+                    <th class="border-top-0">Room</th>
+                    <th class="border-top-0">Booking Price</th>
                     <th class="border-top-0">No. of Guests</th>
                     <th class="border-top-0">Source</th>
                     <th class="border-top-0">Status</th>                                                                               
@@ -24,17 +25,21 @@
                 <tr>
                     <td><?= $key + 1 ?></td>
                     <td><?= $list['reservation_id'] ?></td>                                                                                        
-                    <td class="name_space"><?= ucfirst($list['full_name']) ?><br>
-                        <?php if(!empty($list['mobile'])){ echo '<i class="fa fa-phone-square" aria-hidden="true"></i> '.$list['country_code'].$list['mobile']; } ?><br>
-                        <?php if(!empty($list['email'])){ echo '<i class="fa fa-envelope" aria-hidden="true"></i>'.$list['email']; }?>   
-                    </td>                                                                                  
-                    <td><?= date('d/m/Y', strtotime($list['reservation_date'])); ?></td>  
-                    <td><?= date('h:i A',strtotime($list['reservation_time'])); ?></td>
+                    <td class="name_space"><?= ucfirst($list['full_name']) ?></td>
                     <td>
-                      <?= ucfirst($list['cafe_name'].'('. $list['cafe_place'] .')'); ?>
-                      <br><strong><?= $list['room_no'].'-'.$list['room_type_name'] ?></strong>
+                        <?php if(!empty($list['mobile'])){ echo '<i class="fa fa-phone-square" aria-hidden="true"></i> '.$list['country_code'].$list['mobile']; } ?>
                     </td>
-                    <td><?= $list['total_price']; ?></td> 
+                    <td>
+                        <?php if(!empty($list['email'])){ echo '<i class="fa fa-envelope" aria-hidden="true"></i>'.$list['email']; }?>
+                    </td>                                                                                  
+                    <td>
+                      <?= date('d/m/Y', strtotime($list['reservation_date'])); ?>
+                      <br /><i class="fa fa-clock-o"></i> <?= date('h:i A',strtotime($list['reservation_time'])); ?>
+                    </td>
+                    <td>
+                     <strong><?= $list['room_no'].'-'.$list['room_type_name'] ?></strong>
+                    </td>
+                    <td>Rs.<?= $list['total_price']; ?></td> 
                     <td><?= $list['no_of_guests']; ?></td>
                     <td><?= $list['reservation_type']; ?></td> 
                     <td>

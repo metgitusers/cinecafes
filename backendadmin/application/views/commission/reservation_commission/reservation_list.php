@@ -8,7 +8,8 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="page-title-wrap">
-                                    <h4 class="card-title">Reservation Commission List</h4>                                    
+                                    <h4 class="card-title">Reservation List</h4>
+                                    <a class="title_btn t_btn_list" href="<?= base_url('commission/ReservationCommission/'); ?>"><span><i class="fa fa-arrow-left" aria-hidden="true"></i></span> Back</a>    
                                 </div>
                             </div>
                             <div class="card-body">
@@ -46,17 +47,15 @@
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <div class="form-group" style="margin-bottom: 0;">
-                                                        <label>Cafe</label>
+                                                        <label>Status</label>
                                                         <div class="settlement_inline">
-                                                          <select id="cafe_id" class="js-select2" name="cafe_id" data-show-subtext="true" data-live-search="true">
+                                                          <select id="status_id" class="js-select2" name="status_id" data-show-subtext="true" data-live-search="true">
                                                             <option value="">Select</option>
                                                             <option value="" selected>All</option>
-                                                            <?php if(!empty($cafe_list)): ?>
-                                                            <?php   foreach($cafe_list as $clist): ?>
-                                                                      <option value="<?php echo $clist->cafe_id;?>" <?php if(!empty($cafe_id) && $cafe_id == $clist->cafe_id): echo 'selected';endif;?>>
-                                                                      <?php echo $clist->cafe_name .'('. $clist->cafe_place .')';?></option>
-                                                            <?php   endforeach; ?>
-                                                            <?php endif; ?>
+                                                            <option value="1" <?php if(!empty($status_id) && $status_id == '1'): echo 'selected';endif;?>>Pending</option>
+                                                            <option value="2" <?php if(!empty($status_id) && $status_id == '2'): echo 'selected';endif;?>>Confirm</option>
+                                                            <option value="0" <?php if(!empty($status_id) && $status_id == '0'): echo 'selected';endif;?>>Cancelled</option>
+                                                            <option value="3" <?php if(!empty($status_id) && $status_id == '3'): echo 'selected';endif;?>>No-show</option>
                                                           </select>
                                                         </div>
                                                     </div>
@@ -130,15 +129,15 @@ $(document).on('click','#search_btn',function(event){
   function populateData(){
     var from_date   = $("#from_dt").val();
     var to_date     = $("#to_dt").val();
-    var cafe_id     = $("#cafe_id").val();
+    var status_id     = $("#status_id").val();
     var cnt   = 0;    
     $.ajax({
         type: "POST",
-        url: "<?php echo base_url('commission/ReservationCommission/filterSearchReservationCommission')?>",
+        url: "<?php echo base_url('commission/ReservationCommission/filterSearchReservationList/'.$cafe_id)?>",
         data:{
-          from_date:from_date,
-          to_date:to_date,
-          cafe_id:cafe_id
+          from_date: from_date,
+          to_date: to_date,
+          status_id: status_id
         },
         dataType:'json',
         success: function(response){  
@@ -160,8 +159,7 @@ $(document).on('click','#search_btn',function(event){
           var date = now.getFullYear() + "-" + now.getMonth() + "-" + now.getDate();  
           $('.reservation_commission_list_table').DataTable({
             pageLength: 10,
-            dom: 'Bfrtip',
-            searching: false,
+            dom: 'Bfrtip',            
             buttons: [{
                 extend: 'excelHtml5',        
                 text: '<i class="fa fa-file-excel-o" aria-hidden="true"></i> Export',

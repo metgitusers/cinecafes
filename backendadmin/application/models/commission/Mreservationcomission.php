@@ -11,7 +11,8 @@ class Mreservationcomission extends CI_Model {
         $result=$query1->result_array();
         return $result;
     }*/
-	public function get_reservation_list($condition = NULL){
+	public function get_reservation_list($condition = ''){
+        ini_set('display_errors', 1);
         $result=array();
             $query = "select reservation.*, cafe.cafe_name, cafe.cafe_place, room.room_no, room_type.room_type_name, reservation.status as resv_status,
                     reservation.name as full_name from reservation
@@ -53,6 +54,17 @@ class Mreservationcomission extends CI_Model {
         $query1     = $this->db->query($query);
         $result     = $query1->result_array();
              
+        return $result;
+    }
+    //reservation date group
+    public function reservationCommissionListFilterSearch($condition = ''){    
+        $result         = array();
+        $final_result   = array();
+        $query = "SELECT rev.cafe_id, rev.reservation_date, cafe.cafe_name, cafe.cafe_place  FROM reservation as rev left join master_cafe as cafe on cafe.cafe_id = rev.cafe_id where ".$condition." and rev.status in(1) and cafe.is_delete = 0 order by cafe.cafe_name Asc";
+        //echo $query;exit;
+        $query1     = $this->db->query($query);
+        $result     = $query1->result_array();
+        //echo $this->db->last_query();
         return $result;
     }
 }

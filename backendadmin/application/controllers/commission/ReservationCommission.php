@@ -48,13 +48,13 @@ class ReservationCommission extends MY_Controller {
           $this->session->set_userdata('to_dt', $to_dt);  
           $from_date  = date('Y-m-d',strtotime(str_replace('/','-',$from_dt)));
           $to_date    = date('Y-m-d',strtotime(str_replace('/','-',$to_dt)));
-          $cond .=  " and rev.reservation_date between '".$from_date."' and '".$to_date."'";      
+          //$cond .=  " and rev.reservation_date between '".$from_date."' and '".$to_date."'";      
         }
         else
         {
             $this->session->set_userdata('from_dt', "");
-            $this->session->set_userdata('to_dt', ""); 
-			$cond .=  " and rev.reservation_date between '".date('Y-m-01')."' AND '".date('Y-m-d')."'"; 
+            $this->session->set_userdata('to_dt', "");
+			//$cond .=  " and rev.reservation_date between '".date('Y-m-01')."' AND '".date('Y-m-d')."'"; 
         }
         if($cafe_id !=''){
       		$cond .= " and rev.cafe_id ='".$cafe_id."'";
@@ -87,13 +87,81 @@ class ReservationCommission extends MY_Controller {
         echo json_encode($responce_arr);exit;
 	}
 
-	public function viewReservationDetails($cafe_id = null)
-	{
+	/**
+	 * View reservation based on date
+	 * Date group
+	*/
+	public function viewReservation($cafe_id = ''){
+		ini_set('display_errors', 1);
 		$data   	= array();		
         $cond   	= '1';
 		if(!empty($cafe_id)){
-			
 			$data['cafe_id'] = $cafe_id;
+			$join[] = ['table' => 'room_type rt', 'on' => 'rt.room_type_id = room.room_type_id', 'type' => 'left'];
+			$data['room_list'] = $this->mcommon->select('room', ['room.status'=> 1, 'room.is_delete'=> 0, 'room.cafe_id'=> $cafe_id], 'room.*, rt.room_type_name', 'room.room_id', 'DESC', $join);
+			$this->load->view('commission/layouts/reservation_commission_header');			
+			$this->load->view('commission/reservation_commission/reservation_list',$data);
+			$this->load->view('commission/layouts/footer');
+		}
+		else{
+			redirect('commission/ReservationCommission');
+		}
+	}
+
+	public function filterSearchReservationList($cafe_id = '')
+	{
+		ini_set('display_errors', 1);
+		$data   			= array();
+		$responce_arr       = array();
+		$final_resv_commission_list   = array();		
+        $cond   			= 'rev.cafe_id='.$cafe_id;
+        $commission_charge 	= COMMISSION;
+        $total_commission	= 0;   
+        $total_reservation	= 0; 
+        $from_dt      = $this->input->post("from_date");
+        $to_dt        = $this->input->post("to_date");
+        $status_id      = $this->input->post("status_id");
+        if($from_dt !='' && $to_dt !=''){
+          $this->session->set_userdata('from_dt', $from_dt);
+          $this->session->set_userdata('to_dt', $to_dt);  
+          $from_date  = date('Y-m-d',strtotime(str_replace('/','-',$from_dt)));
+          $to_date    = date('Y-m-d',strtotime(str_replace('/','-',$to_dt)));
+          //$cond .=  " and rev.reservation_date between '".$from_date."' and '".$to_date."'";      
+        }
+        else
+        {
+            $this->session->set_userdata('from_dt', "");
+            $this->session->set_userdata('to_dt', "");
+			//$cond .=  " and rev.reservation_date between '".date('Y-m-01')."' AND '".date('Y-m-d')."'"; 
+        }
+		if($status_id !=''){
+			$cond .= " and rev.status ='".$status_id."'";
+	  }
+        $resv_commission_list    = $this->Mreservationcomission->reservationCommissionListFilterSearch($cond);
+        //pr($resv_commission_list);
+        if(!empty($resv_commission_list)){
+        	foreach($resv_commission_list as $val){
+    			$final_resv_commission_list[$val['reservation_date']][] = $val;
+        	}
+        	$data['reservation_commission_list']  = $final_resv_commission_list;
+        }
+		$data['cafe_id']  = $cafe_id;
+        //pr($data['reservation_commission_list']);
+		// echo '<pre>';
+		// print_r($data); die;
+        $responce_arr['html'] = $this->load->view('commission/reservation_commission/ajax_reservation_list',$data,true);
+        echo json_encode($responce_arr);exit;
+	}
+
+
+	//end
+	public function viewReservationDetails($cafe_id = '', $date_slug = '')
+	{
+		$data   	= array();		
+        $cond   	= '1';
+		if(!empty($cafe_id)){			
+			$data['cafe_id'] = $cafe_id;
+			$data['request_date'] = base64_decode($date_slug);
 			$join[] = ['table' => 'room_type rt', 'on' => 'rt.room_type_id = room.room_type_id', 'type' => 'left'];
 			$data['room_list'] = $this->mcommon->select('room', ['room.status'=> 1, 'room.is_delete'=> 0, 'room.cafe_id'=> $cafe_id], 'room.*, rt.room_type_name', 'room.room_id', 'DESC', $join);
 			$this->load->view('commission/layouts/reservation_commission_header');			
@@ -107,24 +175,25 @@ class ReservationCommission extends MY_Controller {
 
 	public function filterSearchResvDetails()
 	{
+		ini_set('display_errors', 1);
 		$data   			= array();
-		$responce_arr       = array();				
-        $cond   			= '1';        
-        $from_dt      		= $this->input->post("from_date");
-        $to_dt        		= $this->input->post("to_date");
+		$responce_arr       = array();  
+        // $from_dt      		= $this->input->post("from_date");
+        // $to_dt        		= $this->input->post("to_date");
         $status_id     		= $this->input->post("status_id");
         $cafe_id     		= $this->input->post("cafe_id");
         $room_id     		= $this->input->post("room_id");
-        //$reservation_date   = $this->input->post("reservation_date");
-        $cond .=  " and reservation.cafe_id = '".$cafe_id."'";
-        if($from_dt !='' && $to_dt !=''){
-          $from_date  = date('Y-m-d',strtotime(str_replace('/','-',$from_dt)));
-          $to_date    = date('Y-m-d',strtotime(str_replace('/','-',$to_dt)));
-          $cond .=  " and reservation.reservation_date between '".$from_date."' and '".$to_date."'";      
-        }
-        else{
-        	$cond .=  " and reservation.reservation_date between '".date('Y-m-01')."' AND '".date('Y-m-d')."'";
-        }
+        $reservation_date   = date('Y-m-d', strtotime($this->input->post("date")));
+        $cond =  " reservation.cafe_id = '".$cafe_id."' AND reservation.reservation_date='".$reservation_date."'";
+		        // if($from_dt !='' && $to_dt !=''){
+        //   $from_date  = date('Y-m-d',strtotime(str_replace('/','-',$from_dt)));
+        //   $to_date    = date('Y-m-d',strtotime(str_replace('/','-',$to_dt)));
+        //   //$cond .=  " and reservation.reservation_date between '".$from_date."' and '".$to_date."'";      
+        // }
+        // else{
+        // 	//$cond .=  " and reservation.reservation_date between '".date('Y-m-01')."' AND '".date('Y-m-d')."'";
+        // }
+
         if($status_id !=''){
       		$cond .= " and reservation.status ='".$status_id."'";
     	}
@@ -134,6 +203,7 @@ class ReservationCommission extends MY_Controller {
     	$reservation_details		= $this->Mreservationcomission->get_reservation_list($cond);			
 		$data['reservation_data']	= $reservation_details;
 		// echo '<pre>';
+		// echo $this->db->last_query(); die;
 		// print_r($data['reservation_data']); die;
 		$responce_arr['html'] = $this->load->view('commission/reservation_commission/ajax_reservation_details_list',$data,true);
         echo json_encode($responce_arr);exit;

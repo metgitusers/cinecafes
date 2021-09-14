@@ -95,7 +95,9 @@ input:checked + .slider:before {
 		
 		<nav class="navbar navbar-expand-lg navbar-light bg-faded">
 			<div class="container-fluid">
-				<div class="logo-img pull-left"><img width="50px" height="50" src="<?= base_url('public/images/logo.png') ?>" alt="Convex Logo" /></div>
+				<div class="logo-img pull-left">
+					<img width="100px" height="80" src="<?= base_url('public/images/logo.png') ?>" alt="Convex Logo" />
+				</div>
 				<div class="navbar-header">					
 					<button type="button" data-toggle="collapse" class="navbar-toggle d-lg-none float-left"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
 					<span class="d-lg-none navbar-right navbar-collapse-toggle"><a class="open-navbar-container"><i class="ft-more-vertical"></i></a></span> </div>

@@ -8,9 +8,9 @@
               <thead>
                   <tr>
                       <th>Sl No.</th>
-                      <th>Cafe Name</th>                                                                              
-                      <th>No. of bookings</th>                                                                                                     
-                      <th>Commission</th>                                                                         
+                      <th>Cafe Name</th>
+                      <th>No. of Bookings</th>
+                      <th>Commission</th>
                   </tr>
               </thead>
               <tbody>                                                                                
@@ -19,8 +19,17 @@
                           <tr>
                             <td><?= $key + 1 ?></td>
                             <td><?= $list['cafe_name'].'('. $list['cafe_place'] .')'; ?></td>                                                                                 
-                            <td><a title="View" style="width:auto; height:auto;text-decoration: underline;" href="<?=base_url('commission/ReservationCommission/viewReservationDetails/'.$list['cafe_id'])?>" class="btn_action edit_icon"><strong><?= $list['no_of_reservation']; ?></strong></a></td> 
-                            <td><?= ($list['no_of_reservation']*COMMISSION); ?></td>
+                            <td>
+                              <!-- viewReservationDetails -->
+                              <a title="View" 
+                                style="width:auto; height:auto;text-decoration: underline;" 
+                                href="<?=base_url('commission/ReservationCommission/viewReservation/'.$list['cafe_id'])?>" 
+                                class="btn_action edit_icon"
+                              >
+                                <strong><?= $list['no_of_reservation']; ?></strong>
+                              </a>
+                            </td> 
+                            <td>Rs.<?= number_format(($list['no_of_reservation']*COMMISSION), 2); ?></td>
                           </tr>
                   <?php 
                   } } else { ?>
@@ -36,7 +45,7 @@
                   <td style="text-align: center;"><strong>Total</strong></td>
                   <td><strong><?php echo $total_reservation_cnt; ?></strong>
                   </td>
-                  <td><strong><?php echo $total_reservation_commission; ?></strong>
+                  <td>Rs.<strong><?php echo number_format($total_reservation_commission, 2); ?></strong>
                   </td>
                 </tr>
               <tfoot>
