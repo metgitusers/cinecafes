@@ -1227,7 +1227,7 @@ form .form-control {border: 1px solid #dee2e6; font-size: 14px;}
 
 .user_permission_top .btn[class*='btn-'], .user_permission_top .fc button[class*='btn-'] {margin-bottom: 0;}
 
-.fa.fa-phone-square, .fa.fa-envelope{margin-right:2px; color:orange; font-size: 14px;}
+.fa.fa-phone-square, .fa.fa-envelope, .fa.fa-clock-o{margin-right:2px; color:orange; font-size: 14px;}
 .dashboar_search .picker--time .picker__holder {
     width: 57%!important;
     min-width: 141px!important;

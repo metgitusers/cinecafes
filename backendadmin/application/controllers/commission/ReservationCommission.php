@@ -48,13 +48,13 @@ class ReservationCommission extends MY_Controller {
           $this->session->set_userdata('to_dt', $to_dt);  
           $from_date  = date('Y-m-d',strtotime(str_replace('/','-',$from_dt)));
           $to_date    = date('Y-m-d',strtotime(str_replace('/','-',$to_dt)));
-          //$cond .=  " and rev.reservation_date between '".$from_date."' and '".$to_date."'";      
+          $cond .=  " and rev.reservation_date between '".$from_date."' and '".$to_date."'";      
         }
         else
         {
             $this->session->set_userdata('from_dt', "");
             $this->session->set_userdata('to_dt', "");
-			//$cond .=  " and rev.reservation_date between '".date('Y-m-01')."' AND '".date('Y-m-d')."'"; 
+			$cond .=  " and rev.reservation_date between '".date('Y-m-01')."' AND '".date('Y-m-d')."'"; 
         }
         if($cafe_id !=''){
       		$cond .= " and rev.cafe_id ='".$cafe_id."'";
@@ -126,13 +126,13 @@ class ReservationCommission extends MY_Controller {
           $this->session->set_userdata('to_dt', $to_dt);  
           $from_date  = date('Y-m-d',strtotime(str_replace('/','-',$from_dt)));
           $to_date    = date('Y-m-d',strtotime(str_replace('/','-',$to_dt)));
-          //$cond .=  " and rev.reservation_date between '".$from_date."' and '".$to_date."'";      
+          $cond .=  " and rev.reservation_date between '".$from_date."' and '".$to_date."'";      
         }
         else
         {
             $this->session->set_userdata('from_dt', "");
             $this->session->set_userdata('to_dt', "");
-			//$cond .=  " and rev.reservation_date between '".date('Y-m-01')."' AND '".date('Y-m-d')."'"; 
+			$cond .=  " and rev.reservation_date between '".date('Y-m-01')."' AND '".date('Y-m-d')."'"; 
         }
 		if($status_id !=''){
 			$cond .= " and rev.status ='".$status_id."'";
