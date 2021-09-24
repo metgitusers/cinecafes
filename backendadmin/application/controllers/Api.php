@@ -29,9 +29,14 @@ class Api extends CI_Controller
   }
 
   private function checkHttpMethods($http_method_type){
-    if ($_SERVER['REQUEST_METHOD'] == $http_method_type) {
-      return 1;
-    }
+    /**
+     * Commented on 24-09-21 as per instructions to pass all http request
+    */
+    // if ($_SERVER['REQUEST_METHOD'] == $http_method_type) {
+    //   return 1;
+    // }
+
+    return 1;
   } 
   public function test()
   {
