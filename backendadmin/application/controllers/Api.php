@@ -40,7 +40,10 @@ class Api extends CI_Controller
   } 
   public function test()
   {
-    echo 11; die;
+    $response['status']['error_code'] = 0;
+    $response['status']['methods']    = $this->http_methods[0];
+
+          $this->displayOutput($response);
   }
 
   //////////////////added for cinecafe///////////////////////////////////
