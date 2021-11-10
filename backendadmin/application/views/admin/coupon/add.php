@@ -64,7 +64,7 @@
                 <span class="error"></span>
                 <div class="col-md-4 col-sm-12 col-xs-12 mt-3">
                   <div class="form-group">
-                     <label>Discount Amount*</label>
+                     <label id="discount_label">Discount Amount*</label>
                        <input class="form-control" type="number" min="0" name="amount" id="amount"  value="<?php echo set_value('amount');?>"> 
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                 </div>
                  <div class="col-md-4 col-sm-12 col-xs-12 max-discount-percentage mt-3" style="display: none">
                   <div class="form-group">
-                     <label id="max_discount_label">Max Discount Amount*</label>
+                     <label>Max Discount Amount*</label>
                        <input class="form-control" type="number" min="1" name="max_discount_amount" id="max_discount_amount"  value="<?php echo set_value('max_discount_amount');?>"> 
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                   $('.coupon-type').on('click', function(){
                     if($(this).val() == 1){//alert('oo');
                       $('.max-discount-percentage').show();
-                      $('#max_discount_label').html('Max Discount Percentage*');
+                      $('#discount_label').html('Discount Percentage*');
                       $('#max_discount_amount').attr('required', false);
                     }else{
                       $('.max-discount-percentage').hide();

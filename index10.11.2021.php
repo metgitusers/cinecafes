@@ -82,7 +82,7 @@
 	<div class="header_dwn">
 		<div class="container">
 			<div class="col-sm-12">
-				<a href="index.php" class="logo_area"><img src="assets/logo.png" alt="" class="logo" id="logo"></a>
+				<a href="index.php" class="logo_area"><img src="assets/img/logo.png" alt="" class="logo" id="logo"></a>
 			</div>
 			<div class="col-sm-12">
 				<div class="row">
@@ -344,7 +344,7 @@
 			<div class="row">
 				<div class="col-sm-12 headline">
 			<a href="#banner_area" class="arrow_dwn"><img src="assets/img/arrow_up.jpg" alt=""></a>
-			<h4><a href="index.php"><img src="assets/footer_logo.png" alt=""></a></h4>
+			<h4><a href="index.php"><img src="assets/img/footer_logo.png" alt=""></a></h4>
 
 			</div>
 			<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12">
@@ -514,7 +514,8 @@ ECOSPACE ESNT 3A0501, BLOCK -A, 5TH FLOOR, PLOT NO. IIF/11, NEW TOWN, <br> KOLKA
 		<span id="msg_succ"></span>
 		<span id="msg_err"></span>
       </div>
-      <div class="modal-body" id="contact_page">              
+      <div class="modal-body" id="contact_page">
+              
               <h4>General Conditions</h4>
               <p>Cine Cafes will do everything possible to ensure the operating times of the cafes are true to the advertisements. However due to circumstances beyond Cine Cafes control there may be times that a booking has to be cancelled or rescheduled at a different time. In this instance the user may be given a refund of the hours booked only. The mode of refund shall be at the sole discretion of Cine Cafes. If any booking is cancelled or cancellation is done from the management of Cine Cafes then the formalities for the same will be taken in to consideration. The user agrees not to bring in any action against Cine Cafes in such instance.</p>
               <p>The user who has booked for a movie certified as 'A', must provide Cine Cafes with the relevant proof of entitlement upon entry to the cafe.</p>
@@ -556,10 +557,10 @@ ECOSPACE ESNT 3A0501, BLOCK -A, 5TH FLOOR, PLOT NO. IIF/11, NEW TOWN, <br> KOLKA
         <p>We strive to protect the personally identifiable information of the users.</p>
         <p>We may only disclose personally identifiable information only on:</p>
         <ul>
-          <li>	Authorisation of the user to do so</li>
-          <li>	Requirements to comply with the governing law</li>
-          <li>	Opportunity to add value to the user</li>
-          <li>	In case of any demand by law enforcement authorities in a criminal investigation, civil lawsuit, or administrative investigation.</li>
+          <li>•	Authorisation of the user to do so</li>
+          <li>•	Requirements to comply with the governing law</li>
+          <li>•	Opportunity to add value to the user</li>
+          <li>•	In case of any demand by law enforcement authorities in a criminal investigation, civil lawsuit, or administrative investigation.</li>
         </ul>
 
         <h4>SECURITY</h4>
