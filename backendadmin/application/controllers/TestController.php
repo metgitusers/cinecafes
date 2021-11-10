@@ -9,7 +9,7 @@ class TestController extends MY_Controller {
 	}
 	
 	public function index(){
-		echo $_SERVER['HTTP_HOST'];
+		echo base_url();
  	}
 }
 ?>
