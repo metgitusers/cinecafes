@@ -37,7 +37,7 @@
                      <!--  <th width="25">User ID</th> -->
                       <th width="15">Name</th>
                     
-                      <th width="25"> description</th>
+                      <!--<th width="25"> description</th>-->
                     <!--   <th class="no-sort" width="25">Status</th>-->
                       <th class="no-sort" width="25">Action</th>
                     </tr>
@@ -48,7 +48,7 @@
                     <!--   <th width="25">User ID</th> -->
                       <th width="15">Name</th>
 
-                      <th width="25">description</th>
+                      <!--<th width="25">description</th>-->
                     <!--   <th class="no-sort" width="25">Status</th>-->
                       <th class="no-sort" width="25">Action</th> 
                     </tr>
@@ -62,8 +62,8 @@
                       <td><?php echo $row['page_name'];?></td>
                     
                       
-                      <td><?php if(!empty($row['description'])){ echo substr($row['description'],0,40); }?>
-                       <?php //if(strlen($row['content'])>40){ echo "...";}?></td>
+                      <!--<td><?php //if(!empty($row['description'])){ echo substr($row['description'],0,40); }?>
+                       <?php //if(strlen($row['content'])>40){ echo "...";}?></td>-->
                    
                       
                       <td>
