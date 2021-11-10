@@ -88,7 +88,7 @@ $root.= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME
 define('SITEURL',$root);
 define('ADMINURL',$root.'/admin');
 //define('LOGOURL',$root.'/public/admin_assets/images/logo_new.png');
-define('LOGOURL',$root.'public/img/website-logo.png');
+define('LOGOURL',$root.'public/img/footer_logo.png');
 define('CURRENT_DATE',date('Y-m-d'));
 define('CURRENT_YEAR',date('Y'));
 define('FROM_EMAIL','info@cinecafe.com');
