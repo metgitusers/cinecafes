@@ -104,6 +104,9 @@
   margin-right: auto;
   width: 50%;
 }
+body {
+  background-color: #313131;
+}
 </style>
 <link rel="shortcut icon" href="<?php echo base_url('public/img/favicon.ico');?>">
 <script src="<?php echo base_url('public/front_assets/js/jquery-3.2.1.min.js')?>"></script>
