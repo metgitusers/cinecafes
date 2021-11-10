@@ -32,8 +32,8 @@ class TestController extends MY_Controller {
         $mail['subject']  = 'cinecafe Recover Password';
 		
 		$mail['message']    = $message;
-        $mail['from_email']    = FROM_EMAIL;
-        $mail['from_name']    = ORGANIZATION_NAME;
+        //$mail['from_email']    = FROM_EMAIL;
+        //$mail['from_name']    = ORGANIZATION_NAME;
 		
 		
 		sendmail($mail);
