@@ -31,7 +31,7 @@
         </div>
         <div class="modal-body">Are you sure you want to Logout?</div>
         <div class="modal-footer" style="justify-content: flex-start;">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal" style="margin:0; padding:0;">Cancel</button>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal" style="margin:0; color:#000;">Cancel</button>
           <a class="btn btn-primary" href="<?php echo base_url('admin/logout');?>">Logout</a>
         </div>
       </div>
