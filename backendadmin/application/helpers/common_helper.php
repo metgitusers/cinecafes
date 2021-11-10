@@ -35,15 +35,29 @@ if ( ! function_exists('test_method'))
       $obj =get_object();
       $obj->load->library('email');
       //print_r($data);die;
-      $config['protocol']    = 'smtp';
-      $config['smtp_host']    = 'ssl://cinecafes.com';
-      $config['smtp_port']    = '465';
-      $config['smtp_user']    = 'dev3@cinecafes.com';
-      $config['smtp_pass']    = 'A]*ePraUcn*q1&@bT3';
+      
+      
+      //$config['protocol']    = 'smtp';
+      //$config['smtp_host']    = 'ssl://cinecafes.com';
+      //$config['smtp_port']    = '465';
+      //$config['smtp_user']    = 'dev3@cinecafes.com';
+      //$config['smtp_pass']    = 'A]*ePraUcn*q1&@bT3';
+      
+      
       // $config['smtp_host']    = 'ssl://mail.cinecafes.com';
       // $config['smtp_port']    = '587';
       // $config['smtp_user']    = 'dev@cinecafes.com';
       // $config['smtp_pass']    = 'hvkMnwY8Qskh';
+      
+      
+      $config['protocol']     = 'mail';
+				$config['smtp_host']    = 'mail.met-technologies.com';
+				$config['smtp_port']    = '465';
+				$config['smtp_user']    = 'devfitser@met-technologies.com';
+				$config['smtp_pass']    = 'SARYD^z(B${F';
+				$config['smtp_crypto']	= 'ssl'; 
+      
+      
       $config['charset']    = 'utf-8';
       $config['newline']    = "\r\n";
       $config['mailtype'] = 'html'; // or html
