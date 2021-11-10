@@ -89,6 +89,7 @@
                       $('#max_discount_amount').attr('required', false);
                     }else{
                       $('.max-discount-percentage').hide();
+                      $('#discount_label').html('Discount Amount*');
                       $('#max_discount_amount').attr('required', false);
                     }
                   })
