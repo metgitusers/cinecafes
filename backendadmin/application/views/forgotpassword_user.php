@@ -150,7 +150,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat" id="submit">Submit</button>
+          <button type="submit" style="background: #f2a93d;border: 0;padding: 8px 23px;color: #000;font-family: 'Poppins', sans-serif;" class="btn btn-primary btn-block btn-flat" id="submit">Submit</button>
         </div>
         
         <p styel="font-family:Lucida Grande, Lucida Sans Unicode, Lucida Sans, DejaVu Sans, Verdana,' sans-serif';" style="color: white;"><b>Disclaimer:</b> If you have not requested for resetting your password, visit our website and report it immediately or write to us at support@cinecafes.com.</p>
