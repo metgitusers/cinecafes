@@ -110,7 +110,7 @@
 
 <div class="login-box">
   <div class="center">
-  <img src="<?=base_url('public/img/website-logo.png');?>" style="width:200px;">
+  <img src="<?=base_url('public/img/footer_logo.png');?>" style="width:200px;">
     <!-- <a href="<?php //echo base_url('admin');?>"><b>Admin</b>LTE</a> -->
 	 <!--<a href="../../index2.html"><b>Admin</b>LTE</a>-->
   </div>
