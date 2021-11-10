@@ -66,6 +66,7 @@ if ( ! function_exists('test_method'))
       $obj->email->message($data['message']);  
 
       $obj->email->send();
+      show_error($obj->email->print_debugger());
       //echo 1;
       //echo $obj->email->print_debugger();die;
       //print_r($obj->email->print_debugger()); die; 
