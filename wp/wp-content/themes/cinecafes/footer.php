@@ -209,7 +209,7 @@ KOLKATA, WEST BENGAL – 700160</p></td>
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Privacy Policy test</h4>
+        <h4 class="modal-title" id="myModalLabel">Privacy Policy</h4>
 		<span id="msg_succ"></span>
 		<span id="msg_err"></span>
       </div>
