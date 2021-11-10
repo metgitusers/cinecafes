@@ -83,7 +83,7 @@
                 </div>
                 <script>
                   $('.coupon-type').on('click', function(){
-                    if($(this).val() == 1){
+                    if($(this).val() == 1){alert('oo');
                       $('.max-discount-percentage').show();
                       $('#max_discount_label').text('Max Discount Percentage*');
                       $('#max_discount_amount').attr('required', false);
