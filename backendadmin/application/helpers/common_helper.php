@@ -36,7 +36,7 @@ if ( ! function_exists('test_method'))
       $obj->load->library('email');
       //print_r($data);die;
       
-      
+      //last used
       //$config['protocol']    = 'smtp';
       //$config['smtp_host']    = 'ssl://cinecafes.com';
       //$config['smtp_port']    = '465';
