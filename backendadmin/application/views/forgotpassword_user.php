@@ -120,6 +120,8 @@
 	<?php if($this->session->flashdata('error_msg') && $this->session->flashdata('error_msg')!=''){ ?>
 			<span style='color:red'><?php echo $this->session->flashdata('error_msg');?></span>
 		<?php }else{?>
+  
+   <p styel="font-family:Lucida Grande, Lucida Sans Unicode, Lucida Sans, DejaVu Sans, Verdana,' sans-serif';" style="color: white;">Seems like your forgot your password? Fill in the fields below to create a new one!</p>
 			<h3 id="top_text">Reset Password</h3>
 		<?php }?>
 	</p>
@@ -150,6 +152,9 @@
         <div class="col-xs-4">
           <button type="submit" class="btn btn-primary btn-block btn-flat" id="submit">Submit</button>
         </div>
+        
+        <p styel="font-family:Lucida Grande, Lucida Sans Unicode, Lucida Sans, DejaVu Sans, Verdana,' sans-serif';" style="color: white;"><b>Disclaimer:</b> If you have not requested for resetting your password, visit our website and report it immediately or write to us at support@cinecafes.com.</p>
+        
         <!-- /.col -->
       </div>
     </form>
