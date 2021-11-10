@@ -65,7 +65,7 @@
                       <td><?php if(!empty($row['description'])){ echo substr($row['description'],0,40); }?>
                        <?php //if(strlen($row['content'])>40){ echo "...";}?></td>
                    
-                      <!-- <td><?php echo date('d-m-Y', strtotime($row['created_ts']));?></td> -->
+                      
                       <td>
                        
                        <a class="btn btn-success btn-circle btn-sm" href="<?php echo base_url();?>admin/cms/edit/<?php echo $row['page_id'];?>">
