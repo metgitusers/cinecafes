@@ -10,7 +10,7 @@ class RecoverPasswordUser extends MY_Controller {
 	public function index($key){	
 		$this->forgotpassword(base64_decode($key));
 	}
-	public function forgotpassword($key) {
+	public function forgotpassword($key) {die('ff');
 		$data['key'] = $key;
 		$data['title'] = 'Club Fenicia';
 		$this->load->view('forgotpassword_user', $data);
