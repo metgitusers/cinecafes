@@ -1193,11 +1193,11 @@ class Api extends CI_Controller
           
           $mail['name']     = $member_details['name'].' '.$member_details['middle_name'].' '.$member_details['last_name'];
           $mail['to']       = $member_details['email'];
-          $mail['subject']  = ORGANIZATION_NAME.' Recover Password';
+          $mail['subject']  = ORGANIZATION_NAME.' Password Reset';
 
           $link = base_url('recoverPasswordUser/' . $encoded_key);
           $mail_temp = file_get_contents('./global/mail/forgotpassword_template.html');
-          $mail_temp          = str_replace("{web_url}", base_url(), $mail_temp);
+          $mail_temp          = str_replace("{web_url}", 'https://cinecafes.com/', $mail_temp);
           $mail_temp          = str_replace("{logo}", LOGOURL, $mail_temp);
           $mail_temp          = str_replace("{shop_name}", ORGANIZATION_NAME, $mail_temp);  
           $mail_temp          = str_replace("{name}", $mail['name'], $mail_temp);
