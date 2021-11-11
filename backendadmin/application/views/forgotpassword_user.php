@@ -131,11 +131,11 @@ body {
     <form action="#" method="post" id="new_form">
       <div class="form-group has-feedback">
         <label for="title">New Password</label>
-        <input type="password" class="form-control" placeholder="New password" name="newpassword1" id="newpassword1" required>
+        <input type="password" class="form-control" placeholder="New Password" name="newpassword1" id="newpassword1" required>
       </div>
       <div class="form-group has-feedback">
         <label for="title">Confirm Password</label>
-        <input type="password" class="form-control" placeholder="New password" name="newpassword2" id="newpassword2" required>
+        <input type="password" class="form-control" placeholder="Confirm Password" name="newpassword2" id="newpassword2" required>
       </div>
       <?php 
         $url=$this->uri->segment_array();
