@@ -180,7 +180,7 @@ body {
     
 <!-- /.login-box -->
 <script> 
-  $(document).prop('title', 'Account recovery');
+  $(document).prop('title', 'Account Recovery');
   $(document).on('click','#submit',function(event){
    event.preventDefault(); 
    var newpassword1=$('#newpassword1').val();
