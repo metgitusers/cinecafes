@@ -552,7 +552,7 @@ ECOSPACE ESNT 3A0501, BLOCK -A, 5TH FLOOR, PLOT NO. IIF/11, NEW TOWN, <br> KOLKA
         <h4>What we use the information for :</h4>
         <p>We use demographic information to enhance your user experience by, among other things, delivering you content that is relevant to your interests. Therefore, we do not share your data with any third party under any circumstances</p>
         <p>We may use the contact information you provide us to notify you about special deals that we offer or conduct surveys or other similar activities to enhance your experience with us. </p>
-        <p>When you register with us, you may opt to receive these notices or mailings from www.cinecafes.com at the time of registration. Simply write to us at info@cinecafes.com, and you will not receive the messages or emails from us.</p>
+        <p>When you register with us, you may opt to receive these notices or mailings from www.cinecafes.com at the time of registration. Simply write to us at support@cinecafes.com, and you will not receive the messages or emails from us.</p>
         <p>We strive to protect the personally identifiable information of the users.</p>
         <p>We may only disclose personally identifiable information only on:</p>
         <ul>
@@ -566,7 +566,7 @@ ECOSPACE ESNT 3A0501, BLOCK -A, 5TH FLOOR, PLOT NO. IIF/11, NEW TOWN, <br> KOLKA
         <p>CineCafes has implemented adequate security measures to protect against the loss, misuse and theft of the information under our control. We preserve our Site with a firewall. Although the Site is entirely virus-free, Users are advised to employ robust virus scans for extra security.</p>
 
         <h4>CHOICE/OPT-OUT</h4>
-        <p>CineCafes facilitates users the option to opt-out of receiving communications from us anytime they feel like it. If you decide to opt out, you can contact us by sending an email to <a href="mailto:info@cinecafes.com">info@cinecafes.com.</a></p>
+        <p>CineCafes facilitates users the option to opt-out of receiving communications from us anytime they feel like it. If you decide to opt out, you can contact us by sending an email to <a href="mailto:support@cinecafes.com">support@cinecafes.com.</a></p>
         
         <h4>QUESTIONS</h4>
         <p>Whosoever has any queries in mind or suggestions about this statement while using our website or its services can email us at <a href="mailto:info@cinecafes.com">info@cinecafes.com</a>.</p>
