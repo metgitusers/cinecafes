@@ -1207,9 +1207,9 @@ class Api extends CI_Controller
           $mail_temp          = str_replace("{playstore_img}", base_url('public/assets/img/googleplaylink.png'), $mail_temp);
           $mail_temp          = str_replace("{appstore_img}", base_url('public/assets/img/appstorelink.png'), $mail_temp);
           
-          $mail_temp          = str_replace("{facebook_img}", base_url('public/assets/img/facebook_icon.png'), $mail_temp);
-          $mail_temp          = str_replace("{twitter_img}", base_url('public/assets/img/twitter_icon.png'), $mail_temp);
-          $mail_temp          = str_replace("{insta_img}", base_url('public/assets/img/ins_icon.png'), $mail_temp);
+          $mail_temp          = str_replace("{facebook_img}", base_url('public/assets/img/facebook_icon.jpg'), $mail_temp);
+          $mail_temp          = str_replace("{twitter_img}", base_url('public/assets/img/twitter_icon.jpg'), $mail_temp);
+          $mail_temp          = str_replace("{insta_img}", base_url('public/assets/img/ins_icon.jpg'), $mail_temp);
           
           $mail['message']    = $mail_temp;
           $mail['from_email']    = FROM_EMAIL;
