@@ -92,10 +92,23 @@ class TestController extends MY_Controller {
 		$updated_amount = 5000;
 		$mobile = '9851609064';
 		
-		$message = 'Dear '.$user_row['name'].' '.$user_row['last_name'].". \n";
+		$message = 'Dear '.$user_row['name'].' '.$user_row['last_name']."\n";
         $message .= $ap['amount']." points added to your wallet at Cinecafes. Present wallet balance is : ".$updated_amount."\n";
         $message .= "CINE CAFES";
               
+        echo $message;echo '<br>';
+		echo smsSend($mobile,$message);
+	}
+	public function testRegistrationSMS()
+	{
+		//https://cinecafes.com/backendadmin/TestController/testRegistrationSMS
+		$name = 'Santu Dutta';
+		$mobile = '9851609064';
+		
+		$message = "Dear ".$name."\n";
+        $message .= "Welcome to Cine Cafes .Thank you for your registration. Your profile has been created.\n";
+        $message .= "CINE CAFES";
+
         echo $message;echo '<br>';
 		echo smsSend($mobile,$message);
 	}
