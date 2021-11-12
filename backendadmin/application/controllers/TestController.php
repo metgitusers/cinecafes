@@ -49,10 +49,10 @@ class TestController extends MY_Controller {
 		$no_of_guests = 20;
 		
 		$mobile = '9851609064';
-		$message = "Dear Santu<br>";
-		$message .= "Thank you for confirming your Reservation at Cinecafes.<br>Your reservation details are:<br>";
-		$message .= "Cafe: " . $cafe_row['cafe_name'] . "-" . $cafe_row['cafe_place'] . "<br> Date: " . $reservation_date . "<br> Time: " . $reservation_time . "<br> No. of Guests: " . $no_of_guests;
-		$message .= "<br>CINE CAFES.";
+		$message = "Dear Santu \n";
+		$message .= "Thank you for confirming your Reservation at Cinecafes.Your reservation details are: \n";
+		$message .= "Cafe: " . $cafe_row['cafe_name'] . "-" . $cafe_row['cafe_place'] . "\n Date: " . $reservation_date . "\n Time: " . $reservation_time . "\n No. of Guests: " . $no_of_guests;
+		$message .= "\nCINE CAFES";
 		
 		echo $message;echo '<br>';
 		echo smsSend($mobile, $message);
