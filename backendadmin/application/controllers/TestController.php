@@ -39,5 +39,20 @@ class TestController extends MY_Controller {
 		sendmail($mail);
 		show_error($this->email->print_debugger());
 	}
+	
+	public function testReservationSMS()
+	{
+		$cafe_row['cafe_name'] = 'Cine Cafes';
+		$cafe_row['cafe_place'] = 'Sec V';
+		$reservation_date = '12/11/2021';
+		$reservation_time = '08:20 AM';
+		$no_of_guests = 20;
+		
+		$mobile = '9851609064';
+		$message = "Thank you for confirming your Reservation at " . ORGANIZATION_NAME . ". Your reservation details are: \n";
+		$message .= "Cafe: " . $cafe_row['cafe_name'] . "-" . $cafe_row['cafe_place'] . "\n Date: " . $reservation_date . "\n Time: " . $reservation_time . "\n No. of Guests: " . $no_of_guests;
+		//$message .= " \nWe would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.";
+		smsSend($mobile, $message);
+	}
 }
 ?>
