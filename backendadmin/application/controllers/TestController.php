@@ -42,13 +42,14 @@ class TestController extends MY_Controller {
 	
 	public function testReservationSMS()
 	{
+		//https://cinecafes.com/backendadmin/TestController/testReservationSMS
 		$cafe_row['cafe_name'] = 'Cine Cafes';
 		$cafe_row['cafe_place'] = 'Sec V';
 		$reservation_date = '12/11/2021';
 		$reservation_time = '08:20 AM';
 		$no_of_guests = 20;
-		
 		$mobile = '9851609064';
+		
 		$message = "Dear Santu\n";
 		$message .= "Thank you for confirming your Reservation at Cinecafes.\n";
 		$message .= "Your reservation details are:\n";
@@ -60,6 +61,26 @@ class TestController extends MY_Controller {
 		
 		echo $message;echo '<br>';
 		echo smsSend($mobile, $message);
+	}
+	
+	public function testMembershipSMS()
+	{
+		//https://cinecafes.com/backendadmin/TestController/testMembershipSMS
+		$user_row['name'] = 'Santu';
+		$user_row['last_name'] = 'Dutta';
+		$package_name = 'Basic Plan';
+		$package_type_name = 'Yearly';
+		$package_price = 200;
+		$mobile = '9851609064';
+
+		$message  = "Dear ".$user_row['name'].' '.$user_row['last_name']."\n";
+		$message  .= "Your Membership at CineCafes is Active. Membership details are mentioned below:\n";
+		$message  .= "Membership name: ".$package_name."\n";
+		$message  .= "Membership type: ".$package_type_name."\n";
+		$message  .= "Membership Price: ".$package_price."\n";
+		$message .= "CINE CAFES";
+		
+		smsSend($mobile,$message);
 	}
 }
 ?>
