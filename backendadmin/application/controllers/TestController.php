@@ -80,7 +80,23 @@ class TestController extends MY_Controller {
 		$message  .= "Membership Price: ".$package_price."\n";
 		$message .= "CINE CAFES";
 		
-		smsSend($mobile,$message);
+		echo $message;echo '<br>';
+		echo smsSend($mobile,$message);
 	}
-}
+	public function testWalletSMS()
+	{
+		//https://cinecafes.com/backendadmin/TestController/testWalletSMS
+		$user_row['name'] = 'Santu';
+		$user_row['last_name'] = 'Dutta';
+		$ap['amount'] = 200;
+		$updated_amount = 5000;
+		$mobile = '9851609064';
+		
+		$message = 'Dear '.$user_row['name'].' '.$user_row['last_name'].". \n";
+        $message .= $ap['amount']." points added to your wallet at Cinecafes. Present wallet balance is : ".$updated_amount."\n";
+        $message .= "CINE CAFES";
+              
+        echo $message;echo '<br>';
+		echo smsSend($mobile,$message);
+	}
 ?>
