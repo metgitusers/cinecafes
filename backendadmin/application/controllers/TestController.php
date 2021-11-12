@@ -49,9 +49,10 @@ class TestController extends MY_Controller {
 		$no_of_guests = 20;
 		
 		$mobile = '9851609064';
-		$message = "Dear Santu \n";
-		$message .= "Thank you for confirming your Reservation at Cinecafes.Your reservation details are: \n";
-		$message .= "Cafe: " . $cafe_row['cafe_name'] . "-" . $cafe_row['cafe_place'] . "\n Date: " . $reservation_date . "\n Time: " . $reservation_time . "\n No. of Guests: " . $no_of_guests;
+		$message = "Dear Santu\n";
+		$message .= "Thank you for confirming your Reservation at Cinecafes.\n";
+		$message .= "Your reservation details are:\n";
+		$message .= "Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']."\nDate: ".$reservation_date. "\nTime: ".$reservation_time."\nNo. of Guests: ".$no_of_guests;
 		$message .= "\nCINE CAFES";
 		
 		echo $message;echo '<br>';
