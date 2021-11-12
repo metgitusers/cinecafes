@@ -99,4 +99,5 @@ class TestController extends MY_Controller {
         echo $message;echo '<br>';
 		echo smsSend($mobile,$message);
 	}
+}
 ?>
