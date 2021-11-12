@@ -9796,3 +9796,7 @@ select.food-order-status {
 button.membergo{
 	margin: 11px 0 0 0 !important;
 }
+
+.dataTables_wrapper .btn-group{
+	display:block !important;
+}
