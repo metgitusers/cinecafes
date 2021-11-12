@@ -129,6 +129,11 @@
                                     <label>Expiry Date</label>
                                     <div class="input-group">
                                       <input type="text" id="expiry_dt" name="expiry_dt" disabled class="dtpicker reg_exp_date form-control" value="<?php echo set_value('expiry_dt');?>" placeholder="" readonly/>
+                                      <div class="input-group-append">
+                                        <span class="input-group-text">
+                                          <span class="fa fa-calendar-o"></span>
+                                        </span>
+                                      </div>
                                       <p></p>
                                     </div>
                                   </div>
