@@ -98,7 +98,7 @@
                                                                     </div>                                                                   
                                                                     <div class="col-md-3" style="">
                                                                       <div class="form-group">
-                                                                        <button type="button" class="btn btn-success pull-left" id="search_btn">
+                                                                        <button type="button" class="btn btn-success pull-left membergo" id="search_btn">
                                                                           <i class="fa fa-search" aria-hidden="true"></i> GO
                                                                         </button>
                                                                       </div>
