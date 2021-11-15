@@ -32,7 +32,7 @@
                 <div class="row">
                   <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
-                      <label>Room No*</label>
+                      <label>Room Name*</label>
                       <input type="text" name="room_no" id="room_no" class="form-control"  value="<?php echo set_value('room_no');?>" required>
                       <?php echo form_error('room_no', '<div class="error">', '</div>'); ?>
                     </div>
@@ -76,7 +76,7 @@
 
                <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
-                     <label>Screen*</label>
+                     <label>Screen</label>
                        <input class="form-control" type="number" min="1" name="screen_size" id="screen_size"  value="<?php echo set_value('screen_size');?>"> 
                        <?php echo form_error('screen_size', '<div class="error">', '</div>'); ?>
                     </div>

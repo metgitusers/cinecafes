@@ -52,11 +52,11 @@ class Room extends MY_Controller {
 	public function add_content()
 	{  
 		//echo "<pre>"; print_r($this->input->post());die;
-	    $this->form_validation->set_rules('room_no','Room Number','trim|required');
+	    $this->form_validation->set_rules('room_no','Room Name','trim|required');
 	    $this->form_validation->set_rules('room_type_id','Room type','required');
 	    $this->form_validation->set_rules('cafe_id','Cafe','required');
 	    $this->form_validation->set_rules('no_of_people','no of people','trim|required');
-	    $this->form_validation->set_rules('screen_size','screen_size','trim|required');
+	    //$this->form_validation->set_rules('screen_size','screen_size','trim|required');
 	    //$this->form_validation->set_rules('description','Description','trim|required');
 	
 		if ($this->form_validation->run() == FALSE) {
@@ -116,16 +116,16 @@ class Room extends MY_Controller {
 	   }
     }
 
-     public function update_content()
-	{   
+    public function update_content()
+	{
 	    //echo "<pre>"; print_r($this->input->post());die;
 	    $room_id=$this->input->post('room_id');  
 		  
-	    $this->form_validation->set_rules('room_no','Room Number','trim|required');
+	    $this->form_validation->set_rules('room_no','Room Name','trim|required');
 	    $this->form_validation->set_rules('room_type_id','Room type','required');
 	    $this->form_validation->set_rules('cafe_id','Cafe','required');
 	    $this->form_validation->set_rules('no_of_people','no of people','required');
-	    $this->form_validation->set_rules('screen_size','screen_size','required');
+	    //$this->form_validation->set_rules('screen_size','screen_size','required');
 	    //$this->form_validation->set_rules('description','Description','trim|required');
 	
 		if ($this->form_validation->run() == FALSE) {

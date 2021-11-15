@@ -34,7 +34,7 @@
                   <thead>
                     <tr>
                       <th>Sl No.</th>
-                      <th>Room no</th>
+                      <th>Room Name</th>
                       <!-- <th>Image</th> -->
                       <th>Room Type</th>
                       <th>Cafe</th>
@@ -49,7 +49,7 @@
                   <tfoot>
                     <tr>
                        <th>Sl No.</th>
-                      <th>Room no</th>
+                      <th>Room Name</th>
                       <!-- <th>Image</th> -->
                       <th>Room Type</th>
                       <th>Cafe</th>
