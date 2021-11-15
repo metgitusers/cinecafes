@@ -109,6 +109,7 @@ body {
 }
 </style>
 <link rel="shortcut icon" href="<?php echo base_url('public/img/favicon.ico');?>">
+<link rel="stylesheet" type="text/css" href="https://cinecafes.com/assets/css/theme.css">
 <script src="<?php echo base_url('public/front_assets/js/jquery-3.2.1.min.js')?>"></script>
 
 <div class="login-box">
