@@ -2,7 +2,7 @@
 
 <style>
   .login-box{
-    background: #313131;
+    background: #000;
     padding: 30px 30px 30px 30px;
     -webkit-box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.4);
     -moz-box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.4);
@@ -105,7 +105,7 @@
   width: 50%;
 }
 body {
-  background-color: #313131;
+  background-color: #000;
 }
 </style>
 <link rel="shortcut icon" href="<?php echo base_url('public/img/favicon.ico');?>">
@@ -124,7 +124,7 @@ body {
 			<span style='color:red'><?php echo $this->session->flashdata('error_msg');?></span>
 		<?php }else{?>
   
-   <p styel="font-family:Lucida Grande, Lucida Sans Unicode, Lucida Sans, DejaVu Sans, Verdana,' sans-serif';" style="color: white;">Seems like your forgot your password? Fill in the fields below to create a new one!</p>
+   <p style="color: white;">Seems like your forgot your password? Fill in the fields below to create a new one!</p>
 			<h3 id="top_text">Reset Password</h3>
 		<?php }?>
 	</p>

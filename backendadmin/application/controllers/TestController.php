@@ -117,5 +117,19 @@ class TestController extends MY_Controller {
         echo $message;echo '<br>';
 		echo smsSend($mobile, $message, $template_id);
 	}
+	
+	public function testOTPSMS()
+	{
+		//https://cinecafes.com/backendadmin/TestController/testOTPSMS
+		$otp = '548897';
+		$mobile = '9851609064';
+		
+		$template_id = '1207163653382438936';
+        $message .= $otp." is the OTP.\n";
+        $message .= "CINE CAFES";
+
+        echo $message;echo '<br>';
+		echo smsSend($mobile, $message, $template_id);
+	}
 }
 ?>
