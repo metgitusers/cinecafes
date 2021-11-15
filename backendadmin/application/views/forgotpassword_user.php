@@ -31,7 +31,7 @@
     font-weight: 500;
     color: #efefef;
     text-transform: capitalize;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto Slab', serif;
 }
 .login-box .form-group{
   margin-bottom: 15px;
@@ -41,7 +41,7 @@
   color: #a9a9a9;
     font-size: 16px;
     display: inline-block;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto Slab', serif;
     margin-bottom:10px;
 }
 .login-box .form-control{
@@ -85,7 +85,7 @@
 	 -webkit-border-radius: 3px;
 	 -moz-border-radius: 3px;
 	 border-radius: 3px;
-	 font-family: 'Poppins', sans-serif;
+	 font-family: 'Roboto Slab', serif;
 	 padding: 14px 45px;
 	 font-size: 14px;
 	 font-weight: 400;
