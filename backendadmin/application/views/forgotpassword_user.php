@@ -107,7 +107,7 @@
 body {
   background-color: #000;
 }
-santu
+
 </style>
 <link rel="shortcut icon" href="<?php echo base_url('public/img/favicon.ico');?>">
 <link rel="stylesheet" type="text/css" href="../assets/css/theme.css">
@@ -127,7 +127,7 @@ santu
 		<?php }else{?>
   
    <p style="color: white;">Seems like your forgot your password? Fill in the fields below to create a new one!</p>
-			<h3 id="top_text">Reset Password</h3>
+			<h3 id="top_text">Reset Password fee44</h3>
 		<?php }?>
 	</p>
     <form action="#" method="post" id="new_form">
