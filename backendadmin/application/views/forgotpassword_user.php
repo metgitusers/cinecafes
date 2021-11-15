@@ -107,6 +107,7 @@
 body {
   background-color: #000;
 }
+/*//santu*/
 </style>
 <link rel="shortcut icon" href="<?php echo base_url('public/img/favicon.ico');?>">
 <link rel="stylesheet" type="text/css" href="../assets/css/theme.css">
