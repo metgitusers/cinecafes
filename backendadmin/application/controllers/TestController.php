@@ -50,6 +50,7 @@ class TestController extends MY_Controller {
 		$no_of_guests = 20;
 		$mobile = '9851609064';
 		
+		$template_id = '1207163653375517655';
 		$message = "Dear Santu\n";
 		$message .= "Thank you for confirming your Reservation at Cinecafes.\n";
 		$message .= "Your reservation details are:\n";
@@ -60,7 +61,7 @@ class TestController extends MY_Controller {
 		$message .= "CINE CAFES";
 		
 		echo $message;echo '<br>';
-		echo smsSend($mobile, $message);
+		echo smsSend($mobile, $message, $template_id);
 	}
 	
 	public function testMembershipSMS()

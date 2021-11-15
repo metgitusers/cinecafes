@@ -88,7 +88,7 @@ if ( ! function_exists('test_method'))
     }
 
     ////////////send sms//////////////////////////
-    function smsSend($mobile,$message){
+    function smsSend($mobile,$message,$template_id=false){
     $api_key = '45DB969F6550A9';
     //$api_key = '45DA414F762394'; //19-11
     //$contacts = '97656XXXXX,97612XXXXX,76012XXXXX,80012XXXXX,89456XXXXX,88010XXXXX,98442XXXXX';
@@ -103,7 +103,7 @@ if ( ! function_exists('test_method'))
     curl_setopt($ch,CURLOPT_URL, "http://sms.hitechsms.com/app/smsapi/index.php");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "key=".$api_key."&campaign=0&routeid=13&type=text&contacts=".$contacts."&senderid=".$from."&msg=".$sms_text);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "key=".$api_key."&campaign=0&routeid=13&type=text&contacts=".$contacts."&senderid=".$from."&msg=".$sms_text."&template_id=".$template_id);
     $response = curl_exec($ch);
     curl_close($ch);
    //echo $response;
