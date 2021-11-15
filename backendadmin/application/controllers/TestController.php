@@ -74,6 +74,7 @@ class TestController extends MY_Controller {
 		$package_price = 200;
 		$mobile = '9851609064';
 
+		$template_id = '1207163653356833332';
 		$message  = "Dear ".$user_row['name'].' '.$user_row['last_name']."\n";
 		$message  .= "Your Membership at CineCafes is Active. Membership details are mentioned below:\n";
 		$message  .= "Membership name: ".$package_name."\n";
@@ -82,7 +83,7 @@ class TestController extends MY_Controller {
 		$message .= "CINE CAFES";
 		
 		echo $message;echo '<br>';
-		echo smsSend($mobile,$message);
+		echo smsSend($mobile, $message, $template_id);
 	}
 	public function testWalletSMS()
 	{
@@ -93,12 +94,13 @@ class TestController extends MY_Controller {
 		$updated_amount = 5000;
 		$mobile = '9851609064';
 		
+		$template_id = '1207163653337268173';
 		$message = 'Dear '.$user_row['name'].' '.$user_row['last_name']."\n";
         $message .= $ap['amount']." points added to your wallet at Cinecafes. Present wallet balance is : ".$updated_amount."\n";
         $message .= "CINE CAFES";
               
         echo $message;echo '<br>';
-		echo smsSend($mobile,$message);
+		echo smsSend($mobile, $message, $template_id);
 	}
 	public function testRegistrationSMS()
 	{
@@ -106,12 +108,13 @@ class TestController extends MY_Controller {
 		$name = 'Santu Dutta';
 		$mobile = '9851609064';
 		
+		$template_id = '1207163653382438936';
 		$message = "Dear ".$name."\n";
         $message .= "Welcome to Cine Cafes .Thank you for your registration. Your profile has been created.\n";
         $message .= "CINE CAFES";
 
         echo $message;echo '<br>';
-		echo smsSend($mobile,$message);
+		echo smsSend($mobile, $message, $template_id);
 	}
 }
 ?>
