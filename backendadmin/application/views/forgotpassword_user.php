@@ -1,4 +1,6 @@
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
 
 <style>
   .login-box{
@@ -13,6 +15,7 @@
     webkit-box-shadow: 0px 0px 5px 0px rgb(255, 255, 67);
     -moz-box-shadow: 0px 0px 20px 0px rgba(207,247,46,1);
     box-shadow: 0px 0px 5px 0px rgb(255, 255, 67);
+    font-family: 'Roboto Slab', serif;
   }
 
   .login-box .login-logo {
@@ -106,11 +109,19 @@
 }
 body {
   background-color: #000;
+  font-family: 'Roboto Slab', serif;
+}
+
+h3#top_text{
+ font-weight:600;
+ font-family: 'Roboto Slab', serif;
+ font-weight:600;
+ color: #f2a93d!important;
+ font-size:25px;
 }
 
 </style>
 <link rel="shortcut icon" href="<?php echo base_url('public/img/favicon.ico');?>">
-<link rel="stylesheet" type="text/css" href="../assets/css/theme.css">
 <script src="<?php echo base_url('public/front_assets/js/jquery-3.2.1.min.js')?>"></script>
 
 <div class="login-box">
@@ -127,7 +138,7 @@ body {
 		<?php }else{?>
   
    <p style="color: white;">Seems like your forgot your password? Fill in the fields below to create a new one!</p>
-			<h3 id="top_text">Reset Password fee44</h3>
+			<h3 id="top_text">Reset Password</h3>
 		<?php }?>
 	</p>
     <form action="#" method="post" id="new_form">
