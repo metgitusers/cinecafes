@@ -34,7 +34,7 @@
                   <thead>
                     <tr>
                       <th>Sl No.</th>
-                      <th>Room Nameff</th>
+                      <th>Room Name</th>
                       <!-- <th>Image</th> -->
                       <th>Room Type</th>
                       <th>Cafe</th>
