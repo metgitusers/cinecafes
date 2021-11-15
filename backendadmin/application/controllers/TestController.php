@@ -40,6 +40,7 @@ class TestController extends MY_Controller {
 		show_error($this->email->print_debugger());
 	}
 	
+	//********** for testing all SMS gateway ****************//
 	public function testReservationSMS()
 	{
 		//https://cinecafes.com/backendadmin/TestController/testReservationSMS

@@ -319,10 +319,24 @@ class Reservation extends MY_Controller
             $condition_cafe['cafe_id'] = $this->input->post('cafe_id');
             $cafe_row = $this->mapi->getRow("master_cafe", $condition_cafe);
             $reservation_date = $this->input->post('reservation_date');
-            $message = "Thank you for confirming your Reservation at " . ORGANIZATION_NAME . ". Your reservation details are: \n";
-            $message .= "Cafe: " . $cafe_row['cafe_name'] . "-" . $cafe_row['cafe_place'] . "\n Date: " . $reservation_date . "\n Time: " . $reservation_time . "\n No. of Guests: " . $this->input->post('no_of_guests');
-            $message .= " \nWe would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.";
-            smsSend($mobile, $message);
+            
+            //$message = "Thank you for confirming your Reservation at " . ORGANIZATION_NAME . ". Your reservation details are: \n";
+            //$message .= "Cafe: " . $cafe_row['cafe_name'] . "-" . $cafe_row['cafe_place'] . "\n Date: " . $reservation_date . "\n Time: " . $reservation_time . "\n No. of Guests: " . $this->input->post('no_of_guests');
+            //$message .= " \nWe would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.";
+            //smsSend($mobile, $message);
+            
+            $template_id = '1207163653375517655';
+            $message = "Dear ".$name."\n";
+            $message .= "Thank you for confirming your Reservation at Cinecafes.\n";
+            $message .= "Your reservation details are:\n";
+            $message .= "Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']."\n";
+            $message .= "Date: ".$reservation_date."\n";
+            $message .= "Time: ".$reservation_time."\n";
+            $message .= "No. of Guests: ".$this->input->post('no_of_guests')."\n";
+            $message .= "CINE CAFES";
+            
+            smsSend($mobile, $message, $template_id);
+            
             /******************************************************************/
             $this->session->set_flashdata('success_message', 'Booking confirmed.');
             //}
