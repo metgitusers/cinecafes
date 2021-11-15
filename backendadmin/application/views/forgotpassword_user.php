@@ -138,7 +138,7 @@ h3#top_text{
 		<?php }else{?>
   
    <p style="color: white;">Seems like your forgot your password? Fill in the fields below to create a new one!</p>
-			<h3 id="top_text">Reset Password</h3>
+			<h3 id="top_text">Reset Passwordg</h3>
 		<?php }?>
 	</p>
     <form action="#" method="post" id="new_form">
