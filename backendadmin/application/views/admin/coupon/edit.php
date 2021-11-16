@@ -78,14 +78,14 @@
                  <div class="col-md-4 col-sm-12 col-xs-12 max-discount-percentage  mt-3" style="display: <?= $row['coupon_type']==1?'':'none'?> ">
                   <div class="form-group">
                      <label>Max Discount Amount*</label>
-                       <input class="form-control" type="number" min="1" name="max_discount_amount" id="max_discount_amount" <?= $row['coupon_type']==1?'required':''?>  value="<?php echo $row['max_discount_amount'];?>"> 
+                       <input class="form-control" type="number" min="1" name="max_discount_amount" id="max_discount_amount" <?= $row['coupon_type']==1?'':''?>  value="<?php echo $row['max_discount_amount'];?>"> 
                     </div>
                 </div>
                 <script>
                   $('.coupon_type').on('click', function(){
                     if($(this).val() == 1){
                       $('.max-discount-percentage').show();
-                      $('#max_discount_amount').attr('required', true);
+                      $('#max_discount_amount').attr('required', false);
                     }else{
                       $('.max-discount-percentage').hide();
                       $('#max_discount_amount').attr('required', false);
