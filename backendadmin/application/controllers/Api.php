@@ -1245,7 +1245,7 @@ class Api extends CI_Controller
   
   public function getMenuPdfLink()
   {
-    $pdf = base_url('public/upload_images/media/sample.pdf');
+    $pdf = base_url('public/upload_images/media/Cine_cafe_menu_1.pdf');
     $response=array('status'=>array('error_code'=>0,'message'=>'success'),'result'=>array('data'=>$pdf));
     $this->displayOutput($response);
   }
