@@ -1242,6 +1242,13 @@ class Api extends CI_Controller
     }
     $this->displayOutput($response);
   }
+  
+  public function getMenuPdfLink()
+  {
+    $pdf = base_url('public/upload_images/media/sample.pdf');
+    $response=array('status'=>array('error_code'=>0,'message'=>'success'),'result'=>array('data'=>$pdf));
+    $this->displayOutput($response);
+  }
 
   public function updateProfile()
 {
