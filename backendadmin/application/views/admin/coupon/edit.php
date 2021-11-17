@@ -71,13 +71,13 @@
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12  mt-3">
                   <div class="form-group">
-                     <label>Min Purchase Amount*</label>
-                       <input class="form-control" type="number" min="0" name="min_price" id="min_price" required  value="<?php echo $row['min_price'];?>"> 
+                     <label>Min Purchase Amount</label>
+                       <input class="form-control" type="number" min="0" name="min_price" id="min_price" value="<?php echo $row['min_price'];?>">
                     </div>
                 </div>
                  <div class="col-md-4 col-sm-12 col-xs-12 max-discount-percentage  mt-3" style="display: <?= $row['coupon_type']==1?'':'none'?> ">
                   <div class="form-group">
-                     <label>Max Discount Amount*</label>
+                     <label>Max Discount Amount</label>
                        <input class="form-control" type="number" min="1" name="max_discount_amount" id="max_discount_amount" <?= $row['coupon_type']==1?'':''?>  value="<?php echo $row['max_discount_amount'];?>"> 
                     </div>
                 </div>
