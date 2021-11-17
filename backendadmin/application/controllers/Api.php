@@ -4201,6 +4201,7 @@ public function checkMembership(){
             $insert_arr['service_rating']     = $ap['service_rating'];
             $insert_arr['quality_rating']     = $ap['quality_rating'];
             $insert_arr['review_content']     = $review_content;
+            $insert_arr['created_on']         = date('Y-m-d H:i:s');
             $result  = $this->mapi->insert('rating_review',$insert_arr);
             if($result){
 
