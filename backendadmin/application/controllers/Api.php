@@ -3249,8 +3249,6 @@ class Api extends CI_Controller
         }
         
         $coupon_data = $this->mapi->getRow('coupon',array('coupon_code' => $ap['coupon_code'], 'is_delete'=> 0));
-        //echo '<pre>';print_r($coupon_data);exit;
-        //echo $this->db->last_query();
         if(!empty($coupon_data)){
           if($coupon_data['is_delete']==1)
           {
@@ -3284,11 +3282,13 @@ class Api extends CI_Controller
             $response['status']['message']    = "This coupon activation period is over.It ends on ".$coupon_data['end_on'];
             $this->displayOutput($response);
           }
+          
           // if($ap['total_amount']<$coupon_data['min_price'])
           // {
           //   $response['status']['error_code'] = 1;
           //   $response['status']['message']    = "This coupon can be applied with minimum purchase of ". $coupon_data['min_price'];
           // }
+          
           //calculate discount
           $coupon_amount=$coupon_data['amount'];
           $coupon_type=$coupon_data['coupon_type'];
@@ -3298,14 +3298,11 @@ class Api extends CI_Controller
           {
             $discount_amount=$coupon_amount;
           }
-          else  //percent
+          else  //percentage discount
           {
             $discount_amount=(($ap['total_amount']*$coupon_amount)/100);
+            $discount_amount = !empty($coupon_data['max_discount_amount']) && $discount_amount > $coupon_data['max_discount_amount']?$coupon_data['max_discount_amount']:$discount_amount;
           }
-          
-          
-          
-          $discount_amount = !empty($coupon_data['max_discount_amount']) && $discount_amount > $coupon_data['max_discount_amount']?$coupon_data['max_discount_amount']:$discount_amount;
           
           $payable_amount=$ap['total_amount']-$discount_amount;
           if($payable_amount<=0)
