@@ -965,8 +965,10 @@ class Api extends CI_Controller
             $response['status']['message']    = "Your account is removed by admin.";
             $this->displayOutput($response);
           }
-          $message  = $otp." is the OTP."."\n ".ORGANIZATION_NAME;
-          $response_sms = smsSend($ap['mobile'], $message);
+          $template_id = '1207163697491581491';
+          $message = $otp." is the OTP.\n";
+          $message .= "CINE CAFES";
+          $response_sms = smsSend($ap['mobile'],$message,$template_id);
 
           $update_arr = array('otp' =>$otp,'otp_generating_datetime' =>date('Y-m-d H:i'));
           $this->mapi->update('user',array('user_id' => $member_data['user_id']),$update_arr);
@@ -4505,11 +4507,13 @@ public function checkMembership(){
           $this->displayOutput($response);
         }
         
-        $mobile   = $ap['mobile'];
-        $otp      = mt_rand(1000,9999);
-       
-          $message  = $otp." is the OTP."."\n ".ORGANIZATION_NAME;
-          $response_sms = smsSend($ap['mobile'],$message);
+          $mobile   = $ap['mobile'];
+          $otp      = mt_rand(1000,9999);
+          
+          $template_id = '1207163697491581491';
+          $message = $otp." is the OTP.\n";
+          $message .= "CINE CAFES";
+          $response_sms = smsSend($ap['mobile'],$message,$template_id);
 
           $update_arr = array('otp_updatephone' =>$otp,'otp_datetime_updatephone' =>date('Y-m-d H:i'));
           $this->mapi->update('user',array('user_id' => $ap['user_id']),$update_arr);
