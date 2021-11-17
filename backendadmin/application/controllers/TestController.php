@@ -124,7 +124,7 @@ class TestController extends MY_Controller {
 		$otp = '548897';
 		$mobile = '9851609064';
 		
-		$template_id = '1207163653382438936';
+		$template_id = '1207163697491581491';
         $message .= $otp." is the OTP.\n";
         $message .= "CINE CAFES";
 
