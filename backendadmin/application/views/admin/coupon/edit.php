@@ -97,7 +97,7 @@
                     <div class="form-group">
                       <input type="hidden" name="end_on_old" value="<?php echo $row['end_on'];?>">
                       <input type="hidden" name="coupon_id" value="<?php echo $row['coupon_id'];?>">
-                      <button type="submit" class="btn btn-primary btn-user">Upadte</button>
+                      <button type="submit" class="btn btn-primary btn-user">Update</button>
                         
                       </div>
                   </div> 

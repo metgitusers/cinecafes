@@ -62,7 +62,7 @@
                   <div class="form-group">
                     <input type="hidden" name="old_image" value="<?php echo $row['media_image'];?>">
                     <input type="hidden" name="id" value="<?php echo $row['media_id'];?>">
-                     <button type="submit" class="btn btn-primary btn-user btn-block">Upadte</button>
+                     <button type="submit" class="btn btn-primary btn-user btn-block">Update</button>
                         <!--  <input type="submit" name="submit" value="Submit"/> -->
                      </div>
                 </div>

@@ -158,7 +158,7 @@
                   <div class="form-group">
                     <!-- <input type="text" name="location_old" id="location_old" value="<?php echo  $row['cafe_location'];?>"> -->
                     <input type="hidden" name="cafe_id" id="cafe_id" value="<?php echo $row['cafe_id'];?>">
-                     <button type="submit" class="btn btn-primary btn-user btn-block">Upadte</button>
+                     <button type="submit" class="btn btn-primary btn-user btn-block">Update</button>
                        
                      </div>
                 </div> 
