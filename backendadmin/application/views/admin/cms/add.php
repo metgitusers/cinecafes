@@ -9,7 +9,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Add Cms</h1>
+          <h1 class="h3 mb-4 text-gray-800">Add CMS</h1>
             <p align="right"><a href="<?php echo base_url();?>admin/cms" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>

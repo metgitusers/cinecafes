@@ -130,7 +130,7 @@
        <li class="nav-item <?php if($this->uri->segment(2)=='cms'){ echo"active"; }?>">
         <a class="nav-link" href="<?php echo base_url('admin/cms'); ?>">
         <img src="<?=base_url('public/img/icon_9.png')?>" alt="icon">
-          <span>Cms</span></a>
+          <span>CMS</span></a>
       </li> 
        <hr class="sidebar-divider my-0">
         <!-- Nav Item - review  -->

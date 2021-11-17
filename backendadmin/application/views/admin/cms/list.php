@@ -2,7 +2,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Cms</h1>
+          <h1 class="h3 mb-2 text-gray-800">CMS</h1>
       
           <p align="right"><a href="<?php echo base_url('admin/cms/add');?>" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">

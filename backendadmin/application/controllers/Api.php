@@ -3249,6 +3249,7 @@ class Api extends CI_Controller
         }
         
         $coupon_data = $this->mapi->getRow('coupon',array('coupon_code' => $ap['coupon_code'], 'is_delete'=> 0));
+        echo '<pre>';print_r($coupon_data);exit;
         //echo $this->db->last_query();
         if(!empty($coupon_data)){
           if($coupon_data['is_delete']==1)
