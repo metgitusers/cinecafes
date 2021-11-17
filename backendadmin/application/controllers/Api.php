@@ -3306,12 +3306,13 @@ class Api extends CI_Controller
           echo $discount_amount.'</br>';
           echo $coupon_data['max_discount_amount'];
           
-          if($discount_amount > $coupon_data['max_discount_amount'])
+          if(!empty($coupon_data['max_discount_amount']) && $discount_amount > $coupon_data['max_discount_amount'])
           {
             die('true returemnm ');
           }
           
-          $discount_amount = $discount_amount > $coupon_data['max_discount_amount']?$coupon_data['max_discount_amount']:$discount_amount;
+          $discount_amount = !empty($coupon_data['max_discount_amount']) && $discount_amount > $coupon_data['max_discount_amount']?$coupon_data['max_discount_amount']:$discount_amount;
+          
           $payable_amount=$ap['total_amount']-$discount_amount;
           if($payable_amount<=0)
           {
