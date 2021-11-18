@@ -88,11 +88,9 @@ class Media extends MY_Controller {
 		if($this->input->post())
 		{
 			$id = $this->input->post('id');
-			
 			$condition['media_id']=$id;
 			$existing_row=$this->mcommon->getRow("master_media",$condition);
 		
-			$udata=array();
 			//if(!empty($_FILES['imgInp']['name'])){
 			//	$image_path = 'public/upload_images/media/';
 			//	$file=$this->imageupload->image_upload($image_path);					
@@ -111,13 +109,12 @@ class Media extends MY_Controller {
 			
 			if($filename = $this->uploadImage('imgInp','public/upload_images/media/'))
 			{
-				if($existing_row['media_image']){								
-					//unlink('public/upload_images/media/'.$existing_row['media_image']);
+				if( !empty($existing_row['media_image']) && file_exists(FCPATH.'public/upload_images/media/'.$existing_row['media_image']) ){							
+					unlink('public/upload_images/media/'.$existing_row['media_image']);
 				}
 				$udata['media_image']=$filename;
 			}
 			
-			$condition=array('media_id'=>$id);						
 			$udata['media_name']=$this->input->post('media_name');					
 			// $udata['date_of_update']=date('Y-m-d H:i:s');	
 		
