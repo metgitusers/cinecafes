@@ -1473,18 +1473,18 @@ class Api extends CI_Controller
         
         $update_arr['password']           = md5($ap['new_password']);
         $update_arr['original_password']  = $ap['new_password'];
-        $update_result  = $this->mapi->update('user',$condition,array('user_id' => $ap['user_id']));
-        if($update_result){
-            
-                $response['status']['error_code'] = 0;
-                $response['status']['message']    = 'Password updated Successfully';
-
+        $update_result  = $this->mapi->update('user',array('user_id' => $ap['user_id']),$update_arr);
+        
+        if($update_result)
+        {
+          $response['status']['error_code'] = 0;
+          $response['status']['message']    = 'Password updated Successfully';
         }
-        else {
+        else
+        {
           $response['status']['error_code'] = 1;
           $response['status']['message']    = 'Oops!something went wrong...';
-        }          
-               
+        }
       }
       else {
         $response['status']['error_code'] = 1;
