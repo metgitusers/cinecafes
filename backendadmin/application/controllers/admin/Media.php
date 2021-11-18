@@ -111,7 +111,7 @@ class Media extends MY_Controller {
 								}						
 							}else{
 								$this->session->set_flashdata('error_msg',$file['result']);
-								redirect('admin/medis/edit/'.$id,'refersh');
+								redirect('admin/media/edit/'.$id,'refersh');
 							}
 						}
 						
