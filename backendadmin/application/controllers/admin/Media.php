@@ -73,7 +73,7 @@ class Media extends MY_Controller {
 		}
 	}
 	
-	public function edit($id){
+	public function edit($id){echo FCPATH;exit;
 		$condition = array();
 		$condition['media_id']=$id;
 		$data['row']=$this->mcommon->getRow("master_media",$condition);	
