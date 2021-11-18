@@ -34,41 +34,34 @@ class Media extends MY_Controller {
 	
 	public function add_content()
 	{
-	
-		if($_POST){			
-			//$this->form_validation->set_rules('banner_order','Banner Order','required');			
-			
-			// if(empty($_FILES['imgInp']['name'])){
-			// 	$this->form_validation->set_rules('imgInp','Banner Image','required');
-			// }
-			
-			// if($this->form_validation->run()==FALSE){			
-			// 	$this->_load_add_view();
-			// }else{	
-
-					if(!empty($_FILES['imgInp']['name'])){
-						$image_path = '/public/upload_images/media/';
-						$file=$this->imageupload->image_upload($image_path);
-						if($file['status']==1){
-							$udata['media_image']=$file['result'];
-						}else{
-							$this->session->set_flashdata('error_msg',$file['result']);
-							redirect('admin/media/add/','refersh');
-						}
-					}				
-					
-					$udata['media_name']=$this->input->post('media_name');					
-					// $udata['date_of_creation']=date('Y-m-d H:i:s');
-					
-					$udata['status'] = 1;
-					
-					$this->mcommon->insert("master_media",$udata);
-					$this->session->set_flashdata('success_msg','Entertainment media added successfully');
-					redirect('admin/media');
-			
-				
+		if($_POST){
+			//if(!empty($_FILES['imgInp']['name'])){
+			//	$image_path = '/public/upload_images/media/';
+			//	$file=$this->imageupload->image_upload($image_path);
+			//	if($file['status']==1){
+			//		$udata['media_image']=$file['result'];
+			//	}else{
+			//		$this->session->set_flashdata('error_msg',$file['result']);
+			//		redirect('admin/media/add/','refersh');
+			//	}
 			//}
-		}else{
+			
+			if($filename = $this->uploadImage('imgInp','public/upload_images/media/'))
+			{
+				$udata['media_image']=$filename;
+			}
+			
+			$udata['media_name']=$this->input->post('media_name');					
+			// $udata['date_of_creation']=date('Y-m-d H:i:s');
+			
+			$udata['status'] = 1;
+			
+			$this->mcommon->insert("master_media",$udata);
+			$this->session->set_flashdata('success_msg','Entertainment media added successfully');
+			redirect('admin/media');
+		}
+		else
+		{
 			$this->_load_list_view();
 		}
 	}
