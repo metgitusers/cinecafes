@@ -112,7 +112,7 @@ class Media extends MY_Controller {
 			if($filename = $this->uploadImage('imgInp','public/upload_images/media/'))
 			{
 				if($existing_row['media_image']){								
-					unlink('public/upload_images/media/'.$existing_row['media_image']);
+					//unlink('public/upload_images/media/'.$existing_row['media_image']);
 				}
 				$udata['media_image']=$filename;
 			}
