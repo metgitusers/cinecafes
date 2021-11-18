@@ -9,6 +9,7 @@ class MY_Controller extends CI_Controller {
 		$this->load->database();
 		$this->load->model('mcommon');
 		$this->load->model('admin/Mlist');
+		$this->load->model('common_model');
 		
 		//$this->load->model('admin/muser');
 		$this->refresh_user();

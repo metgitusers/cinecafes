@@ -1439,38 +1439,50 @@ class Api extends CI_Controller
   public function reset_password()
   {
     $ap = json_decode(file_get_contents('php://input'), true);
-    if ($this->checkHttpMethods($this->http_methods[0])) {
-      if (sizeof($ap)) {
-        if (empty($ap['new_password'])) {
+    if ($this->checkHttpMethods($this->http_methods[0]))
+    {
+      if (sizeof($ap))
+      {
+        if (empty($ap['old_password']))
+        {
           $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'New Password is required.';
-         
+          $response['status']['message']    = 'Old Password is required.';
           $this->displayOutput($response);
         }
-        if (empty($ap['user_id'])) {
-         
-            $response['status']['error_code'] = 1;
-            $response['status']['message']    = 'User id is required';
-            $this->displayOutput($response);
-                   
+        if (empty($ap['new_password']))
+        {
+          $response['status']['error_code'] = 1;
+          $response['status']['message']    = 'New Password is required.';
+          $this->displayOutput($response);
+        }
+        if (empty($ap['user_id']))
+        {
+          $response['status']['error_code'] = 1;
+          $response['status']['message']    = 'User id is required';
+          $this->displayOutput($response);
         }
         
+        $chkOldPassword = $this->common_model->get('user',array('*'),array('password'=>md5($ap['old_password']),'user_id' => $ap['user_id']));
+        if(empty($chkOldPassword))
+        {
+          $response['status']['error_code'] = 1;
+          $response['status']['message']    = 'Old password mismatch';
+          $this->displayOutput($response);
+        }
         
-            $user_id      = $ap['user_id'];
-            $condition      = array('user_id' =>$user_id);
-            $update_arr['password']     = md5($ap['new_password']);
-            $update_arr['original_password']     = $ap['new_password'];
-            $update_result  = $this->mapi->update('user',$condition,$update_arr);
-            if($update_result){
-                
-                    $response['status']['error_code'] = 0;
-                    $response['status']['message']    = 'Password updated Successfully';
+        $update_arr['password']           = md5($ap['new_password']);
+        $update_arr['original_password']  = $ap['new_password'];
+        $update_result  = $this->mapi->update('user',$condition,array('user_id' => $ap['user_id']));
+        if($update_result){
+            
+                $response['status']['error_code'] = 0;
+                $response['status']['message']    = 'Password updated Successfully';
 
-            }
-            else {
-              $response['status']['error_code'] = 1;
-              $response['status']['message']    = 'Oops!something went wrong...';
-            }          
+        }
+        else {
+          $response['status']['error_code'] = 1;
+          $response['status']['message']    = 'Oops!something went wrong...';
+        }          
                
       }
       else {
@@ -1478,7 +1490,8 @@ class Api extends CI_Controller
         $response['status']['message']    = 'Please fill up all required fields';        
       }
     }
-    else{
+    else
+    {
         $response['status']['error_code'] = 1;
         $response['status']['message']    = 'Wrong http method type.';        
     }
