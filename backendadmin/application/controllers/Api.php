@@ -12,6 +12,7 @@ class Api extends CI_Controller
     $this->load->library('PushNotification');
     $this->load->library('imageupload');
     $this->load->model('mapi');
+    $this->load->model('common_model');
     $this->arr = array();
     $this->obj = new stdClass();
     $this->request_day = strtolower(date("l"));
