@@ -350,4 +350,21 @@ class MY_Controller extends CI_Controller {
 			return '/public/upload_images/thumbnail/'.$image_name;
 		}
 	}
+	public function uploadImage($field,$DIR)
+	{
+		$return = false;
+		if(!empty($_FILES[$field]['name']))
+		{
+			$allowed =  array('gif','png' ,'jpg','jpeg','JPG','JPEG','PNG','GIF');
+			$ext = pathinfo($_FILES[$field]['name'], PATHINFO_EXTENSION);
+			if(in_array($ext,$allowed))
+			{
+				$filename=time().rand(0,99)."_".$field.".".$ext;
+				move_uploaded_file($_FILES[$field]['tmp_name'],$DIR.$filename);
+				
+				$return = $filename;
+			}
+		}
+		return $return;
+	}
 }

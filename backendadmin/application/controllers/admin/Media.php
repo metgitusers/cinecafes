@@ -83,56 +83,55 @@ class Media extends MY_Controller {
 	}
 	
 	
-	public function update_content(){
-		if($this->input->post()){
-			$id = $this->input->post('id');			
-					
+	public function update_content()
+	{
+		if($this->input->post())
+		{
+			$id = $this->input->post('id');
 			
-			// if($this->form_validation->run()==FALSE){
-			// 	$data['row']=$this->mbanner->get_details($banner_id);				
-			// 	$this->_load_details_view($data);
-			// }else{
-				
-				
-				$condition = array();
-				$condition['media_id']=$id;
-				$existing_row=$this->mcommon->getRow("master_media",$condition);
-			
-						$udata=array();
-						if(!empty($_FILES['imgInp']['name'])){
-							$image_path = 'public/upload_images/media/';
-							$file=$this->imageupload->image_upload($image_path);					
-							if($file['status']==1){
-								$udata['media_image']=$file['result'];
-								if($_FILES['imgInp']['name']){
-									if($existing_row['media_image']){								
-										unlink('public/upload_images/media/'.$existing_row['media_image']);
-									}
-								}						
-							}else{
-								$this->session->set_flashdata('error_msg',$file['result']);
-								redirect('admin/media/edit/'.$id,'refersh');
-							}
-						}
-						
-						$condition=array('media_id'=>$id);						
-						$udata['media_name']=$this->input->post('media_name');					
-						// $udata['date_of_update']=date('Y-m-d H:i:s');	
-					
-						if(!empty($udata))
-						{
-							$this->mcommon->update("master_media",$condition,$udata);
-							$this->session->set_flashdata('success_msg','Entertainment media updated successfully');
-						}
-						
-						
-						redirect('admin/media');				
-				
+			$condition['media_id']=$id;
+			$existing_row=$this->mcommon->getRow("master_media",$condition);
+		
+			$udata=array();
+			//if(!empty($_FILES['imgInp']['name'])){
+			//	$image_path = 'public/upload_images/media/';
+			//	$file=$this->imageupload->image_upload($image_path);					
+			//	if($file['status']==1){
+			//		$udata['media_image']=$file['result'];
+			//		if($_FILES['imgInp']['name']){
+			//			if($existing_row['media_image']){								
+			//				unlink('public/upload_images/media/'.$existing_row['media_image']);
+			//			}
+			//		}						
+			//	}else{
+			//		$this->session->set_flashdata('error_msg',$file['result']);
+			//		redirect('admin/media/edit/'.$id,'refersh');
+			//	}
 			//}
-		}else{
+			
+			if($filename = $this->uploadImage('imgInp','public/upload_images/media/'))
+			{
+				if($existing_row['media_image']){								
+					unlink('public/upload_images/media/'.$existing_row['media_image']);
+				}
+				$udata['media_image']=$filename;
+			}
+			
+			$condition=array('media_id'=>$id);						
+			$udata['media_name']=$this->input->post('media_name');					
+			// $udata['date_of_update']=date('Y-m-d H:i:s');	
+		
+			if(!empty($udata))
+			{
+				$this->mcommon->update("master_media",$condition,$udata);
+				$this->session->set_flashdata('success_msg','Entertainment media updated successfully');
+			}
+			
+			redirect('admin/media');
+		}
+		else
+		{
 			$this->_load_list_view();
 		}
 	}
-	
-	
 }
