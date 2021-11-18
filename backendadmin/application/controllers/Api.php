@@ -1478,7 +1478,7 @@ class Api extends CI_Controller
         if($update_result)
         {
           $response['status']['error_code'] = 0;
-          $response['status']['message']    = 'Password updated Successfully';
+          $response['status']['message']    = 'Password updated successfully';
         }
         else
         {
