@@ -1,10 +1,7 @@
 <style>
   .error{
-   position:absolute;
-   margin-top: 2px;
    color: #FF0000;
    font-size: 15px;
-    
 }
 </style>
 <!-- Begin Page Content -->
