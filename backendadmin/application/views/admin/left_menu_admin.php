@@ -212,7 +212,7 @@ if($this->session->admin['user_id']==1)
 
 <?php
 }
-else if($this->session->admin['user_id']==16)
+else if($this->session->admin['role_id']==16)
 {
 ?>
 <li class="nav-item <?php if($this->uri->segment(2)=='dashboard'){ echo"active"; }?>">
@@ -222,7 +222,7 @@ else if($this->session->admin['user_id']==16)
 </li>
 <?php
 }
-else if($this->session->admin['user_id']==17)
+else if($this->session->admin['role_id']==17)
 {
 ?>
 <li class="nav-item <?php if($this->uri->segment(2)=='dashboard'){ echo"active"; }?>">
@@ -291,7 +291,7 @@ else if($this->session->admin['user_id']==17)
 </li>
 <?php
 }
-else if($this->session->admin['user_id']==18)
+else if($this->session->admin['role_id']==18)
 {
 ?>
 <li class="nav-item <?php if($this->uri->segment(2)=='dashboard'){ echo"active"; }?>">
