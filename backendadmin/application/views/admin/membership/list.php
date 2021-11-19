@@ -35,10 +35,10 @@
                                                     <div class="staff_tab_area">
                                                         <ul class="nav nav-tabs" role="tablist">
                                                             <li class="nav-item">
-                                                                <a class="nav-link tab_acvt_inacvt active" data-toggle="tab" href="#active_user">Active Membership Owner</a>
+                                                                <a class="nav-link tab_acvt_inacvt active" data-toggle="tab" href="#active_user">Active Members</a>
                                                             </li>
                                                             <li class="nav-item">
-                                                                <a class="nav-link tab_acvt_inacvt" data-toggle="tab" href="#inactive_user">Inactive Membership Owner</a>
+                                                                <a class="nav-link tab_acvt_inacvt" data-toggle="tab" href="#inactive_user">Inactive Members</a>
                                                             </li>
                                                         <!--    <li class="nav-item">
                                                                 <a class="nav-link" data-toggle="tab" href="#trash_user">Trash Driver</a>

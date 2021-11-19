@@ -3318,7 +3318,7 @@ class Api extends CI_Controller
             $discount_amount = !empty($coupon_data['max_discount_amount']) && $discount_amount > $coupon_data['max_discount_amount']?$coupon_data['max_discount_amount']:$discount_amount;
           }
           
-          $payable_amount=$ap['total_amount']-$discount_amount;
+          $payable_amount=$ap['total_amount']-$discount_amount;echo $payable_amount;
           if($payable_amount<=0)
           {
             $response['status']['error_code'] = 1;
