@@ -32,34 +32,31 @@
               <div class="table-responsive">
                 <table class="table table-bordered" id="mysubadmin" width="100%" cellspacing="0">
                   <thead>
-                    <tr>
-                      <th>SL No.</th>                                                                                
-                        <th>Name</th>
-                        <!-- <th>Source</th> -->
-                        <th>Mobile</th>
-                        <th>Email</th>
-                        
-                        <th>Registered On</th>
-                      <th class="no-sort">Status</th>
-                      <th class="no-sort">Action</th>
-                    </tr>
+                        <tr>
+                              <th>SL No.</th>                                                                                
+                              <th>Name</th>
+                              <th>Mobile</th>
+                              <th>Email</th>
+                              <th>Cafe</th>
+                              <th>Registered On</th>
+                              <th class="no-sort">Status</th>
+                              <th class="no-sort">Action</th>
+                        </tr>
                   </thead>
                   <tfoot>
-                    <tr>
-                       <th>Sl No.</th>
-                          <th>Name</th>
-                        <!-- <th>Source</th> -->
-                        <th>Mobile</th>
-                        <th>Email</th>
-                        
-                        <th>Registered On</th>
-                      <th class="no-sort">Status</th>
-                      <th class="no-sort">Action</th>
-                    </tr>
-                    </tr>
+                        <tr>
+                              <th>Sl No.</th>
+                              <th>Name</th>
+                              <th>Mobile</th>
+                              <th>Email</th>
+                              <th>Cafe</th>
+                              <th>Registered On</th>
+                              <th class="no-sort">Status</th>
+                              <th class="no-sort">Action</th>
+                        </tr>
                   </tfoot>
                   <tbody>
-                    <?php if (!empty($list)) { 
+                    <?php if (!empty($list)) {
                                 //PR($member_active_list);
                         ?>
                         <?php     foreach ($list as $key => $row) { ?>
@@ -72,16 +69,16 @@
                                                                                                     
                             <td><?php echo $row['mobile'] ?></td>
                             <td><a href="mailto:<?php echo $row['email']?>"><?php echo $row['email']?></a></td>                                                                                
-                            
+                            <td><?php echo $row['cafe_name']."-".$row['cafe_place'];?></td>
                             <td><?= date('d/m/Y',strtotime($row['created_date'])); ?></td>
                                                                           
                       <td>
-                         <?php 
-                 $buttonActive = (($row['status'] == 1)?'block':'none');
-                 $buttonInActive = (($row['status'] == 0)?'block':'none');
-                 echo '<a href="javaScript:void(0)" title="Active" style="text-decoration: none;display:'.$buttonActive.'" id="'.$row['user_id'].'" class="change-p-status" data-status="0" data-column_name="user_id" data-table="user"><p style="color:green;font-size: 15px;"> Active</p></a>
-                <a href="javaScript:void(0)" title="In active" style="text-decoration: none;display:'.$buttonInActive.'" id="'.$row['user_id'].'" class="change-p-status" data-status="1" data-column_name="user_id" data-table="user"><p style="color:red;font-size: 15px;">  Inactive</p></a>';
-                 ?>
+                        <?php 
+                        $buttonActive = (($row['status'] == 1)?'block':'none');
+                        $buttonInActive = (($row['status'] == 0)?'block':'none');
+                        echo '<a href="javaScript:void(0)" title="Active" style="text-decoration: none;display:'.$buttonActive.'" id="'.$row['user_id'].'" class="change-p-status" data-status="0" data-column_name="user_id" data-table="user"><p style="color:green;font-size: 15px;"> Active</p></a>
+                       <a href="javaScript:void(0)" title="In active" style="text-decoration: none;display:'.$buttonInActive.'" id="'.$row['user_id'].'" class="change-p-status" data-status="1" data-column_name="user_id" data-table="user"><p style="color:red;font-size: 15px;">  Inactive</p></a>';
+                        ?>
                       </td>
                       
                       <td>

@@ -7,9 +7,10 @@ class Msubadmin extends CI_Model{
 
     public function getsubadminList()
     {
-        $this->db->select('user.*,master_role.role_id');
+        $this->db->select('user.*,master_role.role_id,master_cafe.cafe_name,master_cafe.cafe_place');
         $this->db->from('user');
         $this->db->join('master_role', 'master_role.role_id = user.role_id');
+        $this->db->join('master_cafe', 'master_cafe.cafe_id = user.cafe_id');
         $this->db->where('user.role_id!=',0);
         $this->db->where('user.role_id!=',1);
         $this->db->where('user.is_delete',0);

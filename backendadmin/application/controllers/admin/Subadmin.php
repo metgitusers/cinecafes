@@ -74,6 +74,7 @@ class Subadmin extends MY_Controller {
 			$idata = array(
 		 		'name'   => $this->input->post('name'),
 		        'role_id' => $this->input->post('role_id'),
+				'cafe_id' => $this->input->post('cafe_id'),
 		        'email' => $this->input->post('email'),
 		        'mobile' => $this->input->post('mobile'),
 		        'original_password' => $this->input->post('password'),
@@ -122,6 +123,7 @@ class Subadmin extends MY_Controller {
 		 	$udata = array(
 		 	    'name'   => $this->input->post('name'),
 		        'role_id' => $this->input->post('role_id'),
+				'cafe_id' => $this->input->post('cafe_id'),
 		        'email' => $this->input->post('email'),
 		        'mobile' => $this->input->post('mobile'),
 		        'updated_by' =>$this->session->userdata('user_data'),

@@ -7,6 +7,8 @@ class MY_Controller extends CI_Controller {
 		parent::__construct();
 		global $notification_data;
 		$this->load->database();
+		
+		$this->CI = & get_instance();
 		$this->load->model('mcommon');
 		$this->load->model('admin/Mlist');
 		$this->load->model('common_model');
@@ -367,5 +369,12 @@ class MY_Controller extends CI_Controller {
 			}
 		}
 		return $return;
+	}
+	
+	public function getCafeList()
+	{
+		$condition=array('status'=>1,'is_delete='=>0);
+		$master_cafe =$this->mcommon->getDetails('master_cafe',$condition);
+		return $master_cafe;
 	}
 }

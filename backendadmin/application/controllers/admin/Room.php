@@ -24,10 +24,11 @@ class Room extends MY_Controller {
 	}
 	public function add()
 	{
-		$condition=array('status'=>1,'is_delete='=>0);
-		$data['cafe_list'] =$this->mcommon->getDetails('master_cafe',$condition);
+		$data['cafe_list'] =$this->getCafeList();
+		
 		$condition=array('status'=>1,'is_delete='=>0);
 		$data['roomtype_list'] =$this->mcommon->getDetails('room_type',$condition);
+		
 		$data['title']='Room Add';
 		$data['content']='admin/room/add';
 		$this->admin_load_view($data);
@@ -35,8 +36,8 @@ class Room extends MY_Controller {
 	}
 	public function edit($room_id)
 	{
-		$condition=array('status'=>1,'is_delete='=>0);
-		$data['cafe_list'] =$this->mcommon->getDetails('master_cafe',$condition);
+		$data['cafe_list'] =$this->getCafeList();
+		
 		$condition=array('status'=>1,'is_delete='=>0);
 		$data['roomtype_list'] =$this->mcommon->getDetails('room_type',$condition);
 		$condition=array('room_id'=>$room_id);
