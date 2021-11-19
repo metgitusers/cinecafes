@@ -68,7 +68,7 @@
                       <tr>
                       <td><?php echo $i;?></td>
                       <td><?php echo $row['coupon_code'];?></td>
-                      <td><?php echo $row['cafe_name']."-".$row['cafe_place'];?></td>
+                      <td><?php echo !empty($row['cafe_name']) ? $row['cafe_name']."-".$row['cafe_place']:'All';?></td>
                      <!--  <td><?php //echo date( 'd-M-Y h:ia', strtotime( $row['start_on'] ) );?></td>
                       <td><?php //echo date( 'd-M-Y h:ia', strtotime( $row['end_on'] ) );?></td> -->
                        <td><?php echo date( 'd-M-Y', strtotime( $row['start_on'] ) );?></td>
