@@ -45,39 +45,39 @@
                     </div>
                   </div>
                   
-                  <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label>Media Name *</label>
                         <input type="text" name="media_name" id="media_name" class="form-control" value="<?php echo $row['media_name'];?>" required>
                     </div>
                   </div>
                   
-                  <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label>Media Order *</label>
                         <input type="text" name="media_order" id="media_order" class="form-control" value="<?php echo $row['media_order'];?>" required>
                     </div>
                   </div>
                   
-                  <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label>Image *</label>
                       <input type="file"  id="file-input" name="imgInp">
                     </div>
                   </div>
                  
-					<div class="col-md-12">
-						<span class="smaillimgupload" style="margin-top: 2px; display: inline-block; margin-bottom: 15px;">
-                   <!--  <img src="<?php echo base_url();?>public/assets/img/110x110.png" id="blah2" style="height:100px;width:100px;"> -->
-                   <?php if(!empty($row['media_image'])){?>
-                        <img src="<?php echo base_url();?>public/upload_images/media/<?php echo $row['media_image'];?>" id="blah" style="height:100px;width:100px;">
-                        <?php }else{?>
-                       <span  style="text-decoration: none;"><img id="blah"></span>
-
-                      <?php } ?>
-                     
-                   </span>
-					</div>
+                  <div class="col-md-12">
+                    <span class="smaillimgupload" style="margin-top: 2px; display: inline-block; margin-bottom: 15px;">
+                           <!--  <img src="<?php echo base_url();?>public/assets/img/110x110.png" id="blah2" style="height:100px;width:100px;"> -->
+                           <?php if(!empty($row['media_image'])){?>
+                                <img src="<?php echo base_url();?>public/upload_images/media/<?php echo $row['media_image'];?>" id="blah" style="height:100px;width:100px;">
+                                <?php }else{?>
+                               <span  style="text-decoration: none;"><img id="blah"></span>
+        
+                              <?php } ?>
+                             
+                           </span>
+                  </div>
                  
                   
                 <div class="col-md-2 col-xs-2 col-xs-2">
