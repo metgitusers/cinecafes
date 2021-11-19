@@ -10,6 +10,12 @@
      <i class="fas fa-fw fa-tachometer-alt"></i>
      <span>Dashboard</span></a>
    </li> -->
+
+<?php
+if($this->session->admin['user_id']==1)
+{
+?>
+
 <li class="nav-item <?php if($this->uri->segment(2)=='dashboard'){ echo"active"; }?>">
    <a class="nav-link" href="<?php echo base_url('admin/dashboard'); ?>">
    <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -203,6 +209,99 @@
       </div>
    </div>
 </li>
+
+<?php
+}
+else if($this->session->admin['user_id']==16)
+{
+?>
+<li class="nav-item <?php if($this->uri->segment(2)=='dashboard'){ echo"active"; }?>">
+   <a class="nav-link" href="<?php echo base_url('admin/dashboard'); ?>">
+   <i class="fas fa-fw fa-tachometer-alt"></i>
+   <span>Dashboard</span></a>
+</li>
+<?php
+}
+else if($this->session->admin['user_id']==17)
+{
+?>
+<li class="nav-item <?php if($this->uri->segment(2)=='dashboard'){ echo"active"; }?>">
+   <a class="nav-link" href="<?php echo base_url('admin/dashboard'); ?>">
+   <i class="fas fa-fw fa-tachometer-alt"></i>
+   <span>Dashboard</span></a>
+</li>
+<li class="nav-item <?php if($this->uri->segment(2)=='cafe'){ echo"active"; }?>">
+   <a class="nav-link" href="<?php echo base_url('admin/cafe'); ?>">
+   <img src="<?=base_url('public/img/icon_2.png')?>" alt="icon">
+   <span>Cine Cafes</span></a>
+</li>
+<hr class="sidebar-divider my-0">
+<!-- Nav Item - room-->
+<li class="nav-item <?php if($this->uri->segment(2)=='roomtype' || $this->uri->segment(2)=='room'){ echo "active"; }?>">
+   <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwoRoom" aria-expanded="true" aria-controls="collapseTwoRoom">
+   <img src="<?=base_url('public/img/icon_5.png')?>" alt="icon">
+   <span>Room</span>
+   </a>
+   <div id="collapseTwoRoom" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"  >
+      <div class="bg-white py-2 collapse-inner rounded">
+         <a class="collapse-item <?php if($this->uri->segment(2)=='room'){ echo "active"; }?>" href="<?php echo base_url('admin/room'); ?>" >Room</a>
+      </div>
+   </div>
+</li>
+<hr class="sidebar-divider my-0">
+<!-- Nav Item - coupon  -->
+<li class="nav-item <?php if($this->uri->segment(2)=='coupon'){ echo"active"; }?>">
+   <a class="nav-link" href="<?php echo base_url('admin/coupon'); ?>">
+   <img src="<?=base_url('public/img/icon_6.png')?>" alt="icon">
+   <span>Coupon</span></a>
+</li>
+<hr class="sidebar-divider my-0">
+<!-- Nav Item - media  -->
+<li class="nav-item <?php if($this->uri->segment(2)=='media'){ echo"active"; }?>">
+   <a class="nav-link" href="<?php echo base_url('admin/media'); ?>">
+   <img src="<?=base_url('public/img/icon_7.png')?>" alt="icon">
+   <span>Entertainment Media</span></a>
+</li>
+<hr class="sidebar-divider my-0">
+<!-- Nav Item - reservation  -->
+<li class="nav-item <?php if($this->uri->segment(2)=='reservation'){ echo"active"; }?>">
+   <a class="nav-link" href="<?php echo base_url('admin/reservation'); ?>">
+   <img src="<?=base_url('public/img/icon_15.png')?>" alt="icon">
+   <span>Reservation</span></a>
+</li>
+<hr class="sidebar-divider my-0">
+<!-- Nav Item - review  -->
+<li class="nav-item <?php if($this->uri->segment(2)=='review'){ echo"active"; }?>">
+   <a class="nav-link" href="<?php echo base_url('admin/review'); ?>">
+   <img src="<?=base_url('public/img/icon_10.png')?>" alt="icon">
+   <span>Review</span></a>
+</li>
+<li class="nav-item <?php if($this->uri->segment(2)=='membership'){ echo"active"; }?>">
+   <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+   <img src="<?=base_url('public/img/icon_11.png')?>" alt="icon">
+   <span>Membership Package</span>
+   </a>
+   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"  >
+      <div class="bg-white py-2 collapse-inner rounded">
+         <h6 class="collapse-header">Members</h6>
+         <a class="collapse-item <?php if($this->uri->segment(2)=='member' && $this->uri->segment(3)=='add'){ echo"active"; }?>" href="<?php echo base_url('admin/member/add'); ?>" >Add new Member</a>
+         <a class="collapse-item <?php if($this->uri->segment(2)=='membership'){ echo"active"; }?>" href="<?php echo base_url('admin/membership'); ?>" >Members List</a>
+      </div>
+   </div>
+</li>
+<?php
+}
+else if($this->session->admin['user_id']==18)
+{
+?>
+<li class="nav-item <?php if($this->uri->segment(2)=='dashboard'){ echo"active"; }?>">
+   <a class="nav-link" href="<?php echo base_url('admin/dashboard'); ?>">
+   <i class="fas fa-fw fa-tachometer-alt"></i>
+   <span>Dashboard</span></a>
+</li>
+<?php
+}
+?>
 <hr class="sidebar-divider my-0">
 <!-- Sidebar Toggler (Sidebar) -->
 <div class="text-center d-none d-md-inline">
