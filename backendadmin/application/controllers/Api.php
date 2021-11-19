@@ -4900,7 +4900,7 @@ public function checkMembership(){
   //wallet deduction while purchasing
 	public function deductWalllet($user_id,$amount)
 	{
-		
+		echo $user_id;echo $amount;exit;
 			if(empty($user_id)||empty($amount))
 			{
 			$response['status']['error_code'] = 1;
