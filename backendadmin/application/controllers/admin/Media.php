@@ -18,7 +18,7 @@ class Media extends MY_Controller {
 		$data['content'] = 'admin/media/list';
 		$data['title']= 'Media';
 		
-		$List = $this->db->query("SELECT * FROM `master_media` WHERE `is_delete` =0 ORDER BY media_order ASC,media_id ASC")->result_array();
+		$List = $this->db->query("SELECT master_media.*,master_cafe.cafe_name,master_cafe.cafe_place FROM `master_media` left join master_cafe on master_cafe.cafe_id=master_media.cafe_id WHERE master_media.is_delete =0 ORDER BY master_media.media_order ASC,master_media.media_id ASC")->result_array();
 		
     	$data['media_all_list']= $List;
 		$this->admin_load_view($data);
@@ -51,6 +51,7 @@ class Media extends MY_Controller {
 			}
 			
 			$udata['media_name']=$this->input->post('media_name');
+			$udata['cafe_id']=$this->input->post('cafe_id');
 			$udata['media_order']=$this->input->post('media_order');					
 			// $udata['date_of_creation']=date('Y-m-d H:i:s');
 			
@@ -109,6 +110,7 @@ class Media extends MY_Controller {
 			}
 			
 			$udata['media_name']=$this->input->post('media_name');
+			$udata['cafe_id']=$this->input->post('cafe_id');
 			$udata['media_order']=$this->input->post('media_order');
 			// $udata['date_of_update']=date('Y-m-d H:i:s');	
 		

@@ -36,6 +36,7 @@
                             <th>SL No.</th>  
                             <th>Name</th>                                                                               
                             <th>Image</th>
+                            <th>Cafe</th>
                             <th>Order</th>
                             <th class="no-sort">Status</th>
                             <th class="no-sort">Action</th>
@@ -46,6 +47,7 @@
                               <th>Sl No.</th>
                               <th>Name</th>
                               <th>Image</th>
+                              <th>Cafe</th>
                               <th>Order</th>
                               <th class="no-sort">Status</th>
                               <th class="no-sort">Action</th>
@@ -68,6 +70,7 @@
                             <td><?= $key + 1 ?></td> 
                             <td><?= $actv_mem['media_name']; ?></td>                                                                                        
                             <td ><?= $media_image ?></td>
+                            <td><?php echo !empty($row['cafe_name']) ? $row['cafe_name']."-".$row['cafe_place']:'All';?></td>
                             <td><?= $actv_mem['media_order']; ?></td>                 
                                                                           
                       <td>

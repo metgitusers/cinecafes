@@ -31,7 +31,22 @@
                          
               <form method="post" id="MediaAddform" role="form" action="<?php echo base_url();?>admin/media/add_content" autocomplete="off"  enctype="multipart/form-data">
                 <div class="row">
-                  <div class="col-md-4 col-sm-12 col-xs-12">
+                  
+                  <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                       <label>Cafe*</label>
+                          <select class="form-control" name="cafe_id"  id="cafe_id" required>
+                             <option selected disabled>Please select</option>
+                             <option value="0">All</option>
+                             <?php foreach($this->CI->getCafeList() as $row1){?>
+                                <option value="<?=$row1['cafe_id'];?>"><?=$row1['cafe_name']."-".$row1['cafe_place'];?></option>
+                             <?php } ?>
+                          </select>
+                          <?php echo form_error('cafe_id', '<div class="error">', '</div>'); ?>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label>Media Name *</label>
                        
@@ -41,7 +56,7 @@
                       </div>
                   </div>
                   
-                  <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label>Media Order *</label>
                         <input type="text" name="media_order" id="media_order" class="form-control" value="<?php echo set_value('media_order');?>" required>
@@ -50,7 +65,7 @@
              
               
 
-                 <div class="col-md-4 col-sm-12 col-xs-12">
+                 <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
                      <label>Image *</label>
                        <input type="file" id="file-input" name="imgInp" required="required">
