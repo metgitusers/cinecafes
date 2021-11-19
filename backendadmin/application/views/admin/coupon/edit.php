@@ -35,7 +35,7 @@
                   
                  <div class="row">
                   
-                  <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label>Cafe*</label>
                       <select class="form-control" name="cafe_id"  id="cafe_id" required>
@@ -49,27 +49,27 @@
                     </div>
                   </div>
                   
-                  <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label>Coupon Code*</label>
                         <input type="text" name="coupon_code" id="coupon_code" class="form-control"  value="<?php echo $row['coupon_code'];?>" required>
                       </div>
                   </div>
                   
-                  <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                        <label>Start on*</label>
                          <input class="form-control start-date-1" type="text"  name="start_on" id=""  value="<?php echo $row['start_on'];?>"> 
                       </div>
                   </div>
                 
-                 <div class="col-md-4 col-sm-12 col-xs-12">
+                 <div class="col-md-6 col-sm-12 col-xs-12">
                   <div class="form-group">
                      <label>End on*</label>
                        <input class="form-control end-date-1" type="text"  name="end_on" id=""  value="<?php echo $row['end_on'];?>"> 
                     </div>
                 </div>
-                 <div class="col-md-4 col-sm-12 col-xs-12  mt-3">
+                 <div class="col-md-6 col-sm-12 col-xs-12  mt-3">
                   <div class="form-group">
                      <label>Select coupon Type*</label>
                      <div class="coupontype_box">
@@ -80,19 +80,19 @@
 					  </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12 col-xs-12  mt-3">
+                <div class="col-md-6 col-sm-12 col-xs-12  mt-3">
                   <div class="form-group">
                      <label>Discount Amount*</label>
                        <input class="form-control" type="number" min="1" name="amount" id="amount"  value="<?php echo $row['amount'];?>"> 
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12 col-xs-12  mt-3">
+                <div class="col-md-6 col-sm-12 col-xs-12  mt-3">
                   <div class="form-group">
                      <label>Min Purchase Amount</label>
                        <input class="form-control" type="number" min="0" name="min_price" id="min_price" value="<?php echo $row['min_price'];?>">
                     </div>
                 </div>
-                 <div class="col-md-4 col-sm-12 col-xs-12 max-discount-percentage  mt-3" style="display: <?= $row['coupon_type']==1?'':'none'?> ">
+                 <div class="col-md-6 col-sm-12 col-xs-12 max-discount-percentage  mt-3" style="display: <?= $row['coupon_type']==1?'':'none'?> ">
                   <div class="form-group">
                      <label>Max Discount Amount</label>
                        <input class="form-control" type="number" min="1" name="max_discount_amount" id="max_discount_amount" <?= $row['coupon_type']==1?'':''?>  value="<?php echo $row['max_discount_amount'];?>"> 
