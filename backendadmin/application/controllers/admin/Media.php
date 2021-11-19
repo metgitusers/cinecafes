@@ -18,7 +18,7 @@ class Media extends MY_Controller {
 		$data['title']= 'Media';
 		$condition['is_delete'] =0;
     	$List = $this->mcommon->getDetails('master_media',$condition);
-		echo $ths->db->last_query();exit;
+		echo $this->db->last_query();exit;
 		
 		//$List = $this->common_model->get('master_media',array('*'),array());
 		
