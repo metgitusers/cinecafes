@@ -18,7 +18,7 @@ class Media extends MY_Controller {
 		$data['content'] = 'admin/media/list';
 		$data['title']= 'Media';
 		
-		$List = $this->db->last_query("SELECT * FROM `master_media` WHERE `is_delete` =0 ORDER BY data_order ASC,media_id ASC");
+		$List = $this->db->last_query("SELECT * FROM `master_media` WHERE `is_delete` =0 ORDER BY data_order ASC,media_id ASC")->result_array();
 		
     	$data['media_all_list']= $List;
 		$this->admin_load_view($data);
