@@ -13,21 +13,16 @@ class Media extends MY_Controller {
 		$this->_load_list_view();		
 	}
 	
-	private function _load_list_view() {
+	private function _load_list_view()
+	{
 		$data['content'] = 'admin/media/list';
 		$data['title']= 'Media';
-		$condition['is_delete'] =0;
-    	$List = $this->mcommon->getDetails('master_media',$condition);
-		echo $this->db->last_query();exit;
 		
-		//$List = $this->common_model->get('master_media',array('*'),array());
+		$List = $this->db->last_query("SELECT * FROM `master_media` WHERE `is_delete` =0 ORDER BY data_order ASC,media_id ASC");
 		
     	$data['media_all_list']= $List;
 		$this->admin_load_view($data);
 	}
-	
-	
-	
 	public function add(){		
 		$condition = array();
 		$data['title']= 'Media';

@@ -32,25 +32,24 @@
               <div class="table-responsive">
                 <table class="table table-bordered" id="mymediaList" width="100%" cellspacing="0">
                   <thead>
-                    <tr>
-                      <th>SL No.</th>  
-                      <th>Name</th>                                                                               
-                        <th>image</th>
-                        
-                      <th class="no-sort">Status</th>
-                      <th class="no-sort">Action</th>
-                    </tr>
+                        <tr>
+                            <th>SL No.</th>  
+                            <th>Name</th>                                                                               
+                            <th>Image</th>
+                            <th>Order</th>
+                            <th class="no-sort">Status</th>
+                            <th class="no-sort">Action</th>
+                        </tr>
                   </thead>
                   <tfoot>
-                    <tr>
-                       <th>Sl No.</th>
-                       <th>Name</th>
-                          <th>Image</th>
-                        
-                      <th class="no-sort">Status</th>
-                      <th class="no-sort">Action</th>
-                    </tr>
-                    </tr>
+                        <tr>
+                              <th>Sl No.</th>
+                              <th>Name</th>
+                              <th>Image</th>
+                              <th>Order</th>
+                              <th class="no-sort">Status</th>
+                              <th class="no-sort">Action</th>
+                        </tr>
                   </tfoot>
                   <tbody>
                     <?php if (!empty($media_all_list)) { 
@@ -69,7 +68,7 @@
                             <td><?= $key + 1 ?></td> 
                             <td><?= $actv_mem['media_name']; ?></td>                                                                                        
                             <td ><?= $media_image ?></td>
-                            
+                            <td><?= $actv_mem['data_order']; ?></td>                 
                                                                           
                       <td>
                          <?php 
