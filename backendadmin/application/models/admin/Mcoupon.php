@@ -11,8 +11,9 @@ class Mcoupon extends CI_Model{
 
     public function getcouponList(){
 
-        $this->db->select('*');
+        $this->db->select('coupon.*,master_cafe.cafe_name,master_cafe.cafe_place');
         $this->db->from('coupon');
+        $this->db->join('master_cafe', 'master_cafe.cafe_id = coupon.cafe_id', 'left');
         $this->db->where("coupon.is_delete", "0");
         $this->db->order_by("coupon.coupon_id", "desc");
         $query=$this->db->get();

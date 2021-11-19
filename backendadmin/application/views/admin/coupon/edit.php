@@ -34,18 +34,35 @@
                 <div class="row">
                   
                  <div class="row">
+                  
                   <div class="col-md-4 col-sm-12 col-xs-12">
-                  <div class="form-group">
-                      <label>Coupon Code*</label>
-                      <input type="text" name="coupon_code" id="coupon_code" class="form-control"  value="<?php echo $row['coupon_code'];?>" required>
+                    <div class="form-group">
+                      <label>Cafe*</label>
+                      <select class="form-control" name="cafe_id"  id="cafe_id" required>
+                        <option selected disabled>Please select</option>
+                        <option value="0" <?php if($row['cafe_id']==0){ echo "selected"; }?>>All</option>
+                        <?php foreach($this->CI->getCafeList() as $row1){?>
+                          <option value="<?php echo $row1['cafe_id'];?>" <?php if($row1['cafe_id']==$row['cafe_id']){ echo "selected"; }?>><?php echo $row1['cafe_name']."-".$row1['cafe_place'];?></option>
+                        <?php } ?>
+                      </select>
+                      <?php echo form_error('cafe_id', '<div class="error">', '</div>'); ?>
                     </div>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                  <div class="form-group">
-                     <label>Start on*</label>
-                       <input class="form-control start-date-1" type="text"  name="start_on" id=""  value="<?php echo $row['start_on'];?>"> 
-                    </div>
-                </div>
+                  </div>
+                  
+                  <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label>Coupon Code*</label>
+                        <input type="text" name="coupon_code" id="coupon_code" class="form-control"  value="<?php echo $row['coupon_code'];?>" required>
+                      </div>
+                  </div>
+                  
+                  <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                       <label>Start on*</label>
+                         <input class="form-control start-date-1" type="text"  name="start_on" id=""  value="<?php echo $row['start_on'];?>"> 
+                      </div>
+                  </div>
+                
                  <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                      <label>End on*</label>

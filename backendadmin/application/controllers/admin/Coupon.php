@@ -58,6 +58,7 @@ class Coupon extends MY_Controller {
 		} else {
           	$idata = array(
 		 		'coupon_code'   => $this->input->post('coupon_code'),
+				'cafe_id' => $this->input->post('cafe_id'),
 		        'start_on' => date('Y-m-d', strtotime(str_replace('-', '/', $this->input->post('start_on')))),
 		        'end_on' => date('Y-m-d', strtotime(str_replace('-', '/', $this->input->post('end_on')))),
 		        'coupon_type' => $this->input->post('coupon_type'),
@@ -76,7 +77,7 @@ class Coupon extends MY_Controller {
 	   }
     }
 
-     public function update_content()
+    public function update_content()
 	{   
 	    //echo "<pre>"; print_r($this->input->post());die;
 	    $coupon_id=$this->input->post('coupon_id');  
@@ -102,6 +103,7 @@ class Coupon extends MY_Controller {
 
 			$udata = array(
 		 	    'coupon_code'   => $this->input->post('coupon_code'),
+				'cafe_id' => $this->input->post('cafe_id'),
 		        //'start_on' => $this->input->post('start_on'),
 				'start_on' => date('Y-m-d', strtotime(str_replace('-', '/', $this->input->post('start_on')))),
 		       // 'end_on' => $this->input->post('end_on'),
@@ -148,14 +150,4 @@ class Coupon extends MY_Controller {
 		$this->mcommon->update('coupon',$condition,$udata);
 		echo 1;
 	}
-  
-  
-	
-   
-	
-	
-
-
-	
-
 }

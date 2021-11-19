@@ -35,6 +35,7 @@
                     <tr>
                       <th>Sl No.</th>
                       <th>Coupon Code</th>
+                      <th>Cafe</th>
                       <th>Start on</th>
                       <th>End on</th>
                       <th>Coupon Type</th>
@@ -49,6 +50,7 @@
                     <tr>
                       <th>Sl No.</th>
                       <th>Coupon Code</th>
+                      <th>Cafe</th>
                       <th>Start date</th>
                       <th>End date</th>
                       <th>Coupon Type</th>
@@ -66,7 +68,7 @@
                       <tr>
                       <td><?php echo $i;?></td>
                       <td><?php echo $row['coupon_code'];?></td>
-                     
+                      <td><?php echo $row['cafe_name']."-".$row['cafe_place'];?></td>
                      <!--  <td><?php //echo date( 'd-M-Y h:ia', strtotime( $row['start_on'] ) );?></td>
                       <td><?php //echo date( 'd-M-Y h:ia', strtotime( $row['end_on'] ) );?></td> -->
                        <td><?php echo date( 'd-M-Y', strtotime( $row['start_on'] ) );?></td>
