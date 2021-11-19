@@ -31,18 +31,25 @@
               <form method="post" id="MediaEditform" role="form" action="<?php echo base_url();?>admin/media/update_content" autocomplete="off"  enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-md-4 col-sm-12 col-xs-12">
-                  <div class="form-group">
-                      <label>Media Name *</label>
-                       <input type="text" name="media_name" id="media_name" class="form-control" value="<?php echo $row['media_name'];?>" required>
+                    <div class="form-group">
+                        <label>Media Name *</label>
+                        <input type="text" name="media_name" id="media_name" class="form-control" value="<?php echo $row['media_name'];?>" required>
                     </div>
-                </div>
-                   <div class="col-md-4 col-sm-12 col-xs-12">
-                  <div class="form-group">
-                     <label>Image *</label>
-                       <input type="file"  id="file-input" name="imgInp">
-                        
+                  </div>
+                  
+                  <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label>Media Order *</label>
+                        <input type="text" name="media_order" id="media_order" class="form-control" value="<?php echo $row['media_order'];?>" required>
                     </div>
-                </div>
+                  </div>
+                  
+                  <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label>Image *</label>
+                      <input type="file"  id="file-input" name="imgInp">
+                    </div>
+                  </div>
                  
 					<div class="col-md-12">
 						<span class="smaillimgupload" style="margin-top: 2px; display: inline-block; margin-bottom: 15px;">

@@ -18,7 +18,7 @@ class Media extends MY_Controller {
 		$data['content'] = 'admin/media/list';
 		$data['title']= 'Media';
 		
-		$List = $this->db->query("SELECT * FROM `master_media` WHERE `is_delete` =0 ORDER BY data_order ASC,media_id ASC")->result_array();
+		$List = $this->db->query("SELECT * FROM `master_media` WHERE `is_delete` =0 ORDER BY media_order ASC,media_id ASC")->result_array();
 		
     	$data['media_all_list']= $List;
 		$this->admin_load_view($data);
@@ -50,7 +50,8 @@ class Media extends MY_Controller {
 				$udata['media_image']=$filename;
 			}
 			
-			$udata['media_name']=$this->input->post('media_name');					
+			$udata['media_name']=$this->input->post('media_name');
+			$udata['media_order']=$this->input->post('media_order');					
 			// $udata['date_of_creation']=date('Y-m-d H:i:s');
 			
 			$udata['status'] = 1;
@@ -107,7 +108,8 @@ class Media extends MY_Controller {
 				$udata['media_image']=$filename;
 			}
 			
-			$udata['media_name']=$this->input->post('media_name');					
+			$udata['media_name']=$this->input->post('media_name');
+			$udata['media_order']=$this->input->post('media_order');
 			// $udata['date_of_update']=date('Y-m-d H:i:s');	
 		
 			if(!empty($udata))

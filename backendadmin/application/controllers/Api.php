@@ -4375,7 +4375,7 @@ public function checkMembership(){
     //           }
 
           ////////////////////////////////////////////////////////////////////////
-          $order_col='data_order';
+          $order_col='media_order';
           $order_type='ASC';
           $start="";
           $limit="";

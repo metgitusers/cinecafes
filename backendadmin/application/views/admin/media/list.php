@@ -68,7 +68,7 @@
                             <td><?= $key + 1 ?></td> 
                             <td><?= $actv_mem['media_name']; ?></td>                                                                                        
                             <td ><?= $media_image ?></td>
-                            <td><?= $actv_mem['data_order']; ?></td>                 
+                            <td><?= $actv_mem['media_order']; ?></td>                 
                                                                           
                       <td>
                          <?php 
