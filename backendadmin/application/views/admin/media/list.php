@@ -70,7 +70,7 @@
                             <td><?= $key + 1 ?></td> 
                             <td><?= $actv_mem['media_name']; ?></td>                                                                                        
                             <td ><?= $media_image ?></td>
-                            <td><?php echo !empty($row['cafe_name']) ? $row['cafe_name']."-".$row['cafe_place']:'All';?></td>
+                            <td><?php echo !empty($actv_mem['cafe_name']) ? $actv_mem['cafe_name']."-".$actv_mem['cafe_place']:'All';?></td>
                             <td><?= $actv_mem['media_order']; ?></td>                 
                                                                           
                       <td>
