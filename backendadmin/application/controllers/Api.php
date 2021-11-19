@@ -1420,7 +1420,7 @@ class Api extends CI_Controller
             $this->mcommon->update('user_profile',$condition,$profile_arr);
             $member_all_details= $this->mapi->getMemberDetailsRow(array('user.user_id' => $user_id));
             $response['status']['error_code'] = 0;
-            $response['status']['message']    = 'Profile updated Successfully.';
+            $response['status']['message']    = 'Profile updated successfully.';
             $response['response']['user']   = $member_all_details;
                   
       }
@@ -4375,7 +4375,7 @@ public function checkMembership(){
     //           }
 
           ////////////////////////////////////////////////////////////////////////
-          $order_col='media_id';
+          $order_col='data_order';
           $order_type='ASC';
           $start="";
           $limit="";
@@ -4612,7 +4612,7 @@ public function checkMembership(){
               $update_result  = $this->mapi->update('user',$condition,$update_arr);
               if($update_result){
                   $response['status']['error_code'] = 0;
-                  $response['status']['message']    = 'Mobile no updated Successfully';
+                  $response['status']['message']    = 'Mobile no updated successfully';
                   
                   
               }
