@@ -4900,12 +4900,10 @@ public function checkMembership(){
   //wallet deduction while purchasing
 	public function deductWalllet($user_id,$amount)
 	{
-		echo $user_id;echo $amount;exit;
-			if(empty($user_id)||empty($amount))
+			if(empty($user_id))
 			{
-			$response['status']['error_code'] = 1;
-			$response['status']['message']    = 'Invalid user id or amount';
-			
+        $response['status']['error_code'] = 1;
+        $response['status']['message']    = 'Invalid user id or amount';
 				$this->displayOutput($response);
 			}
 
