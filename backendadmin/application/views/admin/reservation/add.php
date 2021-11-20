@@ -286,7 +286,7 @@ var placeSearch, autocomplete;
       var getMinutes = getTime.getMinutes;
       
       var totalMinutes = parseInt(getHours)*60+parseInt(getMinutes);
-      alert(totalMinutes);
+      alert(getHours);alert(getMinutes);alert(totalMinutes);
       
       //var reservation_date,reservation_time,reservation_date_time;
       //
