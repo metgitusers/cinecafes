@@ -284,24 +284,24 @@ var placeSearch, autocomplete;
       //var reservation_time_hour = $('#reservation_time').timepicker('getTime').getHours();
       
       
-      var reservation_date,reservation_time,reservation_date_time;
-      
-      reservation_date = $('#reservation_date').datepicker('getDate');alert(reservation_date);
-      reservation_time = $('#reservation_time').val();
-      reservation_date_time = reservation_date+' '.reservation_time;
-      
-      alert(Date.parse(reservation_date_time));
-      
-      
-      var duration = $('#duration').val();
-      if(reservation_date !='' && reservation_time !='' && duration !='' )
-      {
-        var totalHour = parseInt(duration)+parseInt(reservation_time_hour);
-        if(totalHour > 23)
-        {
-          //alert('Cafe closing time is 11:00 PM. So choose your time and duration accordingly.');
-        }
-      }
+      //var reservation_date,reservation_time,reservation_date_time;
+      //
+      //reservation_date = $('#reservation_date').datepicker('getDate');alert(reservation_date);
+      //reservation_time = $('#reservation_time').val();
+      //reservation_date_time = reservation_date+' '.reservation_time;
+      //
+      //alert(Date.parse(reservation_date_time));
+      //
+      //
+      //var duration = $('#duration').val();
+      //if(reservation_date !='' && reservation_time !='' && duration !='' )
+      //{
+      //  var totalHour = parseInt(duration)+parseInt(reservation_time_hour);
+      //  if(totalHour > 23)
+      //  {
+      //    //alert('Cafe closing time is 11:00 PM. So choose your time and duration accordingly.');
+      //  }
+      //}
     });
     
   });
