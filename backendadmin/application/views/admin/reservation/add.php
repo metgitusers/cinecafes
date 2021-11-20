@@ -280,7 +280,7 @@ var placeSearch, autocomplete;
     $('.timepicker').timepicker({});
     
     $('button[type="submit"]').on('click', function() {
-      alert( Date.parse('11:00 PM') );
+      alert( Date.parse('12-8-2021 11:00 PM') );
       
       alert($('#reservation_time').val());
       
