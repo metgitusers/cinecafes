@@ -282,11 +282,11 @@ var placeSearch, autocomplete;
     $('button[type="submit"]').on('click', function() {
       
       var getTime = $('#reservation_time').timepicker('getTime');
-      var getHoursC = getTime.getHours();
-      var getMinutesC = getTime.getMinutes();
+      var getHours = getTime.getHours();
+      var getMinutes = getTime.getMinutes();
       
-      //var totalMinutesC = parseInt(getHoursC)*60+parseInt(getMinutesC);
-      alert(getHoursC);alert(getMinutesC);alert(totalMinutesC);
+      var totalMinutes = parseInt(getHours)*60+parseInt(getMinutes);
+      alert(getHours);alert(getMinutes);alert(totalMinutes);
       
       //var reservation_date,reservation_time,reservation_date_time;
       //
