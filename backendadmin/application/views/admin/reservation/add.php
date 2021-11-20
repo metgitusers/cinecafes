@@ -280,7 +280,7 @@ var placeSearch, autocomplete;
     $('.timepicker').timepicker({});
     
     $('button[type="submit"]').on('click', function() {
-      alert('okay');
+      alert( $('#reservation_time').timepicker('getTime').getHours() );
     });
     
   })
