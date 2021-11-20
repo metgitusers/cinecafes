@@ -2453,16 +2453,16 @@ var currDate = new Date();
       }
       //$('#reservation_time').timepicker('setTime', null);
       $('#reservation_time').timepicker({
-        timeFormat: 'h:mm p',
+        'timeFormat': 'h:i A',
         'disableTextInput': true,
-        interval: 30,
-        minTime: p_time,
-        maxTime: '10:00pm',
+        'interval': 30,
+        'minTime': p_time,
+        'maxTime': '10:00pm',
         //defaultTime: '12',
         //startTime: '12',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true,
+        //dynamic: false,
+        //dropdown: true,
+        //scrollbar: true,
         change: function(time) {
           //reset cafe list
           $('#cafe_id').val('');
