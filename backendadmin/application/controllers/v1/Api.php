@@ -109,9 +109,15 @@ class Api extends CI_Controller
         //$availability_status=$this->is_available($reservation_date,$room_id,$reservation_time,$duration);
         //total reserved room for a cafe
         //$reservation_condition    = "reservation_date= '".$reservation_date."' and cafe_id = '".$cafe_id."' and ((reservation_time between '".$start_time_range."' and '".$end_time_range."') or (reservation_end_time between '".$start_time_range."' and '".$end_time_range."')) and status!=2";
-        $reservation_condition    = "reservation_date= '".$reservation_date."' and cafe_id = '".$cafe_id."' and (('".$start_time_range."' between `reservation_time` AND `reservation_end_time`) OR ('".$end_time_range."' between `reservation_time` AND `reservation_end_time`)) and status!=2";
+        
+        
+        //$reservation_condition    = "reservation_date= '".$reservation_date."' and cafe_id = '".$cafe_id."' and (('".$start_time_range."' between `reservation_time` AND `reservation_end_time`) OR ('".$end_time_range."' between `reservation_time` AND `reservation_end_time`)) and status!=2";
+        
+        $reservation_condition    = "reservation_date= '".$reservation_date."' and cafe_id = '".$cafe_id."' and ( (TIME(reservation_time)>='".$start_time_range."' AND TIME(reservation_time)<'".$end_time_range."') or (TIME(reservation_end_time)>'".$start_time_range."' AND TIME(reservation_end_time)<='".$end_time_range."') ) and status!=2";
+        
         $this->db->where($reservation_condition); 
-        $total_reservation= count($q = $this->db->get("reservation")->result());echo $this->db->last_query();exit;
+        $total_reservation= count($q = $this->db->get("reservation")->result());
+        //echo $this->db->last_query();exit;
         $reserved_room_ids = array_column($q, 'room_id');
 
         //get all unreserved rooms for admin booking only
@@ -120,6 +126,7 @@ class Api extends CI_Controller
         }        
         $this->db->where('cafe_id', $cafe_id);
         $this->db->where('status', 1);
+        $this->db->where('is_delete', 0);
         $room_list = $this->db->get('room')->result();
 
         //echo $this->db->last_query();
