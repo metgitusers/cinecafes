@@ -2441,8 +2441,8 @@ var currDate = new Date();
         today.setMinutes(0);
         today.setSeconds(0);
 
-      //alert(selectedDate);
-      //      //alert(today);
+      alert(selectedDate);
+      alert(today);
       var p_time = '';
       if (Date.parse(today) < Date.parse(selectedDate)) {
         p_time = "10:00 AM";
