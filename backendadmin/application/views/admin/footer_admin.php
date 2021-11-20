@@ -2522,7 +2522,8 @@ var currDate = new Date();
   // });
 
  ///start time
- var p_time = "<?=date('H:i A')?>";
+ //var p_time = "<?=date('H:i A')?>";
+ alert(p_time);
   $('#reservation_time').timepicker({
     timeFormat: 'h:mm p',
     interval: 30,
