@@ -294,6 +294,7 @@ var placeSearch, autocomplete;
         var totalMinutes = parseInt(getHours)*60+parseInt(getMinutes);
         
         var totalMinutesWithDuration = parseInt(duration)*60+parseInt(totalMinutes);
+        $('#duration')[0].setCustomValidity("");
         if(totalMinutesWithDuration > ClosingHourInMinute)
         {
           $('#duration')[0].setCustomValidity('Cafe closing time is 11:00 PM. So choose your time and duration accordingly.');
