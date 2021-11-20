@@ -2442,7 +2442,7 @@ var currDate = new Date();
         today.setSeconds(0);
 
       alert(selectedDate);
-      alert(today);
+      alert(Date.parse(today));
       var p_time = '';
       if (Date.parse(today) < Date.parse(selectedDate)) {
         p_time = "10:00 AM";
