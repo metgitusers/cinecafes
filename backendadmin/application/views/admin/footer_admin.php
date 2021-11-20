@@ -2452,45 +2452,45 @@ var currDate = new Date();
         alert(p_time);
       }
       //$('#reservation_time').timepicker('setTime', null);
-      //$('#reservation_time').timepicker({
-      //  timeFormat: 'h:mm p',
-      //  interval: 30,
-      //  minTime: p_time,
-      //  maxTime: '10:00pm',
-      //  //defaultTime: '12',
-      //  //startTime: '12',
-      //  dynamic: false,
-      //  dropdown: true,
-      //  scrollbar: true,
-      //  change: function(time) {
-      //    //reset cafe list
-      //    $('#cafe_id').val('');
-      //    var today = new Date();
-      //    var selectedDate = $('#reservation_date').datepicker('getDate');
-      //    today.setHours(0);
-      //    today.setMinutes(0);
-      //    today.setSeconds(0);
-      //    console.log(selectedDate);
-      //    console.log(today);
-      //    if (Date.parse(today) == Date.parse(selectedDate)) {
-      //      if (new Date().getHours() > $(this).timepicker('getTime').getHours()) {
-      //        alert('Please select time in future not past time');
-      //        $(this).val('');
-      //      }
-      //    }
-      //    else
-      //      {
-      //        var html_dropdown="";
-      //        var max=24;
-      //        var dropdown_max=12;
-      //        var dropdown_max=parseInt(max)-parseInt($(this).timepicker('getTime').getHours());
-      //        for(i=1;i<=dropdown_max;i++)
-      //        {
-      //          var html_dropdown=html_dropdown+'<option value="'+i+'">'+i+'</option>';
-      //        }
-      //      }
-      //    }
-      //});
+      $('#reservation_time').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        minTime: p_time,
+        maxTime: '10:00pm',
+        //defaultTime: '12',
+        //startTime: '12',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true,
+        change: function(time) {
+          //reset cafe list
+          $('#cafe_id').val('');
+          var today = new Date();
+          var selectedDate = $('#reservation_date').datepicker('getDate');
+          today.setHours(0);
+          today.setMinutes(0);
+          today.setSeconds(0);
+          console.log(selectedDate);
+          console.log(today);
+          if (Date.parse(today) == Date.parse(selectedDate)) {
+            if (new Date().getHours() > $(this).timepicker('getTime').getHours()) {
+              alert('Please select time in future not past time');
+              $(this).val('');
+            }
+          }
+          else
+            {
+              var html_dropdown="";
+              var max=24;
+              var dropdown_max=12;
+              var dropdown_max=parseInt(max)-parseInt($(this).timepicker('getTime').getHours());
+              for(i=1;i<=dropdown_max;i++)
+              {
+                var html_dropdown=html_dropdown+'<option value="'+i+'">'+i+'</option>';
+              }
+            }
+          }
+      });
     }
   });
   // .on('changeDate', function() {
