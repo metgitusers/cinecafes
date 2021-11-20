@@ -278,6 +278,11 @@ var placeSearch, autocomplete;
   var userData = <?=json_encode($user_list)?>;
   $(document).ready(function(){
     $('.timepicker').timepicker({});
+    
+    $('button[type="submit"]').on('click', function() {
+      alert('okay');
+    });
+    
   })
   $('#coupon').on('keyup', function(){
     $('#apply-reservation-coupon').prop('disabled', $(this).val().length > 0 ?false:true);
