@@ -42,7 +42,7 @@
                  <div class="col-md-4 col-sm-12 col-xs-12 r_time">
                   <div class="form-group">
                       <label>Reservation Time*</label>
-                      <input type="text" name="reservation_time" id="reservation_time" class="form-control timepicker" placeholder="Reservation time" autocomplete="off" value="<?php echo set_value('reservation_time');?>" required >
+                      <input type="text" name="reservation_time" id="reservation_time" class="form-control" placeholder="Reservation time" autocomplete="off" value="<?php echo set_value('reservation_time');?>" required >
                     </div>
                 </div>
                  
@@ -277,7 +277,7 @@ var placeSearch, autocomplete;
 <script>
   var userData = <?=json_encode($user_list)?>;
   $(document).ready(function(){
-    //$('.timepicker').timepicker({});
+    $('.timepicker').timepicker({});
   })
   $('#coupon').on('keyup', function(){
     $('#apply-reservation-coupon').prop('disabled', $(this).val().length > 0 ?false:true);
