@@ -111,7 +111,7 @@ class Api extends CI_Controller
         //$reservation_condition    = "reservation_date= '".$reservation_date."' and cafe_id = '".$cafe_id."' and ((reservation_time between '".$start_time_range."' and '".$end_time_range."') or (reservation_end_time between '".$start_time_range."' and '".$end_time_range."')) and status!=2";
         $reservation_condition    = "reservation_date= '".$reservation_date."' and cafe_id = '".$cafe_id."' and (('".$start_time_range."' between `reservation_time` AND `reservation_end_time`) OR ('".$end_time_range."' between `reservation_time` AND `reservation_end_time`)) and status!=2";
         $this->db->where($reservation_condition); 
-        $total_reservation= count($q = $this->db->get("reservation")->result());
+        $total_reservation= count($q = $this->db->get("reservation")->result());echo $this->db->last_query();exit;
         $reserved_room_ids = array_column($q, 'room_id');
 
         //get all unreserved rooms for admin booking only
