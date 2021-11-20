@@ -2460,9 +2460,9 @@ var currDate = new Date();
         'maxTime': '10:00pm',
         //defaultTime: '12',
         //startTime: '12',
-        //dynamic: false,
-        //dropdown: true,
-        //scrollbar: true,
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true,
         change: function(time) {
           //reset cafe list
           $('#cafe_id').val('');
