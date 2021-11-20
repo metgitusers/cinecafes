@@ -280,9 +280,13 @@ var placeSearch, autocomplete;
     $('.timepicker').timepicker({});
     
     $('button[type="submit"]').on('click', function() {
-      //alert( Date.parse('12-8-2021 11:00 PM') );
-      var reservation_time_hour = $('#reservation_time').timepicker('getTime').getMinutes();
-      alert(reservation_time_hour);
+      
+      var getTime = $('#reservation_time').timepicker('getTime');
+      var getHours = getTime.getHours;
+      var getMinutes = getTime.getMinutes;
+      
+      var totalMinutes = parseInt(getHours)*60+parseInt(getMinutes);
+      alert(totalMinutes);
       
       //var reservation_date,reservation_time,reservation_date_time;
       //
