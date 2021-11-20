@@ -282,8 +282,8 @@ var placeSearch, autocomplete;
     $('button[type="submit"]').on('click', function() {
       
       var getTimeC = $('#reservation_time').timepicker('getTime');
-      var getHoursC = getTimeC.getHours;
-      var getMinutesC = getTimeC.getMinutes;
+      var getHoursC = $('#reservation_time').timepicker('getTime').getHours;
+      var getMinutesC = $('#reservation_time').timepicker('getTime').getMinutes;
       
       var totalMinutesC = parseInt(getHoursC)*60+parseInt(getMinutesC);
       alert(getHoursC);alert(getMinutesC);alert(totalMinutesC);
