@@ -281,12 +281,20 @@ var placeSearch, autocomplete;
     
     $('button[type="submit"]').on('click', function() {
       //alert( Date.parse('12-8-2021 11:00 PM') );
+      //var reservation_time_hour = $('#reservation_time').timepicker('getTime').getHours();
       
-      //alert($('#reservation_time').val());
       
-      var reservation_time_hour = $('#reservation_time').timepicker('getTime').getHours();
+      var reservation_date,reservation_time,reservation_date_time;
+      
+      reservation_date = $('#reservation_date').datepicker('getDate');alert(reservation_date);
+      reservation_time = $('#reservation_time').val();
+      reservation_date_time = reservation_date+' '.reservation_time;
+      
+      alert(Date.parse(reservation_date_time));
+      
+      
       var duration = $('#duration').val();
-      if(reservation_time_hour !='' && duration !='' )
+      if(reservation_date !='' && reservation_time !='' && duration !='' )
       {
         var totalHour = parseInt(duration)+parseInt(reservation_time_hour);
         if(totalHour > 23)
@@ -296,7 +304,7 @@ var placeSearch, autocomplete;
       }
     });
     
-  })
+  });
   $('#coupon').on('keyup', function(){
     $('#apply-reservation-coupon').prop('disabled', $(this).val().length > 0 ?false:true);
   })
