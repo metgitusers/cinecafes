@@ -280,7 +280,10 @@ var placeSearch, autocomplete;
     $('.timepicker').timepicker({});
     
     $('button[type="submit"]').on('click', function() {
-      //alert( $('#reservation_time').timepicker('getTime').getHours() );
+      alert( Date.parse('11:00 PM') );
+      
+      alert($('#reservation_time').val());
+      
       var reservation_time_hour = $('#reservation_time').timepicker('getTime').getHours();
       var duration = $('#duration').val();
       if(reservation_time_hour !='' && duration !='' )
@@ -288,7 +291,7 @@ var placeSearch, autocomplete;
         var totalHour = parseInt(duration)+parseInt(reservation_time_hour);
         if(totalHour > 23)
         {
-          alert('Cafe closing time is 11:00 PM. So choose your time and duration accordingly.');
+          //alert('Cafe closing time is 11:00 PM. So choose your time and duration accordingly.');
         }
       }
     });
