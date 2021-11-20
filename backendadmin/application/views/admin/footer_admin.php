@@ -2470,8 +2470,8 @@ var currDate = new Date();
           today.setHours(0);
           today.setMinutes(0);
           today.setSeconds(0);
-          alert(selectedDate);
-          alert(today);
+          console.log(selectedDate);
+          console.log(today);
           if (Date.parse(today) == Date.parse(selectedDate)) {
             if (new Date().getHours() > $(this).timepicker('getTime').getHours()) {
               alert('Please select time in future not past time');
