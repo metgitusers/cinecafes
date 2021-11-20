@@ -2523,63 +2523,63 @@ var currDate = new Date();
 
  ///start time
  //var p_time = "<?=date('H:i A')?>";
-  $('#reservation_time').timepicker({
-    timeFormat: 'h:mm p',
-    interval: 30,
-    minTime: p_time,
-    maxTime: '11:00pm',
-    //defaultTime: '12',
-    startTime: '12',
-    dynamic: false,
-    dropdown: true,
-    scrollbar: true,
-    change: function(time) {
-       //reset cafe list
-       $('#cafe_id').val('');
-
-      var today = new Date();
-
-       var selectedDate = $('#reservation_date').datepicker('getDate');
-      today.setHours(0);
-      today.setMinutes(0);
-      today.setSeconds(0);
-      //alert(selectedDate);
-       //alert(today);
-      if (Date.parse(today) == Date.parse(selectedDate)) {
-        
-        ////alert($(this).timepicker('getTime').getHours());
-        if (new Date().getHours() > $(this).timepicker('getTime').getHours()) {
-          alert('Please select time in future not past time');
-          $(this).val('');
-        }
-      }
-      else
-        {
-          var html_dropdown="";
-          var max=24;
-          var dropdown_max=12;
-          var dropdown_max=parseInt(max)-parseInt($(this).timepicker('getTime').getHours());
-          //alert($(this).timepicker('getTime').getHours());
-          //alert(dropdown_max);
-          for(i=1;i<=dropdown_max;i++)
-          {
-            var html_dropdown=html_dropdown+'<option value="'+i+'">'+i+'</option>';
-          }
-          //$('#duration').html(html_dropdown);
-          //$('.r_duration').show();
-        }
-
-        //$('.r_duration').show();
-      } 
-      // var element = $(this), text;
-      //       // get access to this Timepicker instance
-      //       var timepicker = element.timepicker();
-      //       text = 'Selected time is: ' + timepicker.format(time);
-      //       alert(time);
-      //       alert(text);
-        
-   
-});
+//  $('#reservation_time').timepicker({
+//    timeFormat: 'h:mm p',
+//    interval: 30,
+//    minTime: p_time,
+//    maxTime: '11:00pm',
+//    //defaultTime: '12',
+//    startTime: '12',
+//    dynamic: false,
+//    dropdown: true,
+//    scrollbar: true,
+//    change: function(time) {
+//       //reset cafe list
+//       $('#cafe_id').val('');
+//
+//      var today = new Date();
+//
+//       var selectedDate = $('#reservation_date').datepicker('getDate');
+//      today.setHours(0);
+//      today.setMinutes(0);
+//      today.setSeconds(0);
+//      //alert(selectedDate);
+//       //alert(today);
+//      if (Date.parse(today) == Date.parse(selectedDate)) {
+//        
+//        ////alert($(this).timepicker('getTime').getHours());
+//        if (new Date().getHours() > $(this).timepicker('getTime').getHours()) {
+//          alert('Please select time in future not past time');
+//          $(this).val('');
+//        }
+//      }
+//      else
+//        {
+//          var html_dropdown="";
+//          var max=24;
+//          var dropdown_max=12;
+//          var dropdown_max=parseInt(max)-parseInt($(this).timepicker('getTime').getHours());
+//          //alert($(this).timepicker('getTime').getHours());
+//          //alert(dropdown_max);
+//          for(i=1;i<=dropdown_max;i++)
+//          {
+//            var html_dropdown=html_dropdown+'<option value="'+i+'">'+i+'</option>';
+//          }
+//          //$('#duration').html(html_dropdown);
+//          //$('.r_duration').show();
+//        }
+//
+//        //$('.r_duration').show();
+//      } 
+//      // var element = $(this), text;
+//      //       // get access to this Timepicker instance
+//      //       var timepicker = element.timepicker();
+//      //       text = 'Selected time is: ' + timepicker.format(time);
+//      //       alert(time);
+//      //       alert(text);
+//        
+//   
+//});
 
 /**Populate reservation data */
 function member_data(userId)
