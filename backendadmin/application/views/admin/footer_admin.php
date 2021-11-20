@@ -2441,7 +2441,7 @@ var currDate = new Date();
         today.setMinutes(0);
         today.setSeconds(0);
 
-      alert(selectedDate);
+      alert(Date.parse(selectedDate));
       alert(Date.parse(today));
       var p_time = '';
       if (Date.parse(today) < Date.parse(selectedDate)) {
