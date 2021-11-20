@@ -2441,8 +2441,8 @@ var currDate = new Date();
         today.setMinutes(0);
         today.setSeconds(0);
 
-      alert(Date.parse(selectedDate));
-      alert(Date.parse(today));
+      //alert(Date.parse(selectedDate));
+      //alert(Date.parse(today));
       var p_time = '';
       if (Date.parse(today) < Date.parse(selectedDate)) {
         p_time = "12:00pm";
@@ -2458,7 +2458,7 @@ var currDate = new Date();
         minTime: p_time,
         maxTime: '10:00pm',
         //defaultTime: '12',
-        startTime: '12',
+        //startTime: '12',
         dynamic: false,
         dropdown: true,
         scrollbar: true,
