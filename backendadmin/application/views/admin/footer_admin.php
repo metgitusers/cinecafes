@@ -2446,10 +2446,10 @@ var currDate = new Date();
       var p_time = '';
       if (Date.parse(today) < Date.parse(selectedDate)) {
         p_time = "10:00 AM";
-        alert(p_time);
+        //alert(p_time);
       }else{
         p_time = "<?=date('H:i A')?>";
-        alert(p_time);
+        //alert(p_time);
       }
       //$('#reservation_time').timepicker('setTime', null);
       $('#reservation_time').timepicker({
@@ -2458,7 +2458,7 @@ var currDate = new Date();
         minTime: p_time,
         maxTime: '11:00pm',
         //defaultTime: '12',
-        startTime: '12',
+        //startTime: '12',
         dynamic: false,
         dropdown: true,
         scrollbar: true,
