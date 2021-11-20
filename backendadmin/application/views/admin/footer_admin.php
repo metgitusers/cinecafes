@@ -2453,7 +2453,7 @@ var currDate = new Date();
       }
       //$('#reservation_time').timepicker('setTime', null);
       $('#reservation_time').timepicker({
-        'timeFormat': 'h:i A',
+        'timeFormat': 'h:mm p',
         'disableTextInput': true,
         'interval': 30,
         'minTime': p_time,
