@@ -2446,10 +2446,10 @@ var currDate = new Date();
       var p_time = '';
       if (Date.parse(today) < Date.parse(selectedDate)) {
         p_time = "12:00pm";
-        alert(p_time);
+        //alert(p_time);
       }else{
         p_time = "<?=date('H:i A')?>";
-        alert(p_time);
+        //alert(p_time);
       }
       //$('#reservation_time').timepicker('setTime', null);
       $('#reservation_time').timepicker({
