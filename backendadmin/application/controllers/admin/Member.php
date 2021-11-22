@@ -474,7 +474,7 @@ class Member extends MY_Controller {
 			
 			'added_form'						=> 'admin',
 			//'login_status'						=> '1',
-			'created_by' 						=> $this->session->userdata('user_data'),			
+			'created_by' 						=> $this->session->admin['user_id'],		
 			'created_date' 						=> date('Y-m-d H:i:s'),				
 			);
 			//check is available
