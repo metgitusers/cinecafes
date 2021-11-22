@@ -24,6 +24,7 @@ class Room extends MY_Controller {
 	}
 	public function add()
 	{
+		pr(check_valid_admin());
 		$data['cafe_list'] =$this->getCafeList();
 		
 		$condition=array('status'=>1,'is_delete='=>0);

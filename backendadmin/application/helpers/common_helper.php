@@ -548,20 +548,47 @@ function eventFilterSearch($from_dt = null,$to_dt = null,$event_type){
     return  $ip_address;
   }
 
-      //Common date format for all
-      function d_format($d = '', $time_status = ''){
-        if($d != ''){
-          if($time_status != ''){
-            return date('d-M-Y h:i a', strtotime($d));
-          }else{
-            return date('d-M-Y', strtotime($d));
-          }
-          
-        }else{
-          return date('d-M-Y', strtotime(date()));
-        }
-  
+  //Common date format for all
+  function d_format($d = '', $time_status = ''){
+    if($d != ''){
+      if($time_status != ''){
+        return date('d-M-Y h:i a', strtotime($d));
+      }else{
+        return date('d-M-Y', strtotime($d));
       }
-  
+      
+    }else{
+      return date('d-M-Y', strtotime(date()));
+    }
+
+  }
+  function pr($array, $flag = false)
+  {
+      echo '<pre>';
+      print_r($array);
+      echo '</pre>';
+      if ($flag == false) {
+          die();
+      }
+  }
+  function check_valid_admin($user_id = false)
+	{
+		if (!$user_id) {
+			$user_id = $this->session->admin['user_id'];
+		}
+
+		//$userDB = $this->db->query("SELECT user_master.*,user_role_master.role_name,user_details.note,user_details.status as authorization_apporve_status FROM user_master JOIN user_role_master ON user_master.role_id=user_role_master.role_id LEFT JOIN user_details on user_details.user_id=user_master.user_id WHERE user_master.user_id='" . $user_id . "' AND user_master.status=1")->result_array();
+    
+    $userDB=$this->session->userdata('admin');
+    
+		if (!empty($userDB))
+    {
+			return $userDB;
+		}
+    else
+    {
+			return false;
+		}
+	}
     
 }
