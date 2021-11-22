@@ -29,13 +29,22 @@ class Dashboard extends MY_Controller {
         if(!empty($_POST['cafe_id'])){
        		$cafe_id= $this->input->post('cafe_id');
         }
+		
+		if( $this->check_valid_admin()['role_id'] !=1)
+        {
+			$cafe_id = $this->check_valid_admin()['cafe_id'];
+        }
+		
         $data['start_date']= $start_date;
         $data['end_date']= $end_date;
         $data['cafe_id']= $cafe_id;
         $condition=array('status'=>1,'is_delete='=>0);
 		$data['list']=$this->mreservation->getreservationList($start_date,$end_date,$cafe_id);
 		//echo $this->db->last_query();
-		$data['cafe_list'] =$this->mcommon->getDetails('master_cafe',$condition);
+		//$data['cafe_list'] =$this->mcommon->getDetails('master_cafe',$condition);
+		
+		$data['cafe_list'] =$this->getCafeList();
+		
 		$table="user";
 		$condition_all_users['role_id']=0;
 		$condition_all_users['is_delete']=0;
