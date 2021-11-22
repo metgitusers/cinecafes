@@ -562,15 +562,15 @@ function eventFilterSearch($from_dt = null,$to_dt = null,$event_type){
     }
 
   }
-  function pr($array, $flag = false)
-  {
-      echo '<pre>';
-      print_r($array);
-      echo '</pre>';
-      if ($flag == false) {
-          die();
-      }
-  }
+  //function pr($array, $flag = false)
+  //{
+  //    echo '<pre>';
+  //    print_r($array);
+  //    echo '</pre>';
+  //    if ($flag == false) {
+  //        die();
+  //    }
+  //}
   function check_valid_admin($user_id = false)
 	{
 		if (!$user_id) {
