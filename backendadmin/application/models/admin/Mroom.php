@@ -24,7 +24,7 @@ class Mroom extends CI_Model{
         
         $this->db->order_by("room.room_id", "desc");
         $query=$this->db->get();
-        echo $this->db->last_query();die;
+        //echo $this->db->last_query();die;
         return $query->result_array();
     }
     public function getDetails($table,$condition){
