@@ -16,7 +16,7 @@ class Room extends MY_Controller {
 	}
 	public function index()
 	{
-		$data['list']=$this->mroom->getroomList();
+		$data['list']=$this->mroom->getroomList($this->check_valid_admin());
 		$data['title']='Room List';
 		$data['content']='admin/room/list';
 		$this->admin_load_view($data);
