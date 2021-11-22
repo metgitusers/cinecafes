@@ -9,7 +9,7 @@ class Mroom extends CI_Model{
         parent::__construct();
     }
 
-    public function getroomList($userDB){
+    public function getroomList($userDB = false){
 
         $this->db->select('room.*,room_type.room_type_name,master_cafe.cafe_name,master_cafe.cafe_place');
         $this->db->from('room');
@@ -17,7 +17,7 @@ class Mroom extends CI_Model{
         $this->db->join('master_cafe', 'master_cafe.cafe_id = room.cafe_id');
         $this->db->where("room.is_delete", "0");
         
-        if($userDB['role_id'] !=1)
+        if(!empty($userDB) && $userDB['role_id'] !=1)
         {
             $this->db->where("room.cafe_id", $userDB['cafe_id']);
         }

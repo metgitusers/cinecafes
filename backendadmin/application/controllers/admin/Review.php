@@ -17,7 +17,7 @@ class Review extends MY_Controller {
 	}
 	public function index()
 	{
-		$data['list']=$this->mreview->getReviewList();
+		$data['list']=$this->mreview->getReviewList($this->check_valid_admin());
 		$data['title']='Review List';
 		$data['content']='admin/review/list';
 		$this->admin_load_view($data);

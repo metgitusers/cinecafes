@@ -5,7 +5,7 @@ class Mcafe extends CI_Model{
         parent::__construct();
     }
 
-    public function getCafeList()
+    public function getCafeList($userDB = false)
     {
        // $supplier=$this->session->userdata('supplier'); 
         $this->db->select('master_cafe.*,CONCAT(cafe_name, "-",cafe_place) AS cafe_name');
@@ -13,6 +13,12 @@ class Mcafe extends CI_Model{
         //$this->db->where('product_master.status',1);
         //$this->db->where('product_master.supplier_id',$supplier['user_id']);
         $this->db->where('master_cafe.is_delete',0);
+        
+        if(!empty($userDB) && $userDB['role_id'] !=1)
+        {
+            $this->db->where("master_cafe.cafe_id", $userDB['cafe_id']);
+        }
+        
         $this->db->order_by('master_cafe.cafe_id','desc');
         $query=$this->db->get();
         //echo $this->db->last_query();die;

@@ -19,7 +19,7 @@ class Cafe extends MY_Controller {
 	}
 	public function index()
 	{
-		$data['list']=$this->mcafe->getCafeList();
+		$data['list']=$this->mcafe->getCafeList($this->check_valid_admin());
 		if(!empty($data['list'])){
 			foreach($data['list'] as $img_list){
 				

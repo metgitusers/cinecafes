@@ -16,7 +16,7 @@ class Coupon extends MY_Controller {
 	}
 	public function index()
 	{
-		$data['list']=$this->mcoupon->getcouponList();
+		$data['list']=$this->mcoupon->getcouponList($this->check_valid_admin());
 		$data['title']='Coupon List';
 		$data['content']='admin/coupon/list';
 		$this->admin_load_view($data);

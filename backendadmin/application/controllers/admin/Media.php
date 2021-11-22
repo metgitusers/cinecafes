@@ -18,7 +18,13 @@ class Media extends MY_Controller {
 		$data['content'] = 'admin/media/list';
 		$data['title']= 'Media';
 		
-		$List = $this->db->query("SELECT master_media.*,master_cafe.cafe_name,master_cafe.cafe_place FROM `master_media` left join master_cafe on master_cafe.cafe_id=master_media.cafe_id WHERE master_media.is_delete =0 ORDER BY master_media.media_order ASC,master_media.media_id ASC")->result_array();
+		$where = "";
+		if( $this->check_valid_admin()['role_id'] !=1)
+        {
+			$where = " and master_media.cafe_id=".$this->check_valid_admin()['cafe_id'];
+        }
+		
+		$List = $this->db->query("SELECT master_media.*,master_cafe.cafe_name,master_cafe.cafe_place FROM `master_media` left join master_cafe on master_cafe.cafe_id=master_media.cafe_id WHERE master_media.is_delete=0".$where." ORDER BY master_media.media_order ASC,master_media.media_id ASC")->result_array();
 		
     	$data['media_all_list']= $List;
 		$this->admin_load_view($data);

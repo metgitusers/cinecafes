@@ -37,6 +37,12 @@ class Reservation extends MY_Controller
         if (!empty($_POST['cafe_id'])) {
             $cafe_id = $this->input->post('cafe_id');
         }
+        
+        if( $this->check_valid_admin()['role_id'] !=1)
+        {
+			$cafe_id = $this->check_valid_admin()['cafe_id'];
+        }
+        
         $data['start_date'] = $start_date;
         $data['end_date'] = $end_date;
         $data['cafe_id'] = $cafe_id;
