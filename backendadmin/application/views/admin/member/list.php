@@ -178,16 +178,16 @@
             </td>
 
             <td>
-              <a class="btn btn-success btn-circle btn-sm"
-                href="<?php echo base_url();?>admin/member/edit/<?php echo $actv_mem['user_id'];?>">
-                <i class="fas fa-edit" aria-hidden="true"></i> </a>
+              <?php
+              if( $this->CI->check_valid_admin()['role_id'] ==1)
+              {
+              ?>
+              <a class="btn btn-success btn-circle btn-sm" href="<?php echo base_url();?>admin/member/edit/<?php echo $actv_mem['user_id'];?>"><i class="fas fa-edit" aria-hidden="true"></i></a>
 
-
-              <a class="change-p-delete btn btn-danger btn-circle btn-sm" id="<?php echo $actv_mem['user_id']; ?>"
-                data-column_name="user_id" data-table="user" href="javascriot:void(0);">
-                <i class="fa fa-trash" aria-hidden="true"></i> </a>
-
-
+              <a class="change-p-delete btn btn-danger btn-circle btn-sm" id="<?php echo $actv_mem['user_id']; ?>" data-column_name="user_id" data-table="user" href="javascriot:void(0);"><i class="fa fa-trash" aria-hidden="true"></i> </a>
+              <?php
+              }
+              ?>
             </td>
           </tr>
 
