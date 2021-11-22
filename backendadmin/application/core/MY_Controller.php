@@ -56,7 +56,7 @@ class MY_Controller extends CI_Controller {
 			$user_id = $this->session->admin['user_id'];
 		}
     
-		$userDB=$this->session->userdata('admin');
+		$userDB=$this->session->admin;
 		return !empty($userDB) ? $userDB : false;
 	}
 	
