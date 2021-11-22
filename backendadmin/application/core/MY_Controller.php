@@ -50,6 +50,16 @@ class MY_Controller extends CI_Controller {
 		}
 	}
 	
+	function check_valid_admin($user_id = false)
+	{
+		if (!$user_id) {
+			$user_id = $this->session->admin['user_id'];
+		}
+    
+		$userDB=$this->session->userdata('admin');
+		return !empty($userDB) ? $userDB : false;
+	}
+	
 	protected function admin_login_load_view($data) {
 	 //$this->load->view('admin/header_admin',$data); 
 	 $this->load->view($data['content'],$data);
