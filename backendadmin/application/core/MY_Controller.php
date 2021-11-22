@@ -384,6 +384,11 @@ class MY_Controller extends CI_Controller {
 	public function getCafeList()
 	{
 		$condition=array('status'=>1,'is_delete='=>0);
+		if( $this->check_valid_admin()['role_id'] !=1)
+        {
+			$condition['cafe_id']=$this->check_valid_admin()['cafe_id'];
+        }
+		
 		$master_cafe =$this->mcommon->getDetails('master_cafe',$condition);
 		return $master_cafe;
 	}
