@@ -342,6 +342,57 @@ class Reservation extends MY_Controller
             $message .= "CINE CAFES";
             
             smsSend($mobile, $message, $template_id);
+            smsSend(NANDINIMOBILE, $message, $template_id);
+            
+            /*********Mail fn ...************************************************/
+            $mail['name']       = $name;
+            $mail['to']         = $email;
+            
+            $mail['subject']    = ORGANIZATION_NAME.' - Reservation request received';                             
+            $mail_temp          = file_get_contents('./global/mail/reservation_template.html');
+            $mail_temp          = str_replace("{web_url}", base_url(), $mail_temp);
+            $mail_temp          = str_replace("{logo}", LOGOURL, $mail_temp);
+            $mail_temp          = str_replace("{shop_name}", ORGANIZATION_NAME, $mail_temp);  
+            $mail_temp          = str_replace("{name}", $mail['name'], $mail_temp);
+                    
+            $mail_temp          = str_replace("{current_year}", date('Y'), $mail_temp); 
+
+            
+            $mail_temp                = str_replace("{cafe_name}", $cafe_row['cafe_name']."-".$cafe_row['cafe_place'], $mail_temp);
+            $mail_temp                = str_replace("{reservation_date}", $reservation_date, $mail_temp);
+            $mail_temp                = str_replace("{reservation_time}", $reservation_time, $mail_temp);
+            $mail_temp                = str_replace("{no_of_guests}", $this->input->post('no_of_guests'), $mail_temp);
+            $mail_temp                = str_replace("{reservation_status}", "Confirmed", $mail_temp);
+            //echo $mail_temp; die;
+            $mail['message']            = $mail_temp;
+            $mail['from_email']         = FROM_EMAIL;
+            $mail['from_name']          = ORGANIZATION_NAME;
+            sendmail($mail); 
+
+            // /************* Send Reservation details to the Admin ***************/
+            $admin_cond               = array('role_id' => '1','status' =>'1');
+            $admin_data               = $this->mcommon->getRow('user',$admin_cond);
+            if(!empty($admin_data)){
+              $admin_email            = $admin_data['email'];
+              $admin_name             = $admin_data['name'];
+            }
+            else{
+              $admin_email            = 'support@cinecafe.in';
+              $admin_name             = 'admin';
+            }     
+            $mail['name']             = $admin_name;
+            $mail['to']               = $admin_email;      
+            $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+            sendmail($mail);
+            
+            // /************ Send Reservation details to NANDINI  ***************/
+            
+            $mail['name']             = NANDININAME;
+            $mail['to']               = NANDINIEMAIL;      
+            $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+            sendmail($mail);
+            
+            /*************** mail ends*******************************************/ 
             
             /******************************************************************/
             $this->session->set_flashdata('success_message', 'Booking confirmed.');

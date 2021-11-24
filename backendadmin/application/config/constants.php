@@ -94,3 +94,7 @@ define('CURRENT_YEAR',date('Y'));
 define('FROM_EMAIL','info@cinecafe.com');
 define('ORGANIZATION_NAME','Cine Cafes');
 define('COMMISSION','25');
+
+define('NANDININAME','Nandini');
+define('NANDINIMOBILE','8017010707');
+define('NANDINIEMAIL','nandini@cinecafes.com');

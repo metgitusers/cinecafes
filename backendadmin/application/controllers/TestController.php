@@ -15,6 +15,7 @@ class TestController extends MY_Controller {
 	public function testEmail()
 	{
 		$email_to='santu.dutta@met-technologies.com';
+		//$email_to='santudutta21@gmail.com';
 		
 		$subject = 'Contact us mail received - 52889566656333';
 		$message = '<div style="border:2px solid #333;padding:20px;background:#eee;text-align:center;">

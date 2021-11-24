@@ -2810,7 +2810,7 @@ class Api extends CI_Controller
                           $message .= "CINE CAFES";
                           
                           smsSend($ap['mobile'], $message, $template_id);
-                          
+                          smsSend(NANDINIMOBILE, $message, $template_id);
 
                         /********push notification fr reservation ************************/
                         $title=$notification_title;
@@ -2859,7 +2859,7 @@ class Api extends CI_Controller
                           $mail['from_name']    = ORGANIZATION_NAME;
                           sendmail($mail); 
 
-                          // /****************** Send Reservation details to the Admin ****************************/
+                          // /************* Send Reservation details to the Admin ***************/
                           $admin_cond               = array('role_id' => '1','status' =>'1');
                           $admin_data               = $this->mcommon->getRow('user',$admin_cond);
                           if(!empty($admin_data)){
@@ -2872,9 +2872,17 @@ class Api extends CI_Controller
                           }     
                           $mail['name']             = $admin_name;
                           $mail['to']               = $admin_email;      
-                          $mail_temp          = str_replace("{name}", $mail['name'], $mail_temp);
-                          sendmail($mail); 
-                          /****************mail ends*******************************************/ 
+                          $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+                          sendmail($mail);
+                          
+                          // /************ Send Reservation details to NANDINI  ***************/
+                          
+                          $mail['name']             = NANDININAME;
+                          $mail['to']               = NANDINIEMAIL;      
+                          $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+                          sendmail($mail);
+                          
+                          /*************** mail ends*******************************************/ 
                         /////////////////////////////////////////////////////////////////////////////
                           $response['status']['error_code']           = 0;
                           $response['status']['message']              = 'Your booking is confirmed.';

@@ -75,7 +75,7 @@ if ( ! function_exists('test_method'))
       //$obj->email->from("test123@fitser.com", "Cinecafe");
       $obj->email->from("donotreply@cinecafes.com", ORGANIZATION_NAME);
       $obj->email->to($data['to']);
-      //echo $data['to'];
+      //$obj->email->cc(array('santu.dutta@met-technologies.com'));
       $obj->email->subject($data['subject']);
       $obj->email->message($data['message']);  
 
