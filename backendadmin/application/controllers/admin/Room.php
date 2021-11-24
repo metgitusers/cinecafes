@@ -16,7 +16,17 @@ class Room extends MY_Controller {
 	}
 	public function index()
 	{
-		$data['list']=$this->mroom->getroomList($this->check_valid_admin());
+		$cafe_id='';
+        if( $this->check_valid_admin()['role_id'] !=1)
+        {
+			$cafe_id = $this->check_valid_admin()['cafe_id'];
+        }
+		else if (!empty($_POST['cafe_id'])) {
+            $cafe_id = $this->input->post('cafe_id');
+        }
+		
+		$data['cafe_id'] = $cafe_id;
+		$data['list']=$this->mroom->getroomList($cafe_id);
 		$data['title']='Room List';
 		$data['content']='admin/room/list';
 		$this->admin_load_view($data);

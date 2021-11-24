@@ -12,7 +12,7 @@
    </li> -->
 
 <?php
-if($this->session->admin['user_id']==1)
+if($this->session->admin['role_id']==1)
 {
 ?>
 
