@@ -178,7 +178,7 @@
                       <th>Reservation date</th>
                       <th>Cafe</th>
                      
-                      <th>Room</th>
+                      <th>Roomjj</th>
                      
                       <th>No of guests</th>
                       <th>Total price</th>
