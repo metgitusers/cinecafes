@@ -343,6 +343,7 @@ class Reservation extends MY_Controller
             
             smsSend($mobile, $message, $template_id);
             smsSend(NANDINIMOBILE, $message, $template_id);
+            smsSend(SUMNANMOBILE, $message, $template_id);
             
             /*********Mail fn ...************************************************/
             $mail['name']       = $name;
@@ -389,6 +390,16 @@ class Reservation extends MY_Controller
             
             $mail['name']             = NANDININAME;
             $mail['to']               = NANDINIEMAIL;      
+            $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+            sendmail($mail);
+            
+            // /************ Send Reservation details to respective cafe managers  ***************/
+            if($this->input->post('cafe_id')==57)
+            {
+              $mail['name']            = 'Manager Sec5';
+              $mail['to']              = 'sec5@cinecafes.com';   
+            }
+               
             $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
             sendmail($mail);
             

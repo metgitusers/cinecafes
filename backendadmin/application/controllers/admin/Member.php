@@ -86,8 +86,6 @@ class Member extends MY_Controller {
 			$data['member_package']	= array();
 		}
 		
-		//$data['member']	= $this->mcommon->getRow('master_member',$condition);
-		//pr($data['member_package']);
 		$data['content'] 	= 'admin/member/add';
 		if(empty($data['member'])){
 			redirect('admin/member');
@@ -393,7 +391,6 @@ class Member extends MY_Controller {
 		$this->admin_load_view($data);
 	}
 	public function addMember(){
-		//pr($_POST);
 		$img 	='';
 		$data 	=  array();
 		$data =  array();

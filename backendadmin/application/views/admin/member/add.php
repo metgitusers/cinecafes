@@ -182,7 +182,7 @@
                   <div class="form-group">
                                       <label>Date of anniversary</label>
                                       <div class="input-group">
-                                        <input style="width:92%;" type="text" id="doc" name="doa" class="dt_birth form-control pickadate" value="<?php echo set_value('doa');?>" placeholder="" />
+                                        <input style="width:92%;" type="text" id="doc" name="doa" class=" form-control pickadate" value="<?php echo set_value('doa');?>" placeholder="" />
                                         <div class="input-group-append">
                                           <span class="input-group-text">
                                             <span class="fa fa-calendar-o"></span>
@@ -426,9 +426,9 @@
                                       <div class="form-group"> -->
                                          <div class="col-md-6 col-sm-12 col-xs-12" id="doc_dt_edit">
                   <div class="form-group">
-                                        <label>DOA </label>
+                                        <label>Date of anniversary</label>
                                         <div class="input-group">
-                                          <input style="width:92%;" type="text" id="doa_edit" name="doa" class="dt_birth form-control pickadate" placeholder="dd/mm/yyyy"  value="<?php if($member['doa']!='0000-00-00' && $member['doa']!=NULL): echo $member['doa'];endif;?>" />
+                                          <input style="width:92%;" type="text" id="doa_edit" name="doa" class="form-control pickadate" placeholder="dd/mm/yyyy"  value="<?php if($member['doa']!='0000-00-00' && $member['doa']!=NULL): echo date('d/m/Y',strtotime($member['doa']));endif;?>" />
                                           <div class="input-group-append">
                                             <span class="input-group-text">
                                               <span class="fa fa-calendar-o"></span>
@@ -584,40 +584,58 @@ $(document).ready(function() {
   //   setDate: new Date()
   // });
   $('.dtpicker').datepicker({
-    format: 'dd/mm/yyyy',
+    dateFormat: 'dd/mm/yy',
     todayHighlight: true,
     setDate: new Date()
   });
 
   $('.dt_birth').datepicker({
-    format: 'dd/mm/yyyy',
-    endDate: dob_max_date,
+    dateFormat: 'dd/mm/yy',
+    changeMonth: true, 
+    changeYear: true,
+    maxDate: dob_max_date,
     todayHighlight: true,
-    setDate: new Date()
+    yearRange: "-90:+00",
   });
   $('#doc').datepicker({
-    format: 'dd/mm/yyyy',
-    endDate: doc_max_date,
+    dateFormat: 'dd/mm/yy',
+    changeMonth: true, 
+    changeYear: true,
+    maxDate: doc_max_date,
     todayHighlight: true,
-    setDate: new Date()
+    //setDate: new Date(),
+    yearRange: "-90:+00",
   });
   $('#doc_edit').datepicker({
-    format: 'dd/mm/yyyy',
-    endDate: dob_max_date,
+    dateFormat: 'dd/mm/yy',
+    changeMonth: true, 
+    changeYear: true,
+    maxDate: doc_max_date,
     todayHighlight: true,
-    setDate: new Date()
+    //setDate: new Date(),
+    yearRange: "-90:+00",
+  });
+  
+  $('#doa_edit').datepicker({
+    dateFormat: 'dd/mm/yy',
+    changeMonth: true, 
+    changeYear: true,
+    maxDate: doc_max_date,
+    todayHighlight: true,
+    //setDate: new Date(),
+    yearRange: "-90:+00",
   });
 
 
   $('#membership_registration_dt').datepicker({
-    format: 'dd/mm/yyyy',
+    dateFormat: 'dd/mm/yy',
     //startDate: ,
     todayHighlight: true,
     setDate: new Date()
   }).on('changeDate', cal_exp_date);
 
     $('#edit_membership_reg_dt').datepicker({
-    format: 'dd/mm/yyyy',
+    dateFormat: 'dd/mm/yy',
     //startDate: ,
     todayHighlight: true,
     setDate: new Date()

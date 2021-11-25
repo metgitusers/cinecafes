@@ -98,3 +98,7 @@ define('COMMISSION','25');
 define('NANDININAME','Nandini');
 define('NANDINIMOBILE','8017010707');
 define('NANDINIEMAIL','nandini@cinecafes.com');
+
+define('SUMANNAME','Suman');
+define('SUMNANMOBILE','8697188477');
+define('SUMANEMAIL','suman@cinecafes.com');
