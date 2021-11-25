@@ -220,7 +220,17 @@
                       <td><?php echo date('d-m-Y', strtotime($row['reservation_date']));?>    <?php echo date('g:i a', strtotime($row['reservation_time']))." to ".date('g:i a', strtotime($row['reservation_end_time']));?></td>
                       <td><?php echo $row['cafe_name'];?></td>
                      <!--  <td><?php //echo $row['movie_name'];?></td> -->
-                      <td><?php echo $row['room_no'];?></td>
+                     
+                      <td>
+                        <?php
+                            if(empty($row['room_no']) || $row['room_no'] == null){
+                              echo '<button type="button" class="btn btn-primary assigned-room" data-id="'.$row['reservation_id'].'" data-parent="'. $row['cafe_id'] .'">Add room</button>';
+                            }else{ 
+                              echo $row['room_no'];
+                            }
+                        ?>
+                      </td>
+                      
                      <!--  <td><?php //echo "Rs.".' '.$row['hourly_price'];?></td> -->
                       <td><?php echo $row['no_of_guests'];?></td>
                       <td><?php echo "Rs.".' '.$row['total_price'];?></td>
@@ -256,5 +266,98 @@
           <!-- Content Row -->
          
 
-        </div>
-        <!-- /.container-fluid -->
+</div>
+<!-- /.container-fluid -->
+
+<!-- room list modal -->
+<div class="modal" id="modal-roomlist" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="h3 mb-2 text-gray-800">Assign reservation room</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+            <select name="room" id="room" class="form-control">
+              <option value="">Select Cafe</option>
+            </select>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary mr-2" id="update-reservation-room">Assign</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    var reservation_id = '';
+    $('.assigned-room').on('click', function(){
+      let cafe_id = $(this).data('parent');
+      reservation_id = $(this).data('id');
+      $.ajax({
+        type: "POST",
+        url: "<?=base_url('api/getRoomList')?>",
+        data: {
+          id: reservation_id,
+          cafe_id: cafe_id
+        },
+        dataType: "JSON",
+        success: function(response){
+          $('#room').html('');
+          $('#room').append('<option value="">--Select Room--</option>');
+          if(response.status.error_code == 0){
+            if(data = response.result.data){
+              data.forEach(f => {
+                $('#room').append('<option value="'+ f.room_id +'">'+ f.room_no +'</option>');
+              })
+            }
+            $('#modal-roomlist').modal('show');
+          }else{
+            alert('Sorry no room available');
+          }
+        },
+        error: function(err){
+          console.log(err);
+        }
+      })
+    })
+
+    $('#update-reservation-room').on('click', function(){
+      let room_id = $('#room').val();
+      if(room_id == ""){
+        alert('Please select room before update');
+        return false;
+      }
+      if(confirm('Are you sure to assign this room !!')){
+        $.ajax({
+          type: "POST",
+          url: "<?=base_url('api/updateReservation')?>",
+          data: {
+            id: reservation_id,
+            room_id: room_id
+          },
+          dataType: "JSON",
+          success: function(response){
+            $('#room').html('');
+            $('#room').append('<option value="">--Select Room--</option>');
+            if(response.status.error_code == 0){
+              alert('Room has been assigned successfully');
+              location.reload();
+            }else{
+              alert('Sorry!! no room available');
+            }
+          },
+          error: function(err){
+            console.log(err);
+          }
+        })
+      }
+    })
+  })
+</script>
