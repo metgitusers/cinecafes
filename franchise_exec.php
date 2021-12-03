@@ -25,14 +25,14 @@ $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 // More headers
 $headers .= 'From: <info@cinecafes.com>' . "\r\n";
-$headers .= 'Cc: puja.j@cinecafes.com' . "\r\n";
+$headers .= 'Cc: sharad@cinecafes.com' . "\r\n";
 
 mail($to,$subject,$message,$headers);
 	
 	
 
 	
-$to1="puja.j@cinecafes.com";
+$to1="sharad@cinecafes.com";
 $subject1 = "New Request For Franchise";
 
 $message1 .= '<p>Name:'.$fnm.'</p>';
