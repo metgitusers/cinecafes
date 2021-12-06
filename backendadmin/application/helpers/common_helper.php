@@ -35,8 +35,6 @@ if ( ! function_exists('test_method'))
       $obj =get_object();
       $obj->load->library('email');
       
-      
-      //last used
       //$config['protocol']    = 'smtp';
       //$config['smtp_host']    = 'ssl://cinecafes.com';
       //$config['smtp_port']    = '465';
@@ -48,14 +46,6 @@ if ( ! function_exists('test_method'))
        $config['smtp_port']     = '587';
        $config['smtp_user']     = 'donotreply@cinecafes.com';
        $config['smtp_pass']     = 'H-%iT[V{X4=u';
-      
-       //$config['protocol']      = 'mail';
-       //$config['smtp_host']     = 'mail.cinecafes.com';
-       //$config['smtp_port']     = '465';
-       //$config['smtp_user']     = 'donotreply@cinecafes.com';
-       //$config['smtp_pass']     = 'H-%iT[V{X4=u';
-       //$config['smtp_crypto']	  = 'ssl';
-      
       
       //$config['protocol']     = 'mail';
       //$config['smtp_host']    = 'mail.met-technologies.com';
