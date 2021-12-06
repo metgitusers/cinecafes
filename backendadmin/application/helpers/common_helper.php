@@ -44,18 +44,18 @@ if ( ! function_exists('test_method'))
       //$config['smtp_pass']    = 'A]*ePraUcn*q1&@bT3';
       
       
-      // $config['smtp_host']    = 'ssl://mail.cinecafes.com';
-      // $config['smtp_port']    = '587';
-      // $config['smtp_user']    = 'dev@cinecafes.com';
-      // $config['smtp_pass']    = 'hvkMnwY8Qskh';
+       $config['smtp_host']    = 'ssl://mail.cinecafes.com';
+       $config['smtp_port']    = '465';
+       $config['smtp_user']    = 'donotreply@cinecafes.com';
+       $config['smtp_pass']    = 'H-%iT[V{X4=u';
       
       
-      $config['protocol']     = 'mail';
-				$config['smtp_host']    = 'mail.met-technologies.com';
-				$config['smtp_port']    = '465';
-				$config['smtp_user']    = 'devfitser@met-technologies.com';
-				$config['smtp_pass']    = 'SARYD^z(B${F';
-				$config['smtp_crypto']	= 'ssl'; 
+      //$config['protocol']     = 'mail';
+      //$config['smtp_host']    = 'mail.met-technologies.com';
+      //$config['smtp_port']    = '465';
+      //$config['smtp_user']    = 'devfitser@met-technologies.com';
+      //$config['smtp_pass']    = 'SARYD^z(B${F';
+      //$config['smtp_crypto']	= 'ssl';
       
       
       $config['charset']    = 'utf-8';
