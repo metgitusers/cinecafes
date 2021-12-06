@@ -17,10 +17,10 @@ class TestController extends MY_Controller {
 		$email_to='santu.dutta@met-technologies.com';
 		//$email_to='santudutta21@gmail.com';
 		
-		$subject = 'Contact us mail received - 102233377890';
+		$subject = 'Contact us mail received';
 		$message = '<div style="border:2px solid #333;padding:20px;background:#eee;text-align:center;">
 					<img src="'.LOGOURL.'"/ style="display:block;">
-					<p>Contact us mail - 52889566656333<br>
+					<p>Contact us mail - 1055896633369<br>
 					Someone has contacted you.Please login to your admin panel to see the details.</p>
 					
 					<p>Cinecafe,
@@ -30,7 +30,7 @@ class TestController extends MY_Controller {
 					
 		$mail['name']     = 'Santu dutta';
         $mail['to']       = $email_to;
-        $mail['subject']  = 'cinecafe Recover Password';
+        $mail['subject']  = $subject;
 		
 		$mail['message']    = $message;
         //$mail['from_email']    = FROM_EMAIL;
