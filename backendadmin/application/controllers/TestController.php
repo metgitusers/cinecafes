@@ -17,7 +17,7 @@ class TestController extends MY_Controller {
 		$email_to='santu.dutta@met-technologies.com';
 		//$email_to='santudutta21@gmail.com';
 		
-		$subject = 'Contact us mail received - 10223337789';
+		$subject = 'Contact us mail received - 102233377890';
 		$message = '<div style="border:2px solid #333;padding:20px;background:#eee;text-align:center;">
 					<img src="'.LOGOURL.'"/ style="display:block;">
 					<p>Contact us mail - 52889566656333<br>
