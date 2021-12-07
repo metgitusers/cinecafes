@@ -1,0 +1,389 @@
+*{ padding:0; margin:0;font-family: 'Roboto', sans-serif;box-sizing: border-box}
+body{ padding:0; margin:0; }
+a, a:hover, a:focus{ text-decoration:none; padding:0; margin:0;}
+ul, li{ padding:0; margin:0; list-style:none;}
+h1, h2, h3, h4, h5, h6, p{ padding:0; margin:0;}
+
+/*---------------------- Font Face ------------------*/
+.header {
+    background: #000;
+	padding: 10px 0;
+}
+.container-fluid {
+    padding: 0 30px;
+    max-width: 100%;
+}
+.logo-phone {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.banner img
+{
+	width: 100%;
+}
+.phone a {
+    letter-spacing: 0.32px;
+    color: #d3d1d1;
+    text-shadow: 0px 14px 13px #000000;
+    font-size: 15px;
+}
+.phone span {
+    display: block;
+    color: #fff;
+    margin: 9px 0;
+}
+.phone span i
+{
+	color: #FFCE00;
+}
+.banner {
+    position: relative;
+}
+.banner-content {
+    margin: 0 auto;
+    width: 850px;
+    max-width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+.banner-content-l {
+    width: 50%;
+    text-align: right;
+    padding: 0 30px;
+    border-right: 3px solid #fff;
+}
+.banner-content-r {
+    width: 50%;
+	padding: 0 30px;
+}
+
+.banner-content-l h2 {
+    margin: 0;
+    font-size: 39px;
+    color: #fff;
+    line-height: 1;
+}
+.banner-content-l h4 {
+    color: #fff;
+    font-size: 18px;
+    margin: 0 0 5px 0;
+}
+.banner-content-r p {
+    color: #e7e7e7;
+    line-height: 1.4;
+}
+.banner-overlay {
+    background: linear-gradient(
+180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 50px;
+}
+.container {
+    width: 1140px;
+    margin: 0 auto;
+    max-width: 100%;
+}
+.about-sec {
+    background: #202020;
+    padding: 86px 0;
+}
+.ab-f {
+    display: flex;
+    align-items: center;
+}
+.ab-l {
+    width: 50%;
+    padding: 0 40px 0 0;
+    display: flex;
+}
+.img-1 {
+    padding: 6px;
+}
+.img-1 img {
+    width: 100%;
+}
+.ab-r {
+    width: 50%;
+}
+.ab-r h4 {
+    color: #fff;
+    margin: 0 0 14px 0;
+    font-weight: 400;
+}
+.ab-r h3 {
+    color: #FFCE00;
+    font-size: 54px;
+    font-weight: 300;
+    margin: 0 0 18px 0;
+}
+.ab-r p {
+    color: #e3dddd;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+.feature {
+    background: #000;
+}
+.feath {
+    display: flex;
+    justify-content: space-between;
+}
+.fr {
+    width: 30%;
+    background: #FFCE00;
+}
+.fl {
+    width: 70%;
+    padding: 63px 100px;
+    text-align: center;
+    position: relative;
+	z-index: 1;
+}
+.fl h4 {
+    color: #fff;
+    margin: 0 0 3px 0;
+    font-weight: 400;
+}
+.fl h2 {
+    color: #FFCE00;
+    font-size: 54px;
+    font-weight: 300;
+    margin: 0 0 43px 0;
+}
+.fl ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.fl ul li {
+    width: 40%;
+    padding: 20px 40px;
+    flex: 40%;
+}
+.fl ul li h3 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 15px 0 14px 0;
+}
+.fl ul li p {
+    color: #FFFFFF80;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.fl h5 {
+    color: #FFCE00;
+    font-size: 26px;
+    font-weight: 400;
+    margin: 31px 0 18px 0;
+}
+.circle {
+    width: 540px;
+    height: 540px;
+    border-radius: 50%;
+    background: #000;
+    position: absolute;
+    right: -231px;
+    top: 126px;
+    z-index: -1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.circle img {
+    width: 334px;
+}
+.delicious {
+    background: #202020;
+    display: flex;
+    justify-content: space-between;
+}
+.boxes {
+    width: 33.33%;
+    position: relative;
+}
+.boxes img {
+    width: 100%;
+    height: 100%;
+}
+.box-content {
+    padding: 30px;
+}
+.boxes:nth-child(2) img {
+    height: auto;
+}
+.box-content h4 {
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 25px;
+    margin: 0 0 15px 0;
+}
+.box-content h4 span {
+    color: #FFCE00;
+}
+.box-content p {
+    color: #FFFFFF80;
+    font-size: 15px;
+    line-height: 1.5;
+}
+.verticle-text {
+    position: absolute;
+    bottom: 43px;
+    left: 37px;
+}
+.verticle-text h3 {
+    text-orientation: sideways;
+    writing-mode: vertical-rl;
+    letter-spacing: 2.8px;
+    color: #fff;
+}
+.verticle-text h3 span
+{
+	color: #FFCE00;
+}
+.copyright-sec {
+    background: #151515;
+    text-align: center;
+    color: #9b9797;
+    padding: 18px;
+    font-size: 13px;
+}
+@media screen and (max-width:991px){
+	.fl {
+    padding: 63px 68px;
+}
+	.circle img {
+    width: 233px;
+}
+	.circle {
+    width: 400px;
+    height: 400px;
+    right: -207px;
+}
+	.fl ul li {
+    padding: 20px 12px;
+}
+}
+
+@media screen and (max-width:767px){
+.circle {
+    width: 320px;
+    height: 320px;
+    position: relative;
+    right: 0;
+    top: 0;
+    justify-content: center;
+    background: #242424;
+    margin: 35px auto;
+}
+	.banner-content {
+    padding: 0;
+    flex-direction: column;
+}
+	.banner-content-l {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    border-right: none;
+    border-bottom: 3px solid #fff;
+}
+.banner-content-r {
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+}
+	.banner-content-l h2 {
+    margin: 0;
+    font-size: 20px;
+}
+	.banner-content-l h2 br
+	{
+		display: none;
+	}
+	.banner-overlay {
+    padding: 15px;
+}
+	.banner img {
+    width: 100%;
+    height: 230px;
+}
+	.about-sec {
+    padding: 45px 0;
+}
+	.ab-f {
+    flex-direction: column;
+}
+	.ab-l {
+    width: 100%;
+    padding: 0;
+}
+	.ab-r {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+}
+	.circle img {
+    width: 222px;
+}
+	.delicious {
+    flex-direction: column;
+}
+	.boxes {
+    width: 100%;
+    position: relative;
+}
+	.fl {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+	.fr {
+    display: none;
+}
+.fl h2 {
+    font-size: 29px;
+    margin: 0 0 30px 0;
+}
+	.fl a img {
+    width: 124px;
+}
+	.feature {
+    padding-top: 32px;
+}
+	.verticle-text h3 {
+    text-orientation: inherit;
+    writing-mode: inherit;
+}
+	.ab-r h3 {
+    font-size: 38px;
+}
+	.fl ul li {
+    width: 100%;
+    padding: 20px 40px;
+    flex: 100%;
+}
+	.logo {
+    width: 40%;
+}
+	.logo img {
+    width: 108px;
+}
+	.phone {
+    width: 60%;
+}
+	.container-fluid {
+    padding: 0 14px;
+    max-width: 100%;
+}
+	.img-grid:nth-child(2) .img-1 {
+    padding: 4px 6px;
+}
+}
