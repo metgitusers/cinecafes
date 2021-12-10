@@ -54,7 +54,9 @@ date_default_timezone_set('Asia/Kolkata');
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');   
+	$_SERVER['CI_ENV']='production'; // in production every copy of sms and email goes to admin and nandini. So only in live server keep this production.
+	//$_SERVER['CI_ENV']='development'; // in developemnt server always keep this development.
+	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
 /*
  *---------------------------------------------------------------
