@@ -36,7 +36,7 @@ if ( ! function_exists('test_method'))
       $obj->load->library('email');
       
       $config['protocol']    = 'smtp';
-      $config['smtp_host']   = 'ssl://mail.cinecafes.com';
+      $config['smtp_host']   = 'ssl://cinecafes.com';
       $config['smtp_port']   = '465';
       $config['smtp_user']   = 'donotreply@cinecafes.com';
       $config['smtp_pass']   = 'gwj$^}U7XE@V,^gn8(';
