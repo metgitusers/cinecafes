@@ -15,8 +15,6 @@ class TestController extends MY_Controller {
 	public function testEmail()
 	{
 		$email_to='santu.dutta@met-technologies.com';
-		//$email_to='santudutta21@gmail.com';
-		
 		$subject = 'Contact us mail received - 52889566656333';
 		$message = '<div style="border:2px solid #333;padding:20px;background:#eee;text-align:center;">
 					<img src="'.LOGOURL.'"/ style="display:block;">
@@ -27,15 +25,10 @@ class TestController extends MY_Controller {
 					This message was sent to '.$email_to.' and intended for your account. Not your account? Remove your email from this account.</p>
 					</div>';
 					
-					
 		$mail['name']     = 'Santu dutta';
         $mail['to']       = $email_to;
-        $mail['subject']  = 'cinecafe Recover Password';
-		
-		$mail['message']    = $message;
-        //$mail['from_email']    = FROM_EMAIL;
-        //$mail['from_name']    = ORGANIZATION_NAME;
-		
+        $mail['subject']  = $subject;
+		$mail['message']  = $message;
 		
 		sendmail($mail);
 		show_error($this->email->print_debugger());
