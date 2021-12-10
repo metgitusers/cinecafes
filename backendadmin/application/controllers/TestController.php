@@ -9,11 +9,11 @@ class TestController extends MY_Controller {
 	}
 	
 	public function index(){
-		echo base_url();echo ENVIRONMENT;exit;
+		echo base_url();
  	}
 	
 	public function testEmail()
-	{echo ENVIRONMENT;exit;
+	{
 		$email_to='santu.dutta@met-technologies.com';
 		//$email_to='santudutta21@gmail.com';
 		

@@ -342,8 +342,12 @@ class Reservation extends MY_Controller
             $message .= "CINE CAFES";
             
             smsSend($mobile, $message, $template_id);
-            smsSend(NANDINIMOBILE, $message, $template_id);
-            smsSend(SUMNANMOBILE, $message, $template_id);
+            
+            if(ENVIRONMENT=='production')
+            {
+                smsSend(NANDINIMOBILE, $message, $template_id);
+                smsSend(SUMNANMOBILE, $message, $template_id);
+            }
             
             /*********Mail fn ...************************************************/
             $mail['name']       = $name;
@@ -370,39 +374,41 @@ class Reservation extends MY_Controller
             $mail['from_name']          = ORGANIZATION_NAME;
             sendmail($mail); 
 
-            // /************* Send Reservation details to the Admin ***************/
-            $admin_cond               = array('role_id' => '1','status' =>'1');
-            $admin_data               = $this->mcommon->getRow('user',$admin_cond);
-            if(!empty($admin_data)){
-              $admin_email            = $admin_data['email'];
-              $admin_name             = $admin_data['name'];
-            }
-            else{
-              $admin_email            = 'support@cinecafe.in';
-              $admin_name             = 'admin';
-            }     
-            $mail['name']             = $admin_name;
-            $mail['to']               = $admin_email;      
-            $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
-            sendmail($mail);
-            
-            // /************ Send Reservation details to NANDINI  ***************/
-            
-            $mail['name']             = NANDININAME;
-            $mail['to']               = NANDINIEMAIL;      
-            $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
-            sendmail($mail);
-            
-            // /************ Send Reservation details to respective cafe managers  ***************/
-            if($this->input->post('cafe_id')==57)
+            if(ENVIRONMENT=='production')
             {
-              $mail['name']            = 'Manager Sec5';
-              $mail['to']              = 'sec5@cinecafes.com';   
+                // /************* Send Reservation details to the Admin ***************/
+                $admin_cond               = array('role_id' => '1','status' =>'1');
+                $admin_data               = $this->mcommon->getRow('user',$admin_cond);
+                if(!empty($admin_data)){
+                  $admin_email            = $admin_data['email'];
+                  $admin_name             = $admin_data['name'];
+                }
+                else{
+                  $admin_email            = 'support@cinecafe.in';
+                  $admin_name             = 'admin';
+                }     
+                $mail['name']             = $admin_name;
+                $mail['to']               = $admin_email;      
+                $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+                sendmail($mail);
+                
+                // /************ Send Reservation details to NANDINI  ***************/
+                
+                $mail['name']             = NANDININAME;
+                $mail['to']               = NANDINIEMAIL;      
+                $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+                sendmail($mail);
+                
+                // /************ Send Reservation details to respective cafe managers  ***************/
+                if($this->input->post('cafe_id')==57)
+                {
+                  $mail['name']            = 'Manager Sec5';
+                  $mail['to']              = 'sec5@cinecafes.com';   
+                }
+                   
+                $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+                sendmail($mail);
             }
-               
-            $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
-            sendmail($mail);
-            
             /*************** mail ends*******************************************/ 
             
             /******************************************************************/
