@@ -64,7 +64,7 @@
                     <label>No of Guests*</label>
                      <select class="form-control check-price" id="no_of_guests" name="no_of_guests" required="required" >
                      <option value="">-- Select guest no --</option>
-                      <?php for($i=1; $i<=8;$i++)
+                      <?php for($i=1; $i<=12;$i++)
                       {
                         echo "<option value='".$i."'>".$i."</option>";
                       }
