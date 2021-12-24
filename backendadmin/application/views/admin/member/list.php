@@ -179,7 +179,7 @@
 
             <td>
               <?php
-              if( $this->CI->check_valid_admin()['role_id'] ==1)
+              if( $this->CI->check_valid_admin()['role_id'] ==1 || $this->CI->check_valid_admin()['role_id'] ==17)
               {
               ?>
               <a class="btn btn-success btn-circle btn-sm" href="<?php echo base_url();?>admin/member/edit/<?php echo $actv_mem['user_id'];?>"><i class="fas fa-edit" aria-hidden="true"></i></a>

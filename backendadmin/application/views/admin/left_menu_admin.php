@@ -161,7 +161,18 @@ if($this->session->admin['role_id']==1)
    <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"  >
       <div class="bg-white py-2 collapse-inner rounded">
          <a class="collapse-item <?php if($this->uri->segment(2)=='subadmin' && $this->uri->segment(3)=='add'){ echo"active"; }?>" href="<?php echo base_url('admin/subadmin/add'); ?>" >Add new Subadmin</a>
-         <a class="collapse-item <?php if($this->uri->segment(2)=='subadmin' && empty($this->uri->segment(3)=='add')){ echo"active"; }?>" href="<?php echo base_url('admin/subadmin'); ?>" >All Subadmin</a>
+         <a class="collapse-item <?php if($this->uri->segment(2)=='subadmin' && empty($this->uri->segment(3))){ echo"active"; }?>" href="<?php echo base_url('admin/subadmin'); ?>" >All Subadmin</a>
+      </div>
+   </div>
+</li>
+<li class="nav-item">
+   <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseRole" aria-expanded="true" aria-controls="collapseRole">
+   <img src="<?=base_url('public/img/icon_13.png')?>" alt="icon">
+   <span>Role Permission</span>
+   </a>
+   <div id="collapseRole" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"  >
+      <div class="bg-white py-2 collapse-inner rounded">
+         <a class="collapse-item <?php if($this->uri->segment(2)=='rolePermission' && empty($this->uri->segment(3))){ echo"active"; }?>" href="<?php echo base_url('admin/rolePermission'); ?>" >View Role Permission</a>
       </div>
    </div>
 </li>
@@ -214,6 +225,7 @@ if($this->session->admin['role_id']==1)
 }
 else if($this->session->admin['role_id']==16)
 {
+   //for Owner
 ?>
 <li class="nav-item <?php if($this->uri->segment(2)=='dashboard'){ echo"active"; }?>">
    <a class="nav-link" href="<?php echo base_url('admin/dashboard'); ?>">
@@ -224,6 +236,7 @@ else if($this->session->admin['role_id']==16)
 }
 else if($this->session->admin['role_id']==17)
 {
+   //for Front end manager
 ?>
 <li class="nav-item <?php if($this->uri->segment(2)=='dashboard'){ echo"active"; }?>">
    <a class="nav-link" href="<?php echo base_url('admin/dashboard'); ?>">
@@ -289,10 +302,23 @@ else if($this->session->admin['role_id']==17)
       </div>
    </div>
 </li>
+<li class="nav-item <?php if($this->uri->segment(2)=='member'){ echo"active"; }?>">
+   <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo1" aria-expanded="true" aria-controls="collapseTwo1">
+   <img src="<?=base_url('public/img/icon_12.png')?>" alt="icon">
+   <span>User</span>
+   </a>
+   <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"  >
+      <div class="bg-white py-2 collapse-inner rounded">
+         <!--<a class="collapse-item <?php if($this->uri->segment(2)=='member' && $this->uri->segment(3)=='add'){ echo"active"; }?>" href="<?php echo base_url('admin/member/add'); ?>" >Add new User</a>-->
+         <a class="collapse-item <?php if($this->uri->segment(2)=='member'){ echo"active"; }?>" href="<?php echo base_url('admin/member'); ?>" >All User</a>
+      </div>
+   </div>
+</li>
 <?php
 }
 else if($this->session->admin['role_id']==18)
 {
+   //for General Manager
 ?>
 <li class="nav-item <?php if($this->uri->segment(2)=='dashboard'){ echo"active"; }?>">
    <a class="nav-link" href="<?php echo base_url('admin/dashboard'); ?>">
