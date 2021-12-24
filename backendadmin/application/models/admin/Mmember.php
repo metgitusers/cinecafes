@@ -72,8 +72,8 @@ class Mmember extends CI_Model {
        
         $this->db->where($condition);
         if($start_date != '' && $end_date != '' ){
-            $this->db->where('user.created_date >=', date('Y-m-d', strtotime($start_date)));
-            $this->db->where('user.created_date <=', date('Y-m-d', strtotime($end_date)));
+            $this->db->where('DATE(user.created_date) >=', date('Y-m-d', strtotime($start_date)));
+            $this->db->where('DATE(user.created_date) <=', date('Y-m-d', strtotime($end_date)));
         }
         if($user_type != ''){
             $this->db->where('user.role_id', $user_type == 'App'?'App':'Admin');
