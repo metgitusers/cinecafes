@@ -399,6 +399,13 @@ class Reservation extends MY_Controller
                 $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
                 sendmail($mail);
                 
+                // /************ Send Reservation details to Sharad ***************/
+                
+                $mail['name']             = 'Sharad';
+                $mail['to']               = 'sharad@cinecafes.com';      
+                $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+                sendmail($mail);
+                
                 // /************ Send Reservation details to respective cafe managers  ***************/
                 if($this->input->post('cafe_id')==57)
                 {
