@@ -296,7 +296,7 @@ var placeSearch, autocomplete;
         
         var totalMinutesWithDuration = parseInt(duration)*60+parseInt(totalMinutes);
         $('#duration')[0].setCustomValidity("");
-        if(totalMinutesWithDuration > ClosingHourInMinute && reservation_date!='31/12/2021')
+        if(totalMinutesWithDuration > ClosingHourInMinute && reservation_date!='31/12/2021' && reservation_date!='01/01/2022')
         {
           $('#duration')[0].setCustomValidity('Cafe closing time is 11:00 PM. So choose your time and duration accordingly.');
           alert('Cafe closing time is 11:00 PM. So choose your time and duration accordingly.');
