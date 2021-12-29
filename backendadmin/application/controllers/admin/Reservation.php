@@ -43,7 +43,7 @@ class Reservation extends MY_Controller
 			$cafe_id = $this->check_valid_admin()['cafe_id'];
         }
         
-        $data['start_date'] = $start_date;
+        $data['start_date'] = $start_date;print_r($data);exit;
         $data['end_date'] = $end_date;
         $data['cafe_id'] = $cafe_id;
         //$data['list']=$this->mreservation->getreservationList();
@@ -52,7 +52,7 @@ class Reservation extends MY_Controller
         $condition = array('status' => 1, 'is_delete=' => 0);
         $data['cafe_list'] = $this->mcommon->getDetails('master_cafe', $condition);
         $data['title'] = 'Reservation List';
-        $data['content'] = 'admin/reservation/list';print_r($data);exit;
+        $data['content'] = 'admin/reservation/list';
         $this->admin_load_view($data);
         //$this->load->view('admin/layouts/index', $data);
     }
