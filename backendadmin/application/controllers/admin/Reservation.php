@@ -20,7 +20,7 @@ class Reservation extends MY_Controller
         $this->load->library('imageupload');
     }
     public function index()
-    {
+    {die('ll');
         $start_date = "";
         $end_date = "";
         $cafe_id = "";
@@ -43,7 +43,7 @@ class Reservation extends MY_Controller
 			$cafe_id = $this->check_valid_admin()['cafe_id'];
         }
         
-        $data['start_date'] = $start_date;print_r($data);exit;
+        $data['start_date'] = $start_date;
         $data['end_date'] = $end_date;
         $data['cafe_id'] = $cafe_id;
         //$data['list']=$this->mreservation->getreservationList();
