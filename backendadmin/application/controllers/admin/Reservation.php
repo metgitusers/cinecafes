@@ -10,7 +10,7 @@ class Reservation extends MY_Controller
 
     public function __construct()
     {
-        parent::__construct();echo 'ok';exit;
+        parent::__construct();
         $this->redirect_guest();
         $this->load->model('mcommon');
         $this->load->model('admin/mreservation');
