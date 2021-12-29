@@ -10,14 +10,14 @@ class Reservation extends MY_Controller
 
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct();echo 'ok';exit;
         $this->redirect_guest();
         $this->load->model('mcommon');
         $this->load->model('admin/mreservation');
         $this->load->model('admin/Mmembership');
         $this->load->model('mapi');
 
-        $this->load->library('imageupload');echo 'ok';exit;
+        $this->load->library('imageupload');
     }
     public function index()
     {
