@@ -17,10 +17,10 @@ class Reservation extends MY_Controller
         $this->load->model('admin/Mmembership');
         $this->load->model('mapi');
 
-        $this->load->library('imageupload');
+        $this->load->library('imageupload');echo 'ok';exit;
     }
     public function index()
-    {die('ll');
+    {
         $start_date = "";
         $end_date = "";
         $cafe_id = "";
