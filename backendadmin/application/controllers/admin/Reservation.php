@@ -52,7 +52,7 @@ class Reservation extends MY_Controller
         $condition = array('status' => 1, 'is_delete=' => 0);
         $data['cafe_list'] = $this->mcommon->getDetails('master_cafe', $condition);
         $data['title'] = 'Reservation List';
-        $data['content'] = 'admin/reservation/list';
+        $data['content'] = 'admin/reservation/list';print_r($data);exit;
         $this->admin_load_view($data);
         //$this->load->view('admin/layouts/index', $data);
     }
