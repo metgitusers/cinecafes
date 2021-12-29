@@ -2445,8 +2445,7 @@ var currDate = new Date();
       //alert(Date.parse(today));
       var p_time = '';
       if (Date.parse(today) < Date.parse(selectedDate)) {
-        //p_time = "12:00pm";
-        p_time = "00:00am";
+        p_time = "12:00pm";
         //alert(p_time);
       }else{
         p_time = "<?=date('H:i A')?>";
@@ -2458,8 +2457,7 @@ var currDate = new Date();
         'disableTextInput': true,
         'interval': 30,
         'minTime': p_time,
-        //'maxTime': '10:00pm',
-        'maxTime': '11:00pm',
+        'maxTime': '10:00pm',
         //defaultTime: '12',
         //startTime: '12',
         dynamic: false,
