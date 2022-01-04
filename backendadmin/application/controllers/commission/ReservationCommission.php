@@ -97,6 +97,10 @@ class ReservationCommission extends MY_Controller {
         $cond   	= '1';
 		if(!empty($cafe_id)){
 			$data['cafe_id'] = $cafe_id;
+			
+			$data['resv_from_date'] = $this->session->userdata('from_dt');
+			$data['resv_to_date'] = $this->session->userdata('to_dt');
+			
 			$join[] = ['table' => 'room_type rt', 'on' => 'rt.room_type_id = room.room_type_id', 'type' => 'left'];
 			$data['room_list'] = $this->mcommon->select('room', ['room.status'=> 1, 'room.is_delete'=> 0, 'room.cafe_id'=> $cafe_id], 'room.*, rt.room_type_name', 'room.room_id', 'DESC', $join);
 			$this->load->view('commission/layouts/reservation_commission_header');			

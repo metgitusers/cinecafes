@@ -172,8 +172,8 @@ $('#clear_btn').click(function(){
   $("#from_dt").val('');
   $("#to_dt").val('');
   <?php
-  $this->session->set_userdata('from_dt', "");
-  $this->session->set_userdata('to_dt', ""); 
+  //$this->session->set_userdata('from_dt', "");
+  //$this->session->set_userdata('to_dt', ""); 
   ?>
   window.location.reload();
 })
