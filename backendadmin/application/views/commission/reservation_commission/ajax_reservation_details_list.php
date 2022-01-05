@@ -27,11 +27,11 @@
                     <td><?= $list['reservation_id'] ?></td>                                                                                        
                     <td class="name_space"><?= ucfirst($list['full_name']) ?></td>
                     <td>
-                        <?php if(!empty($list['mobile'])){ echo '<i class="fa fa-phone-square" aria-hidden="true"></i> '.$list['country_code'].$list['mobile']; } ?>
+                        <?php if(!empty($list['email'])){ echo '<i class="fa fa-envelope" aria-hidden="true"></i>'.$list['email']; }?>
                     </td>
                     <td>
-                        <?php if(!empty($list['email'])){ echo '<i class="fa fa-envelope" aria-hidden="true"></i>'.$list['email']; }?>
-                    </td>                                                                                  
+                        <?php if(!empty($list['mobile'])){ echo '<i class="fa fa-phone-square" aria-hidden="true"></i> '.$list['country_code'].$list['mobile']; } ?>
+                    </td>
                     <td>
                       <?= date('d/m/Y', strtotime($list['reservation_date'])); ?>
                       <br /><i class="fa fa-clock-o"></i> <?= date('h:i A',strtotime($list['reservation_time'])); ?>
