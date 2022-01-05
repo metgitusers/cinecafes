@@ -45,14 +45,14 @@
                     <td>
                         <?php   if($list['resv_status']!=''):
                                     if($list['resv_status'] == 0):
-                                        $class ="red";
-                                        $resv_status   = "Cancelled";
-                                    elseif($list['resv_status'] == 1):
                                         $class ="orange";
                                         $resv_status   = "Pending";
-                                    elseif($list['resv_status'] == 2):
+                                    elseif($list['resv_status'] == 1):
                                         $class ="green";
-                                        $resv_status   = "Confirm";
+                                        $resv_status   = "Success";
+                                    elseif($list['resv_status'] == 2):
+                                        $class ="red";
+                                        $resv_status   = "Cancelled";
                                     else:
                                         $class ="#b30000";
                                         $resv_status   = "No-show";
