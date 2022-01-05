@@ -281,7 +281,8 @@ var placeSearch, autocomplete;
     
     $('button[type="submit"]').on('click', function() {
       
-      var ClosingHour = 23;
+      var Closing = '10:00 PM';
+      var ClosingHour = 22;
       var ClosingHourInMinute = ClosingHour*60;
       
       var reservation_date = $('#reservation_date').val();
@@ -298,8 +299,8 @@ var placeSearch, autocomplete;
         $('#duration')[0].setCustomValidity("");
         if(totalMinutesWithDuration > ClosingHourInMinute && reservation_date!='31/12/2021' && reservation_date!='01/01/2022')
         {
-          $('#duration')[0].setCustomValidity('Cafe closing time is 11:00 PM. So choose your time and duration accordingly.');
-          alert('Cafe closing time is 11:00 PM. So choose your time and duration accordingly.');
+          $('#duration')[0].setCustomValidity('Cafe closing time is '+Closing+'. So choose your time and duration accordingly.');
+          alert('Cafe closing time is '+Closing+'. So choose your time and duration accordingly.');
         }
       }
     });
