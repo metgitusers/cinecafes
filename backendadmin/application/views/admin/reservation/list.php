@@ -152,7 +152,7 @@
                     <?php foreach($list as $row){ ?>
                       <tr>
                       <td><?php echo $i;?></td>
-                      <td><?php echo $row['reservation_id'];?></td>
+                      <td><?=(!empty($row['reservation_no'])?$row['reservation_no']:$row['reservation_id']);?></td>
                       <td><?php echo $row['name'];?>
                       <br><a href="mailto:<?php echo $row['email'];?>"><?php echo $row['email'];?></a>
                       <br><?php echo $row['mobile'];?>

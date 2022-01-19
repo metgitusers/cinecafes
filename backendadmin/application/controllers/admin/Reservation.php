@@ -207,8 +207,21 @@ class Reservation extends MY_Controller
     ////////add reservation /////////////////////////////////////////////////
     public function add_content()
     {
-        // echo "<pre>";
-        // print_r($this->input->post());
+        // echo "<pre>";// print_r($this->input->post());
+        //reservation_no creation 
+        $counter_details  = $this->mcommon->getRow("reservation", array('cafe_id'=>$this->input->post('cafe_id')), 'reservation_id desc');
+        $cafe_place       = $this->mcommon->getRow("master_cafe", array('cafe_id'=>$this->input->post('cafe_id')))['cafe_place'];
+        $final_cafe_place = substr($cafe_place, 0, 5);
+        
+        if($counter_details['cafe_id_serial_no']==''){
+            $counter = 1;
+        }else{
+            $counter = $counter_details['cafe_id_serial_no'] + 1;            
+        }
+        $final_counter = str_pad($counter, 4, '0', STR_PAD_LEFT);        
+        $reservation_no = $final_cafe_place.'/'.date('m').'/'.date('Y').'/'.$final_counter;
+        //echo $reservation_no;exit;
+        
         $this->form_validation->set_rules('mobile', 'mobile', 'required');
         $this->form_validation->set_rules('no_of_guests', 'no of guests', 'trim|required');
         $this->form_validation->set_rules('reservation_date', 'reservation date', 'trim|required');
