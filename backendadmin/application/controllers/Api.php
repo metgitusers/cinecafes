@@ -2675,6 +2675,21 @@ class Api extends CI_Controller
                   {
                     $wallet_response_status=$this->deductWalllet($user_id,$payable_amount);
                   }
+                  
+                  //reservation_no creation 
+                  $counter_details  = $this->mcommon->getRow("reservation", array('cafe_id'=>$ap['cafe_id']), 'reservation_id desc');
+                  $cafe_place       = $this->mcommon->getRow("master_cafe", array('cafe_id'=>$ap['cafe_id']))['cafe_place'];
+                  $final_cafe_place = substr($cafe_place, 0, 5);
+                  
+                  if($counter_details['cafe_id_serial_no']==''){
+                      $counter = 1;
+                  }else{
+                      $counter = $counter_details['cafe_id_serial_no'] + 1;            
+                  }
+                  $final_counter = str_pad($counter, 4, '0', STR_PAD_LEFT);        
+                  $reservation_no = $final_cafe_place.'/'.date('m').'/'.date('Y').'/'.$final_counter;
+                  //echo $reservation_no;exit;
+                  
                   //////////////////////////
                     $insrtarry    = array('reservation_date'      =>  $reservation_date,
                                           'reservation_time'      =>  $reservation_time,
@@ -2703,7 +2718,11 @@ class Api extends CI_Controller
                                           'status'                => '1',
                                           'reservation_type'      => 'App',
                                           'created_by'            => $user_id,
-                                          'created_on'            => date('Y-m-d')
+                                          'created_on'            => date('Y-m-d'),
+                                          
+                                          'cafe_id_serial_no' => $final_counter,
+                                          'reservation_no' => $reservation_no
+                                          
                                         );
                     /**
                      *  Add cafe price while saving as discussed
