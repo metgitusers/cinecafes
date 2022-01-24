@@ -214,6 +214,7 @@ class Reservation extends MY_Controller
         $final_cafe_place = substr($cafe_place, 0, 5);
         
         if($counter_details['cafe_id_serial_no']==''){
+        //if(empty($counter_details['cafe_id_serial_no'])){
             $counter = 1;
         }else{
             $counter = $counter_details['cafe_id_serial_no'] + 1;            
@@ -313,6 +314,9 @@ class Reservation extends MY_Controller
                 'membership_discount_percent' => $this->input->post('membership_discount_percent'),
                 'payable_amount' => $payable_amount,
                 'payment_mode' => $this->input->post('reservation_type'), //added after discussion
+                                          
+                'cafe_id_serial_no' => $final_counter,
+                'reservation_no' => $reservation_no,
 
                 'add_from' => 'admin',
                 'message' => $message,
