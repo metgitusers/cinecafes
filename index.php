@@ -142,7 +142,7 @@
 	</div>
 </div>
 <div class="copyright-sec">
-  <p>© 2021 Cine Cafes. All rights reserved. Design by Fitser.</p>
+  <p>© 2021 Cine Cafes. All rights reserved. Design by the Fitser.</p>
 </div>
 
 <script src="assets_home/js/jquery-3.6.0.min.js"></script>
