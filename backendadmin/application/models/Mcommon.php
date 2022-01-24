@@ -40,8 +40,12 @@
         
         return $query->num_rows();            
     }
-    public function getRow($table,$condition){
+    public function getRow($table,$condition, $order_by=''){
         $this->db->where($condition);
+        if($order_by!=''){
+            $this->db->order_by($order_by);   
+            $this->db->limit(1);   
+        }
         $query=$this->db->get($table);
       //echo $this->db->last_query(); exit();
         return $query->row_array();
