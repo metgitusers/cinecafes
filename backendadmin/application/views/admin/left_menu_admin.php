@@ -327,6 +327,51 @@ else if($this->session->admin['role_id']==18)
 </li>
 <?php
 }
+else if($this->session->admin['role_id']==19)
+{
+   //for General Manager
+?>
+<li class="nav-item <?php if($this->uri->segment(2)=='dashboard'){ echo"active"; }?>">
+   <a class="nav-link" href="<?php echo base_url('admin/dashboard'); ?>">
+   <i class="fas fa-fw fa-tachometer-alt"></i>
+   <span>Dashboard</span></a>
+</li>
+<li class="nav-item <?php if($this->uri->segment(2)=='membership'){ echo"active"; }?>">
+   <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+   <img src="<?=base_url('public/img/icon_11.png')?>" alt="icon">
+   <span>Membership Package</span>
+   </a>
+   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"  >
+      <div class="bg-white py-2 collapse-inner rounded">
+         <h6 class="collapse-header">Members</h6>
+         <a class="collapse-item <?php if($this->uri->segment(2)=='member' && $this->uri->segment(3)=='add'){ echo"active"; }?>" href="<?php echo base_url('admin/member/add'); ?>" >Add new Member</a>
+         <a class="collapse-item <?php if($this->uri->segment(2)=='membership'){ echo"active"; }?>" href="<?php echo base_url('admin/membership'); ?>" >Members List</a>
+      </div>
+   </div>
+</li>
+<hr class="sidebar-divider my-0">
+<!-- Nav Item - wallet  -->
+<li class="nav-item <?php if($this->uri->segment(2)=='wallet'){ echo"active"; }?>">
+   <a class="nav-link" href="<?php echo base_url('admin/wallet'); ?>">
+   <img src="<?=base_url('public/img/icon_14.png')?>" alt="icon">
+   <span>Wallet</span></a>
+</li>
+<hr class="sidebar-divider my-0">
+<!-- Nav Item - reservation  -->
+<li class="nav-item <?php if($this->uri->segment(2)=='reservation'){ echo"active"; }?>">
+   <a class="nav-link" href="<?php echo base_url('admin/reservation'); ?>">
+   <img src="<?=base_url('public/img/icon_15.png')?>" alt="icon">
+   <span>Reservation</span></a>
+</li>
+<hr class="sidebar-divider my-0">
+<!-- Nav Item - transactionhistory  -->
+<li class="nav-item <?php if($this->uri->segment(2)=='transactionhistory'){ echo"active"; }?>">
+   <a class="nav-link" href="<?php echo base_url('admin/transactionhistory'); ?>">
+   <img src="<?=base_url('public/img/icon_16.png')?>" alt="icon">
+   <span>Transaction History</span></a>
+</li>
+<?php
+}
 ?>
 <hr class="sidebar-divider my-0">
 <!-- Sidebar Toggler (Sidebar) -->

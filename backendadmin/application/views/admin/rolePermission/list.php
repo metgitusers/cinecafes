@@ -176,6 +176,64 @@
                      </tr>
                   </tbody>
             </table>
+            <h1 class="h3 mb-2 text-gray-800">Accounts permission list</h1>
+            <table class="table table-bordered" width="100%" cellspacing="0">
+                  <thead>
+                     <tr>
+                        <th>SL No.</th>
+                        <th>Management Name</th>
+                        <th>List</th>
+                        <th>Add</th>
+                        <th>Edit</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <th>Sl No.</th>
+                        <th>Management Name</th>
+                        <th>List</th>
+                        <th>Add</th>
+                        <th>Edit</th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr>
+                        <td>1</td>
+                        <td><a href="<?php echo base_url('admin/dashboard'); ?>">Dashboard</td>
+                        <td><i class="fa fa-minus" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-minus" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-minus" aria-hidden="true"></i></td>
+                     </tr>
+                     <tr>
+                        <td>2</td>
+                        <td><a href="<?php echo base_url('admin/membership'); ?>">Membership Package</td>
+                        <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                     </tr>
+                     <tr>
+                        <td>3</td>
+                        <td><a href="<?php echo base_url('admin/wallet'); ?>">Wallet</td>
+                        <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-minus" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-minus" aria-hidden="true"></i></td>
+                     </tr>
+                     <tr>
+                        <td>4</td>
+                        <td><a href="<?php echo base_url('admin/reservation'); ?>">Reservation</td>
+                        <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-minus" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-minus" aria-hidden="true"></i></td>
+                     </tr>
+                     <tr>
+                        <td>5</td>
+                        <td><a href="<?php echo base_url('admin/transactionhistory'); ?>">Transaction History</td>
+                        <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-minus" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-minus" aria-hidden="true"></i></td>
+                     </tr>
+                  </tbody>
+            </table>
          </div>
       </div>
    </div>
