@@ -281,8 +281,8 @@ var placeSearch, autocomplete;
     
     $('button[type="submit"]').on('click', function() {
       
-      var Closing = '10:00 PM';
-      var ClosingHour = 22;
+      var Closing = '11:00 PM';
+      var ClosingHour = 23;
       var ClosingHourInMinute = ClosingHour*60;
       
       var reservation_date = $('#reservation_date').val();
