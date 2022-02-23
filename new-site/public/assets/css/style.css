@@ -1,0 +1,26 @@
+.phone span i {
+    color: #FFCE00;
+}
+
+.phone span {
+    color: #fff;
+    margin: 9px 0 0 9px;
+    font-size: 15px;
+}
+
+.top-header .phone a{
+	color: #faad40;
+}
+
+.top-header .phone {
+	margin-right: 30px;
+}
+.gal{
+	text-align: center;
+	color: #faad40;
+}
+
+/*.garytab{
+	padding: 0;
+	margin-left: 0px;
+}*/

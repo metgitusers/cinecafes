@@ -1,0 +1,151 @@
+@media (min-width:320px) and (max-width:767px) {
+	
+.logo {
+    text-align: center;
+    margin-bottom: 17px;
+}	
+.top-header {
+    flex-direction: column;
+}
+.search-location {
+    width: 100%;
+    margin: 7px 0;
+}	
+.stellarnav.light .menu-toggle span.bars span {
+    background: #000000;
+    width: 28px;
+    height: 3px;
+}
+	.francise-form {
+    right: -38px;
+    top: 41px;
+    background: #faad40;
+    border-radius: 5px 5px 0px 0;
+    padding: 8px 14px;
+}
+	.francise-form h2 {
+    color: #000000;
+    font-size: 17px;
+}
+	ul.social-icon {
+    top: 3px;
+    z-index: 999;
+}
+	.stellarnav.mobile.right > ul, .stellarnav.mobile.left > ul {
+    z-index: 9999;
+}
+	a.menu-toggle {
+    display: block !important;
+    background: #faad40;
+}
+	.shape-2 {
+    display: none;
+}
+.right-overlay {
+    padding: 20px 9px 20px 49px;
+}
+.right-overlay h2 {
+    font-size: 9px;
+}	
+.shape-1 {
+    display: none;
+}
+	#slider-nav .slick-slide img {
+    height: 119px;
+}
+	.banner-left::after {
+    right: 18px;
+}
+.awesome-exper h1 {
+    font-size: 22px;
+}
+	.awesome-exper h6 {
+    font-size: 15px;
+}
+.experince-card {
+    margin-bottom: 15px;
+}
+.know-more-overlay h3 {
+    font-size: 15px;
+text-align: center;
+}
+	.know-more-overlay ul {
+    flex-direction: column;
+    justify-content: center;
+}
+.know-more-overlay ul li:first-child a {
+    margin-right: 0;
+}
+.footer-menu ul {
+    flex-wrap: wrap;
+}
+	.know-more-overlay img {
+    display: block;
+    margin: 0 auto;
+}
+.know-more-overlay ul li:last-child a {
+    margin: 12px 0;
+    display: block;
+}
+	#nav-tab a {
+    font-size: 16px;
+}
+	.download-app h2 {
+    font-size: 22px;
+}
+.download-app a img {
+    width: 127px;
+}
+	.app-img.text-right {
+    text-align: left;
+    margin-top: 30px;
+}
+	.get-letest {
+    margin-bottom: 23px;
+}
+	.banner-left {
+    height: auto;
+}
+	#locationModal ul li {
+    flex: auto;
+}
+}
+@media (min-width:768px) and (max-width:991px) {
+a.menu-toggle {
+    display: block !important;
+    text-align: right;
+}
+	.stellarnav.light .menu-toggle span.bars span {
+    background: #fff;
+}
+	.banner-left::after {
+    right: 55px;
+}
+	.right-overlay {
+    padding: 20px 27px 20px 122px;
+}
+	.shape-2 {
+    display: none;
+}
+	.right-overlay h2 {
+    font-size: 16px;
+}
+	.shape-1 {
+    right: 0;
+    bottom: 14px;
+}
+	.get-letest {
+    margin-bottom: 20px;
+}
+}
+@media (min-width:992px) and (max-width:1199px) {
+.right-overlay {
+    padding: 20px 64px 20px 160px;
+}
+.right-overlay h2 {
+    font-size: 19px;
+}
+.banner-left::after {
+    right: 74px;
+}
+}
