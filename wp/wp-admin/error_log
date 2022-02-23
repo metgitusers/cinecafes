@@ -1,9 +1,0 @@
-[09-Sep-2020 08:28:50 UTC] WordPress database error Unknown column 'wp_' in 'field list' for query SELECT wp_
-[09-Sep-2020 08:57:24 UTC] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 131072 bytes) in /home/cinecafes/public_html/wp/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-assets.php on line 301
-[09-Sep-2020 08:57:24 UTC] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 32768 bytes) in /home/cinecafes/public_html/wp/wp-includes/class-phpass.php on line 1
-[09-Sep-2020 08:58:24 UTC] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 20480 bytes) in /home/cinecafes/public_html/wp/wp-admin/includes/plugin.php on line 2253
-[09-Sep-2020 08:58:24 UTC] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 20480 bytes) in /home/cinecafes/public_html/wp/wp-content/plugins/woocommerce/includes/data-stores/class-wc-customer-data-store-session.php on line 83
-[09-Sep-2020 08:58:24 UTC] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 65536 bytes) in /home/cinecafes/public_html/wp/wp-admin/includes/class-wp-internal-pointers.php on line 156
-[09-Sep-2020 08:58:24 UTC] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 65536 bytes) in Unknown on line 0
-[09-Sep-2020 08:58:32 UTC] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 32768 bytes) in /home/cinecafes/public_html/wp/wp-admin/includes/menu.php on line 279
-[09-Sep-2020 08:58:32 UTC] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 32768 bytes) in /home/cinecafes/public_html/wp/wp-content/plugins/woocommerce/packages/action-scheduler/classes/abstracts/ActionScheduler_Lock.php on line 1

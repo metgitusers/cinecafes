@@ -1,39 +1,38 @@
-// JavaScript Document
+	$(document).ready(function() {
+			$('.stellarnav').stellarNav({
+				theme: 'light',
+				breakpoint: 991,
+				position: 'right',
+				//phoneBtn: '(780) 743-1904',
+				//locationBtn: 'https://www.google.com/maps'
+			});
+		
+	$(".caret-d").click(function(){
+		$(".search-list").slideToggle();
+	});
 
-//Banner Carousel
-var bs = $('#banner-carousel');
-bs.owlCarousel({
-	autoplay:true,
-	//autoplayTimeout:1000,
-	//autoplaySpeed:700,
-    loop:true,
-    nav:true,
-	dots:false,
-	//animateOut: 'fadeOut',
-    items: 1,
-	navText: [ '<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>' ],	
+
+$('#slider-for').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  //fade: true,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 4000,
+  asNavFor: '#slider-nav',
+ vertical: false,
+  verticalSwiping: true,
 });
-
-//Visiters Carousel
-var vs = $('#visiters-carousel');
-vs.owlCarousel({
-	autoplay:false,
-	//autoplayTimeout:1000,
-	//autoplaySpeed:700,
-    loop:true,
-    nav:true,
-	dots:false,
-	//animateOut: 'fadeOut',
-    items: 1,
-	navText: [ '<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>' ],	
+$('#slider-nav').slick({
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  asNavFor: '#slider-for',
+  dots: false,
+  centerMode: true,
+  focusOnSelect: true,
+ arrows: false,
 });
-
-
-
-
-
-
-
-
-
-
+		
+			
+});
