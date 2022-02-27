@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //$route['index'] = 'admin/AdminPortal_Controller/index';
 //$route['view'] = 'admin/AdminPortal_Controller/view';
 
-$route['default_controller'] = 'user';
+//$route['default_controller'] = 'user';
 
 $route['add-page'] = 'admin/AdminPortal_Controller/add_page';
 $route['list'] = 'admin/AdminPortal_Controller/listing';
