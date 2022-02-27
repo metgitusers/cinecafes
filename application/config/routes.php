@@ -73,7 +73,7 @@ $route['food-category-listing'] = 'admin/Foodcategory';
 $route['food-category-add'] = 'admin/Foodcategory/add';
 $route['food-category-edit'] = 'admin/Foodcategory/edit';
 
-$route['default_controller'] = 'User';
+$route['default_controller'] = 'User/Index';
 $route['User/about-us'] = 'User/aboutUs';
 $route['User/terms-condition'] = 'User/termsCondition';
 $route['User/privacy-policy'] = 'User/privacyPolicy';
