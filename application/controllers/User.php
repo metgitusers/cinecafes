@@ -6,7 +6,7 @@ class User extends MY_Controller {
 
 	public function __construct() {		
 		parent::__construct();
-
+		echo "1";exit;
 		//$this->redirect_guest_user();
 		
 		$this->load->model('mcommon');	
