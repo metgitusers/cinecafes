@@ -25,7 +25,7 @@ class User extends MY_Controller {
     	$data['list']= $this->mcommon->getDetails('banner',['status'=> 1, 'is_delete'=> 0]);
     	$data['home_section']= $this->mcommon->getDetails('content',['status'=> 1, 'is_delete'=> 0]);
     	//print_r($data['content']);die;
-	   	$data['title']='cinecafe2 | Home';
+	   	$data['title']='cinecafe | Home';
 		$data['content']='front/pages/index';
 		$this->front_load_view($data);
 	}
@@ -34,7 +34,7 @@ class User extends MY_Controller {
 	{
 		$data['list'] 	= $this->mcommon->getDetails('cms',['cms_slug'=>'about-us' ,'status' =>1]);
 		//print_r($data['list']);die;
-		$data['title']='cinecafe2 | About Us';
+		$data['title']='cinecafe | About Us';
 		$data['content']='front/pages/about-us';
 		$this->front_load_view($data);
 	}
@@ -43,7 +43,7 @@ class User extends MY_Controller {
 	{
 		$data['list'] 	= $this->mcommon->getDetails('cms',['cms_slug'=>'terms-condition' ,'status' =>1]);
 		//print_r($data['list']);die;
-		$data['title']='cinecafe2 | Terms & Condition';
+		$data['title']='cinecafe | Terms & Condition';
 		$data['content']='front/pages/about-us';
 		$this->front_load_view($data);
 	}
@@ -52,7 +52,7 @@ class User extends MY_Controller {
 	{
 		$data['list'] 	= $this->mcommon->getDetails('cms',['cms_slug'=>'privacy-policy' ,'status' =>1]);
 		//print_r($data['list']);die;
-		$data['title']='cinecafe2 | Privacy - Policy';
+		$data['title']='cinecafe | Privacy - Policy';
 		$data['content']='front/pages/about-us';
 		$this->front_load_view($data);
 	}
@@ -140,7 +140,7 @@ class User extends MY_Controller {
 	public function gallery()
 	{
 		$data['home_section']= $this->mcommon->getDetails('content',['status'=> 1, 'is_delete'=> 0]);
-		$data['title']='cinecafe2 | Gallery';
+		$data['title']='cinecafe | Gallery';
 		$data['content']='front/pages/gallery';
 		$this->front_load_view($data);
 	}
