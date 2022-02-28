@@ -102,4 +102,5 @@ define('NANDINIEMAIL','nandini@cinecafes.com');
 define('SUMANNAME','Suman');
 define('SUMNANMOBILE','8697188477');
 define('SUMANEMAIL','suman@cinecafes.com');
-define('FRONTFILEPATH','https://devfitser.com/cinecafe2/');
+//define('FRONTFILEPATH','https://devfitser.com/cinecafe2/');
+define('FRONTFILEPATH', base_url());
