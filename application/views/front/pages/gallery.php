@@ -123,7 +123,7 @@
 		<div class="row align-items-center">
 			<div class="col-md-6">
 				<h2>Download Our App Now</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra </p>
+				<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra </p> -->
 				<a href="https://apps.apple.com/in/app/cine-cafes/id1543208686" target="_blank"><img src="<?=base_url('public/assets/image/app-store.png')?>"></a>
 				<a href="https://play.google.com/store/apps/details?id=com.cinecafe&hl=en" target="_blank"><img src="<?=base_url('public/assets/image/play-store.png')?>"></a>
 			</div>
