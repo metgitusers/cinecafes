@@ -74,9 +74,9 @@ $route['food-category-add'] = 'admin/Foodcategory/add';
 $route['food-category-edit'] = 'admin/Foodcategory/edit';
 
 $route['default_controller'] = 'User';
-$route['User/about-us'] = 'User/aboutUs';
-$route['User/terms-condition'] = 'User/termsCondition';
-$route['User/privacy-policy'] = 'User/privacyPolicy';
+$route['about-us'] = 'User/aboutUs';
+$route['terms-condition'] = 'User/termsCondition';
+$route['privacy-policy'] = 'User/privacyPolicy';
 $route['contactMail'] 		='User/contactmail';
 //$route['User/gallery'] = 'User/gallery';
 $route['gallery'] = 'User/gallery';

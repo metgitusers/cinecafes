@@ -108,7 +108,7 @@
           <div class="nav-header">
             <div class="stellarnav">
               <ul>
-                <li><a href="<?=base_url('User')?>">Home</a></li>
+                <li><a href="<?=base_url()?>">Home</a></li>
                 <li><a href="<?=base_url('public/assets/pdf/Cine cafe menu_8.2.22.pdf')?>">MENU</a></li>
                 <li><a href="#">FEATURES</a></li>
                 <li><a href="<?=base_url('gallery')?>">GALLERY</a></li>
