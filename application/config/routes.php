@@ -78,7 +78,8 @@ $route['User/about-us'] = 'User/aboutUs';
 $route['User/terms-condition'] = 'User/termsCondition';
 $route['User/privacy-policy'] = 'User/privacyPolicy';
 $route['contactMail'] 		='User/contactmail';
-$route['User/gallery'] = 'User/gallery';
+//$route['User/gallery'] = 'User/gallery';
+$route['gallery'] = 'User/gallery';
 
 //$route['User/bann'] = 'User/aboutUs';
 $route['recoverPasswordUser/recoverAccount']= 'recoverPasswordUser/recoverAccount';
