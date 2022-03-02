@@ -10,10 +10,10 @@
         <div class="footer-menu">
           <ul>
             <li><a href="#">HOME</a></li>
-            <li><a href="#">MOVIES</a></li>
-            <li><a href="#">TV SHOWS</a></li>
+            <!-- <li><a href="#">MOVIES</a></li>
+            <li><a href="#">TV SHOWS</a></li> -->
             <li><a href="#">FEATURES</a></li>
-            <li><a href="#">GALLERY</a></li>
+            <li><a href="<?=base_url('gallery')?>">GALLERY</a></li>
             <li><a href="#">CONTACT</a></li>
           </ul>
         </div>
