@@ -25,7 +25,7 @@
     <div class="row align-items-center">
       <div class="col-md-4">
         <div class="logo">
-          <a href="<?=site_url('User')?>">
+          <a href="<?=site_url()?>">
             <img src="<?=base_url('public/assets/image/logo.png')?>" alt="logo">
           </a>
         </div>
