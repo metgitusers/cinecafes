@@ -138,7 +138,7 @@
 		  		</li>
 		  	</ul>
 		  	<div class="vi-more">
-		  		<a href="<?=base_url('User/gallery')?>">View More</a>
+		  		<a href="<?=base_url('gallery')?>">View More</a>
 		  	</div>
 		  </div>
 		  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
