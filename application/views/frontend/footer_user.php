@@ -127,7 +127,7 @@
                 <label>Kolkata</label>
               </a>
             </li>
-            <li>
+            <!-- <li>
               <a href="#">
                 <img src="<?=base_url('public/assets/image/location.png')?>">
                 <label>Mumbai</label>
@@ -150,7 +150,7 @@
                 <img src="<?=base_url('assets/image/location.png')?>">
                 <label>Chennai</label>
               </a>
-            </li>
+            </li> -->
           </ul> 
       </div>
     </div>
