@@ -38,8 +38,8 @@ if ( ! function_exists('test_method'))
       $config['protocol']    = 'smtp';
       $config['smtp_host']   = 'ssl://cinecafes.com';
       $config['smtp_port']   = '465';
-      $config['smtp_user']   = 'donotreply@cinecafes.com';
-      $config['smtp_pass']   = 'gwj$^}U7XE@V,^gn8(';
+      $config['smtp_user']   = 'noreply@cinecafes.com';
+      $config['smtp_pass']   = '!d1suLuc=X}%_vfb$C';
       
       //$config['protocol']      = 'smtp';
       //$config['smtp_host']     = 'mail.cinecafes.com';
@@ -70,7 +70,7 @@ if ( ! function_exists('test_method'))
 
       //$obj->email->from($data['from_email'], $data['from_name']);
       //$obj->email->from("test123@fitser.com", "Cinecafe");
-      $obj->email->from("donotreply@cinecafes.com", ORGANIZATION_NAME);
+      $obj->email->from("noreply@cinecafes.com", ORGANIZATION_NAME);
       $obj->email->to($data['to']);
       //$obj->email->cc(array('santu.dutta@met-technologies.com'));
       $obj->email->subject($data['subject']);

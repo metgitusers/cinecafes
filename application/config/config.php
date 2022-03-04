@@ -260,7 +260,10 @@ $config['log_path'] = '';
 | Note: Leaving it blank will default to 'php'.
 |
 */
+
 $config['log_file_extension'] = '';
+$config['google_key'] = '6LcTO7MeAAAAAGQfMEdK9YgvVOXxXMdaMNiwe_ji';
+$config['google_secret'] = '6LcTO7MeAAAAANuPZDP00dEeYYumqKZjIzMnKKZ9';
 
 /*
 |--------------------------------------------------------------------------
