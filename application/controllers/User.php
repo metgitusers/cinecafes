@@ -84,9 +84,8 @@ class User extends MY_Controller {
 
 						$this->mcommon->insert('contact',$data);
 						//$email_to='sourav.bhowmick@met-technologies.com';
-						
-						$email_to='avishek.chakraborty@met-technologies.com';
-						//$email_to='franchise.enquiry@cinecafes.com';
+												
+						$email_to='franchise.enquiry@cinecafes.com';
 
 						$subject = 'Contact us mail received';
 						$message = '<div style="border:2px solid #333;padding:20px;background:#eee;text-align:center;">
