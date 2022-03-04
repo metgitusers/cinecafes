@@ -213,14 +213,27 @@ class Reservation extends MY_Controller
         $cafe_place       = $this->mcommon->getRow("master_cafe", array('cafe_id'=>$this->input->post('cafe_id')))['cafe_place'];
         $final_cafe_place = substr($cafe_place, 0, 5);
         
-        if($counter_details['cafe_id_serial_no']==''){
-        //if(empty($counter_details['cafe_id_serial_no'])){
+        // if($counter_details['cafe_id_serial_no']==''){
+        // //if(empty($counter_details['cafe_id_serial_no'])){
+        //     $counter = 1;
+        // }else{
+        //     $counter = $counter_details['cafe_id_serial_no'] + 1;            
+        // }
+        // $final_counter = str_pad($counter, 4, '0', STR_PAD_LEFT);        
+        // $reservation_no = $final_cafe_place.'/'.date('m').'/'.date('Y').'/'.$final_counter;
+        //for reset on every month
+        
+        $created_on_arr = explode('-', $counter_details['created_on']);
+        $created_on_month = $created_on_arr[1];
+        if($created_on_month != date('m')){
+            $counter = 1;
+        }elseif($counter_details['cafe_id_serial_no']==''){
             $counter = 1;
         }else{
             $counter = $counter_details['cafe_id_serial_no'] + 1;            
         }
         $final_counter = str_pad($counter, 4, '0', STR_PAD_LEFT);        
-        $reservation_no = $final_cafe_place.'/'.date('m').'/'.date('Y').'/'.$final_counter;
+        $reservation_no = $final_cafe_place.'/'.date('m').'/'.date('Y').'/'.$final_counter;                
         //echo $reservation_no;exit;
         
         $this->form_validation->set_rules('mobile', 'mobile', 'required');
