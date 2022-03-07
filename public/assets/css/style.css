@@ -5,7 +5,8 @@
 .phone span {
     color: #fff;
     margin: 9px 0 0 9px;
-    font-size: 15px;
+    /*font-size: 15px;*/
+    font-size: 13px;
 }
 
 .top-header .phone a{
