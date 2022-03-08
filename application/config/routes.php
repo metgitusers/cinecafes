@@ -73,13 +73,15 @@ $route['food-category-listing'] = 'admin/Foodcategory';
 $route['food-category-add'] = 'admin/Foodcategory/add';
 $route['food-category-edit'] = 'admin/Foodcategory/edit';
 
-$route['default_controller'] = 'User';
-$route['about-us'] = 'User/aboutUs';
-$route['terms-condition'] = 'User/termsCondition';
-$route['privacy-policy'] = 'User/privacyPolicy';
-$route['contactMail'] 		='User/contactmail';
-//$route['User/gallery'] = 'User/gallery';
-$route['gallery'] = 'User/gallery';
+$route['default_controller']        = 'User';
+$route['about-us']                  = 'User/aboutUs';
+$route['terms-condition']           = 'User/termsCondition';
+$route['privacy-policy']            = 'User/privacyPolicy';
+$route['contactMail'] 		        = 'User/contactmail';
+$route['gallery']                   = 'User/gallery';
+
+$route['location']                  = 'User/location';
+$route['features']                  = 'User/features';
 
 //$route['User/bann'] = 'User/aboutUs';
 $route['recoverPasswordUser/recoverAccount']= 'recoverPasswordUser/recoverAccount';

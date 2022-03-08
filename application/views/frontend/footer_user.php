@@ -9,11 +9,11 @@
         </div>
         <div class="footer-menu">
           <ul>
-            <li><a href="#">HOME</a></li>
-            <li><a href="#">MOVIES</a></li>
-            <li><a href="#">TV SHOWS</a></li>
-            <li><a href="#">FEATURES</a></li>
-            <li><a href="#">GALLERY</a></li>
+            <li><a href="<?=base_url()?>">HOME</a></li>
+            <!-- <li><a href="#">MOVIES</a></li>
+            <li><a href="#">TV SHOWS</a></li> -->
+            <li><a href="<?=base_url('features')?>">FEATURES</a></li>
+            <li><a href="<?=base_url('gallery')?>">GALLERY</a></li>
             <li><a href="#">CONTACT</a></li>
           </ul>
         </div>
@@ -36,12 +36,12 @@
       <div class="col-md-12">
         <div class="footer-menu-2">
           <ul>
-             <li><a href="<?=base_url('User/about-us')?>">About Us</a></li>
-            <li><a href="<?=base_url('User/terms-condition')?>">Terms & Conditions</a></li>
-            <li><a href="<?=base_url('User/privacy-policy')?>">Privacy Policy</a></li>
+             <li><a href="<?=base_url('about-us')?>">About Us</a></li>
+            <li><a href="<?=base_url('terms-condition')?>">Terms & Conditions</a></li>
+            <li><a href="<?=base_url('privacy-policy')?>">Privacy Policy</a></li>
             <li><a href="#">Sitemap</a></li>
           </ul>
-          <p>© Cine Cafe 2021. All right reserved</p>
+          <p>© Cine Cafe 2022. All right reserved</p>
         </div>
       </div>
     </div>
@@ -126,12 +126,12 @@
           
           <ul>
             <li>
-              <a href="#">
+              <a href="<?=base_url('location')?>">
                 <img src="<?=base_url('public/assets/image/location.png')?>">
                 <label>Kolkata</label>
               </a>
             </li>
-            <li>
+            <!-- <li>
               <a href="#">
                 <img src="<?=base_url('public/assets/image/location.png')?>">
                 <label>Mumbai</label>
@@ -154,7 +154,7 @@
                 <img src="<?=base_url('assets/image/location.png')?>">
                 <label>Chennai</label>
               </a>
-            </li>
+            </li> -->
           </ul> 
       </div>
     </div>

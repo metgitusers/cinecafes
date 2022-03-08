@@ -156,6 +156,22 @@ class User extends MY_Controller {
 		$this->front_load_view($data);
 	}
 
+	public function features()
+	{		
+		$data['list']= $this->mcommon->getDetails('banner',['status'=> 1, 'is_delete'=> 0]);
+		$data['title']='cinecafe2 | Features';
+		$data['content']='front/pages/features';
+		$this->front_load_view($data);
+	}
+
+	public function location()
+	{		
+		$data['list']= $this->mcommon->getDetails('banner',['status'=> 1, 'is_delete'=> 0]);
+		$data['title']='cinecafe2 | Location';
+		$data['content']='front/pages/location';
+		$this->front_load_view($data);
+	}
+
 	/*public function banner()
 	{
 		$data['title']= 'Banner';

@@ -528,7 +528,7 @@ footer {
 }
 #nav-tab a {
     color: #faad40;
-    font-size: 18px;
+    font-size: 21px;
     font-weight: 600;
     text-transform: uppercase;
     padding: 5px 20px;
@@ -772,47 +772,4 @@ transition: opacity 0.3s linear, right 0.3s ease-out;
     color: #000 !important;
     font-weight: 600;
     padding: 9px 20px;
-}
-
-.multiple-location {
-    padding: 50px 0;
-}
-.location-box {
-    border: 1px solid #323030;
-    padding: 17px;
-    color: #fff;
-    border-radius: 5px;
-    min-height: 273px;
-}
-.location-box h4 {
-    margin: 0 0 15px 0;
-    color: #f9ad3f;
-}
-.location-box p {
-    font-size: 14px;
-    margin: 0 0 7px 0;
-}
-.location-box a {
-    color: #f9ad3f;
-}
-
-.feature-cont h1 {
-    font-size: 21px;
-    color: #faad40;
-}
-.feature-cont p {
-    color: #fff;
-    font-size: 14px;
-}
-.feature-cont h2 {
-    color: #fff;
-    font-size: 18px;
-    font-weight: 700;
-}
-.features-sec {
-    text-align: center;
-    color: #fff;
-    background: #121212;
-    padding: 27px 0;
-    margin-bottom: 30px;
 }
