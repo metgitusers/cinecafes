@@ -2457,86 +2457,94 @@ class Api extends CI_Controller
           
           $this->displayOutput($response);
         }
+
         if (empty($ap['mobile'])) {
           $response['status']['error_code'] = 1;
           $response['status']['message']    = 'Phone no. is required';
           //$response['response']   = $this->obj;          
           $this->displayOutput($response);
         }
+
         if (empty($ap['no_of_guests'])) {
           $response['status']['error_code'] = 1;
           $response['status']['message']    = 'No. of guests is required';
           //$response['response']   = $this->obj;          
           $this->displayOutput($response);
-        }        
+        }      
+
         if (empty($ap['reservation_date'])) {
           $response['status']['error_code'] = 1;
           $response['status']['message']    = 'Reservation date is required';
           //$response['response']   = $this->obj;          
           $this->displayOutput($response);
         }
+
         if (empty($ap['reservation_time'])) {
           $response['status']['error_code'] = 1;
           $response['status']['message']    = 'Reservation time  is required';
           //$response['response']   = $this->obj;          
           $this->displayOutput($response);
-        }       
+        }   
+
         if (empty($ap['cafe_id'])) {
           $response['status']['error_code'] = 1;
           $response['status']['message']    = 'cafe id is required';
           //$response['response']   = $this->obj;          
           $this->displayOutput($response);
         }
+
         if (empty($ap['duration'])) {
-              $response['status']['error_code'] = 1;
-              $response['status']['message']    = 'duration is required';
-              //$response['response']   = $this->obj;          
-              $this->displayOutput($response);
-            } 
+          $response['status']['error_code'] = 1;
+          $response['status']['message']    = 'duration is required';
+          //$response['response']   = $this->obj;          
+          $this->displayOutput($response);
+        } 
 
-            /*
-              ***************** make room_is as potional as discussed *********************
-              if (empty($ap['room_id'])) {
-                $response['status']['error_code'] = 1;
-                $response['status']['message']    = 'Room id is required';
-                //$response['response']   = $this->obj;          
-                $this->displayOutput($response);
-              }
-            */
-            if(!empty($ap['reservation_date'])) {
-              $date=$ap['reservation_date'];
-              $format="d/m/Y";
+        /*
+          ***************** make room_is as potional as discussed *********************
+          if (empty($ap['room_id'])) {
+            $response['status']['error_code'] = 1;
+            $response['status']['message']    = 'Room id is required';
+            //$response['response']   = $this->obj;          
+            $this->displayOutput($response);
+          }
+        */
+        //if(!empty($ap['reservation_date'])) {
+            // $date=$ap['reservation_date'];
+            // $format="d/m/Y";
 
-              // if(!validateDate($date,$format))
-              // {
-              //   $response['status']['error_code'] = 1;
-              //         $response['status']['message']    = 'Date format is wrong.It should be d/m/y';
+            // if(!validateDate($date,$format))
+            // {
+            //   $response['status']['error_code'] = 1;
+            //         $response['status']['message']    = 'Date format is wrong.It should be d/m/y';
+            
+            //         $this->displayOutput($response);
+            // } 
+            //else {
+              // $dateArr=explode("/",$date) ;
+              // $reservation_date=$dateArr[2]."-".$dateArr[1]."-".$dateArr[0]; 
+
+              // //chk if its past date then reject request
+              // $curDateTime = date("Y-m-d H:i");
+              // $reservation_date_time = date("Y-m-d H:i", strtotime($reservation_date." ".$ap['reservation_time']));
+              //   if($curDateTime>=$reservation_date_time)
+              //   {
+              //     $response['status']['error_code'] = 1;
+              //     $response['status']['message']    = 'Please select some date time in future';
               
-              //         $this->displayOutput($response);
-              // } 
-              //else {
-                $dateArr=explode("/",$date) ;
-                $reservation_date=$dateArr[2]."-".$dateArr[1]."-".$dateArr[0]; 
+              //     $this->displayOutput($response);
+              //   }
+                // }              
+              //}
+        //}  
 
-                //chk if its past date then reject request
-                $curDateTime = date("Y-m-d H:i");
-                $reservation_date_time = date("Y-m-d H:i", strtotime($reservation_date." ".$ap['reservation_time']));
-                  if($curDateTime>=$reservation_date_time)
-                  {
-                    $response['status']['error_code'] = 1;
-                       $response['status']['message']    = 'Please select some date time in future';
-               
-                       $this->displayOutput($response);
-                  }
-                 // }              
-                //}
-          }       
-       if (empty($ap['user_id'])) {
+        if (empty($ap['user_id'])) {
           $response['status']['error_code'] = 1;
           $response['status']['message']    = 'user id is required';
           //$response['response']   = $this->obj;          
           $this->displayOutput($response);
         }
+
         if (empty($ap['total_amount'])) {
               $response['status']['error_code'] = 1;
               $response['status']['message']    = 'Total amount is required';
@@ -2550,15 +2558,14 @@ class Api extends CI_Controller
           //$response['response']   = $this->obj;          
           $this->displayOutput($response);
         }
+
         if (empty($ap['payment_mode'])) {
           $response['status']['error_code'] = 1;
           $response['status']['message']    = 'Payment mode is required wallet or paytm';
           //$response['response']   = $this->obj;          
           $this->displayOutput($response);
         }
-        $user_id            = $ap['user_id'];
-
-
+        $user_id = $ap['user_id'];
 
         //$access_token         = $ap['access_token'];  
         //$device_type          = $ap['device_type'];
@@ -2574,16 +2581,16 @@ class Api extends CI_Controller
 
         /////set the booking duration
         $movie_id="";
-            if(isset($ap['movie_id'])&&$ap['movie_id']>0)
-            {
-              $movie_id=$ap['movie_id'];
-              // if($ap['duration'] < 3)
-              // {
-              //   $response['status']['error_code'] = 1;
-              //   $response['status']['message']    = 'Duration should be atleast 3 hour for movie';         
-              //   $this->displayOutput($response);
-              // }
-            }
+        if(isset($ap['movie_id'])&&$ap['movie_id']>0)
+        {
+          $movie_id=$ap['movie_id'];
+          // if($ap['duration'] < 3)
+          // {
+          //   $response['status']['error_code'] = 1;
+          //   $response['status']['message']    = 'Duration should be atleast 3 hour for movie';         
+          //   $this->displayOutput($response);
+          // }
+        }
             
                 $roomsList = $this->mcommon->select('room', ['cafe_id'=> $ap['cafe_id'], 'is_delete'=> 0], '*', 'room_id');
                 if(empty($roomsList)){
