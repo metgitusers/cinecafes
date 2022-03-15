@@ -2435,525 +2435,476 @@ class Api extends CI_Controller
     $this->displayOutput($response);
   }
 
+
+
   // do reservation
   public function doReservation()
   {
     $result  = array();
     $ap=json_decode(file_get_contents('php://input'), true);
-    //print_r($ap); die;
+    
     if($this->checkHttpMethods($this->http_methods[0])){
       if(sizeof($ap)) {
-        if (empty($ap['name'])) {
-          $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'Name is required';
-          //$response['response']   = $this->obj;
-          $this->displayOutput($response);
-        }
-   
-        if (empty($ap['email'])) {
-          $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'Email field is required';
-          //$response['response']   = $this->obj;
+      //  if (empty($ap['name'])) {
+      //    $response['status']['error_code'] = 1;
+      //    $response['status']['message']    = 'Name is required';          
+      //    $this->displayOutput($response);
+      //  }
+    
+      //  if (empty($ap['email'])) {
+      //    $response['status']['error_code'] = 1;
+      //    $response['status']['message']    = 'Email field is required';                    
+      //    $this->displayOutput($response);
+      //  }
+
+      //  if (empty($ap['mobile'])) {
+      //    $response['status']['error_code'] = 1;
+      //    $response['status']['message']    = 'Phone no. is required';          
+      //    $this->displayOutput($response);
+      //  }
+
+      //  if (empty($ap['no_of_guests'])) {
+      //    $response['status']['error_code'] = 1;
+      //    $response['status']['message']    = 'No. of guests is required';          
+      //    $this->displayOutput($response);
+      //  }      
+
+      //  if (empty($ap['reservation_date'])) {
+      //    $response['status']['error_code'] = 1;
+      //    $response['status']['message']    = 'Reservation date is required';          
+      //    $this->displayOutput($response);
+      //  }
+
+      //  if (empty($ap['reservation_time'])) {
+      //    $response['status']['error_code'] = 1;
+      //    $response['status']['message']    = 'Reservation time  is required';          
+      //    $this->displayOutput($response);
+      //  }   
+
+      //  if (empty($ap['cafe_id'])) {
+      //    $response['status']['error_code'] = 1;
+      //    $response['status']['message']    = 'cafe id is required';          
+      //    $this->displayOutput($response);
+      //  }
+
+      //  if (empty($ap['duration'])) {
+      //    $response['status']['error_code'] = 1;
+      //    $response['status']['message']    = 'duration is required';          
+      //    $this->displayOutput($response);
+      //  }               
+
+      //  if (empty($ap['user_id'])) {
+      //    $response['status']['error_code'] = 1;
+      //    $response['status']['message']    = 'user id is required';          
+      //    $this->displayOutput($response);
+      //  }
+
+      //  if (empty($ap['total_amount'])) {
+      //    $response['status']['error_code'] = 1;
+      //    $response['status']['message']    = 'Total amount is required';              
+      //    $this->displayOutput($response);
+      //  }
+
+      //  if (empty($ap['transaction_id'])) {
+      //    $response['status']['error_code'] = 1;
+      //    $response['status']['message']    = 'Transaction id is required';        
+      //    $this->displayOutput($response);
+      //  }
+
+      //  if (empty($ap['payment_mode'])) {
+      //    $response['status']['error_code'] = 1;
+      //    $response['status']['message']    = 'Payment mode is required wallet or paytm';          
+      //    $this->displayOutput($response);
+      //  }
+
+      if(!empty($ap['reservation_date'])) {
+          $date=$ap['reservation_date'];
+          $format="d/m/Y";
+          $dateArr=explode("/",$date) ;
+          $reservation_date=$dateArr[2]."-".$dateArr[1]."-".$dateArr[0]; 
+
+          //chk if its past date then reject request
+          $curDateTime = date("Y-m-d H:i");
+          $reservation_date_time = date("Y-m-d H:i", strtotime($reservation_date." ".$ap['reservation_time']));
+      }    
+
+      $user_id = $ap['user_id'];
+
+      //set the booking duration
+      $movie_id="";
+      if(isset($ap['movie_id'])&&$ap['movie_id']>0)
+      {
+        $movie_id=$ap['movie_id'];          
+      }
           
-          $this->displayOutput($response);
-        }
-        if (empty($ap['mobile'])) {
-          $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'Phone no. is required';
-          //$response['response']   = $this->obj;          
-          $this->displayOutput($response);
-        }
-        if (empty($ap['no_of_guests'])) {
-          $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'No. of guests is required';
-          //$response['response']   = $this->obj;          
-          $this->displayOutput($response);
-        }        
-        if (empty($ap['reservation_date'])) {
-          $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'Reservation date is required';
-          //$response['response']   = $this->obj;          
-          $this->displayOutput($response);
-        }
-        if (empty($ap['reservation_time'])) {
-          $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'Reservation time  is required';
-          //$response['response']   = $this->obj;          
-          $this->displayOutput($response);
-        }       
-        if (empty($ap['cafe_id'])) {
-          $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'cafe id is required';
-          //$response['response']   = $this->obj;          
-          $this->displayOutput($response);
-        }
-        if (empty($ap['duration'])) {
-              $response['status']['error_code'] = 1;
-              $response['status']['message']    = 'duration is required';
-              //$response['response']   = $this->obj;          
-              $this->displayOutput($response);
-            } 
+      $roomsList = $this->mcommon->select('room', ['cafe_id'=> $ap['cafe_id'], 'is_delete'=> 0], '*', 'room_id');
+      //  if(empty($roomsList)){
+      //    $response['status']['error_code']  = 1;
+      //    $response['status']['message']    = 'Opp!Sorry the Cafe is already reserved for the given date & time';
+      //    $this->displayOutput($response);
+      //  }
 
-            /*
-              ***************** make room_is as potional as discussed *********************
-              if (empty($ap['room_id'])) {
-                $response['status']['error_code'] = 1;
-                $response['status']['message']    = 'Room id is required';
-                //$response['response']   = $this->obj;          
-                $this->displayOutput($response);
-              }
+        $isAvailable = false;
+        foreach($roomsList as $value){
+          $reservation_time=date('H:i',strtotime($ap["reservation_time"]));
+          $duration=$ap['duration'];
+
+          $selectedTime             = $reservation_time;
+          $start_time_range         = date('H:i',strtotime($selectedTime));
+          $end_time_range           = date('H:i',strtotime("+".$duration." hours", strtotime($selectedTime)));
+
+          $availability_status=$this->is_available($reservation_date, $value->room_id, $reservation_time, $duration);
+          if($availability_status == 0){
+            $isAvailable = true;
+          }
+        }
+
+      //$isAvailable = true;
+
+      // if(!$isAvailable){
+      //   $response['status']['error_code']           = 1;
+      //   $response['status']['message']              = 'Opp!Sorry the room is already reserved for the given date & time';
+      //   $this->displayOutput($response);
+      // }
+      // else
+      //{
+          $each_price="100";            
+          $total_price=$ap['total_amount'];
+          $message="";
+          if(isset($ap['message'])&&$ap['message']!="")
+          {
+            $message=$ap['message'];
+          }
+          $media_type="";
+          if(isset($ap['media_type'])&&$ap['media_type']!="")
+          {
+            $media_type=$ap['media_type'];
+          }
+
+          $discount_amount="0.00";
+          $payable_amount="";
+          $coupon_code="";
+          if(isset($ap['discount_amount'])&&$ap['discount_amount']!="")
+          {
+            $discount_amount=$ap['discount_amount'];
+          }
+          if(isset($ap['payable_amount'])&&$ap['payable_amount']!="")
+          {
+            $payable_amount=$ap['payable_amount'];
+          }
+          if(isset($ap['coupon_code'])&&$ap['coupon_code']!="")
+          {
+            $coupon_code=$ap['coupon_code'];
+          }
+          if($payable_amount=="")
+          {
+            $payable_amount=$total_price;
+          }
+
+          //for memebership discount 
+          $membership_discount_amount="";
+          $membership_discount_percent="";
+          $membership_package_id="";
+          if(isset($ap['membership_discount_amount'])&&$ap['membership_discount_amount']!="")
+          {
+            $membership_discount_amount=$ap['membership_discount_amount'];
+          }
+          if(isset($ap['membership_discount_percent'])&&$ap['membership_discount_percent']!="")
+          {
+            $membership_discount_percent=$ap['membership_discount_percent'];
+          }
+          if(isset($ap['membership_package_id'])&&$ap['membership_package_id']!="")
+          {
+            $membership_package_id=$ap['membership_package_id'];
+          }
+
+          //wallet balance check
+          if($ap['payment_mode']=="wallet")
+          {
+            $wallet_response_status=$this->deductWalllet($user_id,$payable_amount);
+          }
+        
+          //reservation_no creation 
+          $counter_details  = $this->mcommon->getRow("reservation", array('cafe_id'=>$ap['cafe_id']), 'reservation_id desc');
+          $cafe_place       = $this->mcommon->getRow("master_cafe", array('cafe_id'=>$ap['cafe_id']))['cafe_place'];
+          $final_cafe_place = substr($cafe_place, 0, 5);
+                      
+          $created_on_arr = explode('-', $counter_details['created_on']);
+          $created_on_month = $created_on_arr[1];
+          if($created_on_month != date('m')){
+              $counter = 1;
+          }elseif($counter_details['cafe_id_serial_no']==''){
+              $counter = 1;
+          }else{
+              $counter = $counter_details['cafe_id_serial_no'] + 1;            
+          }
+          $final_counter = str_pad($counter, 4, '0', STR_PAD_LEFT);        
+          $reservation_no = $final_cafe_place.'/'.date('m').'/'.date('Y').'/'.$final_counter; 
+
+          //////////////////////////
+          $insrtarry    = array('reservation_date'      =>  $reservation_date,
+                                'reservation_time'      =>  $reservation_time,
+                                'reservation_end_time'  =>  $end_time_range,
+                                'duration'              =>  $duration,
+                                'cafe_id'               =>  $ap['cafe_id'],
+                                'no_of_guests'          =>  $ap['no_of_guests'],
+                                'total_price'           =>  $total_price,
+                                'room_id'               =>  0,  //room is is removed from list as discussed
+                                'user_id'               =>  $user_id,
+                                'name'                  =>  $ap['name'],
+                                'email'                 =>  $ap['email'],
+                                'country_code'          =>  $ap['country_code'],
+                                'mobile'                =>  $ap['mobile'],
+                                'movie_id'              =>  $movie_id,
+                                'add_from'              => 'front',
+                                'message'               =>  $message,
+                                'coupon_code'           =>  $coupon_code,
+                                'discount_amount'       =>  $discount_amount,
+                                'membership_package_id'  => $membership_package_id,
+                                'membership_discount_amount'  =>$membership_discount_amount,
+                                'membership_discount_percent'  =>$membership_discount_percent,
+                                'payable_amount'        =>$payable_amount,
+                                'payment_mode'          =>$ap['payment_mode'],    //added after discussion
+                                'media_type'            => $media_type,
+                                'status'                => '1',
+                                'reservation_type'      => 'App',
+                                'created_by'            => $user_id,
+                                'created_on'            => date('Y-m-d'),
+                                
+                                'cafe_id_serial_no' => $final_counter,
+                                'reservation_no' => $reservation_no
+                                
+                              );
+          /**
+          *  Add cafe price while saving as discussed
+          * on 10-02-2021
+          */
+          if(isset($ap['cafe_price'])){
+            $insrtarry['cafe_price'] = $ap['cafe_price'];
+          }
+
+          $reservation_id     = $this->mapi->insert('reservation',$insrtarry);
+          
+          if($reservation_id)
+          {
+            /**
+            * Food app option with reservation
             */
-            if(!empty($ap['reservation_date'])) {
-              $date=$ap['reservation_date'];
-              $format="d/m/Y";
+            if(isset($ap['order_id']) && !empty($ap['order_id'])){
+              $invoice = '';
+              $order_array = [];
+              $order_array['food_order_status_id']= 1;   // Paid
+              $order_array['order_status']= 1;   // Paid
+              $order_array['status']= 1;   // Paid
+              $order_array['invoice_url']= $invoice!=""?$invoice:null;   // Paid
 
-              // if(!validateDate($date,$format))
-              // {
-              //   $response['status']['error_code'] = 1;
-              //         $response['status']['message']    = 'Date format is wrong.It should be d/m/y';
-              
-              //         $this->displayOutput($response);
-              // } 
-              //else {
-                $dateArr=explode("/",$date) ;
-                $reservation_date=$dateArr[2]."-".$dateArr[1]."-".$dateArr[0]; 
+              $this->mcommon->update('food_orders', ['food_order_id'=> $ap['order_id']],  $order_array);
 
-                //chk if its past date then reject request
-                $curDateTime = date("Y-m-d H:i");
-                $reservation_date_time = date("Y-m-d H:i", strtotime($reservation_date." ".$ap['reservation_time']));
-                  if($curDateTime>=$reservation_date_time)
-                  {
-                    $response['status']['error_code'] = 1;
-                       $response['status']['message']    = 'Please select some date time in future';
-               
-                       $this->displayOutput($response);
+              //insert into reservation order
+              $this->mcommon->insert('reservation_orders', ['reservation_id'=> $reservation_id, 'order_id'=> $ap['order_id'], 'user_id'=> $user_id]);
+              //remove hide items from list
+              $order_items = $this->mcommon->select('food_order_items', ['food_order_id'=> $ap['order_id']], '*');
+              foreach($order_items as $item){
+                $availability = $this->mapi->getItemAvailabilityDetails($this->request_day, $this->request_time, $item->item_id);
+                // $availability->price;
+                // $availability->is_seen;
+                if(!empty(!$availability)){
+                  if($availability->is_seen == 0){
+                    $this->db->where('food_order_item_id', $item->food_order_item_id);
+                    $this->db->delete('food_order_items');
                   }
-                 // }              
-                //}
-          }       
-        if (empty($ap['user_id'])) {
-          $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'user id is required';
-          //$response['response']   = $this->obj;          
-          $this->displayOutput($response);
-        }
-        if (empty($ap['total_amount'])) {
-              $response['status']['error_code'] = 1;
-              $response['status']['message']    = 'Total amount is required';
-              //$response['response']   = $this->obj;          
-              $this->displayOutput($response);
+                }
+              }
+              //update coupon
+              $this->mcommon->update('food_apply_coupon', ['user_id'=> $ap['user_id'], 'applied_status'=> 0], ['applied_status'=> 1, 'food_order_id'=> $ap['order_id']]);
+
+              $trans_array = array(
+                'food_order_id'=> $ap['order_id'],
+                'transaction_id'=> $ap['transaction_id'],
+                'source'=> 'App',
+              );
+
+              $this->mcommon->insert('food_order_transactions', $trans_array);
+
+              //clear cart after check functionality
+              $this->db->where(['user_id'=> $ap['user_id']]);
+              $this->db->delete('food_cart_items');
             }
 
-          if (empty($ap['transaction_id'])) {
-          $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'Transaction id is required';
-          //$response['response']   = $this->obj;          
-          $this->displayOutput($response);
-        }
-        if (empty($ap['payment_mode'])) {
-          $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'Payment mode is required wallet or paytm';
-          //$response['response']   = $this->obj;          
-          $this->displayOutput($response);
-        }
-        $user_id            = $ap['user_id'];
-
-
-
-        //$access_token         = $ap['access_token'];  
-        //$device_type          = $ap['device_type'];
-
-        // $access_token_result  = $this->check_access_token($access_token, $device_type,$user_id);
-
-        // if (empty($access_token_result)) {
-        //   $response['status']['error_code'] = 1;
-        //   $response['status']['message']    = 'Unauthorize Token';        
-        //   $this->displayOutput($response);
-        // }
-        //else{
-
-        /////set the booking duration
-        $movie_id="";
-            if(isset($ap['movie_id'])&&$ap['movie_id']>0)
-            {
-              $movie_id=$ap['movie_id'];
-              // if($ap['duration'] < 3)
-              // {
-              //   $response['status']['error_code'] = 1;
-              //   $response['status']['message']    = 'Duration should be atleast 3 hour for movie';         
-              //   $this->displayOutput($response);
-              // }
-            }
+            ///insert to transaction table//////////////////////////////////
+            $pck_trans_array_data   = array('transaction_id'    => $ap['transaction_id'],
+                            'reservation_id'  => $reservation_id,
+                            'user_id'         => $user_id,
+                            'added_form'        => 'front',
+                            'amount'            => $payable_amount,                  
+                            'payment_mode'      => $ap['payment_mode'],
+                            'payment_status'    => '1',
+                            'transaction_type'  =>'Reservation'
+                            );
+            $this->mcommon->insert('transaction_history',$pck_trans_array_data);
             
-                $roomsList = $this->mcommon->select('room', ['cafe_id'=> $ap['cafe_id'], 'is_delete'=> 0], '*', 'room_id');
-                if(empty($roomsList)){
-                  $response['status']['error_code']  = 1;
-                   $response['status']['message']    = 'Opp!Sorry the Cafe is already reserved for the given date & time';
-                   $this->displayOutput($response);
-                }
+            ///////////////////////////////////////////////////////////////
+            ////Notification////////////////////////////////////////////
+            //get cafe 
+            $condition_cafe['cafe_id']=$ap['cafe_id'];
+            $cafe_row=$this->mapi->getRow("master_cafe",$condition_cafe);
+            $notification_title="Reservation Confirmed";
+            $notification_des= $ap['name'].' reservation request for '.$cafe_row['cafe_name']."-".$cafe_row['cafe_place'].' on '.$reservation_date.' at '.$reservation_time.' is approved';
+            $this->add_notification($user_id,$notification_title,$notification_des,$reservation_id);
+            /** Notification ends here.............................**/
+              
 
-                $isAvailable = false;
-                foreach($roomsList as $value){
-                  $reservation_time=date('H:i',strtotime($ap["reservation_time"]));
-                  $duration=$ap['duration'];
+            //gst calculation
+            $no_of_guests = $ap['no_of_guests'];
+            $total_price  = $payable_amount;              
+            $item_price = round($total_price*100/(100+18));
+            $gst = $total_price-$item_price;
 
-                  $selectedTime             = $reservation_time;
-                  $start_time_range         = date('H:i',strtotime($selectedTime));
-                  $end_time_range           = date('H:i',strtotime("+".$duration." hours", strtotime($selectedTime)));
-
-                  $availability_status=$this->is_available($reservation_date, $value->room_id, $reservation_time, $duration);
-                  if($availability_status == 0){
-                    $isAvailable = true;
-                  }
-                }
-                 if(!$isAvailable){
-                   $response['status']['error_code']           = 1;
-                   $response['status']['message']              = 'Opp!Sorry the room is already reserved for the given date & time';
-                   $this->displayOutput($response);
-                 }
-                 else
-                {
-                    $each_price="100";
-                    //$total_price=$each_price*$ap['no_of_guests']*$ap['duration'];
-                    $total_price=$ap['total_amount'];
-                    $message="";
-                    if(isset($ap['message'])&&$ap['message']!="")
-                    {
-                      $message=$ap['message'];
-                    }
-                    $media_type="";
-                    if(isset($ap['media_type'])&&$ap['media_type']!="")
-                    {
-                      $media_type=$ap['media_type'];
-                    }
-                   //  if(intval($total_price)!=intval($ap['total_amount'])){
-                    
-                   //   $response['status']['error_code']           = 1;
-                   //   $response['status']['message']              = 'Total amount is not matching with guest and duration';
-
-                   //   $this->displayOutput($response);
-                   // }
-                   $discount_amount="0.00";
-                   $payable_amount="";
-                   $coupon_code="";
-                   if(isset($ap['discount_amount'])&&$ap['discount_amount']!="")
-                    {
-                      $discount_amount=$ap['discount_amount'];
-                    }
-                    if(isset($ap['payable_amount'])&&$ap['payable_amount']!="")
-                    {
-                      $payable_amount=$ap['payable_amount'];
-                    }
-                    if(isset($ap['coupon_code'])&&$ap['coupon_code']!="")
-                    {
-                      $coupon_code=$ap['coupon_code'];
-                    }
-                    if($payable_amount=="")
-                    {
-                      $payable_amount=$total_price;
-                    }
-
-                    //for memebership discount 
-                    $membership_discount_amount="";
-                    $membership_discount_percent="";
-                    $membership_package_id="";
-                    if(isset($ap['membership_discount_amount'])&&$ap['membership_discount_amount']!="")
-                    {
-                      $membership_discount_amount=$ap['membership_discount_amount'];
-                    }
-                    if(isset($ap['membership_discount_percent'])&&$ap['membership_discount_percent']!="")
-                    {
-                      $membership_discount_percent=$ap['membership_discount_percent'];
-                    }
-                    if(isset($ap['membership_package_id'])&&$ap['membership_package_id']!="")
-                    {
-                      $membership_package_id=$ap['membership_package_id'];
-                    }
-
-                  ////wallet balance check
-                  if($ap['payment_mode']=="wallet")
-                  {
-                    $wallet_response_status=$this->deductWalllet($user_id,$payable_amount);
-                  }
-                  //////////////////////////
-
-
-                  //reservation_no creation 
-                  $counter_details  = $this->mcommon->getRow("reservation", array('cafe_id'=>$ap['cafe_id']), 'reservation_id desc');
-                  $cafe_place       = $this->mcommon->getRow("master_cafe", array('cafe_id'=>$ap['cafe_id']))['cafe_place'];
-                  $final_cafe_place = substr($cafe_place, 0, 5);
-                  
-                  if($counter_details['cafe_id_serial_no']==''){
-                      $counter = 1;
-                  }else{
-                      $counter = $counter_details['cafe_id_serial_no'] + 1;            
-                  }
-                  $final_counter = str_pad($counter, 4, '0', STR_PAD_LEFT);        
-                  $reservation_no = $final_cafe_place.'/'.date('m').'/'.date('Y').'/'.$final_counter;
-                  //echo $reservation_no;exit;
-
-
-                    $insrtarry    = array('reservation_date'      =>  $reservation_date,
-                                          'reservation_time'      =>  $reservation_time,
-                                          'reservation_end_time'  =>  $end_time_range,
-                                          'duration'              =>  $duration,
-                                          'cafe_id'               =>  $ap['cafe_id'],
-                                          'no_of_guests'          =>  $ap['no_of_guests'],
-                                          'total_price'           =>  $total_price,
-                                          'room_id'               =>  0,  //room is is removed from list as discussed
-                                          'user_id'               =>  $user_id,
-                                          'name'                  =>  $ap['name'],
-                                          'email'                 =>  $ap['email'],
-                                          'country_code'          =>  $ap['country_code'],
-                                          'mobile'                =>  $ap['mobile'],
-                                          'movie_id'              =>  $movie_id,
-                                          'add_from'              => 'front',
-                                          'message'               => $message,
-                                          'coupon_code'           =>  $coupon_code,
-                                          'discount_amount'       =>  $discount_amount,
-                                          'membership_package_id'  => $membership_package_id,
-                                          'membership_discount_amount'  =>$membership_discount_amount,
-                                          'membership_discount_percent'  =>$membership_discount_percent,
-                                          'payable_amount'        =>$payable_amount,
-                                          'payment_mode'          =>$ap['payment_mode'],    //added after discussion
-                                          'media_type'            => $media_type,
-                                          'status'                => '1',
-                                          'reservation_type'      => 'App',
-                                          'created_by'            => $user_id,
-                                          'created_on'            => date('Y-m-d'),
-
-                                          'cafe_id_serial_no' => $final_counter,
-                                          'reservation_no' => $reservation_no
-
-                                        );
-                    /**
-                     *  Add cafe price while saving as discussed
-                     * on 10-02-2021
-                    */
-                    if(isset($ap['cafe_price'])){
-                      $insrtarry['cafe_price'] = $ap['cafe_price'];
-                    }
-
-                    $reservation_id     = $this->mapi->insert('reservation',$insrtarry);
-                    
-                    if($reservation_id)
-                    {
-                      /**
-                       * Food app option with reservation
-                      */
-                      if(isset($ap['order_id']) && !empty($ap['order_id'])){
-                        $invoice = '';
-                        $order_array = [];
-                        $order_array['food_order_status_id']= 1;   // Paid
-                        $order_array['order_status']= 1;   // Paid
-                        $order_array['status']= 1;   // Paid
-                        $order_array['invoice_url']= $invoice!=""?$invoice:null;   // Paid
-
-                        $this->mcommon->update('food_orders', ['food_order_id'=> $ap['order_id']],  $order_array);
-
-                        //insert into reservation order
-                        $this->mcommon->insert('reservation_orders', ['reservation_id'=> $reservation_id, 'order_id'=> $ap['order_id'], 'user_id'=> $user_id]);
-                        //remove hide items from list
-                        $order_items = $this->mcommon->select('food_order_items', ['food_order_id'=> $ap['order_id']], '*');
-                        foreach($order_items as $item){
-                          $availability = $this->mapi->getItemAvailabilityDetails($this->request_day, $this->request_time, $item->item_id);
-                          // $availability->price;
-                          // $availability->is_seen;
-                          if(!empty(!$availability)){
-                            if($availability->is_seen == 0){
-                              $this->db->where('food_order_item_id', $item->food_order_item_id);
-                              $this->db->delete('food_order_items');
-                            }
-                          }
-                        }
-                        //update coupon
-                        $this->mcommon->update('food_apply_coupon', ['user_id'=> $ap['user_id'], 'applied_status'=> 0], ['applied_status'=> 1, 'food_order_id'=> $ap['order_id']]);
-
-                        $trans_array = array(
-                          'food_order_id'=> $ap['order_id'],
-                          'transaction_id'=> $ap['transaction_id'],
-                          'source'=> 'App',
-                        );
-
-                        $this->mcommon->insert('food_order_transactions', $trans_array);
-
-                        //clear cart after check functionality
-                        $this->db->where(['user_id'=> $ap['user_id']]);
-                        $this->db->delete('food_cart_items');
-                      }
-
-                        ///insert to transaction table//////////////////////////////////
-                          $pck_trans_array_data   = array('transaction_id'    => $ap['transaction_id'],
-                                        'reservation_id'  => $reservation_id,
-                                        'user_id'         => $user_id,
-                                        'added_form'        => 'front',
-                                        'amount'            => $payable_amount,                  
-                                        'payment_mode'      => $ap['payment_mode'],
-                                        'payment_status'    => '1',
-                                        'transaction_type'  =>'Reservation'
-                                        );
-                      $this->mcommon->insert('transaction_history',$pck_trans_array_data);
-                        ///////////////////////////////////////////////////////////////
-                      ////Notification////////////////////////////////////////////
-                      //get cafe 
-                      $condition_cafe['cafe_id']=$ap['cafe_id'];
-                      $cafe_row=$this->mapi->getRow("master_cafe",$condition_cafe);
-                        $notification_title="Reservation Confirmed";
-                        $notification_des= $ap['name'].' reservation request for '.$cafe_row['cafe_name']."-".$cafe_row['cafe_place'].' on '.$reservation_date.' at '.$reservation_time.' is approved';
-                        $this->add_notification($user_id,$notification_title,$notification_des,$reservation_id);
-                      /** Notification ends here.............................**/
-
-                      /********************************** Send reservation details in sms *************************************************/
-
-                          // $message  = "Thank you for confirming your Reservation at ".ORGANIZATION_NAME.". Your reservation details are: \n";
-                          // $message .= "Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']."\n Date: ".$reservation_date."\n Time: ".$reservation_time."\n No. of Guests: ".$ap['no_of_guests'];
-                          // $message .= " We would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.";
-                          
-                          //$message  = "Dear ".$ap['name']." \n";
-                          //$message  .= "Thank you for confirming your Reservation at Cinecafes.".". \n"; 
-                          //$message  .= "Your reservation details are: \n";
-                          //$message  .="Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']." \n";
-                          //$message  .="Date: ".$reservation_date." \n";
-                          //$message  .="Time: ".$reservation_time." \n";
-                          //$message  .="No. of Guests: ".$ap['no_of_guests'].". \n";
-                          //$message  .= "We would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.\n";
-                          //$message  .=ORGANIZATION_NAME;
-                          //smsSend($ap['mobile'],$message);
-                          
-                          $template_id = '1207163653375517655';
-                          $message = "Dear ".$ap['name']."\n";
-                          $message .= "Thank you for confirming your Reservation at Cinecafes.\n";
-                          $message .= "Your reservation details are:\n";
-                          $message .= "Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']."\n";
-                          $message .= "Date: ".$reservation_date."\n";
-                          $message .= "Time: ".$reservation_time."\n";
-                          $message .= "No. of Guests: ".$ap['no_of_guests']."\n";
-                          $message .= "CINE CAFES";
-                          
-                          smsSend($ap['mobile'], $message, $template_id);
-                          if(ENVIRONMENT=='production')
-                          {
-                            smsSend(NANDINIMOBILE, $message, $template_id);
-                            smsSend(SUMNANMOBILE, $message, $template_id);
-                          }
-
-                        /********push notification fr reservation ************************/
-                        $title=$notification_title;
-                        $message   = "Your request for reservation is Confirmed.";
-                        $message_data = array('title' => $title,'message' => $message);
-                        $user_fcm_token_data  = $this->mcommon->getRow('device_token',array('user_id' => $user_id));
-                        //pr($user_fcm_token_data);
-                        if(!empty($user_fcm_token_data)){
-                          $member_datas  = $this->mcommon->getRow('user',array('user_id' => $user_id));
-                            if($member_datas['notification_allow_type'] == '1'){
-                                if($user_fcm_token_data['device_type'] == 1){
-                                  $this->pushnotification->send_ios_notification($user_fcm_token_data['fcm_token'], $message_data);
-                                }
-                                else{
-                                  $this->pushnotification->send_android_notification($user_fcm_token_data['fcm_token'], $message_data);
-                                }
-                            }
-
-                          }
-
-                          /*********Mail fn ...************************************************/
-                          $name=$ap['name'];
-                          $email=$ap['email'];
-                          $mail['name']       = $name;
-                          $mail['to']         = $email;    
-                          //$params['to']     = 'sreelabiswas.kundu@met-technologies.com';
-                          
-                          $mail['subject']    = ORGANIZATION_NAME.' - Reservation request received';                             
-                          $mail_temp          = file_get_contents('./global/mail/reservation_template.html');
-                          $mail_temp          = str_replace("{web_url}", base_url(), $mail_temp);
-                          $mail_temp          = str_replace("{logo}", LOGOURL, $mail_temp);
-                          $mail_temp          = str_replace("{shop_name}", ORGANIZATION_NAME, $mail_temp);  
-                          $mail_temp          = str_replace("{name}", $mail['name'], $mail_temp);
-                                  
-                          $mail_temp          = str_replace("{current_year}", date('Y'), $mail_temp); 
-
-                          
-                          $mail_temp                = str_replace("{cafe_name}", $cafe_row['cafe_name']."-".$cafe_row['cafe_place'], $mail_temp);
-                          $mail_temp                = str_replace("{reservation_date}", $ap['reservation_date'], $mail_temp);
-                          $mail_temp                = str_replace("{reservation_time}", $ap['reservation_time'], $mail_temp);
-                          $mail_temp                = str_replace("{no_of_guests}", $ap['no_of_guests'], $mail_temp);
-                          $mail_temp                = str_replace("{reservation_status}", "Confirmed", $mail_temp);
-                          //echo $mail_temp; die;
-                          $mail['message']    = $mail_temp;
-                          $mail['from_email']    = FROM_EMAIL;
-                          $mail['from_name']    = ORGANIZATION_NAME;
-                          sendmail($mail); 
-
-                          if(ENVIRONMENT=='production')
-                          {
-                            // /************* Send Reservation details to the Admin ***************/
-                            $admin_cond               = array('role_id' => '1','status' =>'1');
-                            $admin_data               = $this->mcommon->getRow('user',$admin_cond);
-                            if(!empty($admin_data)){
-                              $admin_email            = $admin_data['email'];
-                              $admin_name             = $admin_data['name'];
-                            }
-                            else{
-                              $admin_email            = 'support@cinecafe.in';
-                              $admin_name             = 'admin';
-                            }     
-                            $mail['name']             = $admin_name;
-                            $mail['to']               = $admin_email;      
-                            $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
-                            sendmail($mail);
-                            
-                            // /************ Send Reservation details to NANDINI  ***************/
-                            
-                            $mail['name']             = NANDININAME;
-                            $mail['to']               = NANDINIEMAIL;      
-                            $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
-                            sendmail($mail);
-                            
-                            // /************ Send Reservation details to Sharad ***************/
-                
-                            $mail['name']             = 'Sharad';
-                            $mail['to']               = 'sharad@cinecafes.com';      
-                            $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
-                            sendmail($mail);
-                            
-                            // /************ Send Reservation details to respective cafe managers  ***************/
-                            if($ap['cafe_id']==57)
-                            {
-                              $mail['name']             = 'Manager Sec5';
-                              $mail['to']               = 'sec5@cinecafes.com';   
-                            }
-                               
-                            $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
-                            sendmail($mail);
-                          }
-                          /*************** mail ends*******************************************/ 
-                          /////////////////////////////////////////////////////////////////////////////
-                          $response['status']['error_code']           = 0;
-                          $response['status']['message']              = 'Your booking is confirmed.';
-                          $response['result']['reservation_id']       = $reservation_id;
-                      }
-                      else{
-                        $response['status']['error_code']           = 1;
-                        $response['status']['message']              = 'reservation cannot be saved';
-                      }                
+            $template_id = '1207163653375517655';
+            $message = "Dear ".$ap['name']."\n";
+            $message .= "Thank you for confirming your Reservation at Cinecafes.\n";
+            $message .= "Your reservation details are:\n";
+            $message .= "Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']."\n";
+            $message .= "Date: ".$reservation_date."\n";
+            $message .= "Time: ".$reservation_time."\n";
+            $message .= "No. of Guests: ".$ap['no_of_guests']."\n";
+            $message .= "Item Amount : INR ".$item_price."\n"; $message .= "No. of Guests: ".$this->input->post('no_of_guests')."\n";             
+            $message .= "No. of Hours: ".$ap['duration']."\n";             
+            $message .= "Total Amount Inclusive of GST (18%): INR ".$total_price."\n";
+            $message .= "Item Amount : INR ".$item_price."\n";
+            $message .= "GST Amount: INR ".$gst."\n";
+            $message .= "CGST Amount: INR ".($gst/2)."\n";
+            $message .= "SGST Amount: INR ".($gst/2)."\n";
+            $message .= "CINE CAFES";
+            
+            smsSend($ap['mobile'], $message, $template_id);
+            if(ENVIRONMENT=='production')
+            {
+              smsSend(NANDINIMOBILE, $message, $template_id);
+              smsSend(SUMNANMOBILE, $message, $template_id);
             }
-        //}
+
+            /********push notification fr reservation ************************/
+            $title=$notification_title;
+            $message   = "Your request for reservation is Confirmed.";
+            $message_data = array('title' => $title,'message' => $message);
+            $user_fcm_token_data  = $this->mcommon->getRow('device_token',array('user_id' => $user_id));
+            //pr($user_fcm_token_data);
+            if(!empty($user_fcm_token_data)){
+              $member_datas  = $this->mcommon->getRow('user',array('user_id' => $user_id));
+                if($member_datas['notification_allow_type'] == '1'){
+                    if($user_fcm_token_data['device_type'] == 1){
+                      $this->pushnotification->send_ios_notification($user_fcm_token_data['fcm_token'], $message_data);
+                    }
+                    else{
+                      $this->pushnotification->send_android_notification($user_fcm_token_data['fcm_token'], $message_data);
+                    }
+                }
+
+            }
+
+            /*********Mail fn ...************************************************/
+            $name=$ap['name'];
+            $email=$ap['email'];
+            $mail['name']       = $name;
+            $mail['to']         = $email;    
+            //$params['to']     = 'sreelabiswas.kundu@met-technologies.com';
+            
+            $mail['subject']    = ORGANIZATION_NAME.' - Reservation request received';                             
+            $mail_temp          = file_get_contents('./global/mail/reservation_template.html');
+            $mail_temp          = str_replace("{web_url}", base_url(), $mail_temp);
+            $mail_temp          = str_replace("{logo}", LOGOURL, $mail_temp);
+            $mail_temp          = str_replace("{shop_name}", ORGANIZATION_NAME, $mail_temp);  
+            $mail_temp          = str_replace("{name}", $mail['name'], $mail_temp);
+
+            $mail_temp          = str_replace("{duration}", $ap['duration'], $mail_temp);
+            $mail_temp          = str_replace("{total_price}", number_format((float)$total_price, 2, '.', ''), $mail_temp);
+            $mail_temp          = str_replace("{item_price}", number_format((float)$item_price, 2, '.', ''), $mail_temp);
+            $mail_temp          = str_replace("{gst}", number_format((float)$gst, 2, '.', ''), $mail_temp);
+            $mail_temp          = str_replace("{cgst}", number_format((float)($gst/2), 2, '.', ''), $mail_temp);
+            $mail_temp          = str_replace("{sgst}", number_format((float)($gst/2), 2, '.', ''), $mail_temp);
+                              
+            $mail_temp          = str_replace("{current_year}", date('Y'), $mail_temp); 
+            
+            $mail_temp                = str_replace("{cafe_name}", $cafe_row['cafe_name']."-".$cafe_row['cafe_place'], $mail_temp);
+            $mail_temp                = str_replace("{reservation_date}", $ap['reservation_date'], $mail_temp);
+            $mail_temp                = str_replace("{reservation_time}", $ap['reservation_time'], $mail_temp);
+            $mail_temp                = str_replace("{no_of_guests}", $ap['no_of_guests'], $mail_temp);
+            $mail_temp                = str_replace("{reservation_status}", "Confirmed", $mail_temp);
+            //echo $mail_temp; die;
+            $mail['message']    = $mail_temp;
+            $mail['from_email']    = FROM_EMAIL;
+            $mail['from_name']    = ORGANIZATION_NAME;
+            sendmail($mail); 
+
+            if(ENVIRONMENT=='production')
+            {
+              // /************* Send Reservation details to the Admin ***************/
+              $admin_cond               = array('role_id' => '1','status' =>'1');
+              $admin_data               = $this->mcommon->getRow('user',$admin_cond);
+              if(!empty($admin_data)){
+                $admin_email            = $admin_data['email'];
+                $admin_name             = $admin_data['name'];
+              }
+              else{
+                $admin_email            = 'support@cinecafe.in';
+                $admin_name             = 'admin';
+              }     
+              $mail['name']             = $admin_name;
+              $mail['to']               = $admin_email;      
+              $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+              sendmail($mail);
+              
+              // /************ Send Reservation details to NANDINI  ***************/
+              
+              $mail['name']             = NANDININAME;
+              $mail['to']               = NANDINIEMAIL;      
+              $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+              sendmail($mail);
+              
+              // /************ Send Reservation details to Sharad ***************/
+  
+              $mail['name']             = 'Sharad';
+              $mail['to']               = 'sharad@cinecafes.com';      
+              $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+              sendmail($mail);
+              
+              // /************ Send Reservation details to respective cafe managers  ***************/
+              if($ap['cafe_id']==57)
+              {
+                $mail['name']             = 'Manager Sec5';
+                $mail['to']               = 'sec5@cinecafes.com';   
+              }
+                  
+              $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+              sendmail($mail);
+            }
+            /*************** mail ends*******************************************/ 
+            /////////////////////////////////////////////////////////////////////////////
+            $response['status']['error_code']           = 0;
+            $response['status']['message']              = 'Your booking is confirmed.';
+            $response['result']['reservation_id']       = $reservation_id;
+          }
+          else{
+            $response['status']['error_code']           = 1;
+            $response['status']['message']              = 'reservation cannot be saved';
+          }                
+      //}
+
       }
       else {
         $response['status']['error_code'] = 1;
         $response['status']['message']    = 'Please fill up all required fields.';
       }
     } else {
-        $response['status']['error_code'] = 1;
-        $response['status']['message']    = 'Wrong http method type.';
-        //$response['response']   = $this->obj;      
+      $response['status']['error_code'] = 1;
+      $response['status']['message']    = 'Wrong http method type.';        
     }
     $this->displayOutput($response);
-
   }
 
- /////availability checking api
-   public function availablility_chk()
+  /////availability checking api  
+  public function availablility_chk()
   {
     $result  = array();
     $ap=json_decode(file_get_contents('php://input'), true);
@@ -2963,94 +2914,76 @@ class Api extends CI_Controller
         
         if (empty($ap['no_of_guests'])) {
           $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'No. of guests is required';
-          //$response['response']   = $this->obj;          
+          $response['status']['message']    = 'No. of guests is required';          
           $this->displayOutput($response);
-        }        
+        }  
+
         if (empty($ap['reservation_date'])) {
           $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'Reservation date is required';
-          //$response['response']   = $this->obj;          
+          $response['status']['message']    = 'Reservation date is required';          
           $this->displayOutput($response);
         }
+
         if (empty($ap['reservation_time'])) {
           $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'Reservation time  is required';
-          //$response['response']   = $this->obj;          
+          $response['status']['message']    = 'Reservation time  is required';        
           $this->displayOutput($response);
         }       
         
         if (empty($ap['duration'])) {
-              $response['status']['error_code'] = 1;
-              $response['status']['message']    = 'duration is required';
-              //$response['response']   = $this->obj;          
-              $this->displayOutput($response);
-            } 
+          $response['status']['error_code'] = 1;
+          $response['status']['message']    = 'duration is required';          
+          $this->displayOutput($response);
+        } 
             
-            if (empty($ap['room_id'])) {
-              $response['status']['error_code'] = 1;
-              $response['status']['message']    = 'Room id is required';
-              //$response['response']   = $this->obj;          
-              $this->displayOutput($response);
-            }
+        if (empty($ap['room_id'])) {
+          $response['status']['error_code'] = 1;
+          $response['status']['message']    = 'Room id is required';          
+          $this->displayOutput($response);
+        }
 
-            if(!empty($ap['reservation_date'])) {
+        if(!empty($ap['reservation_date'])) {
             $date=$ap['reservation_date'];
             $format="d/m/Y";
+         
+            //chk if its past date then reject request
+            $curDateTime = date("Y-m-d H:i:s");
+            //$reservation_date_time = date("Y-m-d H:i:s", strtotime($reservation_date." ".$ap['reservation_time']));
+            $reservation_date = date("Y-m-d", strtotime(str_replace('/', '-', $date)));
+            $reservation_date_time = $reservation_date." ".date('H:i:s', strtotime($ap['reservation_time']));
+            //echo $curDateTime.'>='.$reservation_date_time; die;
+            if($curDateTime>=$reservation_date_time)
+            {
+              $response['status']['error_code'] = 1;
+              $response['status']['message']    = 'Please select some date time in future';
+      
+              $this->displayOutput($response);
+            }               
+        }       
+            
+        $room_id=$ap['room_id'];
+        $reservation_time=DATE('H:i:s',strtotime($ap["reservation_time"]));
+        $duration=$ap['duration'];
 
-            // if(!validateDate($date,$format))
-            // {
-            //   $response['status']['error_code'] = 1;
-            //         $response['status']['message']    = 'Date format is wrong.It should be d/m/y';
-             
-            //         $this->displayOutput($response);
-            // } 
-            //else {
-              //   $dateArr=explode("/",$date) ;
-              //  echo $reservation_date=$dateArr[2]."-".$dateArr[1]."-".$dateArr[0]; 
-                
-                //chk if its past date then reject request
-                $curDateTime = date("Y-m-d H:i:s");
-                //$reservation_date_time = date("Y-m-d H:i:s", strtotime($reservation_date." ".$ap['reservation_time']));
-                $reservation_date = date("Y-m-d", strtotime(str_replace('/', '-', $date)));
-                $reservation_date_time = $reservation_date." ".date('H:i:s', strtotime($ap['reservation_time']));
-                //echo $curDateTime.'>='.$reservation_date_time; die;
-                if($curDateTime>=$reservation_date_time)
-                  {
-                    $response['status']['error_code'] = 1;
-                       $response['status']['message']    = 'Please select some date time in future';
-               
-                       $this->displayOutput($response);
-                  }
-                 // }              
-                //}
-          }       
-     
-       
-                $room_id=$ap['room_id'];
-                $reservation_time=DATE('H:i:s',strtotime($ap["reservation_time"]));
-                $duration=$ap['duration'];
+        $selectedTime             = $reservation_time;
+        $start_time_range         = date('H:i:s',strtotime($selectedTime));
+        $end_time_range           = date('H:i:s',strtotime("+".$duration." hours", strtotime($selectedTime)));
+        $availability_status=$this->is_available($reservation_date,$room_id,$reservation_time,$duration);
+        
+          if($availability_status!=0){
+            
+            $response['status']['error_code']           = 1;
+            $response['status']['message']              = 'OOPs! Sorry the room is already reserved for the given date & time';
 
-                $selectedTime             = $reservation_time;
-                $start_time_range         = date('H:i:s',strtotime($selectedTime));
-                $end_time_range           = date('H:i:s',strtotime("+".$duration." hours", strtotime($selectedTime)));
-                $availability_status=$this->is_available($reservation_date,$room_id,$reservation_time,$duration);
-               
-                 if($availability_status!=0){
-                    
-                   $response['status']['error_code']           = 1;
-                   $response['status']['message']              = 'OOPs! Sorry the room is already reserved for the given date & time';
+            $this->displayOutput($response);
+          }
+          else
+          {
+            $response['status']['error_code']           = 0;
+            $response['status']['message']              = 'Room is available for date time';
 
-                   $this->displayOutput($response);
-                 }
-                 else
-                 {
-                    $response['status']['error_code']           = 0;
-                    $response['status']['message']              = 'Room is available for date time';
-
-                   $this->displayOutput($response);
-                 }
-               
+            $this->displayOutput($response);
+          }               
       }
       else {
         $response['status']['error_code'] = 1;
@@ -3064,6 +2997,638 @@ class Api extends CI_Controller
     $this->displayOutput($response);
 
   }
+
+  
+
+  // do reservation
+//   public function doReservation_bk()
+//   {
+//     $result  = array();
+//     $ap=json_decode(file_get_contents('php://input'), true);
+//     //print_r($ap); die;
+//     if($this->checkHttpMethods($this->http_methods[0])){
+//       if(sizeof($ap)) {
+//         if (empty($ap['name'])) {
+//           $response['status']['error_code'] = 1;
+//           $response['status']['message']    = 'Name is required';
+//           //$response['response']   = $this->obj;
+//           $this->displayOutput($response);
+//         }
+   
+//         if (empty($ap['email'])) {
+//           $response['status']['error_code'] = 1;
+//           $response['status']['message']    = 'Email field is required';
+//           //$response['response']   = $this->obj;
+          
+//           $this->displayOutput($response);
+//         }
+//         if (empty($ap['mobile'])) {
+//           $response['status']['error_code'] = 1;
+//           $response['status']['message']    = 'Phone no. is required';
+//           //$response['response']   = $this->obj;          
+//           $this->displayOutput($response);
+//         }
+//         if (empty($ap['no_of_guests'])) {
+//           $response['status']['error_code'] = 1;
+//           $response['status']['message']    = 'No. of guests is required';
+//           //$response['response']   = $this->obj;          
+//           $this->displayOutput($response);
+//         }        
+//         if (empty($ap['reservation_date'])) {
+//           $response['status']['error_code'] = 1;
+//           $response['status']['message']    = 'Reservation date is required';
+//           //$response['response']   = $this->obj;          
+//           $this->displayOutput($response);
+//         }
+//         if (empty($ap['reservation_time'])) {
+//           $response['status']['error_code'] = 1;
+//           $response['status']['message']    = 'Reservation time  is required';
+//           //$response['response']   = $this->obj;          
+//           $this->displayOutput($response);
+//         }       
+//         if (empty($ap['cafe_id'])) {
+//           $response['status']['error_code'] = 1;
+//           $response['status']['message']    = 'cafe id is required';
+//           //$response['response']   = $this->obj;          
+//           $this->displayOutput($response);
+//         }
+//         if (empty($ap['duration'])) {
+//               $response['status']['error_code'] = 1;
+//               $response['status']['message']    = 'duration is required';
+//               //$response['response']   = $this->obj;          
+//               $this->displayOutput($response);
+//             } 
+
+//             /*
+//               ***************** make room_is as potional as discussed *********************
+//               if (empty($ap['room_id'])) {
+//                 $response['status']['error_code'] = 1;
+//                 $response['status']['message']    = 'Room id is required';
+//                 //$response['response']   = $this->obj;          
+//                 $this->displayOutput($response);
+//               }
+//             */
+//             if(!empty($ap['reservation_date'])) {
+//               $date=$ap['reservation_date'];
+//               $format="d/m/Y";
+
+//               // if(!validateDate($date,$format))
+//               // {
+//               //   $response['status']['error_code'] = 1;
+//               //         $response['status']['message']    = 'Date format is wrong.It should be d/m/y';
+              
+//               //         $this->displayOutput($response);
+//               // } 
+//               //else {
+//                 $dateArr=explode("/",$date) ;
+//                 $reservation_date=$dateArr[2]."-".$dateArr[1]."-".$dateArr[0]; 
+
+//                 //chk if its past date then reject request
+//                 $curDateTime = date("Y-m-d H:i");
+//                 $reservation_date_time = date("Y-m-d H:i", strtotime($reservation_date." ".$ap['reservation_time']));
+//                   if($curDateTime>=$reservation_date_time)
+//                   {
+//                     $response['status']['error_code'] = 1;
+//                        $response['status']['message']    = 'Please select some date time in future';
+               
+//                        $this->displayOutput($response);
+//                   }
+//                  // }              
+//                 //}
+//           }       
+//         if (empty($ap['user_id'])) {
+//           $response['status']['error_code'] = 1;
+//           $response['status']['message']    = 'user id is required';
+//           //$response['response']   = $this->obj;          
+//           $this->displayOutput($response);
+//         }
+//         if (empty($ap['total_amount'])) {
+//               $response['status']['error_code'] = 1;
+//               $response['status']['message']    = 'Total amount is required';
+//               //$response['response']   = $this->obj;          
+//               $this->displayOutput($response);
+//             }
+
+//           if (empty($ap['transaction_id'])) {
+//           $response['status']['error_code'] = 1;
+//           $response['status']['message']    = 'Transaction id is required';
+//           //$response['response']   = $this->obj;          
+//           $this->displayOutput($response);
+//         }
+//         if (empty($ap['payment_mode'])) {
+//           $response['status']['error_code'] = 1;
+//           $response['status']['message']    = 'Payment mode is required wallet or paytm';
+//           //$response['response']   = $this->obj;          
+//           $this->displayOutput($response);
+//         }
+//         $user_id            = $ap['user_id'];
+
+
+
+//         //$access_token         = $ap['access_token'];  
+//         //$device_type          = $ap['device_type'];
+
+//         // $access_token_result  = $this->check_access_token($access_token, $device_type,$user_id);
+
+//         // if (empty($access_token_result)) {
+//         //   $response['status']['error_code'] = 1;
+//         //   $response['status']['message']    = 'Unauthorize Token';        
+//         //   $this->displayOutput($response);
+//         // }
+//         //else{
+
+//         /////set the booking duration
+//         $movie_id="";
+//             if(isset($ap['movie_id'])&&$ap['movie_id']>0)
+//             {
+//               $movie_id=$ap['movie_id'];
+//               // if($ap['duration'] < 3)
+//               // {
+//               //   $response['status']['error_code'] = 1;
+//               //   $response['status']['message']    = 'Duration should be atleast 3 hour for movie';         
+//               //   $this->displayOutput($response);
+//               // }
+//             }
+            
+//                 $roomsList = $this->mcommon->select('room', ['cafe_id'=> $ap['cafe_id'], 'is_delete'=> 0], '*', 'room_id');
+//                 if(empty($roomsList)){
+//                   $response['status']['error_code']  = 1;
+//                    $response['status']['message']    = 'Opp!Sorry the Cafe is already reserved for the given date & time';
+//                    $this->displayOutput($response);
+//                 }
+
+//                 $isAvailable = false;
+//                 foreach($roomsList as $value){
+//                   $reservation_time=date('H:i',strtotime($ap["reservation_time"]));
+//                   $duration=$ap['duration'];
+
+//                   $selectedTime             = $reservation_time;
+//                   $start_time_range         = date('H:i',strtotime($selectedTime));
+//                   $end_time_range           = date('H:i',strtotime("+".$duration." hours", strtotime($selectedTime)));
+
+//                   $availability_status=$this->is_available($reservation_date, $value->room_id, $reservation_time, $duration);
+//                   if($availability_status == 0){
+//                     $isAvailable = true;
+//                   }
+//                 }
+//                  if(!$isAvailable){
+//                    $response['status']['error_code']           = 1;
+//                    $response['status']['message']              = 'Opp!Sorry the room is already reserved for the given date & time';
+//                    $this->displayOutput($response);
+//                  }
+//                  else
+//                 {
+//                     $each_price="100";
+//                     //$total_price=$each_price*$ap['no_of_guests']*$ap['duration'];
+//                     $total_price=$ap['total_amount'];
+//                     $message="";
+//                     if(isset($ap['message'])&&$ap['message']!="")
+//                     {
+//                       $message=$ap['message'];
+//                     }
+//                     $media_type="";
+//                     if(isset($ap['media_type'])&&$ap['media_type']!="")
+//                     {
+//                       $media_type=$ap['media_type'];
+//                     }
+//                    //  if(intval($total_price)!=intval($ap['total_amount'])){
+                    
+//                    //   $response['status']['error_code']           = 1;
+//                    //   $response['status']['message']              = 'Total amount is not matching with guest and duration';
+
+//                    //   $this->displayOutput($response);
+//                    // }
+//                    $discount_amount="0.00";
+//                    $payable_amount="";
+//                    $coupon_code="";
+//                    if(isset($ap['discount_amount'])&&$ap['discount_amount']!="")
+//                     {
+//                       $discount_amount=$ap['discount_amount'];
+//                     }
+//                     if(isset($ap['payable_amount'])&&$ap['payable_amount']!="")
+//                     {
+//                       $payable_amount=$ap['payable_amount'];
+//                     }
+//                     if(isset($ap['coupon_code'])&&$ap['coupon_code']!="")
+//                     {
+//                       $coupon_code=$ap['coupon_code'];
+//                     }
+//                     if($payable_amount=="")
+//                     {
+//                       $payable_amount=$total_price;
+//                     }
+
+//                     //for memebership discount 
+//                     $membership_discount_amount="";
+//                     $membership_discount_percent="";
+//                     $membership_package_id="";
+//                     if(isset($ap['membership_discount_amount'])&&$ap['membership_discount_amount']!="")
+//                     {
+//                       $membership_discount_amount=$ap['membership_discount_amount'];
+//                     }
+//                     if(isset($ap['membership_discount_percent'])&&$ap['membership_discount_percent']!="")
+//                     {
+//                       $membership_discount_percent=$ap['membership_discount_percent'];
+//                     }
+//                     if(isset($ap['membership_package_id'])&&$ap['membership_package_id']!="")
+//                     {
+//                       $membership_package_id=$ap['membership_package_id'];
+//                     }
+
+//                   ////wallet balance check
+//                   if($ap['payment_mode']=="wallet")
+//                   {
+//                     $wallet_response_status=$this->deductWalllet($user_id,$payable_amount);
+//                   }
+//                   //////////////////////////
+
+
+//                   //reservation_no creation 
+//                   $counter_details  = $this->mcommon->getRow("reservation", array('cafe_id'=>$ap['cafe_id']), 'reservation_id desc');
+//                   $cafe_place       = $this->mcommon->getRow("master_cafe", array('cafe_id'=>$ap['cafe_id']))['cafe_place'];
+//                   $final_cafe_place = substr($cafe_place, 0, 5);
+                  
+//                   if($counter_details['cafe_id_serial_no']==''){
+//                       $counter = 1;
+//                   }else{
+//                       $counter = $counter_details['cafe_id_serial_no'] + 1;            
+//                   }
+//                   $final_counter = str_pad($counter, 4, '0', STR_PAD_LEFT);        
+//                   $reservation_no = $final_cafe_place.'/'.date('m').'/'.date('Y').'/'.$final_counter;
+//                   //echo $reservation_no;exit;
+
+
+//                     $insrtarry    = array('reservation_date'      =>  $reservation_date,
+//                                           'reservation_time'      =>  $reservation_time,
+//                                           'reservation_end_time'  =>  $end_time_range,
+//                                           'duration'              =>  $duration,
+//                                           'cafe_id'               =>  $ap['cafe_id'],
+//                                           'no_of_guests'          =>  $ap['no_of_guests'],
+//                                           'total_price'           =>  $total_price,
+//                                           'room_id'               =>  0,  //room is is removed from list as discussed
+//                                           'user_id'               =>  $user_id,
+//                                           'name'                  =>  $ap['name'],
+//                                           'email'                 =>  $ap['email'],
+//                                           'country_code'          =>  $ap['country_code'],
+//                                           'mobile'                =>  $ap['mobile'],
+//                                           'movie_id'              =>  $movie_id,
+//                                           'add_from'              => 'front',
+//                                           'message'               => $message,
+//                                           'coupon_code'           =>  $coupon_code,
+//                                           'discount_amount'       =>  $discount_amount,
+//                                           'membership_package_id'  => $membership_package_id,
+//                                           'membership_discount_amount'  =>$membership_discount_amount,
+//                                           'membership_discount_percent'  =>$membership_discount_percent,
+//                                           'payable_amount'        =>$payable_amount,
+//                                           'payment_mode'          =>$ap['payment_mode'],    //added after discussion
+//                                           'media_type'            => $media_type,
+//                                           'status'                => '1',
+//                                           'reservation_type'      => 'App',
+//                                           'created_by'            => $user_id,
+//                                           'created_on'            => date('Y-m-d'),
+
+//                                           'cafe_id_serial_no' => $final_counter,
+//                                           'reservation_no' => $reservation_no
+
+//                                         );
+//                     /**
+//                      *  Add cafe price while saving as discussed
+//                      * on 10-02-2021
+//                     */
+//                     if(isset($ap['cafe_price'])){
+//                       $insrtarry['cafe_price'] = $ap['cafe_price'];
+//                     }
+
+//                     $reservation_id     = $this->mapi->insert('reservation',$insrtarry);
+                    
+//                     if($reservation_id)
+//                     {
+//                       /**
+//                        * Food app option with reservation
+//                       */
+//                       if(isset($ap['order_id']) && !empty($ap['order_id'])){
+//                         $invoice = '';
+//                         $order_array = [];
+//                         $order_array['food_order_status_id']= 1;   // Paid
+//                         $order_array['order_status']= 1;   // Paid
+//                         $order_array['status']= 1;   // Paid
+//                         $order_array['invoice_url']= $invoice!=""?$invoice:null;   // Paid
+
+//                         $this->mcommon->update('food_orders', ['food_order_id'=> $ap['order_id']],  $order_array);
+
+//                         //insert into reservation order
+//                         $this->mcommon->insert('reservation_orders', ['reservation_id'=> $reservation_id, 'order_id'=> $ap['order_id'], 'user_id'=> $user_id]);
+//                         //remove hide items from list
+//                         $order_items = $this->mcommon->select('food_order_items', ['food_order_id'=> $ap['order_id']], '*');
+//                         foreach($order_items as $item){
+//                           $availability = $this->mapi->getItemAvailabilityDetails($this->request_day, $this->request_time, $item->item_id);
+//                           // $availability->price;
+//                           // $availability->is_seen;
+//                           if(!empty(!$availability)){
+//                             if($availability->is_seen == 0){
+//                               $this->db->where('food_order_item_id', $item->food_order_item_id);
+//                               $this->db->delete('food_order_items');
+//                             }
+//                           }
+//                         }
+//                         //update coupon
+//                         $this->mcommon->update('food_apply_coupon', ['user_id'=> $ap['user_id'], 'applied_status'=> 0], ['applied_status'=> 1, 'food_order_id'=> $ap['order_id']]);
+
+//                         $trans_array = array(
+//                           'food_order_id'=> $ap['order_id'],
+//                           'transaction_id'=> $ap['transaction_id'],
+//                           'source'=> 'App',
+//                         );
+
+//                         $this->mcommon->insert('food_order_transactions', $trans_array);
+
+//                         //clear cart after check functionality
+//                         $this->db->where(['user_id'=> $ap['user_id']]);
+//                         $this->db->delete('food_cart_items');
+//                       }
+
+//                         ///insert to transaction table//////////////////////////////////
+//                           $pck_trans_array_data   = array('transaction_id'    => $ap['transaction_id'],
+//                                         'reservation_id'  => $reservation_id,
+//                                         'user_id'         => $user_id,
+//                                         'added_form'        => 'front',
+//                                         'amount'            => $payable_amount,                  
+//                                         'payment_mode'      => $ap['payment_mode'],
+//                                         'payment_status'    => '1',
+//                                         'transaction_type'  =>'Reservation'
+//                                         );
+//                       $this->mcommon->insert('transaction_history',$pck_trans_array_data);
+//                         ///////////////////////////////////////////////////////////////
+//                       ////Notification////////////////////////////////////////////
+//                       //get cafe 
+//                       $condition_cafe['cafe_id']=$ap['cafe_id'];
+//                       $cafe_row=$this->mapi->getRow("master_cafe",$condition_cafe);
+//                         $notification_title="Reservation Confirmed";
+//                         $notification_des= $ap['name'].' reservation request for '.$cafe_row['cafe_name']."-".$cafe_row['cafe_place'].' on '.$reservation_date.' at '.$reservation_time.' is approved';
+//                         $this->add_notification($user_id,$notification_title,$notification_des,$reservation_id);
+//                       /** Notification ends here.............................**/
+
+//                       /********************************** Send reservation details in sms *************************************************/
+
+//                           // $message  = "Thank you for confirming your Reservation at ".ORGANIZATION_NAME.". Your reservation details are: \n";
+//                           // $message .= "Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']."\n Date: ".$reservation_date."\n Time: ".$reservation_time."\n No. of Guests: ".$ap['no_of_guests'];
+//                           // $message .= " We would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.";
+                          
+//                           //$message  = "Dear ".$ap['name']." \n";
+//                           //$message  .= "Thank you for confirming your Reservation at Cinecafes.".". \n"; 
+//                           //$message  .= "Your reservation details are: \n";
+//                           //$message  .="Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']." \n";
+//                           //$message  .="Date: ".$reservation_date." \n";
+//                           //$message  .="Time: ".$reservation_time." \n";
+//                           //$message  .="No. of Guests: ".$ap['no_of_guests'].". \n";
+//                           //$message  .= "We would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.\n";
+//                           //$message  .=ORGANIZATION_NAME;
+//                           //smsSend($ap['mobile'],$message);
+                          
+//                           $template_id = '1207163653375517655';
+//                           $message = "Dear ".$ap['name']."\n";
+//                           $message .= "Thank you for confirming your Reservation at Cinecafes.\n";
+//                           $message .= "Your reservation details are:\n";
+//                           $message .= "Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']."\n";
+//                           $message .= "Date: ".$reservation_date."\n";
+//                           $message .= "Time: ".$reservation_time."\n";
+//                           $message .= "No. of Guests: ".$ap['no_of_guests']."\n";
+//                           $message .= "CINE CAFES";
+                          
+//                           smsSend($ap['mobile'], $message, $template_id);
+//                           if(ENVIRONMENT=='production')
+//                           {
+//                             smsSend(NANDINIMOBILE, $message, $template_id);
+//                             smsSend(SUMNANMOBILE, $message, $template_id);
+//                           }
+
+//                         /********push notification fr reservation ************************/
+//                         $title=$notification_title;
+//                         $message   = "Your request for reservation is Confirmed.";
+//                         $message_data = array('title' => $title,'message' => $message);
+//                         $user_fcm_token_data  = $this->mcommon->getRow('device_token',array('user_id' => $user_id));
+//                         //pr($user_fcm_token_data);
+//                         if(!empty($user_fcm_token_data)){
+//                           $member_datas  = $this->mcommon->getRow('user',array('user_id' => $user_id));
+//                             if($member_datas['notification_allow_type'] == '1'){
+//                                 if($user_fcm_token_data['device_type'] == 1){
+//                                   $this->pushnotification->send_ios_notification($user_fcm_token_data['fcm_token'], $message_data);
+//                                 }
+//                                 else{
+//                                   $this->pushnotification->send_android_notification($user_fcm_token_data['fcm_token'], $message_data);
+//                                 }
+//                             }
+
+//                           }
+
+//                           /*********Mail fn ...************************************************/
+//                           $name=$ap['name'];
+//                           $email=$ap['email'];
+//                           $mail['name']       = $name;
+//                           $mail['to']         = $email;    
+//                           //$params['to']     = 'sreelabiswas.kundu@met-technologies.com';
+                          
+//                           $mail['subject']    = ORGANIZATION_NAME.' - Reservation request received';                             
+//                           $mail_temp          = file_get_contents('./global/mail/reservation_template.html');
+//                           $mail_temp          = str_replace("{web_url}", base_url(), $mail_temp);
+//                           $mail_temp          = str_replace("{logo}", LOGOURL, $mail_temp);
+//                           $mail_temp          = str_replace("{shop_name}", ORGANIZATION_NAME, $mail_temp);  
+//                           $mail_temp          = str_replace("{name}", $mail['name'], $mail_temp);
+                                  
+//                           $mail_temp          = str_replace("{current_year}", date('Y'), $mail_temp); 
+
+                          
+//                           $mail_temp                = str_replace("{cafe_name}", $cafe_row['cafe_name']."-".$cafe_row['cafe_place'], $mail_temp);
+//                           $mail_temp                = str_replace("{reservation_date}", $ap['reservation_date'], $mail_temp);
+//                           $mail_temp                = str_replace("{reservation_time}", $ap['reservation_time'], $mail_temp);
+//                           $mail_temp                = str_replace("{no_of_guests}", $ap['no_of_guests'], $mail_temp);
+//                           $mail_temp                = str_replace("{reservation_status}", "Confirmed", $mail_temp);
+//                           //echo $mail_temp; die;
+//                           $mail['message']    = $mail_temp;
+//                           $mail['from_email']    = FROM_EMAIL;
+//                           $mail['from_name']    = ORGANIZATION_NAME;
+//                           sendmail($mail); 
+
+//                           if(ENVIRONMENT=='production')
+//                           {
+//                             // /************* Send Reservation details to the Admin ***************/
+//                             $admin_cond               = array('role_id' => '1','status' =>'1');
+//                             $admin_data               = $this->mcommon->getRow('user',$admin_cond);
+//                             if(!empty($admin_data)){
+//                               $admin_email            = $admin_data['email'];
+//                               $admin_name             = $admin_data['name'];
+//                             }
+//                             else{
+//                               $admin_email            = 'support@cinecafe.in';
+//                               $admin_name             = 'admin';
+//                             }     
+//                             $mail['name']             = $admin_name;
+//                             $mail['to']               = $admin_email;      
+//                             $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+//                             sendmail($mail);
+                            
+//                             // /************ Send Reservation details to NANDINI  ***************/
+                            
+//                             $mail['name']             = NANDININAME;
+//                             $mail['to']               = NANDINIEMAIL;      
+//                             $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+//                             sendmail($mail);
+                            
+//                             // /************ Send Reservation details to Sharad ***************/
+                
+//                             $mail['name']             = 'Sharad';
+//                             $mail['to']               = 'sharad@cinecafes.com';      
+//                             $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+//                             sendmail($mail);
+                            
+//                             // /************ Send Reservation details to respective cafe managers  ***************/
+//                             if($ap['cafe_id']==57)
+//                             {
+//                               $mail['name']             = 'Manager Sec5';
+//                               $mail['to']               = 'sec5@cinecafes.com';   
+//                             }
+                               
+//                             $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
+//                             sendmail($mail);
+//                           }
+//                           /*************** mail ends*******************************************/ 
+//                           /////////////////////////////////////////////////////////////////////////////
+//                           $response['status']['error_code']           = 0;
+//                           $response['status']['message']              = 'Your booking is confirmed.';
+//                           $response['result']['reservation_id']       = $reservation_id;
+//                       }
+//                       else{
+//                         $response['status']['error_code']           = 1;
+//                         $response['status']['message']              = 'reservation cannot be saved';
+//                       }                
+//             }
+//         //}
+//       }
+//       else {
+//         $response['status']['error_code'] = 1;
+//         $response['status']['message']    = 'Please fill up all required fields.';
+//       }
+//     } else {
+//         $response['status']['error_code'] = 1;
+//         $response['status']['message']    = 'Wrong http method type.';
+//         //$response['response']   = $this->obj;      
+//     }
+//     $this->displayOutput($response);
+
+//   }
+
+//  /////availability checking api
+//   public function availablility_chk_bk()
+//   {
+//     $result  = array();
+//     $ap=json_decode(file_get_contents('php://input'), true);
+//     //print_r($ap); die;
+//     if($this->checkHttpMethods($this->http_methods[0])){
+//       if(sizeof($ap)) {
+        
+//         if (empty($ap['no_of_guests'])) {
+//           $response['status']['error_code'] = 1;
+//           $response['status']['message']    = 'No. of guests is required';
+//           //$response['response']   = $this->obj;          
+//           $this->displayOutput($response);
+//         }        
+//         if (empty($ap['reservation_date'])) {
+//           $response['status']['error_code'] = 1;
+//           $response['status']['message']    = 'Reservation date is required';
+//           //$response['response']   = $this->obj;          
+//           $this->displayOutput($response);
+//         }
+//         if (empty($ap['reservation_time'])) {
+//           $response['status']['error_code'] = 1;
+//           $response['status']['message']    = 'Reservation time  is required';
+//           //$response['response']   = $this->obj;          
+//           $this->displayOutput($response);
+//         }       
+        
+//         if (empty($ap['duration'])) {
+//               $response['status']['error_code'] = 1;
+//               $response['status']['message']    = 'duration is required';
+//               //$response['response']   = $this->obj;          
+//               $this->displayOutput($response);
+//             } 
+            
+//             if (empty($ap['room_id'])) {
+//               $response['status']['error_code'] = 1;
+//               $response['status']['message']    = 'Room id is required';
+//               //$response['response']   = $this->obj;          
+//               $this->displayOutput($response);
+//             }
+
+//             if(!empty($ap['reservation_date'])) {
+//             $date=$ap['reservation_date'];
+//             $format="d/m/Y";
+
+//             // if(!validateDate($date,$format))
+//             // {
+//             //   $response['status']['error_code'] = 1;
+//             //         $response['status']['message']    = 'Date format is wrong.It should be d/m/y';
+             
+//             //         $this->displayOutput($response);
+//             // } 
+//             //else {
+//               //   $dateArr=explode("/",$date) ;
+//               //  echo $reservation_date=$dateArr[2]."-".$dateArr[1]."-".$dateArr[0]; 
+                
+//                 //chk if its past date then reject request
+//                 $curDateTime = date("Y-m-d H:i:s");
+//                 //$reservation_date_time = date("Y-m-d H:i:s", strtotime($reservation_date." ".$ap['reservation_time']));
+//                 $reservation_date = date("Y-m-d", strtotime(str_replace('/', '-', $date)));
+//                 $reservation_date_time = $reservation_date." ".date('H:i:s', strtotime($ap['reservation_time']));
+//                 //echo $curDateTime.'>='.$reservation_date_time; die;
+//                 if($curDateTime>=$reservation_date_time)
+//                   {
+//                     $response['status']['error_code'] = 1;
+//                        $response['status']['message']    = 'Please select some date time in future';
+               
+//                        $this->displayOutput($response);
+//                   }
+//                  // }              
+//                 //}
+//           }       
+     
+       
+//                 $room_id=$ap['room_id'];
+//                 $reservation_time=DATE('H:i:s',strtotime($ap["reservation_time"]));
+//                 $duration=$ap['duration'];
+
+//                 $selectedTime             = $reservation_time;
+//                 $start_time_range         = date('H:i:s',strtotime($selectedTime));
+//                 $end_time_range           = date('H:i:s',strtotime("+".$duration." hours", strtotime($selectedTime)));
+//                 $availability_status=$this->is_available($reservation_date,$room_id,$reservation_time,$duration);
+               
+//                  if($availability_status!=0){
+                    
+//                    $response['status']['error_code']           = 1;
+//                    $response['status']['message']              = 'OOPs! Sorry the room is already reserved for the given date & time';
+
+//                    $this->displayOutput($response);
+//                  }
+//                  else
+//                  {
+//                     $response['status']['error_code']           = 0;
+//                     $response['status']['message']              = 'Room is available for date time';
+
+//                    $this->displayOutput($response);
+//                  }
+               
+//       }
+//       else {
+//         $response['status']['error_code'] = 1;
+//         $response['status']['message']    = 'Please fill up all required fields.';
+//       }
+//     } else {
+//         $response['status']['error_code'] = 1;
+//         $response['status']['message']    = 'Wrong http method type.';
+//         //$response['response']   = $this->obj;      
+//     }
+//     $this->displayOutput($response);
+
+//   }
     ///////////////////////////////if available///////////////////////////
   public function is_available($reservation_date,$room_id,$reservation_time,$duration)
   {
