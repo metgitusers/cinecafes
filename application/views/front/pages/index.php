@@ -75,7 +75,7 @@
 		</div>
 	</div>
 </div>
-<div class="know-more">
+<!-- <div class="know-more">
 	<div class="container">
 		<div class="know-more-overlay">
 			<div class="row align-items-center">
@@ -87,12 +87,12 @@
 					</ul>
 				</div>
 				<div class="col-md-3">
-					<img src="<?=base_url('public/assets/image/logo.png')?>">
+					<img src="<?//=base_url('public/assets/image/logo.png')?>">
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 <div class="gallerry-tab">
 	<div class="container">
 		<nav>
