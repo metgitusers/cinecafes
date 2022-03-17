@@ -35,7 +35,7 @@
           <div class="top-header">
            <div class="phone">
               <span><i class="fas fa-phone-square-alt"></i> Booking Enquiry : <a href="tel:+91 8100786623"> +91 81007 86623</a></span>
-              <span><i class="fas fa-phone-square-alt"></i> Franchise Enquiry : <a href="tel:+91 6290821850"> +91 62908 21850</a></span>
+              <span><i class="fas fa-phone-square-alt"></i> Franchise Enquiry : <a href="tel:+91 8100786621"> +91 81007 86621</a></span>
             </div>
             <!-- <div class="search-movie">
               <span><i class="fas fa-search"></i></span>
