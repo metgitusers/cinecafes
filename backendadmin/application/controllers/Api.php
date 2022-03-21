@@ -3994,7 +3994,7 @@ class Api extends CI_Controller
         //if cafe_id 62 means sec 2
         if ($ap['cafe_id']==62) {
           $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'Booking option will be comming soon for this Cafe';          
+          $response['status']['message']    = 'Booking option will be coming soon for this Cafe';          
           $this->displayOutput($response);
         } 
 
