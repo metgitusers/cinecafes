@@ -41,6 +41,13 @@ class Api extends CI_Controller
     //print_r($ap); die;
     if($this->checkHttpMethods($this->http_methods[0])){
       if(sizeof($ap)) {
+
+        if (empty($ap['no_of_guests'])) {
+          $response['status']['error_code'] = 1;
+          $response['status']['message']    = 'No. of guests is required';          
+          $this->displayOutput($response);
+        }  
+
         if (empty($ap['no_of_guests'])) {
           $response['status']['error_code'] = 1;
           $response['status']['message']    = 'No. of guests is required';

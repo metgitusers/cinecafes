@@ -71,7 +71,7 @@
 		  <p>Whether you love to spend some quality time with your partner while watching your favourite movie or TV show, with your favourite mocktail or snacks in hand, be our guest. From old, classic cinemas to the latest releases including Psycho, Vertigo, Shawshank Redemption, Avatar 2, to Thor: Love & Thunder, Pushpa, Gehraiyaan, we have everything in store. You can also watch the latest TV shows such as Squid Game, Money Heist, Ozark, Breaking Bad, Game of Thrones, Friends, Peaky Blinders, Two & A Half Men - you name it.</p>
 		 <p>“Private screenings” enable us to offer you highly personalized and exclusive experiences at a date & time of your choice, and of course, content of your choice. Whether you are a group of two, four or more people (up to 15), we offer you a plush and exclusive way to enjoy cinema.     </p>
 		  <p>So, if you are a movie connoisseur and want to experience the best movie experience with the extraordinary screening and sound facility, and the enhanced safety protocols adapted by India’s first-of-its-kind private screening restaurant cum theatre, please download our app now. You can also use our website or call us for booking at +91 81007 86623. </p>
-		   <p>To know more about Cine Cafes, please give us a call at +91 62908 21850.</p>
+		   <p>To know more about Cine Cafes, please give us a call at +91 81007 86623.</p>
 		     </div>
 		</div>
 	</div>

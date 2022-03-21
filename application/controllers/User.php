@@ -25,7 +25,7 @@ class User extends MY_Controller {
     	$data['list']= $this->mcommon->getDetails('banner',['status'=> 1, 'is_delete'=> 0]);
     	$data['home_section']= $this->mcommon->getDetails('content',['status'=> 1, 'is_delete'=> 0]);
     	//print_r($data['content']);die;
-	   	$data['title']='cinecafe2 | Home';
+	   	$data['title']='Cine Cafes | Home';
 		$data['content']='front/pages/index';
 		$this->front_load_view($data);
 	}
@@ -34,7 +34,7 @@ class User extends MY_Controller {
 	{
 		$data['list'] 	= $this->mcommon->getDetails('cms',['cms_slug'=>'about-us' ,'status' =>1]);
 		//print_r($data['list']);die;
-		$data['title']='cinecafe2 | About Us';
+		$data['title']='Cine Cafes | About Us';
 		$data['content']='front/pages/about-us';
 		$this->front_load_view($data);
 	}
@@ -43,7 +43,7 @@ class User extends MY_Controller {
 	{
 		$data['list'] 	= $this->mcommon->getDetails('cms',['cms_slug'=>'terms-condition' ,'status' =>1]);
 		//print_r($data['list']);die;
-		$data['title']='cinecafe2 | Terms & Condition';
+		$data['title']='Cine Cafes | Terms & Condition';
 		$data['content']='front/pages/about-us';
 		$this->front_load_view($data);
 	}
@@ -52,7 +52,7 @@ class User extends MY_Controller {
 	{
 		$data['list'] 	= $this->mcommon->getDetails('cms',['cms_slug'=>'privacy-policy' ,'status' =>1]);
 		//print_r($data['list']);die;
-		$data['title']='cinecafe2 | Privacy - Policy';
+		$data['title']='Cine Cafes | Privacy - Policy';
 		$data['content']='front/pages/about-us';
 		$this->front_load_view($data);
 	}
@@ -85,7 +85,7 @@ class User extends MY_Controller {
 						$this->mcommon->insert('contact',$data);
 						//$email_to='sourav.bhowmick@met-technologies.com';
 												
-						$email_to='franchise.enquiry@cinecafes.com';
+						$email_to='franchise.enquiry@Cine Cafes.com';
 
 						$subject = 'Contact us mail received';
 						$message = '<div style="border:2px solid #333;padding:20px;background:#eee;text-align:center;">
@@ -117,10 +117,10 @@ class User extends MY_Controller {
 		                  </table><br>
 							
 							<p>Thanks
-							 & Regards,Cinecafes</p>
+							 & Regards,Cine Cafes</p>
 							</div>';
 							
-						$mail['name']     = 'Cinecafes';
+						$mail['name']     = 'Cine Cafes';
 				        $mail['to']       = $email_to;
 				        $mail['subject']  = $subject;
 						$mail['message']  = $message;
@@ -151,7 +151,7 @@ class User extends MY_Controller {
 	public function gallery()
 	{
 		$data['home_section']= $this->mcommon->getDetails('content',['status'=> 1, 'is_delete'=> 0]);
-		$data['title']='cinecafe2 | Gallery';
+		$data['title']='Cine Cafes | Gallery';
 		$data['content']='front/pages/gallery';
 		$this->front_load_view($data);
 	}
@@ -159,7 +159,7 @@ class User extends MY_Controller {
 	public function features()
 	{		
 		$data['list']= $this->mcommon->getDetails('banner',['status'=> 1, 'is_delete'=> 0]);
-		$data['title']='cinecafe2 | Features';
+		$data['title']='Cine Cafes | Features';
 		$data['content']='front/pages/features';
 		$this->front_load_view($data);
 	}
@@ -167,7 +167,7 @@ class User extends MY_Controller {
 	public function location()
 	{		
 		$data['list']= $this->mcommon->getDetails('banner',['status'=> 1, 'is_delete'=> 0]);
-		$data['title']='cinecafe2 | Location';
+		$data['title']='Cine Cafes | Location';
 		$data['content']='front/pages/location';
 		$this->front_load_view($data);
 	}
@@ -177,7 +177,7 @@ class User extends MY_Controller {
 		$data['title']= 'Banner';
 		$condition['is_delete'] =0;
     	$List = $this->mcommon->getDetails('banner',$condition);
-		$data['title']='cinecafe2 | About Us';
+		$data['title']='Cine Cafes | About Us';
 		$data['content']='front/pages/about-us';
 		$this->front_load_view($data);
 		

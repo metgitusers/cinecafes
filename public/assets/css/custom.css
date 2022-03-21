@@ -816,3 +816,26 @@ transition: opacity 0.3s linear, right 0.3s ease-out;
     padding: 27px 0;
     margin-bottom: 30px;
 }
+
+
+/* Added on 21_03_2022 */
+#about_page h1 {
+    font-size: 21px;
+    color: #faad40;
+}
+#about_page p {
+    color: #fff;
+    font-size: 14px;
+}
+#about_page h2 {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+}
+.features-sec {
+    text-align: center;
+    color: #fff;
+    background: #121212;
+    padding: 27px 0;
+    margin-bottom: 30px;
+}
