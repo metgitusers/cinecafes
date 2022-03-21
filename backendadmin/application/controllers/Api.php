@@ -3991,7 +3991,7 @@ class Api extends CI_Controller
     if($this->checkHttpMethods($this->http_methods[0])){
       if(sizeof($ap)) {
         
-        //if cafe_id 65 means sec 2
+        //if cafe_id 62 means sec 2
         if ($ap['cafe_id']==62) {
           $response['status']['error_code'] = 1;
           $response['status']['message']    = 'Booking option will be comming soon for this Cafe';          

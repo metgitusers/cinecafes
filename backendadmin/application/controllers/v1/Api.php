@@ -40,13 +40,13 @@ class Api extends CI_Controller
     $ap=json_decode(file_get_contents('php://input'), true);
     //print_r($ap); die;
     if($this->checkHttpMethods($this->http_methods[0])){
-      if(sizeof($ap)) {
-
-        if (empty($ap['no_of_guests'])) {
+      if(sizeof($ap)) {        
+        //if cafe_id 62 means sec 2
+        if ($ap['cafe_id']==62) {
           $response['status']['error_code'] = 1;
-          $response['status']['message']    = 'No. of guests is required';          
+          $response['status']['message']    = 'Booking option will be comming soon for this Cafe';          
           $this->displayOutput($response);
-        }  
+        } 
 
         if (empty($ap['no_of_guests'])) {
           $response['status']['error_code'] = 1;
