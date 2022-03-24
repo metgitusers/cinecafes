@@ -41,7 +41,7 @@
               <li><a href="<?=base_url('privacy-policy')?>">Privacy Policy</a></li>
               <!-- <li><a href="#">Sitemap</a></li> -->
           </ul>
-          <p>© Cine Cafe 2022. All right reserved</p>
+          <p>© Cafeplex Entertainment Private Limited 2022. All right reserved</p>
         </div>
       </div>
     </div>
