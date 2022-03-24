@@ -87,11 +87,28 @@
 												<p data-html-only="1" style="border-bottom:1px solid #D6D4D4;margin:3px 0 7px;font-weight:500;font-size:18px;padding-bottom:10px">
 													Your reservation details are given below :</p>
 												<span style="color:#777">
-													<span style="color:#f9b92d"><strong>Cafe: </strong></span> {cafe_name}<br>
+													<!-- <span style="color:#f9b92d"><strong>Cafe: </strong></span> {cafe_name}<br>
 													<span style="color:#f9b92d"><strong>Date: </strong></span> {reservation_date}<br>
 													<span style="color:#f9b92d"><strong>Time: </strong></span> {reservation_time}<br>
 													<span style="color:#f9b92d"><strong>No. of guests: </strong></span> {no_of_guests}<br>
-													<span style="color:#f9b92d"><strong>Status: </strong></span> {reservation_status}<br>
+													<span style="color:#f9b92d"><strong>Status: </strong></span> {reservation_status}<br> -->
+
+
+													<span style="color:#fff"><strong style="color:#f9b92d">Cafe: </strong> {cafe_name}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">Date: </strong> {reservation_date}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">Time: </strong> {reservation_time}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">No. of guests: </strong> {no_of_guests}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">Status: </strong> {reservation_status}</span><br>													
+													<span style="color:#fff"><strong style="color:#f9b92d">No. of Hours: </strong></span> {duration}</span><br>
+													                                       
+													<span style="color:#fff"><strong style="color:#f9b92d">Sub Total: </strong> {item_price}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">CGST @ 9%: </strong> {cgst}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">SGST @ 9%: </strong> {sgst}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">Total Amount: </strong> {total_price}</span><br>													
+													<!-- <span style="color:#f9b92d"><strong>GST Amount: </strong></span> INR {gst}<br> -->												
+													
+
+
 												</span>
 											</font>
 										</td>
@@ -125,7 +142,8 @@
 						</tr>
 						<tr>
 							<td class="footer" style="border-top:4px solid #f9b92d;padding:7px 0">
-								<span><a href="#" style="color:#f9b92d">{shop_name}</a> powered by <a href="#" style="color:#666">Fitser&trade;</a></span>
+								<!-- <span><a href="#" style="color:#f9b92d">{shop_name}</a> powered by <a href="#" style="color:#666">Fitser&trade;</a></span> -->
+								<span><a href="#" style="color:#f9b92d">{shop_name}</a></span>
 							</td>
 						</tr>
 					</table>
