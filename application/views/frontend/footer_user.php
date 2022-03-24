@@ -36,10 +36,10 @@
       <div class="col-md-12">
         <div class="footer-menu-2">
           <ul>
-             <li><a href="<?=base_url('about-us')?>">About Us</a></li>
-            <li><a href="<?=base_url('terms-condition')?>">Terms & Conditions</a></li>
-            <li><a href="<?=base_url('privacy-policy')?>">Privacy Policy</a></li>
-            <li><a href="#">Sitemap</a></li>
+              <li><a href="<?=base_url('about-us')?>">About Us</a></li>
+              <li><a href="<?=base_url('terms-condition')?>">Terms & Conditions</a></li>
+              <li><a href="<?=base_url('privacy-policy')?>">Privacy Policy</a></li>
+              <!-- <li><a href="#">Sitemap</a></li> -->
           </ul>
           <p>© Cine Cafe 2022. All right reserved</p>
         </div>
