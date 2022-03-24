@@ -40,7 +40,7 @@ if ( ! function_exists('test_method'))
       $config['smtp_port']   = '465';
       
       $config['smtp_user']   = 'noreply@cinecafes.com';
-      $config['smtp_pass']   = '&M@qh/=F$56YC\'ft6Jy^8.9G73`:EZ{KP3tr"q:.Fyhz';
+      $config['smtp_pass']   = '&M7@qh#=F$56YCft6Jy^8.9G73:EZ{KP3trq:.Fyhz';
             
       //$config['protocol']      = 'smtp';
       //$config['smtp_host']     = 'mail.cinecafes.com';
