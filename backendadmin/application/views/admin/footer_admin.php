@@ -2771,8 +2771,30 @@ function calculateReservationCharge(){
 }
 
 //calculate payable amount for each scenarion
+// function calPayableAmount(coupon = true){
+//   let amt = total_amount;
+//   if($('#membership_discount_amount').val())
+//   {
+//     amt= amt-parseInt($('#membership_discount_amount').val());
+//   }
+//   if($('#discount_amount').val())
+//   {
+//     amt= amt-parseInt($('#discount_amount').val());
+//   }
+//   $('#payable-amount strong').text(amt);
+// }
+
 function calPayableAmount(coupon = true){
   let amt = total_amount;
+
+  //gst calculation 
+  let item_price = Math.round(amt *100/(100+18));
+  let gst = Math.round(amt - item_price);
+  let cgst = (gst / 2);
+  let sgst = (gst / 2);
+
+  //console.log(amt + ':' + item_price + ':' + gst + ':' + cgst + ':' + sgst);
+
   if($('#membership_discount_amount').val())
   {
     amt= amt-parseInt($('#membership_discount_amount').val());
@@ -2781,7 +2803,15 @@ function calPayableAmount(coupon = true){
   {
     amt= amt-parseInt($('#discount_amount').val());
   }
-  $('#payable-amount strong').text(amt);
+  
+  //$('#payable-amount strong').text(amt);
+  
+  $('#total_amt strong').text(amt.toFixed(2));
+  $('#item_amt strong').text(item_price.toFixed(2));
+  $('#gst_amt strong').text(gst.toFixed(2));
+  $('#cgst_amt strong').text(cgst.toFixed(2));
+  $('#sgst_amt strong').text(sgst.toFixed(2));
+
 }
 
 

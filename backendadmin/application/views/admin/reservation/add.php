@@ -180,12 +180,15 @@
                         <p style="font-size: 19px;color: #F68310;">Rs. <strong>0</strong></p>
                       </div>
                   </div>
-                 <div class="col-md-12 col-sm-12 col-xs-12" id="payable-amount">
-                  <div class="form-group">
-                      <label>Total Payable</label>
-                      <p style="font-size: 19px;color: #F68310;">Rs. <strong>0</strong></p> 
-                    </div>
+                 
+                <div class="col-md-12 col-sm-12 col-xs-12" id="payable-amount">                                                              
+                    <p style="font-size: 12px;color: #F68310;" id="item_amt">Sub Total:  <strong>0</strong></p>                     
+                    <p style="font-size: 12px;color: #F68310;" id="cgst_amt">CGST @ 9%:  <strong>0</strong></p>                     
+                    <p style="font-size: 12px;color: #F68310;" id="sgst_amt">SGST @ 9%: <strong>0</strong></p>                     
+                    <p style="font-size: 16px;color: #F68310;" id="total_amt">Total Amount: <strong>0</strong></p>             
+                    <!-- <p style="font-size: 12px;color: #F68310;" id="gst_amt">GST Amount: <strong>0</strong></p>  -->                    
                 </div>
+
                  <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <label>Message</label>
