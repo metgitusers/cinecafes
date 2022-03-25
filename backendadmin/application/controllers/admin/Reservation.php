@@ -304,6 +304,13 @@ class Reservation extends MY_Controller
             if (!empty($this->input->post('membership_discount_amount'))) {
                 $payable_amount = $payable_amount - $this->input->post('membership_discount_amount');
             }
+
+            //gst calculation
+            $no_of_guests = $this->input->post('no_of_guests');
+            $total_price = $this->input->post('reservation_charge');              
+            $item_price = round($total_price*100/(100+18));
+            $gst = $total_price-$item_price;
+                        
             //////////////////////////
             $admin = $this->session->userdata('admin');
             $insrtarry = array('reservation_date' => date('Y-m-d', strtotime(str_replace("/", "-", $this->input->post('reservation_date')))),
@@ -391,6 +398,15 @@ class Reservation extends MY_Controller
             $mail_temp          = str_replace("{shop_name}", ORGANIZATION_NAME, $mail_temp);  
             $mail_temp          = str_replace("{name}", $mail['name'], $mail_temp);
                     
+
+            $mail_temp          = str_replace("{duration}", $this->input->post('duration'), $mail_temp);
+            $mail_temp          = str_replace("{total_price}", number_format((float)$total_price, 2, '.', ''), $mail_temp);
+            $mail_temp          = str_replace("{item_price}", number_format((float)$item_price, 2, '.', ''), $mail_temp);
+            $mail_temp          = str_replace("{gst}", number_format((float)$gst, 2, '.', ''), $mail_temp);
+            $mail_temp          = str_replace("{cgst}", number_format((float)($gst/2), 2, '.', ''), $mail_temp);
+            $mail_temp          = str_replace("{sgst}", number_format((float)($gst/2), 2, '.', ''), $mail_temp);
+
+
             $mail_temp          = str_replace("{current_year}", date('Y'), $mail_temp); 
 
             
