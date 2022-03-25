@@ -107,7 +107,7 @@
 					<div class="clearfix"></div>
 					</div>
              <div class="table-responsive">
-                <table class="table table-bordered" id="myReservation" width="100%" cellspacing="0">
+                <?php /* <table class="table table-bordered" id="myReservation" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Sl No.</th>
@@ -208,7 +208,139 @@
                       <?php } ?>
                    
                   </tbody>
+                </table> */ ?>
+
+
+                <table class="table table-bordered" id="myReservation" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Sl No.</th>
+                      <th>Booking No</th>
+                      <th>Customer Details</th>
+                      
+                      <th>Reservation date</th>
+                      <th>Cafe</th>
+                     
+                      <th>Room</th>
+                     
+                      <th>No of guests</th>
+                      <th>Total price</th>
+                      
+                      <th>Item price</th>
+                      <th>GST</th>
+
+                      <!-- <th>Discount</th> -->
+                      <th>Payment Method</th>
+                      <th class="no-sort">Status</th>
+                      <th class="no-sort">Action</th> 
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Sl No.</th>
+                      <th>Booking No</th>
+                      <th>Customer Details</th>
+                      
+                      <th>Reservation date</th>
+                      <th>Cafe</th>
+                     
+                      <th>Room</th>
+                     
+                      <th>No of guests</th>
+                      <th>Total price</th>
+
+                      <th>Item price</th>
+                      <th>GST</th>
+                      <!-- <th>Discount</th> -->
+                      <th>Payment Method</th>
+                      <th class="no-sort">Status</th>
+                      <th class="no-sort">Action</th>
+                    </tr>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <?php if(!empty($list)){ $i=1;?>
+                    <?php foreach($list as $row){ ?>
+                      <tr>
+                      <td><?php echo $i;?></td>
+                      <!-- <td><?php echo $row['reservation_no'];?></td> -->
+                      <td><?=(!empty($row['reservation_no'])?$row['reservation_no']:$row['reservation_id']);?></td>
+                      <td><?php echo $row['name'];?>
+                      <br><a href="mailto:<?php echo $row['email'];?>"><?php echo $row['email'];?></a>
+                      <br><?php echo $row['mobile'];?>
+                      </td>
+                     
+                      <td><?php echo date('d-m-Y', strtotime($row['reservation_date']));?>    <?php echo date('g:i a', strtotime($row['reservation_time']))." to ".date('g:i a', strtotime($row['reservation_end_time']));?></td>
+                      <td><?php echo $row['cafe_name'];?></td>
+                     <!--  <td><?php //echo $row['movie_name'];?></td> -->
+                      <td>
+                        <?php
+                            if(empty($row['room_no']) || $row['room_no'] == null){
+                              echo '<button type="button" class="btn btn-primary assigned-room" data-id="'.$row['reservation_id'].'" data-parent="'. $row['cafe_id'] .'">Add room</button>';
+                            }else{ 
+                              echo $row['room_no'];
+                            }
+                        ?>
+                      </td>
+                     <!--  <td><?php //echo "Rs.".' '.$row['hourly_price'];?></td> -->
+                      <td><?php echo $row['no_of_guests'];?></td>
+                      <td><?php echo "Rs.".' '.$row['total_price'];?></td>
+
+                      <td><?php 
+                      
+                        //gst calculation                          
+                        $item_price = round($row['total_price']*100/(100+18));
+                        echo "Rs. ".$item_price;                        
+                      
+                      ?></td>
+
+                      <td><?php 
+                      
+                        //gst calculation                          
+                        $gst = $row['total_price'] - $item_price;
+                        echo "Rs. ".$gst;                        
+                      
+                      ?></td>
+
+                      <!-- <td><?php echo "Rs.".' '.($row['total_price']-$row['payable_amount']);?></td> -->
+                      <td><?php 
+                      if($row['payment_mode']=="")
+                      {
+                        echo "Backend Transaction";
+                      }
+                      else
+                      {
+                        echo $row['payment_mode'];
+                      }
+                      ?></td>
+                      
+                     <!-- <td><?php //echo date('d-m-Y', strtotime($row['created_on']));?></td>  -->
+                      <td>
+                        
+
+                         <?php if($row['status']==2){ echo "<p style='color:red;font-size: 15px;''>Cancelled</p>"; } else if($row['status']==1){  echo "<p style='color:green;font-size: 15px;''>Reserved</p>"; }  ?>
+                      </td>
+                      <!-- <td><?php //echo date('d-m-Y', strtotime($row['created_ts']));?></td> -->
+                     <td>
+                        <a class="btn btn-success btn-circle btn-sm" href="<?php echo base_url();?>admin/reservation/detail/<?php echo $row['reservation_id'];?>">
+                        <i class="fa fa-eye" aria-hidden="true"></i> </a> 
+                       </td>
+                    </tr>
+                   
+                    <?php $i++;
+                      } ?>
+                    <?php }else{ ?>
+                     <tr>
+                        <td colspan="13">No Reservation Found</td>
+                          
+                      </tr>
+                      <?php } ?>
+                   
+                  </tbody>
                 </table>
+
+
+
               </div>
               </div>
             </form>
