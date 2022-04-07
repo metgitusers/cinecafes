@@ -16,10 +16,11 @@ $('#slider-for').slick({
  slidesToShow: 1,
   slidesToScroll: 1,
   arrows: false,
+  dots:true,
   //fade: true,
   infinite: true,
   autoplay: true,
-  autoplaySpeed: 4000,
+  autoplaySpeed: 3000,
 });
 
 		
