@@ -25,3 +25,26 @@
 	padding: 0;
 	margin-left: 0px;
 }*/
+
+ul.slick-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ul.slick-dots li button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    margin: 0 2px;
+    background: #2e2e2e;
+    color: #fff;
+}
+
+ul.slick-dots li.slick-active button {
+    background: #f9ad3f;
+}
