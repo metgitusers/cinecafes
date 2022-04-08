@@ -85,7 +85,7 @@ if ( ! function_exists('test_method'))
     }
 
     ////////////send sms//////////////////////////
-    function smsSend($mobile,$message,$template_id=false){
+    function smsSend_bk($mobile,$message,$template_id=false){
     $api_key = '45DB969F6550A9';
     //$api_key = '45DA414F762394'; //19-11
     //$contacts = '97656XXXXX,97612XXXXX,76012XXXXX,80012XXXXX,89456XXXXX,88010XXXXX,98442XXXXX';
@@ -109,6 +109,52 @@ if ( ! function_exists('test_method'))
     }else{
         return $response;
     }
+
+  }
+  
+  function smsSend($mobile,$message,$template_id=false){
+
+    $token = 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5teXZhbHVlZmlyc3QuY29tL3BzbXMiLCJzdWIiOiJjaW5jYWYiLCJleHAiOjE2NDk5MjkxOTN9.WCOlgskvyiOPMlZRWc-leAb0WlKMyf-lZGKWBrNh0to';
+    $from = 'CINCAF';
+    $sms_text = urlencode($message);
+
+    //token enable
+    $curl = curl_init();
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => 'https://103.229.250.200/smpp/sendsms?action=enable&token='.$token,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'GET'		
+		));
+
+		$token_response = curl_exec($curl);
+
+    //main action
+    $curl = curl_init();
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => 'https://103.229.250.200/smpp/sendsms?to='.$mobile."&from=".$from."&text=".$sms_text,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'GET',
+		CURLOPT_HTTPHEADER => array(
+			'Authorization: Bearer '.$token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		//curl_close($curl);
+		//var_dump($response);
+
+    return $response; 
 
   }
 
