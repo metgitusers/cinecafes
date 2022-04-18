@@ -128,5 +128,48 @@ class TestController extends MY_Controller {
         echo $message;echo '<br>';
 		echo smsSend($mobile, $message, $template_id);
 	}
+
+	public function smsSend1()
+	{
+
+		//phpinfo();exit;
+		//$api_key = '46868818/zXTHBjnJMGehFE0qRrgMBp9v0zNH6OfusLY3kbMN5Y=rR#4b6iPs$VEfT$uOW0c';
+		//$contacts = '97656XXXXX,97612XXXXX,76012XXXXX,80012XXXXX,89456XXXXX,88010XXXXX,98442XXXXX';
+		$message = 'Dear {#var#}⏎⏎Thank you for confirming your Reservation at Cinecafes.⏎Your re servation details are: ⏎⏎Cafe: {#var#} ⏎Date: {#var#} ⏎Time: {#var#} ⏎No. of Guests: {#var#}⏎⏎⏎CINE CAFES';
+		$mobile = '9007856855';
+		//$message = 'Test';
+		
+
+		$from = 'CINCAF';
+		$sms_text = urlencode($message);
+
+		 
+ 
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => 'https://103.229.250.200/smpp/sendsms?to='.$mobile."&from=".$from."&text=".$sms_text,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'GET',
+		CURLOPT_HTTPHEADER => array(
+			'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5teXZhbHVlZmlyc3QuY29tL3BzbXMiLCJzdWIiOiJjaW5jYWYiLCJleHAiOjE2NDk5MjkxOTN9.WCOlgskvyiOPMlZRWc-leAb0WlKMyf-lZGKWBrNh0to'
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		var_dump($response);
+
+
+
+		
+	}
+
 }
 ?>

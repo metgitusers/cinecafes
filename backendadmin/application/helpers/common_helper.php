@@ -112,7 +112,7 @@ if ( ! function_exists('test_method'))
 
   }
   
-  function smsSend($mobile,$message,$template_id=false){
+  function smsSend11($mobile,$message,$template_id=false){
 
     $token = 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5teXZhbHVlZmlyc3QuY29tL3BzbXMiLCJzdWIiOiJjaW5jYWYiLCJleHAiOjE2NDk5MjkxOTN9.WCOlgskvyiOPMlZRWc-leAb0WlKMyf-lZGKWBrNh0to';
     $from = 'CINCAF';
@@ -132,6 +132,74 @@ if ( ! function_exists('test_method'))
 		));
 
 		$token_response = curl_exec($curl);
+
+    //main action
+    $curl = curl_init();
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => 'https://103.229.250.200/smpp/sendsms?to='.$mobile."&from=".$from."&text=".$sms_text,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'GET',
+		CURLOPT_HTTPHEADER => array(
+			'Authorization: Bearer '.$token
+			),
+		));
+
+		$response = curl_exec($curl);
+
+		//curl_close($curl);
+		//var_dump($response);
+
+    return $response; 
+
+  }
+
+  function smsSend($mobile,$message,$template_id=false){
+
+		$code = base64_encode("cincaf:sms2022*");		
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, 'https://103.229.250.200/smpp/api/sendsms/token?action=generate');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, "{}");
+
+		$headers = array();
+		$headers[] = 'Apikey: 46868818/zXTHBjnJMGehFE0qRrgMBp9v0zNH6OfusLY3kbMN5Y=rR#4b6iPsVEfTuOW0c';
+		$headers[] = 'Authorization: Basic '.$code;
+		$headers[] = 'Content-Type: application/json';
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+		$result = curl_exec($ch);
+		if (curl_errno($ch)) {
+			echo 'Error:' . curl_error($ch);
+		}
+		//echo "<pre>";print_r(json_decode($result));exit;
+		//print_r(json_decode($result));exit;
+		curl_close($ch);
+    $token = json_decode($result)->token;
+
+    //$token = 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5teXZhbHVlZmlyc3QuY29tL3BzbXMiLCJzdWIiOiJjaW5jYWYiLCJleHAiOjE2NDk5MjkxOTN9.WCOlgskvyiOPMlZRWc-leAb0WlKMyf-lZGKWBrNh0to';
+    $from = 'CINCAF';
+    $sms_text = urlencode($message);
+
+    //token enable
+    // $curl = curl_init();
+		// curl_setopt_array($curl, array(
+		// CURLOPT_URL => 'https://103.229.250.200/smpp/sendsms?action=enable&token='.$token,
+		// CURLOPT_RETURNTRANSFER => true,
+		// CURLOPT_ENCODING => '',
+		// CURLOPT_MAXREDIRS => 10,
+		// CURLOPT_TIMEOUT => 0,
+		// CURLOPT_FOLLOWLOCATION => true,
+		// CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		// CURLOPT_CUSTOMREQUEST => 'GET'		
+		// ));
+		// $token_response = curl_exec($curl);
 
     //main action
     $curl = curl_init();
