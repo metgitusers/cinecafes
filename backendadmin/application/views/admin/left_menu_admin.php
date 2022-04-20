@@ -373,6 +373,13 @@ else if($this->session->admin['role_id']==19)
 <?php
 }
 ?>
+
+<li class="nav-item <?php if($this->uri->segment(2)=='appbookingdiscount'){ echo"active"; }?>">
+   <a class="nav-link" href="<?php echo base_url('admin/appbookingdiscount'); ?>">
+   <img src="<?=base_url('public/img/icon_16.png')?>" alt="icon">
+   <span>App Booking Discount (%) </span></a>
+</li>
+
 <hr class="sidebar-divider my-0">
 <!-- Sidebar Toggler (Sidebar) -->
 <div class="text-center d-none d-md-inline">

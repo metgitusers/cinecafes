@@ -53,83 +53,99 @@
 </style>
 
 	</head>
-	<body style="-webkit-text-size-adjust:none;background-color:#fff;width:550px;font-family:Open-sans, sans-serif;color:#555454;font-size:13px;line-height:18px;margin:auto">
+	<body style="-webkit-text-size-adjust:none;background-color:#fff;width:650px;font-family:Open-sans, sans-serif;color:#555454;font-size:13px;line-height:18px;margin:auto">
 		<table class="table table-mail" style="background: #000; width:100%;margin-top:10px;-moz-box-shadow:0 0 5px #afafaf;-webkit-box-shadow:0 0 5px #afafaf;-o-box-shadow:0 0 5px #afafaf;box-shadow:0 0 5px #afafaf;filter:progid:DXImageTransform.Microsoft.Shadow(color=#afafaf,Direction=134,Strength=5)">
 			<tr>
 				<td class="space" style="width:20px;padding:7px 0">&nbsp;</td>
 				<td align="center" style="padding:7px 0">
 					<table class="table"  style="width:100%">
 						<tr>
-							<td colspan="2" align="center" class="logo" style="padding:7px 0">
+							<td align="center" class="logo" style="border-bottom:4px solid #f9b92d;padding:7px 0">
 								<a title="{shop_name}" href="#" style="color:#337ff1">
 									<img src="{logo}" alt="{shop_name}"  style="width:150px"/>
 								</a>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2" align="left" class="titleblock" style="padding:7px 0">
-								<font size="2" face="Open-sans, sans-serif" color="#bd8430">
-									<span class="title" style="font-weight:400;font-size:24px;line-height:33px;text-transform: capitalize;">Dear {name},</span>
+							<td align="center" class="titleblock" style="padding:7px 0">
+								<font size="2" face="Open-sans, sans-serif" color="#f9b92d">
+									<span class="title" style="font-weight:500;font-size:28px;line-height:33px">Hi {name},</span>
 								</font>
-								<p style="color: #fff;margin: 15px 0 15px 0">Kindly find your reservation details bellow..</p>
 							</td>
 						</tr>
-						
 						<tr>
-							<td style="border: 1px solid #1a1717;padding: 20px 15px;width: 50%">
-								<h3 style="margin: 0 0 0 0;color: #fff;font-size: 16px;font-weight:400;">Cine Cafes</h3>
-								<p style="font-size: 14px;color: #fff;margin: 13px 0 0 0;">{cafe_name}</p>
-								<p style="font-size: 14px;color: #fff;margin: 5px 0 0 0;">{reservation_date} | {reservation_time} PM | {duration} Hour(s).</p>
-							</td>
-							<td style="border: 1px solid #1a1717;padding: 20px 15px;width: 50%;text-align: right">
-								<p style="font-size: 14px;color: #fff;margin: 0px 0 0 0;">No. of guests: <b>{no_of_guests}</b></p>
-								<p style="font-size: 14px;color: #fff;margin: 5px 0 0 0;">Status: {reservation_status}</p>
-							</td>
-						</tr>
-						
-						<tr>
-							<td colspan="2"><h4 style="color: #fff; font-size: 16px">Order Summary</h4></td>
+							<td class="space_footer" style="padding:0!important">&nbsp;</td>
 						</tr>
 						<tr>
-							<td colspan="2">
+							<td class="box" style="padding:7px 0">
 								<table class="table" style="width:100%">
 									<tr>
-										<td style="color: #b9b9b9;padding:2px 0">Reservation Charge</td>
-										<td style="text-align: right;color: #b9b9b9;padding:2px 0"><b>{item_price}</b></td>
-									</tr>
-									<tr>
-										<td style="color: #b9b9b9;padding:2px 0">CGST @ 9%</td>
-										<td style="text-align: right;color: #b9b9b9;padding:2px 0"><b>{cgst}</b></td>
-									</tr>
-									<tr>
-										<td style="color: #b9b9b9;padding:2px 0">SGST @ 9%</td>
-										<td style="text-align: right;color: #b9b9b9;padding:2px 0"><b>{sgst}</b></td>
-									</tr>
-									<tr>
-										<td style="color: #fff;border-top: 1px dashed #585757;padding: 10px 0 0 0;font-size: 16px;">AMOUNT PAID </td>
-										<td style="text-align: right;color: #fff;border-top: 1px dashed #585757;padding: 10px 0 0 0;font-size: 18px;"><b>{total_price}</b></td>
+										<td width="10" style="padding:7px 0">&nbsp;</td>
+										<td style="padding:7px 0">
+											<font size="2" face="Open-sans, sans-serif" color="#f9b92d">
+												<p>Thank you for confirming your reservation with {shop_name}.</p>
+												<p data-html-only="1" style="border-bottom:1px solid #D6D4D4;margin:3px 0 7px;font-weight:500;font-size:18px;padding-bottom:10px">
+													Your reservation details are given below :</p>
+												<span style="color:#777">
+													<!-- <span style="color:#f9b92d"><strong>Cafe: </strong></span> {cafe_name}<br>
+													<span style="color:#f9b92d"><strong>Date: </strong></span> {reservation_date}<br>
+													<span style="color:#f9b92d"><strong>Time: </strong></span> {reservation_time}<br>
+													<span style="color:#f9b92d"><strong>No. of guests: </strong></span> {no_of_guests}<br>
+													<span style="color:#f9b92d"><strong>Status: </strong></span> {reservation_status}<br> -->
+
+
+													<span style="color:#fff"><strong style="color:#f9b92d">Cafe: </strong> {cafe_name}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">Date: </strong> {reservation_date}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">Time: </strong> {reservation_time}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">No. of guests: </strong> {no_of_guests}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">Status: </strong> {reservation_status}</span><br>													
+													<span style="color:#fff"><strong style="color:#f9b92d">No. of Hours: </strong></span> {duration}</span><br>
+													                                       
+													<span style="color:#fff"><strong style="color:#f9b92d">Sub Total: </strong> {item_price}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">CGST @ 9%: </strong> {cgst}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">SGST @ 9%: </strong> {sgst}</span><br>
+													<span style="color:#fff"><strong style="color:#f9b92d">Total Amount: </strong> {total_price}</span><br>													
+													<!-- <span style="color:#f9b92d"><strong>GST Amount: </strong></span> INR {gst}<br> -->												
+													
+
+
+												</span>
+											</font>
+										</td>
+										<td width="10" style="padding:7px 0">&nbsp;</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<td align="center" colspan="2" style="padding-top: 30px">
-								<a href="https://www.facebook.com/cinecafes"><img src="https://devfitser.com/cinecafe2/new-site/public/assets/image/facebook.png"></a>
-								<a href="https://www.instagram.com/cinecafes"><img src="https://devfitser.com/cinecafe2/new-site/public/assets/image/instagram.png"></a>
-								<a href="https://www.linkedin.com/company/cine-cafes/mycompany/"><img src="https://devfitser.com/cinecafe2/new-site/public/assets/image/linkedin.png"></a>
-								<p>© Cafeplex Entertainment Private Limited 2022. All right reserved</p>
-								<a href="https://cinecafes.com/" style="color: #555454;">www.cinecafes.com</a>
+							<td class="space_footer" style="padding:0!important">&nbsp;</td>
+						</tr>
+						<tr>
+							<td class="linkbelow" style="padding:7px 0">
+								<font size="2" face="Open-sans, sans-serif" color="#555454">
+									<span>
+									</span>
+								</font>
 							</td>
 						</tr>
-						
-<!--
+						<tr>
+							<td class="linkbelow" style="padding:7px 0">
+								<font size="2" face="Open-sans, sans-serif" color="#555454">
+									<span>
+									</span>
+								</font>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="space_footer" style="padding:0!important">&nbsp;</td>
+						</tr>
 						<tr>
 							<td class="footer" style="border-top:4px solid #f9b92d;padding:7px 0">
-								 <span><a href="#" style="color:#f9b92d">{shop_name}</a> powered by <a href="#" style="color:#666">Fitser&trade;</a></span> 
+								<!-- <span><a href="#" style="color:#f9b92d">{shop_name}</a> powered by <a href="#" style="color:#666">Fitser&trade;</a></span> -->
 								<span><a href="#" style="color:#f9b92d">{shop_name}</a></span>
 							</td>
 						</tr>
--->
 					</table>
 				</td>
 				<td class="space" style="width:20px;padding:7px 0">&nbsp;</td>
