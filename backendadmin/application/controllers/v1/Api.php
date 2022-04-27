@@ -337,8 +337,8 @@ class Api extends CI_Controller
              $response['result']['data']         = array(
                                                        'no_of_guests'=> $ap['no_of_guests'],
                                                        'duration'=> $duration.' Hr.',
-                                                       'amount'=> $calculatedPrice,
-                                                       'discount' => $discount,
+                                                       'amount'=> round($calculatedPrice),
+                                                       'discount' => round($discount),
                                                        'discount_percentage' => $discount_percentage   
                                                      );
              $response['result']['rooms']= $room_list;
@@ -361,8 +361,8 @@ class Api extends CI_Controller
              $response['result']['data']         = array(
                                                        'no_of_guests'=> $ap['no_of_guests'],
                                                        'duration'=> $duration.' Hr.',
-                                                       'amount'=> $calculatedPrice,
-                                                       'discount' => $discount,
+                                                       'amount'=> round($calculatedPrice),
+                                                       'discount' => round($discount),
                                                        'discount_percentage' => $discount_percentage  
                                                      );
              $response['result']['rooms']= $room_list;
