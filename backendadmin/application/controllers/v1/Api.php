@@ -34,7 +34,7 @@ class Api extends CI_Controller
     }
   }
  /////availability checking api
-   public function availablility_chk_bk_20_april_2022()
+   public function availablility_chk()
   {
     $result  = array();
     $ap=json_decode(file_get_contents('php://input'), true);
@@ -186,7 +186,7 @@ class Api extends CI_Controller
   }
 
    /////availability checking api
-   public function availablility_chk()
+   public function availablility_chk_bk_27_04_2022()
    {
      $result  = array();
      $ap=json_decode(file_get_contents('php://input'), true);
