@@ -34,7 +34,7 @@ class Api extends CI_Controller
     }
   }
  /////availability checking api
-   public function availablility_chk()
+   public function availablility_chk_bk_20_april_2022()
   {
     $result  = array();
     $ap=json_decode(file_get_contents('php://input'), true);
@@ -186,7 +186,7 @@ class Api extends CI_Controller
   }
 
    /////availability checking api
-   public function availablility_chk_bk_27_04_2022()
+   public function availablility_chk()
    {
      $result  = array();
      $ap=json_decode(file_get_contents('php://input'), true);
@@ -337,8 +337,8 @@ class Api extends CI_Controller
              $response['result']['data']         = array(
                                                        'no_of_guests'=> $ap['no_of_guests'],
                                                        'duration'=> $duration.' Hr.',
-                                                       'amount'=> round($calculatedPrice),
-                                                       'discount' => round($discount),
+                                                       'amount'=> $calculatedPrice,
+                                                       'discount' => $discount,
                                                        'discount_percentage' => $discount_percentage   
                                                      );
              $response['result']['rooms']= $room_list;
@@ -361,8 +361,8 @@ class Api extends CI_Controller
              $response['result']['data']         = array(
                                                        'no_of_guests'=> $ap['no_of_guests'],
                                                        'duration'=> $duration.' Hr.',
-                                                       'amount'=> round($calculatedPrice),
-                                                       'discount' => round($discount),
+                                                       'amount'=> $calculatedPrice,
+                                                       'discount' => $discount,
                                                        'discount_percentage' => $discount_percentage  
                                                      );
              $response['result']['rooms']= $room_list;
