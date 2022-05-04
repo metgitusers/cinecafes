@@ -2456,7 +2456,7 @@ var currDate = new Date();
       $('#reservation_time').timepicker({
         'timeFormat': 'h:mm p',
         'disableTextInput': true,
-        'interval': 15,
+        'interval': 30,
         'minTime': p_time,
         //'maxTime': '09:00pm',
         'maxTime': '10:00pm',

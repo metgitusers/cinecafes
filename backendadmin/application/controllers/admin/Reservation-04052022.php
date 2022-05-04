@@ -48,7 +48,7 @@ class Reservation extends MY_Controller
         $data['cafe_id'] = $cafe_id;
         //$data['list']=$this->mreservation->getreservationList();
         $data['list'] = $this->mreservation->getreservationList($start_date, $end_date, $cafe_id);
-        //echo $this->db->last_query(); exit;
+        //echo $this->db->last_query(); die;
         $condition = array('status' => 1, 'is_delete=' => 0);
         $data['cafe_list'] = $this->mcommon->getDetails('master_cafe', $condition);
         $data['title'] = 'Reservation List';
@@ -205,280 +205,7 @@ class Reservation extends MY_Controller
     }
 
     ////////add reservation /////////////////////////////////////////////////
-    public function add_content_bk()
-    {
-        // echo "<pre>";print_r($this->input->post());exit();
-
-        //reservation_no creation 
-        $counter_details  = $this->mcommon->getRow("reservation", array('cafe_id'=>$this->input->post('cafe_id')), 'reservation_id desc');
-        $cafe_place       = $this->mcommon->getRow("master_cafe", array('cafe_id'=>$this->input->post('cafe_id')))['cafe_place'];
-        $final_cafe_place = substr($cafe_place, 0, 5);
-        
-        //for reset on every month
-        $created_on_arr = explode('-', $counter_details['created_on']);
-        $created_on_month = $created_on_arr[1];
-        if($created_on_month != date('m')){
-            $counter = 1;
-        }elseif($counter_details['cafe_id_serial_no']==''){
-            $counter = 1;
-        }else{
-            $counter = $counter_details['cafe_id_serial_no'] + 1;            
-        }
-        $final_counter = str_pad($counter, 4, '0', STR_PAD_LEFT);        
-        $reservation_no = $final_cafe_place.'/'.date('m').'/'.date('Y').'/'.$final_counter;
-        //echo $reservation_no;exit;
-
-        $this->form_validation->set_rules('mobile', 'mobile', 'required');
-        $this->form_validation->set_rules('no_of_guests', 'no of guests', 'trim|required');
-        $this->form_validation->set_rules('reservation_date', 'reservation date', 'trim|required');
-        //$this->form_validation->set_rules('reservation_time','reservation time','required');
-        $this->form_validation->set_rules('duration', 'duration', 'trim|required');
-        $this->form_validation->set_rules('cafe_id', 'Cafe', 'trim|required');
-        $this->form_validation->set_rules('room_id', 'Room', 'trim|required');
-        $this->form_validation->set_rules('reservation_type', 'Type', 'trim|required');
-        $this->form_validation->set_rules('media_type', 'Media Type', 'trim|required');
-        $this->form_validation->set_rules('reservation_for', 'Reservation For', 'trim|required');
-
-        if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('error_message', 'Validation error');
-            $this->add();
-        } else {
-            $reservation_date = $this->input->post('reservation_date');
-            $room_id = $this->input->post('room_id');
-            $duration = $this->input->post('duration');
-            $reservation_time = date('H:i', strtotime($this->input->post('reservation_time')));
-            $end_time_range = date('H:i', strtotime("+" . $duration . " hours", strtotime($reservation_time)));
-            $availability_status = $this->is_available($reservation_date, $room_id, $reservation_time, $duration);
-            /* commented due to off time in frontend -- */
-
-            //  if($availability_status!=0){
-            //      $this->session->set_flashdata('error_message','This time this room is not available');
-            //     $this->add();
-            //  }
-            //  else
-            //  {
-            if ($this->input->post('user_id') > 0) {
-                $user_id = $this->input->post('user_id');
-            } else {
-                $user_id = 0;
-            }
-
-            ////////user details:
-            $name = "";
-            $email = "";
-            $mobile = "";
-            $message = "";
-            if ($this->input->post('name') != "") {
-                $name = $this->input->post('name');
-            }
-            if ($this->input->post('email') != "") {
-                $email = $this->input->post('email');
-            }
-            if ($this->input->post('mobile') != "") {
-                $mobile = $this->input->post('mobile');
-            }
-
-            if ($this->input->post('message') != "") {
-                $message = $this->input->post('message');
-            }
-
-            $condition_default_price['id'] = 1;
-            $defult_price_row = $this->mcommon->getRow("price_settings", $condition_default_price);
-            $defult_price = $defult_price_row['cafe_price'];
-
-            //$total_price=$defult_price*$duration;
-            $discount_amount = "0.00";
-            $payable_amount = $this->input->post('reservation_charge');
-            $coupon_code = "";
-            if (!empty($this->input->post('discount_amount'))) {
-                $payable_amount = $payable_amount - $this->input->post('discount_amount');
-            }
-            if (!empty($this->input->post('membership_discount_amount'))) {
-                $payable_amount = $payable_amount - $this->input->post('membership_discount_amount');
-            }
-
-            //get cafe details
-            //$cafe_details = $this->mcommon->getRow("master_cafe", array('cafe_id'=>$this->input->post('cafe_id')));
-            // $counter_details = $this->mcommon->getRow("reservation", array('cafe_id'=>$this->input->post('cafe_id')), 'reservation_id desc');
-            // if($counter_details['reservation_no']==''){
-            //     $counter = '001';
-            // }else{
-            //     $counter = $counter_details['reservation_no'] + 1;
-            // }
-            // echo  $counter;exit;
-            //////////////////////////
-            $admin = $this->session->userdata('admin');
-            $insrtarry = array('reservation_date' => date('Y-m-d', strtotime(str_replace("/", "-", $this->input->post('reservation_date')))),
-                'reservation_time' => $reservation_time,
-                'reservation_end_time' => $end_time_range,
-                'duration' => $this->input->post('duration') ?? 1,
-                'cafe_id' => $this->input->post('cafe_id'),
-                'no_of_guests' => $this->input->post('no_of_guests'),
-                'total_price' => $this->input->post('reservation_charge'),
-                'room_id' => $this->input->post('room_id'),
-                'user_id' => $user_id,
-                'name' => $name,
-                'email' => $email,
-                'country_code' => "91",
-                'mobile' => $mobile,
-                'cafe_price' => $this->input->post('reservation_charge'),
-                // 'movie_id'     =>$movie_id,
-                'coupon_code' => $this->input->post('coupon'),
-                'discount_amount' => $this->input->post('discount_amount'),
-                'membership_discount_amount' => $this->input->post('membership_discount_amount'),
-                'membership_discount_percent' => $this->input->post('membership_discount_percent'),
-                'payable_amount' => $payable_amount,
-                'payment_mode' => $this->input->post('reservation_type'), //added after discussion
-
-                'add_from' => 'admin',
-                'message' => $message,
-                'media_type' => $this->input->post('media_type'),
-                'status' => '1',
-                'reservation_type' => $this->input->post('reservation_type'),
-                'created_by' => $admin['user_id'],
-                'created_on' => date('Y-m-d'),
-
-                //'cafe_id_serial_no' => $final_counter,
-                'cafe_id_serial_no' => $counter,
-                'reservation_no' => $reservation_no
-            );
-
-            //print_r($insrtarry);
-            $reservation_id = $this->mapi->insert('reservation', $insrtarry);
-			//echo $this->db->last_query();
-            /** added by ishani on 18.09.2020 */
-            //fn defined in common helper
-            $user_data['name'] = $name;
-            $user_data['email'] = $email;
-            $user_data['mobile'] = $mobile;
-            insert_all_user($user_data);
-
-            /*****************/
-            /********************************** Send reservation details in sms *************************************************/
-            $condition_cafe['cafe_id'] = $this->input->post('cafe_id');
-            $cafe_row = $this->mapi->getRow("master_cafe", $condition_cafe);
-            $reservation_date = $this->input->post('reservation_date');
-            
-            //$message = "Thank you for confirming your Reservation at " . ORGANIZATION_NAME . ". Your reservation details are: \n";
-            //$message .= "Cafe: " . $cafe_row['cafe_name'] . "-" . $cafe_row['cafe_place'] . "\n Date: " . $reservation_date . "\n Time: " . $reservation_time . "\n No. of Guests: " . $this->input->post('no_of_guests');
-            //$message .= " \nWe would be holding your reservation for 15 minutes from the time of reservation and it will be released without any prior information.";
-            //smsSend($mobile, $message);
-            
-            //gst calculation
-            $no_of_guests = $this->input->post('no_of_guests');
-            $total_price = $this->input->post('reservation_charge');              
-            $item_price = round($total_price*100/(100+18));
-            $gst = $total_price-$item_price;
-            
-            
-            $template_id = '1207163653375517655';
-            $message = "Dear ".$name."\n";
-            $message .= "Thank you for confirming your Reservation at Cinecafes.\n";
-            $message .= "Your reservation details are:\n";
-            $message .= "Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']."\n";
-            $message .= "Date: ".$reservation_date."\n";
-            $message .= "Time: ".$reservation_time."\n";
-            $message .= "No. of Guests: ".$this->input->post('no_of_guests')."\n";             
-            $message .= "No. of Hours: ".$this->input->post('duration')."\n";             
-            $message .= "Total Amount Inclusive of GST (18%): INR ".$total_price."\n";
-            $message .= "Item Amount : INR ".$item_price."\n";
-            $message .= "GST Amount: INR ".$gst."\n";
-            $message .= "CGST Amount: INR ".($gst/2)."\n";
-            $message .= "SGST Amount: INR ".($gst/2)."\n";
-            $message .= "CINE CAFES";
-            
-            smsSend($mobile, $message, $template_id);
-            
-            if(ENVIRONMENT=='production')
-            {
-                smsSend(NANDINIMOBILE, $message, $template_id);
-                smsSend(SUMNANMOBILE, $message, $template_id);
-            }
-            
-            /*********Mail fn ...************************************************/
-            $mail['name']       = $name;
-            $mail['to']         = $email;
-            
-            $mail['subject']    = ORGANIZATION_NAME.' - Reservation request received';                             
-            $mail_temp          = file_get_contents('./global/mail/reservation_template.html');
-            $mail_temp          = str_replace("{web_url}", base_url(), $mail_temp);
-            $mail_temp          = str_replace("{logo}", LOGOURL, $mail_temp);
-            $mail_temp          = str_replace("{shop_name}", ORGANIZATION_NAME, $mail_temp);  
-            $mail_temp          = str_replace("{name}", $mail['name'], $mail_temp);
-
-            $mail_temp          = str_replace("{duration}", $this->input->post('duration'), $mail_temp);
-            $mail_temp          = str_replace("{total_price}", number_format((float)$total_price, 2, '.', ''), $mail_temp);
-            $mail_temp          = str_replace("{item_price}", number_format((float)$item_price, 2, '.', ''), $mail_temp);
-            $mail_temp          = str_replace("{gst}", number_format((float)$gst, 2, '.', ''), $mail_temp);
-            $mail_temp          = str_replace("{cgst}", number_format((float)($gst/2), 2, '.', ''), $mail_temp);
-            $mail_temp          = str_replace("{sgst}", number_format((float)($gst/2), 2, '.', ''), $mail_temp);
-                                
-            $mail_temp          = str_replace("{current_year}", date('Y'), $mail_temp); 
-            
-            $mail_temp                = str_replace("{cafe_name}", $cafe_row['cafe_name']."-".$cafe_row['cafe_place'], $mail_temp);
-            $mail_temp                = str_replace("{reservation_date}", $reservation_date, $mail_temp);
-            $mail_temp                = str_replace("{reservation_time}", $reservation_time, $mail_temp);
-            $mail_temp                = str_replace("{no_of_guests}", $this->input->post('no_of_guests'), $mail_temp);
-            $mail_temp                = str_replace("{reservation_status}", "Confirmed", $mail_temp);
-            //echo $mail_temp; exit;
-            $mail['message']            = $mail_temp;
-            $mail['from_email']         = FROM_EMAIL;
-            $mail['from_name']          = ORGANIZATION_NAME;
-            sendmail($mail); 
-
-            if(ENVIRONMENT=='production')
-            {
-                // /************* Send Reservation details to the Admin ***************/
-                $admin_cond               = array('role_id' => '1','status' =>'1');
-                $admin_data               = $this->mcommon->getRow('user',$admin_cond);
-                if(!empty($admin_data)){
-                  $admin_email            = $admin_data['email'];
-                  $admin_name             = $admin_data['name'];
-                }
-                else{
-                  $admin_email            = 'support@cinecafe.in';
-                  $admin_name             = 'admin';
-                }     
-                $mail['name']             = $admin_name;
-                $mail['to']               = $admin_email;      
-                $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
-                sendmail($mail);
-                
-                // /************ Send Reservation details to NANDINI  ***************/
-                
-                $mail['name']             = NANDININAME;
-                $mail['to']               = NANDINIEMAIL;      
-                $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
-                sendmail($mail);
-                
-                // /************ Send Reservation details to Sharad ***************/
-                
-                $mail['name']             = 'Sharad';
-                $mail['to']               = 'sharad@cinecafes.com';      
-                $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
-                sendmail($mail);
-                
-                // /************ Send Reservation details to respective cafe managers  ***************/
-                if($this->input->post('cafe_id')==57)
-                {
-                  $mail['name']            = 'Manager Sec5';
-                  $mail['to']              = 'sec5@cinecafes.com';   
-                }
-                   
-                $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
-                sendmail($mail);
-            }
-            /*************** mail ends*******************************************/ 
-            
-            /******************************************************************/
-            $this->session->set_flashdata('success_message', 'Booking confirmed.');
-            //}
-            redirect('admin/reservation');
-        }
-    }
-
-    ////////add reservation /////////////////////////////////////////////////
-    public function add_content()   //download from live
+    public function add_content()
     {
         // echo "<pre>";// print_r($this->input->post());
         //reservation_no creation 
@@ -497,7 +224,7 @@ class Reservation extends MY_Controller
         //for reset on every month
         
         $created_on_arr = explode('-', $counter_details['created_on']);
-        $created_on_month = $created_on_arr[1];        
+        $created_on_month = $created_on_arr[1];
         if($created_on_month != date('m')){
             $counter = 1;
         }elseif($counter_details['cafe_id_serial_no']==''){
@@ -583,8 +310,7 @@ class Reservation extends MY_Controller
             $total_price = $this->input->post('reservation_charge');              
             $item_price = round($total_price*100/(100+18));
             $gst = $total_price-$item_price;
-
-
+                        
             //////////////////////////
             $admin = $this->session->userdata('admin');
             $insrtarry = array('reservation_date' => date('Y-m-d', strtotime(str_replace("/", "-", $this->input->post('reservation_date')))),
@@ -652,24 +378,6 @@ class Reservation extends MY_Controller
             $message .= "Time: ".$reservation_time."\n";
             $message .= "No. of Guests: ".$this->input->post('no_of_guests')."\n";
             $message .= "CINE CAFES";
-
-            // $template_id = '1207163653375517655';
-            // $message = "Dear ".$name."\n";
-            // $message .= "Thank you for confirming your Reservation at Cinecafes.\n";
-            // $message .= "Your reservation details are:\n";
-            // $message .= "Cafe: ".$cafe_row['cafe_name']."-".$cafe_row['cafe_place']."\n";
-            // $message .= "Date: ".$reservation_date."\n";
-            // $message .= "Time: ".$reservation_time."\n";
-            // $message .= "No. of Guests: ".$this->input->post('no_of_guests')."\n";
-            // $message .= "Item Amount : INR ".$item_price."\n";             
-            // $message .= "No. of Hours: ".$this->input->post('duration')."\n";             
-            // $message .= "Total Amount Inclusive of GST (18%): INR ".$total_price."\n";
-            // $message .= "Item Amount : INR ".$item_price."\n";
-            // $message .= "GST Amount: INR ".$gst."\n";
-            // $message .= "CGST Amount: INR ".($gst/2)."\n";
-            // $message .= "SGST Amount: INR ".($gst/2)."\n";
-            // $message .= "CINE CAFES";
-
             
             smsSend($mobile, $message, $template_id);
             
@@ -689,14 +397,16 @@ class Reservation extends MY_Controller
             $mail_temp          = str_replace("{logo}", LOGOURL, $mail_temp);
             $mail_temp          = str_replace("{shop_name}", ORGANIZATION_NAME, $mail_temp);  
             $mail_temp          = str_replace("{name}", $mail['name'], $mail_temp);
-              
+                    
+
             $mail_temp          = str_replace("{duration}", $this->input->post('duration'), $mail_temp);
             $mail_temp          = str_replace("{total_price}", number_format((float)$total_price, 2, '.', ''), $mail_temp);
             $mail_temp          = str_replace("{item_price}", number_format((float)$item_price, 2, '.', ''), $mail_temp);
             $mail_temp          = str_replace("{gst}", number_format((float)$gst, 2, '.', ''), $mail_temp);
             $mail_temp          = str_replace("{cgst}", number_format((float)($gst/2), 2, '.', ''), $mail_temp);
             $mail_temp          = str_replace("{sgst}", number_format((float)($gst/2), 2, '.', ''), $mail_temp);
-   
+
+
             $mail_temp          = str_replace("{current_year}", date('Y'), $mail_temp); 
 
             
@@ -748,12 +458,6 @@ class Reservation extends MY_Controller
                 {
                   $mail['name']            = 'Manager Sec5';
                   $mail['to']              = 'sec5@cinecafes.com';   
-
-                }else if($this->input->post('cafe_id')==65){
-
-                  $mail['name']            = 'Manager Sec2';
-                  $mail['to']              = 'sec2@cinecafes.com';   
-
                 }
                    
                 $mail_temp                = str_replace("{name}", $mail['name'], $mail_temp);
@@ -764,26 +468,6 @@ class Reservation extends MY_Controller
             /******************************************************************/
             $this->session->set_flashdata('success_message', 'Booking confirmed.');
             //}
-            redirect('admin/reservation');
-        }
-    }
-
-    ////////add reservation /////////////////////////////////////////////////
-    public function cancel_reservation()
-    {
-        //echo '<pre>';print_r($_POST);die;
-        $reservation_id             = $_POST['reservation_id'];
-        $cancellation_reason        = $_POST['cancellation_reason'];
-        $condition                  = array('reservation_id' => $reservation_id);
-        $udata                      = array(
-                                            'status'    => 2,
-                                            'cancellation_reason'   => $cancellation_reason,
-                                            'cancel_datetime'       => date('Y-m-d H:i:s')
-                                            );
-        $result                     = $this->mcommon->update('reservation', $condition, $udata);
-        //echo $this->db->last_query();die;
-        if ($result) {
-            $this->session->set_flashdata('success_message', 'Reservation Cancelled Successfully !!!');            
             redirect('admin/reservation');
         }
     }
