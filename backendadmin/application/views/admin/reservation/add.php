@@ -42,7 +42,7 @@
                  <div class="col-md-4 col-sm-12 col-xs-12 r_time">
                   <div class="form-group">
                       <label>Reservation Time*</label>
-                      <input type="text" name="reservation_time" id="reservation_time" class="form-control" placeholder="Reservation time" autocomplete="off" value="<?php echo set_value('reservation_time');?>" required >
+                      <input type="text" name="reservation_time" id="reservation_time" class="form-control" placeholder="Reservation time" autocomplete="off" value="<?php echo set_value('reservation_time');?>" required>
                     </div>
                 </div>
                  
@@ -106,13 +106,15 @@
                         <option value="Cash">Cash</option>
                         <option value="Online">Online</option>
                         <option value="UPI">UPI</option>
+                        <option value="Card">Card</option>
+                        <option value="Amex">Amex</option>
                       </select>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12 " >
                   <div class="form-group">
                     <label>Entertainment Media*</label>
-                    <select class="form-control" id="media_type" name="media_type" required="required" >
+                    <select class="form-control" id="media_type" name="media_type">
                     <option value="">-- Select media type --</option>
                      <?php foreach($media_list as $row1){?>
                             <option value="<?php echo $row1['media_name'];?>" <?php //if($row1['id']==$row['cafe_id']){ echo "selected"; }?>><?php //echo $row1['cafe_id'];?><?php echo $row1['media_name'];?></option>
@@ -177,17 +179,17 @@
                   <div class="col-md-3 col-sm-12 col-xs-12" id="promo-discount" style="display: none">
                     <div class="form-group">
                         <label>Coupon Discount</label>
-                        <p style="font-size: 19px;color: #F68310;">Rs. <strong>0</strong></p>
+                        <!-- <p style="font-size: 19px;color: #F68310;">Rs. <strong>0</strong></p> -->
                       </div>
                   </div>
-                 
-                <div class="col-md-12 col-sm-12 col-xs-12" id="payable-amount">                                                              
+
+                  <div class="col-md-12 col-sm-12 col-xs-12" id="payable-amount">                                                              
                     <p style="font-size: 12px;color: #F68310;" id="item_amt">Sub Total:  <strong>0</strong></p>                     
                     <p style="font-size: 12px;color: #F68310;" id="cgst_amt">CGST @ 9%:  <strong>0</strong></p>                     
                     <p style="font-size: 12px;color: #F68310;" id="sgst_amt">SGST @ 9%: <strong>0</strong></p>                     
                     <p style="font-size: 16px;color: #F68310;" id="total_amt">Total Amount: <strong>0</strong></p>             
                     <!-- <p style="font-size: 12px;color: #F68310;" id="gst_amt">GST Amount: <strong>0</strong></p>  -->                    
-                </div>
+                  </div>
 
                  <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="form-group">

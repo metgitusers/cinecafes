@@ -107,110 +107,6 @@
 					<div class="clearfix"></div>
 					</div>
              <div class="table-responsive">
-                <?php /* <table class="table table-bordered" id="myReservation" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Sl No.</th>
-                      <th>Booking No</th>
-                      <th>Customer Details</th>
-                      
-                      <th>Reservation date</th>
-                      <th>Cafe</th>
-                     
-                      <th>Room</th>
-                     
-                      <th>No of guests</th>
-                      <th>Total price</th>
-                      <!-- <th>Discount</th> -->
-                      <th>Payment Method</th>
-                      <th class="no-sort">Status</th>
-                      <th class="no-sort">Action</th> 
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Sl No.</th>
-                      <th>Booking No</th>
-                      <th>Customer Details</th>
-                      
-                      <th>Reservation date</th>
-                      <th>Cafe</th>
-                     
-                      <th>Room</th>
-                     
-                      <th>No of guests</th>
-                      <th>Total price</th>
-                      <!-- <th>Discount</th> -->
-                      <th>Payment Method</th>
-                      <th class="no-sort">Status</th>
-                      <th class="no-sort">Action</th>
-                    </tr>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <?php if(!empty($list)){ $i=1;?>
-                    <?php foreach($list as $row){ ?>
-                      <tr>
-                      <td><?php echo $i;?></td>
-                      <td><?=(!empty($row['reservation_no'])?$row['reservation_no']:$row['reservation_id']);?></td>
-                      <td><?php echo $row['name'];?>
-                      <br><a href="mailto:<?php echo $row['email'];?>"><?php echo $row['email'];?></a>
-                      <br><?php echo $row['mobile'];?>
-                      </td>
-                     
-                      <td><?php echo date('d-m-Y', strtotime($row['reservation_date']));?>    <?php echo date('g:i a', strtotime($row['reservation_time']))." to ".date('g:i a', strtotime($row['reservation_end_time']));?></td>
-                      <td><?php echo $row['cafe_name'];?></td>
-                     <!--  <td><?php //echo $row['movie_name'];?></td> -->
-                      <td>
-                        <?php
-                            if(empty($row['room_no']) || $row['room_no'] == null){
-                              echo '<button type="button" class="btn btn-primary assigned-room" data-id="'.$row['reservation_id'].'" data-parent="'. $row['cafe_id'] .'">Add room</button>';
-                            }else{ 
-                              echo $row['room_no'];
-                            }
-                        ?>
-                      </td>
-                     <!--  <td><?php //echo "Rs.".' '.$row['hourly_price'];?></td> -->
-                      <td><?php echo $row['no_of_guests'];?></td>
-                      <td><?php echo "Rs.".' '.$row['total_price'];?></td>
-                      <!-- <td><?php echo "Rs.".' '.($row['total_price']-$row['payable_amount']);?></td> -->
-                      <td><?php 
-                      if($row['payment_mode']=="")
-                      {
-                        echo "Backend Transaction";
-                      }
-                      else
-                      {
-                        echo $row['payment_mode'];
-                      }
-                      ?></td>
-                      
-                     <!-- <td><?php //echo date('d-m-Y', strtotime($row['created_on']));?></td>  -->
-                      <td>
-                        
-
-                         <?php if($row['status']==2){ echo "<p style='color:red;font-size: 15px;''>Cancelled</p>"; } else if($row['status']==1){  echo "<p style='color:green;font-size: 15px;''>Reserved</p>"; }  ?>
-                      </td>
-                      <!-- <td><?php //echo date('d-m-Y', strtotime($row['created_ts']));?></td> -->
-                     <td>
-                        <a class="btn btn-success btn-circle btn-sm" href="<?php echo base_url();?>admin/reservation/detail/<?php echo $row['reservation_id'];?>">
-                        <i class="fa fa-eye" aria-hidden="true"></i> </a> 
-                       </td>
-                    </tr>
-                   
-                    <?php $i++;
-                      } ?>
-                    <?php }else{ ?>
-                     <tr>
-                        <td colspan="11">No Reservation Found</td>
-                          
-                      </tr>
-                      <?php } ?>
-                   
-                  </tbody>
-                </table> */ ?>
-
-
                 <table class="table table-bordered" id="myReservation" width="100%" cellspacing="0">
                   <thead>
                     <tr>
@@ -321,26 +217,26 @@
                          <?php if($row['status']==2){ echo "<p style='color:red;font-size: 15px;''>Cancelled</p>"; } else if($row['status']==1){  echo "<p style='color:green;font-size: 15px;''>Reserved</p>"; }  ?>
                       </td>
                       <!-- <td><?php //echo date('d-m-Y', strtotime($row['created_ts']));?></td> -->
-                     <td>
+                      <td>
                         <a class="btn btn-success btn-circle btn-sm" href="<?php echo base_url();?>admin/reservation/detail/<?php echo $row['reservation_id'];?>">
-                        <i class="fa fa-eye" aria-hidden="true"></i> </a> 
-                       </td>
+                        <i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <br>
+                        <?php if($row['status']==1) {?>
+                          <a class="btn btn-danger btn-circle btn-sm" href="javascript:void(0);" title="Cancel Reservation" onclick="return confirm('Do You Want To Cancel The Reservation ?');" data-toggle="modal" data-target="#cancelModal-<?=$row['reservation_id']?>"><i class="fa fa-times" aria-hidden="true"></i></a>
+                        <?php }?>                        
+                      </td>
                     </tr>
                    
                     <?php $i++;
                       } ?>
                     <?php }else{ ?>
                      <tr>
-                        <td colspan="13">No Reservation Found</td>
-                          
+                        <td colspan="13">No Reservation Found</td>                          
                       </tr>
                       <?php } ?>
                    
                   </tbody>
                 </table>
-
-
-
               </div>
               </div>
             </form>
@@ -377,6 +273,30 @@
   </div>
 </div>
 
+<?php if(!empty($list)){ $i=1; foreach($list as $row){ ?>
+<!-- Modal -->
+<div class="modal fade" id="cancelModal-<?=$row['reservation_id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form method="post" action="<?php echo base_url();?>admin/reservation/cancel_reservation/">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="background-color: #000;border: 1px solid #FFF;">
+        <div class="modal-header" style="height: 50px;">
+          <h5 class="modal-title" id="exampleModalLabel">Cancel Reservation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding: 0rem 0rem;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="reservation_id" value="<?=$row['reservation_id']?>">
+          <textarea name="cancellation_reason" class="form-control"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<?php } }?>
 <script>
   $(document).ready(function(){
     var reservation_id = '';

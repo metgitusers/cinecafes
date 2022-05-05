@@ -217,8 +217,15 @@
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
-
+            
             Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a href="<?php echo base_url();?>admin/reservation/add" class="btn btn-primary btn-icon-split" style="margin-top: 18px;">
+                <span class="icon text-white-50"><i class="fas fa-plus"></i></span>
+                <span class="text">New Reservation</span>
+              </a>
+            </li>            
+            
             <?php 
             $user_info=$this->session->userdata('admin');
             ?>
