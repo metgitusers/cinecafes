@@ -223,7 +223,9 @@
                         <br>
                         <?php if($row['status']==1) {?>
                           <a class="btn btn-danger btn-circle btn-sm" href="javascript:void(0);" title="Cancel Reservation" onclick="return confirm('Do You Want To Cancel The Reservation ?');" data-toggle="modal" data-target="#cancelModal-<?=$row['reservation_id']?>"><i class="fa fa-times" aria-hidden="true"></i></a>
-                        <?php }?>                        
+                        <?php }?>
+                        <a class="btn btn-success btn-circle btn-sm" href="<?php echo base_url();?>admin/reservation/edit/<?php echo $row['reservation_id'];?>">
+                      <i class="fas fa-edit" aria-hidden="true"></i> </a>                         
                       </td>
                     </tr>
                    
